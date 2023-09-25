@@ -4,7 +4,7 @@ import {
 	InsightDatasetKind,
 	InsightError,
 	InsightResult,
-	NotFoundError
+	NotFoundError,
 } from "./IInsightFacade";
 
 /**
@@ -18,7 +18,11 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
-		return Promise.reject("Not implemented.");
+		if (id === "" || id.includes("_") || id === " ") {
+			return Promise.reject(new InsightError());
+		}
+
+		return Promise.resolve(["hi"]);
 	}
 
 	public removeDataset(id: string): Promise<string> {
