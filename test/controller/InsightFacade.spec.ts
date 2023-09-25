@@ -19,10 +19,12 @@ describe("InsightFacade", function () {
 
 	// Declare datasets used in tests. You should add more datasets like this!
 	let sections: string;
+	let cpsc110: string;
 
 	before(function () {
 		// This block runs once and loads the datasets.
 		sections = getContentFromArchives("pair.zip");
+		cpsc110 = getContentFromArchives("cpsc110.zip");
 
 		// Just in case there is anything hanging around from a previous run of the test suite
 		clearDisk();
@@ -64,6 +66,11 @@ describe("InsightFacade", function () {
 
 		it("should reject with id containing underscore", function () {
 			const result = facade.addDataset("some_data", sections, InsightDatasetKind.Sections);
+			return expect(result).to.eventually.be.rejectedWith(InsightError);
+		});
+
+		it("should resolve", function () {
+			const result = facade.addDataset("id1", sections, InsightDatasetKind.Sections);
 			return expect(result).to.eventually.be.rejectedWith(InsightError);
 		});
 	});

@@ -7,6 +7,10 @@ import {
 	NotFoundError,
 } from "./IInsightFacade";
 
+import * as fs from "fs-extra";
+import * as zip from "jszip";
+import {Dataset} from "../model/dataset";
+
 /**
  * This is the main programmatic entry point for the project.
  * Method documentation is in IInsightFacade
@@ -17,12 +21,17 @@ export default class InsightFacade implements IInsightFacade {
 		console.log("InsightFacadeImpl::init()");
 	}
 
-	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
+	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		if (id === "" || id.includes("_") || id === " ") {
 			return Promise.reject(new InsightError());
 		}
 
-		return Promise.resolve(["hi"]);
+		let section = fs.readFileSync("test/resources/archives/cpsc110.zip").toString("base64");
+		let dataset = new Dataset();
+
+		dataset.isValidCourse(0);
+
+		return Promise.resolve(["id"]);
 	}
 
 	public removeDataset(id: string): Promise<string> {
