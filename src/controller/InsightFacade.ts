@@ -7,9 +7,9 @@ import {
 	NotFoundError,
 } from "./IInsightFacade";
 
+import {Database} from "../model/Database";
+import {Dataset} from "../model/Dataset";
 import * as fs from "fs-extra";
-import * as zip from "jszip";
-import {Dataset} from "../model/dataset";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -17,19 +17,29 @@ import {Dataset} from "../model/dataset";
  *
  */
 export default class InsightFacade implements IInsightFacade {
+	private dataBase: Database;
+
 	constructor() {
+		this.dataBase = new Database();
 		console.log("InsightFacadeImpl::init()");
 	}
 
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
-		if (id === "" || id.includes("_") || id === " ") {
+		if (this.dataBase.invalidId(id)) {
 			return Promise.reject(new InsightError());
 		}
 
-		let section = fs.readFileSync("test/resources/archives/cpsc110.zip").toString("base64");
-		let dataset = new Dataset();
+		if (kind === InsightDatasetKind.Rooms) {
+			return Promise.reject(new InsightError());
+		}
 
-		dataset.isValidCourse(0);
+		/* let dataset = new Dataset(id, content);
+
+		if (await dataset.isValidDataSet()) {
+			return Promise.resolve(this.dataBase.addValidDataset(dataset));
+		} else {
+			return Promise.reject(new InsightError());
+		} */
 
 		return Promise.resolve(["id"]);
 	}

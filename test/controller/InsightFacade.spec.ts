@@ -20,17 +20,39 @@ describe("InsightFacade", function () {
 	// Declare datasets used in tests. You should add more datasets like this!
 	let sections: string;
 	let cpsc110: string;
+	let cs110And302: string;
+	let invalidRootDir: string;
+	let invalidCourseNotJson: string;
+	let invalidCourseFormat: string;
+	let invalidCourse: string;
+	let invalidNoId: string;
+	let invalidNoAudit: string;
+	let validOneCourse: string;
+	let validField: string;
 
 	before(function () {
 		// This block runs once and loads the datasets.
 		sections = getContentFromArchives("pair.zip");
 		cpsc110 = getContentFromArchives("cpsc110.zip");
+		cs110And302 = getContentFromArchives("cpsc110_302.zip");
+
+		invalidRootDir = getContentFromArchives("invalid_root.zip");
+		invalidCourseNotJson = getContentFromArchives("invalid_course_not_json.zip");
+		invalidCourseFormat = getContentFromArchives("invalid_format.zip");
+
+		invalidCourse = getContentFromArchives("invalid_course.zip");
+
+		invalidNoId = getContentFromArchives("missing_id.zip");
+		invalidNoAudit = getContentFromArchives("missing_audit.zip");
+
+		validOneCourse = getContentFromArchives("valid_course.zip");
+		validField = getContentFromArchives("valid_empty_str.zip");
 
 		// Just in case there is anything hanging around from a previous run of the test suite
 		clearDisk();
 	});
 
-	describe("Add/Remove/List Dataset", function () {
+	describe("Add/  Dataset", function () {
 		before(function () {
 			console.info(`Before: ${this.test?.parent?.title}`);
 		});
@@ -72,6 +94,120 @@ describe("InsightFacade", function () {
 		it("should resolve", function () {
 			const result = facade.addDataset("id1", sections, InsightDatasetKind.Sections);
 			return expect(result).to.eventually.be.rejectedWith(InsightError);
+		});
+
+		it("should reject with duplicate id", async function () {
+			await facade.addDataset(
+				"some-id",
+				sections, // cpsc110,
+				InsightDatasetKind.Sections
+			);
+
+			try {
+				await facade.addDataset("some-id", sections, InsightDatasetKind.Sections);
+				expect.fail("should have failed");
+			} catch (err) {
+				expect(err).to.be.instanceOf(InsightError);
+			}
+		});
+
+		it("add: crash-consistency", async function () {
+			await facade.addDataset("some", sections, InsightDatasetKind.Sections);
+
+			const newFacade = new InsightFacade();
+
+			try {
+				await newFacade.addDataset("some", sections, InsightDatasetKind.Sections);
+
+				expect.fail("should have failed");
+			} catch (err) {
+				expect(err).to.be.instanceOf(InsightError);
+			}
+		});
+
+		it("add: crash-consistency 2", async function () {
+			await facade.addDataset("some90", sections, InsightDatasetKind.Sections);
+
+			const newFacade = new InsightFacade();
+
+			const result2 = await newFacade.addDataset("some91", sections, InsightDatasetKind.Sections);
+
+			expect(result2).have.deep.members(["some90", "some91"]);
+		});
+
+		it("should resolve with two unique id", async function () {
+			await facade.addDataset("id1", sections, InsightDatasetKind.Sections);
+
+			const add2 = await facade.addDataset("id2", sections, InsightDatasetKind.Sections);
+
+			expect(add2).have.deep.members(["id1", "id2"]);
+		});
+
+		it("should resolve with two different datasets", async function () {
+			await facade.addDataset("id1", sections, InsightDatasetKind.Sections);
+
+			const add2 = await facade.addDataset("id2", cpsc110, InsightDatasetKind.Sections);
+
+			expect(add2).have.deep.members(["id1", "id2"]);
+		});
+
+		it("should reject with invalid kind", function () {
+			const result = facade.addDataset("id1", sections, InsightDatasetKind.Rooms);
+			return expect(result).to.eventually.be.rejectedWith(InsightError);
+		});
+
+		it("should reject with invalid content", function () {
+			const result = facade.addDataset("id1", "some file", InsightDatasetKind.Sections);
+
+			return expect(result).to.eventually.be.rejectedWith(InsightError);
+		});
+
+		it("should reject with invalid dataset: wrong root-dir", function () {
+			const result = facade.addDataset("id1", invalidRootDir, InsightDatasetKind.Sections);
+
+			return expect(result).to.eventually.be.rejectedWith(InsightError);
+		});
+
+		it("should reject with invalid dataset: not json", function () {
+			const result = facade.addDataset("id1", invalidCourseNotJson, InsightDatasetKind.Sections);
+
+			return expect(result).to.eventually.be.rejectedWith(InsightError);
+		});
+
+		it("should reject with invalid dataset: no valid_section", function () {
+			const result = facade.addDataset("id1", invalidCourse, InsightDatasetKind.Sections);
+
+			return expect(result).to.eventually.be.rejectedWith(InsightError);
+		});
+
+		it("should reject with invalid dataset: wrong format", function () {
+			const result = facade.addDataset("id1", invalidCourseFormat, InsightDatasetKind.Sections);
+
+			return expect(result).to.eventually.be.rejectedWith(InsightError);
+		});
+
+		it("should reject with invalid dataset: missing key id", function () {
+			const result = facade.addDataset("id1", invalidNoId, InsightDatasetKind.Sections);
+
+			return expect(result).to.eventually.be.rejectedWith(InsightError);
+		});
+
+		it("should reject with invalid dataset: missing key audit", function () {
+			const result = facade.addDataset("id1", invalidNoAudit, InsightDatasetKind.Sections);
+
+			return expect(result).to.eventually.be.rejectedWith(InsightError);
+		});
+
+		it("should resolve: one valid courses", function () {
+			const result = facade.addDataset("one course", validOneCourse, InsightDatasetKind.Sections);
+
+			return expect(result).to.eventually.deep.members(["one course"]);
+		});
+
+		it("should resolve: valid fields", function () {
+			const result = facade.addDataset("valid-field", validField, InsightDatasetKind.Sections);
+
+			return expect(result).to.eventually.deep.members(["valid-field"]);
 		});
 	});
 
