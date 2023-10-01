@@ -20,7 +20,7 @@ describe("InsightFacade", function () {
 	// Declare datasets used in tests. You should add more datasets like this!
 	let sections: string;
 	let cpsc110: string;
-	let cs110And302: string;
+	let maths: string;
 	let invalidRootDir: string;
 	let invalidCourseNotJson: string;
 	let invalidCourseFormat: string;
@@ -34,7 +34,7 @@ describe("InsightFacade", function () {
 		// This block runs once and loads the datasets.
 		sections = getContentFromArchives("pair.zip");
 		cpsc110 = getContentFromArchives("cpsc110.zip");
-		cs110And302 = getContentFromArchives("cpsc110_302.zip");
+		maths = getContentFromArchives("maths.zip");
 
 		invalidRootDir = getContentFromArchives("invalid_root.zip");
 		invalidCourseNotJson = getContentFromArchives("invalid_course_not_json.zip");
@@ -92,32 +92,28 @@ describe("InsightFacade", function () {
 		});
 
 		it("should resolve", function () {
-			const result = facade.addDataset("id1", sections, InsightDatasetKind.Sections);
-			return expect(result).to.eventually.be.rejectedWith(InsightError);
+			const result = facade.addDataset("dataset-no-1", sections, InsightDatasetKind.Sections);
+			return expect(result).to.eventually.have.members(["dataset-no-1"]);
 		});
-		/*
+
 		it("should reject with duplicate id", async function () {
-			await facade.addDataset(
-				"some-id",
-				sections, // cpsc110,
-				InsightDatasetKind.Sections
-			);
+			await facade.addDataset("pair zip", sections, InsightDatasetKind.Sections);
 
 			try {
-				await facade.addDataset("some-id", sections, InsightDatasetKind.Sections);
+				await facade.addDataset("pair zip", sections, InsightDatasetKind.Sections);
 				expect.fail("should have failed");
 			} catch (err) {
 				expect(err).to.be.instanceOf(InsightError);
 			}
 		});
 
-		it("add: crash-consistency", async function () {
-			await facade.addDataset("some", sections, InsightDatasetKind.Sections);
+		it("add: crash-consistency duplicate id", async function () {
+			await facade.addDataset("pair 2", sections, InsightDatasetKind.Sections);
 
 			const newFacade = new InsightFacade();
 
 			try {
-				await newFacade.addDataset("some", sections, InsightDatasetKind.Sections);
+				await newFacade.addDataset("pair 2", sections, InsightDatasetKind.Sections);
 
 				expect.fail("should have failed");
 			} catch (err) {
@@ -131,20 +127,20 @@ describe("InsightFacade", function () {
 			const newFacade = new InsightFacade();
 
 			const result2 = await newFacade.addDataset("some91", sections, InsightDatasetKind.Sections);
-
+			console.log(result2);
 			expect(result2).have.deep.members(["some90", "some91"]);
-		}); */
+		});
 
 		it("should resolve with two unique id", async function () {
-			await facade.addDataset("id1", sections, InsightDatasetKind.Sections);
+			await facade.addDataset("cpsc110-1", cpsc110, InsightDatasetKind.Sections);
 
-			const add2 = await facade.addDataset("id2", sections, InsightDatasetKind.Sections);
+			const add2 = await facade.addDataset("cpsc110-2", sections, InsightDatasetKind.Sections);
 
-			expect(add2).have.deep.members(["id1", "id2"]);
+			expect(add2).have.deep.members(["cpsc110-1", "cpsc110-2"]);
 		});
 
 		it("should resolve with two different datasets", async function () {
-			await facade.addDataset("id1", sections, InsightDatasetKind.Sections);
+			await facade.addDataset("id1", maths, InsightDatasetKind.Sections);
 
 			const add2 = await facade.addDataset("id2", cpsc110, InsightDatasetKind.Sections);
 
@@ -199,9 +195,9 @@ describe("InsightFacade", function () {
 		});
 
 		it("should resolve: one valid courses", function () {
-			const result = facade.addDataset("one course", validOneCourse, InsightDatasetKind.Sections);
+			const result = facade.addDataset("valid course", validOneCourse, InsightDatasetKind.Sections);
 
-			return expect(result).to.eventually.deep.members(["one course"]);
+			return expect(result).to.eventually.deep.members(["valid course"]);
 		});
 
 		it("should resolve: valid fields", function () {

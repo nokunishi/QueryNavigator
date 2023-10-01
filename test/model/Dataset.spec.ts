@@ -93,7 +93,6 @@ describe("Dataset", function () {
 
 		it("should resolve and return true: CPSC110", async function () {
 			let sections = await cpsc110Data.getSectionsJSON("CPSC110");
-			console.log(sections);
 			let result = cpsc110Data.isValidCourse(sections);
 			let result2 = await cpsc110Data.isValidDataSet();
 

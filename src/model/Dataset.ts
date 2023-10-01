@@ -1,12 +1,11 @@
 import * as fs from "fs-extra";
 import {Section} from "./Section";
 import * as zip from "jszip";
-import {getContentFromArchives} from "../../test/TestUtil";
-import {json} from "stream/consumers";
+import {InsightError} from "../controller/IInsightFacade";
 
 export class Dataset {
 	public id: string; // TODO: maybe change visibility?
-	private file: string;
+	public file: string;
 
 	// TODO: should we have this?
 	// file: zip file in base64
@@ -19,39 +18,47 @@ export class Dataset {
 	// return a list of all course names under /courses root dir
 	// always return
 	public async getAllCourseNames(): Promise<string[]> {
-		let promises: string[];
-		promises = [];
+		try {
+			let promises: string[];
+			promises = [];
 
-		await zip.loadAsync(this.file, {base64: true}).then((unzip) => {
-			unzip.folder("courses")?.forEach((course) => {
-				if (course !== ".DS_Store") {
-					promises.push(course);
-				}
+			await zip.loadAsync(this.file, {base64: true}).then((unzip) => {
+				unzip.folder("courses")?.forEach((course) => {
+					if (course !== ".DS_Store") {
+						promises.push(course);
+					}
+				});
 			});
-		});
 
-		return promises;
+			return promises;
+		} catch (err) {
+			return Promise.reject(new InsightError());
+		}
 	}
 
 	// returns JSON object of a course ("result"), all sections
 	// name: Course name
 	public async getSectionsJSON(name: string): Promise<any> {
-		let sections: Section[];
-		sections = [];
+		try {
+			let sections: Section[];
+			sections = [];
 
-		let course = await zip
-			.loadAsync(this.file, {base64: true})
-			.then((unzip) => {
-				return unzip.folder("courses")?.file(name)?.async("string");
-			})
-			.then((str) => {
-				return str;
-			});
+			let course = await zip
+				.loadAsync(this.file, {base64: true})
+				.then((unzip) => {
+					return unzip.folder("courses")?.file(name)?.async("string");
+				})
+				.then((str) => {
+					return str;
+				});
 
-		if (course != null) {
-			return Promise.resolve(JSON.parse(course).result);
-		} else {
-			return Promise.reject("course not found");
+			if (course != null) {
+				return Promise.resolve(JSON.parse(course).result);
+			} else {
+				return Promise.reject(new InsightError());
+			}
+		} catch (err) {
+			return Promise.reject(new InsightError());
 		}
 	}
 
@@ -60,8 +67,6 @@ export class Dataset {
 	public isValidCourse(sections: any): boolean {
 		for (const sectionJSON of sections) {
 			const section = new Section(sectionJSON);
-			console.log(section);
-
 			if (section.isValid()) {
 				return true;
 			}
@@ -71,19 +76,23 @@ export class Dataset {
 	}
 
 	public async isValidDataSet(): Promise<boolean> {
-		let courseNames = await this.getAllCourseNames();
-		let valid = false;
+		try {
+			let courseNames = await this.getAllCourseNames();
+			let valid = false;
 
-		for await (const course of courseNames) {
-			let sections = await this.getSectionsJSON(course);
-			let courseValid = this.isValidCourse(sections);
+			for await (const course of courseNames) {
+				let sections = await this.getSectionsJSON(course);
+				let courseValid = this.isValidCourse(sections);
 
-			if (courseValid) {
-				valid = true;
-				break;
+				if (courseValid) {
+					valid = true;
+					break;
+				}
 			}
-		}
 
-		return Promise.resolve(valid);
+			return Promise.resolve(valid);
+		} catch (err) {
+			return Promise.reject(new InsightError());
+		}
 	}
 }

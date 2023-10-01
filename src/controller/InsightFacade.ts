@@ -17,31 +17,34 @@ import * as fs from "fs-extra";
  *
  */
 export default class InsightFacade implements IInsightFacade {
-	private dataBase: Database;
+	private database: Database;
 
 	constructor() {
-		this.dataBase = new Database();
+		this.database = new Database();
 		console.log("InsightFacadeImpl::init()");
 	}
 
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
-		if (this.dataBase.invalidId(id)) {
+		try {
+			if (this.database.invalidId(id)) {
+				return Promise.reject(new InsightError());
+			}
+
+			if (kind === InsightDatasetKind.Rooms) {
+				return Promise.reject(new InsightError());
+			}
+
+			let dataset = new Dataset(id, content);
+			let isValid = await dataset.isValidDataSet();
+
+			if (isValid) {
+				return await this.database.addValidDataset(dataset);
+			} else {
+				return Promise.reject(new InsightError());
+			}
+		} catch (err) {
 			return Promise.reject(new InsightError());
 		}
-
-		if (kind === InsightDatasetKind.Rooms) {
-			return Promise.reject(new InsightError());
-		}
-		/*
-		let dataset = new Dataset(id, content);
-
-		if (await dataset.isValidDataSet()) {
-			return Promise.resolve(this.dataBase.addValidDataset(dataset));
-		} else {
-			return Promise.reject(new InsightError());
-		} */
-
-		return Promise.resolve(["id"]);
 	}
 
 	public removeDataset(id: string): Promise<string> {
