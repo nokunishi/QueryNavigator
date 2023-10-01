@@ -17,15 +17,15 @@ export class Section {
 
 	constructor(section: any) {
 		this.id = section["id"];
-		this.uuid = section["uuid"];
-		this.title = section["title"];
-		this.instructor = section["instructor"];
-		this.dept = section["dept"];
-		this.year = section["year"];
-		this.avg = section["avg"];
-		this.pass = section["pass"];
-		this.fail = section["fail"];
-		this.audit = section["audit"];
+		this.uuid = section["Course"];
+		this.title = section["Title"];
+		this.instructor = section["Professor"];
+		this.dept = section["Subject"];
+		this.year = section["Year"];
+		this.avg = section["Avg"];
+		this.pass = section["Pass"];
+		this.fail = section["Fail"];
+		this.audit = section["Audit"];
 	}
 
 	public isValid(): boolean {

@@ -12,7 +12,7 @@ import {expect, use} from "chai";
 import chaiAsPromised from "chai-as-promised";
 import {clearDisk, getContentFromArchives} from "../TestUtil";
 import {Dataset} from "../../src/model/Dataset";
-import {math120} from "../resources/archives/math120";
+import {math321} from "../resources/archives/math321";
 import {Section} from "../../src/model/Section";
 
 use(chaiAsPromised);
@@ -20,7 +20,6 @@ use(chaiAsPromised);
 describe("Dataset", function () {
 	let mathData: Dataset;
 	let cpsc110Data: Dataset;
-
 	// Declare datasets used in tests. You should add more datasets like this!
 	let maths: string;
 	let cpsc110: string;
@@ -41,9 +40,10 @@ describe("Dataset", function () {
 		"MATH180",
 		"MATH184",
 		"MATH190",
+		"MATH321",
 	];
 
-	let math120Sections = math120;
+	let math321Sections = math321;
 
 	before(function () {
 		// This block runs once and loads the datasets.
@@ -86,13 +86,23 @@ describe("Dataset", function () {
 		});
 
 		it("should resolve: get Course result", async function () {
-			let math120SectionsResult = await mathData.getSectionsJSON("MATH120");
+			let math321SectionsResult = await mathData.getSectionsJSON("MATH321");
 
-			expect(math120SectionsResult).have.deep.members(math120Sections);
+			expect(math321SectionsResult).have.deep.members(math321Sections);
 		});
 
-		it("should resolve: get Course result", async function () {
-			let result = await cpsc110Data.isValidCourse("CPSC110");
+		it("should resolve and return true: CPSC110", async function () {
+			let sections = await cpsc110Data.getSectionsJSON("CPSC110");
+			console.log(sections);
+			let result = cpsc110Data.isValidCourse(sections);
+			let result2 = await cpsc110Data.isValidDataSet();
+
+			expect(result).to.be.equal(true);
+			expect(result2).to.be.equal(true);
+		});
+
+		it("should resolve and return true: maths", async function () {
+			let result = await mathData.isValidDataSet();
 
 			expect(result).to.be.equal(true);
 		});

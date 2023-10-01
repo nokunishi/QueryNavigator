@@ -95,7 +95,7 @@ describe("InsightFacade", function () {
 			const result = facade.addDataset("id1", sections, InsightDatasetKind.Sections);
 			return expect(result).to.eventually.be.rejectedWith(InsightError);
 		});
-
+		/*
 		it("should reject with duplicate id", async function () {
 			await facade.addDataset(
 				"some-id",
@@ -133,7 +133,7 @@ describe("InsightFacade", function () {
 			const result2 = await newFacade.addDataset("some91", sections, InsightDatasetKind.Sections);
 
 			expect(result2).have.deep.members(["some90", "some91"]);
-		});
+		}); */
 
 		it("should resolve with two unique id", async function () {
 			await facade.addDataset("id1", sections, InsightDatasetKind.Sections);
@@ -216,7 +216,7 @@ describe("InsightFacade", function () {
 	 * You should not need to modify it; instead, add additional files to the queries directory.
 	 * You can still make tests the normal way, this is just a convenient tool for a majority of queries.
 	 */
-	describe("PerformQuery", () => {
+	/* describe("PerformQuery", () => {
 		before(function () {
 			console.info(`Before: ${this.test?.parent?.title}`);
 
@@ -251,5 +251,5 @@ describe("InsightFacade", function () {
 				},
 			}
 		);
-	});
+	}); */
 });

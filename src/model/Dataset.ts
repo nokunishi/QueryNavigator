@@ -9,6 +9,8 @@ export class Dataset {
 	private file: string;
 
 	// TODO: should we have this?
+	// file: zip file in base64
+	// id: new id of the dataset
 	constructor(id: string, file: string) {
 		this.id = id;
 		this.file = file;
@@ -32,6 +34,7 @@ export class Dataset {
 	}
 
 	// returns JSON object of a course ("result"), all sections
+	// name: Course name
 	public async getSectionsJSON(name: string): Promise<any> {
 		let sections: Section[];
 		sections = [];
@@ -52,31 +55,35 @@ export class Dataset {
 		}
 	}
 
-	public async isValidCourse(name: string): Promise<boolean> {
-		let sections = await this.getSectionsJSON(name);
-
-		sections.forEach((sectionJSON: any) => {
+	// Check if 'sections' contain at least one valid course
+	// getSectionsJSON should be called first
+	public isValidCourse(sections: any): boolean {
+		for (const sectionJSON of sections) {
 			const section = new Section(sectionJSON);
+			console.log(section);
 
 			if (section.isValid()) {
-				return Promise.resolve(true);
+				return true;
 			}
-		});
+		}
 
-		return Promise.reject(false);
+		return false;
 	}
 
 	public async isValidDataSet(): Promise<boolean> {
 		let courseNames = await this.getAllCourseNames();
+		let valid = false;
 
-		courseNames.forEach(async (course) => {
-			let valid = await this.isValidCourse(course);
+		for await (const course of courseNames) {
+			let sections = await this.getSectionsJSON(course);
+			let courseValid = this.isValidCourse(sections);
 
-			if (valid) {
-				return Promise.resolve(true);
+			if (courseValid) {
+				valid = true;
+				break;
 			}
-		});
+		}
 
-		return Promise.reject(false);
+		return Promise.resolve(valid);
 	}
 }
