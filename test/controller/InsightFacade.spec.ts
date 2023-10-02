@@ -4,6 +4,7 @@ import {
 	InsightError,
 	InsightResult,
 	ResultTooLargeError,
+	NotFoundError,
 } from "../../src/controller/IInsightFacade";
 import InsightFacade from "../../src/controller/InsightFacade";
 
@@ -21,6 +22,8 @@ describe("InsightFacade", function () {
 	let sections: string;
 	let cpsc110: string;
 	let maths: string;
+	let cs110And302: string;
+
 	let invalidRootDir: string;
 	let invalidCourseNotJson: string;
 	let invalidCourseFormat: string;
@@ -35,6 +38,7 @@ describe("InsightFacade", function () {
 		sections = getContentFromArchives("pair.zip");
 		cpsc110 = getContentFromArchives("cpsc110.zip");
 		maths = getContentFromArchives("maths.zip");
+		cs110And302 = getContentFromArchives("cpsc110_302.zip");
 
 		invalidRootDir = getContentFromArchives("invalid_root.zip");
 		invalidCourseNotJson = getContentFromArchives("invalid_course_not_json.zip");
@@ -52,7 +56,7 @@ describe("InsightFacade", function () {
 		clearDisk();
 	});
 
-	describe("Add/  Dataset", function () {
+	describe("AddDataset", function () {
 		before(function () {
 			console.info(`Before: ${this.test?.parent?.title}`);
 		});
@@ -91,7 +95,7 @@ describe("InsightFacade", function () {
 			return expect(result).to.eventually.be.rejectedWith(InsightError);
 		});
 
-		it("should resolve", function () {
+		it("should resolve: unique id", function () {
 			const result = facade.addDataset("dataset-no-1", sections, InsightDatasetKind.Sections);
 			return expect(result).to.eventually.have.members(["dataset-no-1"]);
 		});
@@ -121,7 +125,7 @@ describe("InsightFacade", function () {
 			}
 		});
 
-		it("add: crash-consistency 2", async function () {
+		it("add: crash-consistency two unique ids", async function () {
 			await facade.addDataset("some90", sections, InsightDatasetKind.Sections);
 
 			const newFacade = new InsightFacade();
@@ -131,7 +135,7 @@ describe("InsightFacade", function () {
 			expect(result2).have.deep.members(["some90", "some91"]);
 		});
 
-		it("should resolve with two unique id", async function () {
+		it("should resolve with two unique ids", async function () {
 			await facade.addDataset("cpsc110-1", cpsc110, InsightDatasetKind.Sections);
 
 			const add2 = await facade.addDataset("cpsc110-2", sections, InsightDatasetKind.Sections);
@@ -204,6 +208,238 @@ describe("InsightFacade", function () {
 			const result = facade.addDataset("valid-field", validField, InsightDatasetKind.Sections);
 
 			return expect(result).to.eventually.deep.members(["valid-field"]);
+		});
+	});
+
+	describe("removeDataset", function () {
+		before(function () {
+			console.info(`Before: ${this.test?.parent?.title}`);
+		});
+
+		beforeEach(function () {
+			// This section resets the insightFacade instance
+			// This runs before each test
+			console.info(`BeforeTest: ${this.currentTest?.title}`);
+			facade = new InsightFacade();
+		});
+
+		after(function () {
+			console.info(`After: ${this.test?.parent?.title}`);
+		});
+
+		afterEach(function () {
+			// This section resets the data directory (removing any cached data)
+			// This runs after each test, which should make each test independent of the previous one
+			console.info(`AfterTest: ${this.currentTest?.title}`);
+			clearDisk();
+		});
+
+		it("remove: should reject: id with an underscore: middle", function () {
+			const result = facade.removeDataset("invalid_id");
+
+			return expect(result).to.eventually.be.rejectedWith(InsightError);
+		});
+
+		it("remove: should reject: id only whitespace", function () {
+			const result = facade.removeDataset(" ");
+
+			return expect(result).to.eventually.be.rejectedWith(InsightError);
+		});
+
+		it("remove: should reject: id empty-string", function () {
+			const result = facade.removeDataset("");
+
+			return expect(result).to.eventually.be.rejectedWith(InsightError);
+		});
+
+		it("should reject with non-existing id", function () {
+			const result = facade.removeDataset("id1902");
+
+			return expect(result).to.eventually.be.rejectedWith(NotFoundError);
+		});
+
+		it("should resolve: remove an existing id", async function () {
+			const add = await facade.addDataset("id1", sections, InsightDatasetKind.Sections);
+
+			const remove = await facade.removeDataset("id1");
+
+			expect(remove).to.deep.equal("id1");
+		});
+
+		it("remove: crash-consistency", async function () {
+			const add = await facade.addDataset("id1", sections, InsightDatasetKind.Sections);
+
+			const newFacade = new InsightFacade();
+
+			const remove = await newFacade.removeDataset("id1");
+
+			expect(remove).to.deep.equal("id1");
+		});
+
+		it("remove: crash-consistency should reject with NotFoundError", async function () {
+			const add = await facade.addDataset("id1", sections, InsightDatasetKind.Sections);
+
+			const remove = await facade.removeDataset("id1");
+
+			const newFacade = new InsightFacade();
+
+			try {
+				await newFacade.removeDataset("id1");
+				expect.fail("should have failed");
+			} catch (err) {
+				expect(err).to.be.instanceof(NotFoundError);
+			}
+		});
+
+		it("remove: crash-consistency should resolve", async function () {
+			const add = await facade.addDataset("id1", sections, InsightDatasetKind.Sections);
+
+			const remove = await facade.removeDataset("id1");
+
+			const newFacade = new InsightFacade();
+
+			const add2 = await newFacade.addDataset("id1", sections, InsightDatasetKind.Sections);
+
+			expect(add2).to.have.deep.members(["id1"]);
+		});
+
+		it("remove multiple files", async function () {
+			const add = await facade.addDataset("id29", sections, InsightDatasetKind.Sections);
+
+			const add2 = await facade.addDataset("id28", cpsc110, InsightDatasetKind.Sections);
+
+			const remove = await facade.removeDataset("id29");
+			const remove2 = await facade.removeDataset("id28");
+
+			expect(remove).to.deep.equal("id29");
+			expect(remove2).to.deep.equal("id28");
+		});
+	});
+
+	describe("listDataset", function () {
+		before(function () {
+			console.info(`Before: ${this.test?.parent?.title}`);
+		});
+
+		beforeEach(function () {
+			// This section resets the insightFacade instance
+			// This runs before each test
+			console.info(`BeforeTest: ${this.currentTest?.title}`);
+			facade = new InsightFacade();
+		});
+
+		after(function () {
+			console.info(`After: ${this.test?.parent?.title}`);
+		});
+
+		afterEach(function () {
+			// This section resets the data directory (removing any cached data)
+			// This runs after each test, which should make each test independent of the previous one
+			console.info(`AfterTest: ${this.currentTest?.title}`);
+			clearDisk();
+		});
+
+		it("should resolve: return empty array", function () {
+			const result = facade.listDatasets();
+
+			return expect(result).to.eventually.be.empty;
+		});
+
+		it("should resolve: retrun empty array after removing", async function () {
+			const add = await facade.addDataset("cs110", cpsc110, InsightDatasetKind.Sections);
+
+			const remove = await facade.removeDataset("cs110");
+			const result = await facade.listDatasets();
+
+			expect(result).to.be.empty;
+		});
+
+		it("should resolve: array with one elem", async function () {
+			const add = await facade.addDataset("cs110", cpsc110, InsightDatasetKind.Sections);
+
+			const result = await facade.listDatasets();
+
+			expect(result).have.deep.members([{id: "cs110", kind: InsightDatasetKind.Sections, numRows: 58}]);
+		});
+
+		it("should resolve: array with one elem 2", async function () {
+			const add = await facade.addDataset("cs110-320", cs110And302, InsightDatasetKind.Sections);
+
+			const result = await facade.listDatasets();
+
+			expect(result).have.deep.members([{id: "cs110-320", kind: InsightDatasetKind.Sections, numRows: 76}]);
+		});
+
+		it("should resolve: array with two elems", async function () {
+			const add1 = await facade.addDataset("cs110", cpsc110, InsightDatasetKind.Sections);
+
+			const add2 = await facade.addDataset("cs110 & 302", cs110And302, InsightDatasetKind.Sections);
+
+			const result = await facade.listDatasets();
+
+			expect(result).have.deep.members([
+				{id: "cs110", kind: InsightDatasetKind.Sections, numRows: 58},
+				{id: "cs110 & 302", kind: InsightDatasetKind.Sections, numRows: 76},
+			]);
+		});
+
+		it("should resolve: array with two elems, same file", async function () {
+			const add1 = await facade.addDataset("cpsc110-w1", cpsc110, InsightDatasetKind.Sections);
+
+			const add2 = await facade.addDataset("cpsc110-w2", cpsc110, InsightDatasetKind.Sections);
+
+			const result = await facade.listDatasets();
+
+			expect(result).have.deep.members([
+				{id: "cpsc110-w1", kind: InsightDatasetKind.Sections, numRows: 58},
+				{id: "cpsc110-w2", kind: InsightDatasetKind.Sections, numRows: 58},
+			]);
+		});
+
+		it("should resolve: remove one elem", async function () {
+			const add1 = await facade.addDataset("cs110", cpsc110, InsightDatasetKind.Sections);
+
+			const add2 = await facade.addDataset("cpsc110, 302", cs110And302, InsightDatasetKind.Sections);
+
+			const remove = await facade.removeDataset("cs110");
+
+			const result = await facade.listDatasets();
+
+			expect(result).have.deep.members([{id: "cpsc110, 302", kind: InsightDatasetKind.Sections, numRows: 76}]);
+		});
+
+		it("list: crash-consistency", async function () {
+			const add1 = await facade.addDataset("cs110", cpsc110, InsightDatasetKind.Sections);
+
+			const newFacade = new InsightFacade();
+
+			const result = await newFacade.listDatasets();
+
+			expect(result).have.deep.members([{id: "cs110", kind: InsightDatasetKind.Sections, numRows: 58}]);
+		});
+
+		it("list: crash-consistency: remove", async function () {
+			const add1 = await facade.addDataset("cs110", cpsc110, InsightDatasetKind.Sections);
+
+			const remove = await facade.removeDataset("cs110");
+			const newFacade = new InsightFacade();
+
+			const result = await newFacade.listDatasets();
+
+			expect(result).to.be.empty;
+		});
+
+		it("list: crash-consistency: remove twice", async function () {
+			const add1 = await facade.addDataset("cs110", cpsc110, InsightDatasetKind.Sections);
+
+			const newFacade1 = new InsightFacade();
+
+			const remove = await newFacade1.removeDataset("cs110");
+			const newFacade2 = new InsightFacade();
+
+			const result = await newFacade2.listDatasets();
+
+			expect(result).to.be.empty;
 		});
 	});
 

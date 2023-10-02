@@ -63,8 +63,8 @@ describe("Dataset", function () {
 			// This section resets the insightFacade instance
 			// This runs before each test
 			console.info(`BeforeTest: ${this.currentTest?.title}`);
-			mathData = new Dataset("math", maths);
-			cpsc110Data = new Dataset("cpsc110", cpsc110);
+			mathData = new Dataset("math", maths, InsightDatasetKind.Sections);
+			cpsc110Data = new Dataset("cpsc110", cpsc110, InsightDatasetKind.Sections);
 		});
 
 		after(function () {

@@ -34,9 +34,7 @@ export default class InsightFacade implements IInsightFacade {
 				return Promise.reject(new InsightError());
 			}
 
-			this.database.getAllIds();
-
-			let dataset = new Dataset(id, content);
+			let dataset = new Dataset(id, content, kind);
 			let isValid = await dataset.isValidDataSet();
 
 			if (isValid) {
@@ -50,14 +48,37 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public removeDataset(id: string): Promise<string> {
-		return Promise.reject("Not implemented.");
+		if (this.database.invalidId(id)) {
+			return Promise.reject(new InsightError());
+		} else if (!fs.existsSync("./data/" + id)) {
+			return Promise.reject(new NotFoundError());
+		} else {
+			fs.unlinkSync("./data/" + id);
+			return Promise.resolve(id);
+		}
 	}
 
 	public performQuery(query: unknown): Promise<InsightResult[]> {
 		return Promise.reject("Not implemented.");
 	}
 
-	public listDatasets(): Promise<InsightDataset[]> {
-		return Promise.reject("Not implemented.");
+	public async listDatasets(): Promise<InsightDataset[]> {
+		let ids = this.database.getAllIds();
+		let insightDatasetList = [];
+
+		for await (const id of ids) {
+			let dataset = this.database.readDataset(id);
+			let numRows = await dataset.getNumRows();
+
+			let obj: InsightDataset = {
+				id: id,
+				kind: dataset.kind,
+				numRows: numRows,
+			};
+
+			insightDatasetList.push(obj);
+		}
+
+		return Promise.resolve(insightDatasetList);
 	}
 }

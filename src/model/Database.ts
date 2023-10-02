@@ -3,7 +3,7 @@ import {Section} from "./Section";
 import * as zip from "jszip";
 import {getContentFromArchives} from "../../test/TestUtil";
 import {Dataset} from "./Dataset";
-import {InsightError} from "../controller/IInsightFacade";
+import {InsightDatasetKind, InsightError} from "../controller/IInsightFacade";
 
 // list of valid datasets
 export class Database {
@@ -13,10 +13,11 @@ export class Database {
 		}
 	}
 
+	// read file and convert sinto a Dataset obj
 	public readDataset(id: string): Dataset {
 		let file = fs.readFileSync("./data/" + id).toString();
 
-		return new Dataset(id, file);
+		return new Dataset(id, file, InsightDatasetKind.Sections);
 	}
 
 	public getAllIds(): string[] {
@@ -27,6 +28,8 @@ export class Database {
 		return id === "" || id.includes("_") || id === " ";
 	}
 
+	// add the base64 content of zip file to ./data dir
+	// file name = id of dataset
 	public async addValidDataset(dataset: Dataset): Promise<string[]> {
 		try {
 			if (!fs.pathExistsSync("./data/" + dataset.id)) {

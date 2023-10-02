@@ -1,18 +1,21 @@
 import * as fs from "fs-extra";
 import {Section} from "./Section";
 import * as zip from "jszip";
-import {InsightError} from "../controller/IInsightFacade";
+import {InsightDatasetKind, InsightError} from "../controller/IInsightFacade";
 
 export class Dataset {
 	public id: string; // TODO: maybe change visibility?
 	public file: string;
+	public kind: InsightDatasetKind;
+	public numRows?: number;
 
 	// TODO: should we have this?
 	// file: zip file in base64
 	// id: new id of the dataset
-	constructor(id: string, file: string) {
+	constructor(id: string, file: string, kind: InsightDatasetKind) {
 		this.id = id;
 		this.file = file;
+		this.kind = kind;
 	}
 
 	// return a list of all course names under /courses root dir
@@ -31,6 +34,26 @@ export class Dataset {
 			});
 
 			return promises;
+		} catch (err) {
+			return Promise.reject(new InsightError());
+		}
+	}
+
+	// set the total number of rows in the dataset
+	public async getNumRows(): Promise<number> {
+		try {
+			let courseNames = await this.getAllCourseNames();
+			let sum = 0;
+
+			for await (const course of courseNames) {
+				let sections = await this.getSectionsJSON(course);
+
+				sum += sections.length;
+			}
+
+			this.numRows = sum;
+
+			return Promise.resolve(this.numRows);
 		} catch (err) {
 			return Promise.reject(new InsightError());
 		}
