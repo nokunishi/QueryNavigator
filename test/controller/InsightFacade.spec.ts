@@ -35,7 +35,8 @@ describe("InsightFacade", function () {
 
 	before(function () {
 		// This block runs once and loads the datasets.
-		sections = getContentFromArchives("pair.zip");
+		// sections = getContentFromArchives("pair.zip");
+		sections = getContentFromArchives("courses100.zip");
 		cpsc110 = getContentFromArchives("cpsc110.zip");
 		maths = getContentFromArchives("maths.zip");
 		cs110And302 = getContentFromArchives("cpsc110_302.zip");
