@@ -63,8 +63,8 @@ describe("Dataset", function () {
 			// This section resets the insightFacade instance
 			// This runs before each test
 			console.info(`BeforeTest: ${this.currentTest?.title}`);
-			mathData = new Dataset("math");
-			cpsc110Data = new Dataset("cpsc110");
+			mathData = new Dataset("math", maths, InsightDatasetKind.Sections);
+			cpsc110Data = new Dataset("cpsc110", cpsc110, InsightDatasetKind.Sections);
 		});
 
 		after(function () {
@@ -77,7 +77,7 @@ describe("Dataset", function () {
 			console.info(`AfterTest: ${this.currentTest?.title}`);
 			clearDisk();
 		});
-		/*
+
 		// This is a unit test. You should create more like this!
 		it("should resolve: List of Courses", async function () {
 			let mathCourses = await mathData.getAllCourseNames();
@@ -104,6 +104,6 @@ describe("Dataset", function () {
 			let result = await mathData.isValidDataSet();
 
 			expect(result).to.be.equal(true);
-		}); */
+		});
 	});
 });

@@ -18,7 +18,7 @@ export class Database {
 		if (fs.existsSync("./data/" + id)) {
 			let file = fs.readFileSync("./data/" + id).toString();
 
-			return new Dataset(id);
+			return new Dataset(id, file, InsightDatasetKind.Sections);
 		} else {
 			throw new InsightError();
 		}
@@ -35,17 +35,27 @@ export class Database {
 	public async toInsightDataset(): Promise<InsightDataset[]> {
 		try {
 			let ids = this.getAllIds();
-			let insightDatasetList: InsightDataset[] = [];
+			let insightDatasetList = [];
 
-			for (const id of ids) {
-				let dataset = new Dataset(id);
-				let obj = {
-					id: id,
-					kind: InsightDatasetKind.Sections,
-					numRows: dataset.getNumRows(),
-				};
+			for await (const id of ids) {
+				if (fs.existsSync("./data/" + id)) {
+					let file = fs.readFileSync("./data/" + id).toString();
+					let dataset = new Dataset(id, file, InsightDatasetKind.Sections);
 
-				insightDatasetList.push(obj);
+					let numRows = await dataset.getNumRows();
+
+					console.log(numRows);
+
+					let obj: InsightDataset = {
+						id: id,
+						kind: dataset.kind,
+						numRows: numRows,
+					};
+
+					insightDatasetList.push(obj);
+				} else {
+					return Promise.reject(new InsightError());
+				}
 			}
 
 			return Promise.resolve(insightDatasetList);
@@ -57,20 +67,16 @@ export class Database {
 	// add the base64 content of zip file to ./data dir
 	// file name = id of dataset
 	// TODO: refactor to not-async fn
-	public async addValidDataset(dataset: Dataset, file: string): Promise<string[]> {
-		if (!fs.pathExistsSync("./data/" + dataset.id)) {
-			let courses = await dataset.getAllCourseNames(file);
-			fs.mkdirSync("./data/" + dataset.id);
-			let promises: Array<Promise<string>> = [];
-
-			courses.forEach((course) => {
-				dataset.getSectionsJSON(course, file).then((courseResult) => {
-					fs.writeFileSync("./data/" + dataset.id + "/" + course, courseResult);
-				});
-			});
+	public async addValidDataset(dataset: Dataset): Promise<string[]> {
+		try {
+			if (!fs.pathExistsSync("./data/" + dataset.id)) {
+				fs.writeFileSync("./data/" + dataset.id, dataset.file);
+			} else {
+				return Promise.reject(new InsightError());
+			}
 
 			return Promise.resolve(this.getAllIds());
-		} else {
+		} catch (err) {
 			return Promise.reject(new InsightError());
 		}
 	}

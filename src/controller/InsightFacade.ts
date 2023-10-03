@@ -34,11 +34,11 @@ export default class InsightFacade implements IInsightFacade {
 				return Promise.reject(new InsightError());
 			}
 
-			let dataset = new Dataset(id);
-			let isValid = await dataset.isValidDataSet(content);
+			let dataset = new Dataset(id, content, kind);
+			let isValid = await dataset.isValidDataSet();
 
 			if (isValid) {
-				return this.database.addValidDataset(dataset, content);
+				return await this.database.addValidDataset(dataset);
 			} else {
 				return Promise.reject(new InsightError());
 			}
@@ -53,7 +53,7 @@ export default class InsightFacade implements IInsightFacade {
 		} else if (!fs.existsSync("./data/" + id)) {
 			return Promise.reject(new NotFoundError());
 		} else {
-			fs.rmSync("./data/" + id, {recursive: true, force: true});
+			fs.unlinkSync("./data/" + id);
 			return Promise.resolve(id);
 		}
 	}
@@ -64,7 +64,7 @@ export default class InsightFacade implements IInsightFacade {
 
 	// not sure if we're allowed to have this async either
 	public async listDatasets(): Promise<InsightDataset[]> {
-		return Promise.reject("Not implemented.");
-		// return this.database.toInsightDataset();
+		return Promise.resolve(this.database.toInsightDataset());
+		// return Promise.reject("Not implemented.");
 	}
 }

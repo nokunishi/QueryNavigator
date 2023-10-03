@@ -452,23 +452,17 @@ describe("InsightFacade", function () {
 	/* describe("PerformQuery", () => {
 		before(function () {
 			console.info(`Before: ${this.test?.parent?.title}`);
-
 			facade = new InsightFacade();
-
 			// Load the datasets specified in datasetsToQuery and add them to InsightFacade.
 			// Will *fail* if there is a problem reading ANY dataset.
 			const loadDatasetPromises = [facade.addDataset("sections", sections, InsightDatasetKind.Sections)];
-
 			return Promise.all(loadDatasetPromises);
 		});
-
 		after(function () {
 			console.info(`After: ${this.test?.parent?.title}`);
 			clearDisk();
 		});
-
 		type PQErrorKind = "ResultTooLargeError" | "InsightError";
-
 		folderTest<unknown, Promise<InsightResult[]>, PQErrorKind>(
 			"Dynamic InsightFacade PerformQuery tests",
 			(input) => facade.performQuery(input),
