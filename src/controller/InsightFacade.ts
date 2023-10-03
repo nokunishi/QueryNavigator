@@ -72,7 +72,7 @@ export default class InsightFacade implements IInsightFacade {
 			let file = fs.readFileSync("./data/" + id).toString();
 			let dataset = new Dataset(id, file, InsightDatasetKind.Sections);
 
-			let numRows = await dataset.getNumRows();
+			let courseNames = await dataset.getAllCourseNames();
 
 			// console.log(numRows);
 			/*

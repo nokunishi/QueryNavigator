@@ -64,6 +64,7 @@ export class Dataset {
 			for await (const course of courseNames) {
 				let sections = await this.getSectionsJSON(course);
 
+				console.log(sections.length);
 				sum += sections.length;
 			}
 
