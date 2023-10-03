@@ -34,11 +34,11 @@ export default class InsightFacade implements IInsightFacade {
 				return Promise.reject(new InsightError());
 			}
 
-			let dataset = new Dataset(id, content, kind);
-			let isValid = await dataset.isValidDataSet();
+			let dataset = new Dataset(id);
+			let isValid = await dataset.isValidDataSet(content);
 
 			if (isValid) {
-				return await this.database.addValidDataset(dataset);
+				return this.database.addValidDataset(dataset, content);
 			} else {
 				return Promise.reject(new InsightError());
 			}
@@ -53,7 +53,7 @@ export default class InsightFacade implements IInsightFacade {
 		} else if (!fs.existsSync("./data/" + id)) {
 			return Promise.reject(new NotFoundError());
 		} else {
-			fs.unlinkSync("./data/" + id);
+			fs.rmSync("./data/" + id, {recursive: true, force: true});
 			return Promise.resolve(id);
 		}
 	}
@@ -64,35 +64,7 @@ export default class InsightFacade implements IInsightFacade {
 
 	// not sure if we're allowed to have this async either
 	public async listDatasets(): Promise<InsightDataset[]> {
-		let ids = this.database.getAllIds();
-		let id = ids[0];
-		let insightDatasetList = [];
-
-		if (fs.existsSync("./data/" + id)) {
-			let sum = 0;
-
-			let file = fs.readFileSync("./data/" + id).toString();
-			let dataset = new Dataset(id, file, InsightDatasetKind.Sections);
-
-			let courseNames = await dataset.getAllCourseNames();
-
-			for await (const course of courseNames) {
-				let sections = await dataset.getSectionsJSON(course);
-
-				sum += sections.length;
-			}
-
-			// console.log(numRows);
-			/*
-			let obj: InsightDataset = {
-				id: id,
-				kind: dataset.kind,
-				numRows: numRows,
-			};
-
-			insightDatasetList.push(obj); */
-		}
-
 		return Promise.reject("Not implemented.");
+		// return this.database.toInsightDataset();
 	}
 }

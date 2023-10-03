@@ -5,42 +5,21 @@ import {InsightDatasetKind, InsightError, InsightDataset} from "../controller/II
 
 export class Dataset {
 	public id: string; // TODO: maybe change visibility?
-	public file: string;
-	public kind: InsightDatasetKind;
-	public numRows?: number;
 
 	// file: zip file in base64
 	// id: new id of the dataset
-	constructor(id: string, file: string, kind: InsightDatasetKind) {
+	constructor(id: string) {
 		this.id = id;
-		this.file = file;
-		this.kind = kind;
-	}
-
-	public async toInsightDataset(id: string): Promise<InsightDataset> {
-		try {
-			let numRows = await this.getNumRows();
-
-			let obj = {
-				id: id,
-				kind: this.kind,
-				numRows: numRows,
-			};
-
-			return Promise.resolve(obj);
-		} catch (err) {
-			return Promise.reject(new InsightError());
-		}
 	}
 
 	// return a list of all course names under /courses root dir
 	// always return
-	public async getAllCourseNames(): Promise<string[]> {
+	public async getAllCourseNames(file: string): Promise<string[]> {
 		try {
 			let promises: string[];
 			promises = [];
 
-			await zip.loadAsync(this.file, {base64: true}).then((unzip) => {
+			await zip.loadAsync(file, {base64: true}).then((unzip) => {
 				unzip.folder("courses")?.forEach((course) => {
 					if (course !== ".DS_Store") {
 						promises.push(course);
@@ -56,34 +35,32 @@ export class Dataset {
 
 	// set the total number of rows in the dataset
 	// set the total number of rows in the dataset
-	public async getNumRows(): Promise<number> {
-		try {
-			let courseNames = await this.getAllCourseNames();
-			let sum = 0;
+	public getNumRows(): number {
+		let courseNames = fs.readdirSync("./data/" + this.id);
+		let sum = 0;
 
-			for await (const course of courseNames) {
-				let sections = await this.getSectionsJSON(course);
+		courseNames.forEach((course) => {
+			let courseResult = fs.readFileSync("./data/" + this.id + "/" + course).toString();
+			let sections = JSON.parse(courseResult).result;
 
-				sum += sections.length;
-			}
+			console.log(sections);
+			sum += sections.length;
+			console.log(sum);
+		});
 
-			this.numRows = sum;
-
-			return Promise.resolve(this.numRows);
-		} catch (err) {
-			return Promise.reject(new InsightError());
-		}
+		console.log(sum);
+		return sum;
 	}
 
 	// returns JSON object of a course ("result"), all sections
 	// name: Course name
-	public async getSectionsJSON(name: string): Promise<any> {
+	public async getSectionsJSON(name: string, file: string): Promise<string> {
 		try {
 			let sections: Section[];
 			sections = [];
 
 			let course = await zip
-				.loadAsync(this.file, {base64: true})
+				.loadAsync(file, {base64: true})
 				.then((unzip) => {
 					return unzip.folder("courses")?.file(name)?.async("string");
 				})
@@ -92,7 +69,7 @@ export class Dataset {
 				});
 
 			if (course != null) {
-				return Promise.resolve(JSON.parse(course).result);
+				return Promise.resolve(course);
 			} else {
 				return Promise.reject(new InsightError());
 			}
@@ -114,13 +91,14 @@ export class Dataset {
 		return false;
 	}
 
-	public async isValidDataSet(): Promise<boolean> {
+	public async isValidDataSet(file: string): Promise<boolean> {
 		try {
-			let courseNames = await this.getAllCourseNames();
+			let courseNames = await this.getAllCourseNames(file);
 			let valid = false;
 
 			for await (const course of courseNames) {
-				let sections = await this.getSectionsJSON(course);
+				let courseResult = await this.getSectionsJSON(course, file);
+				let sections = JSON.parse(courseResult).result;
 				let courseValid = this.isValidCourse(sections);
 
 				if (courseValid) {
