@@ -13,17 +13,6 @@ export class Database {
 		}
 	}
 
-	// read file and convert sinto a Dataset obj
-	public readDataset(id: string): Dataset {
-		if (fs.existsSync("./data/" + id)) {
-			let file = fs.readFileSync("./data/" + id).toString();
-
-			return new Dataset(id, file, InsightDatasetKind.Sections);
-		} else {
-			throw new InsightError();
-		}
-	}
-
 	public getAllIds(): string[] {
 		return fs.readdirSync("./data/");
 	}
@@ -43,8 +32,6 @@ export class Database {
 					let dataset = new Dataset(id, file, InsightDatasetKind.Sections);
 
 					let numRows = await dataset.getNumRows();
-
-					console.log(numRows);
 
 					let obj: InsightDataset = {
 						id: id,
