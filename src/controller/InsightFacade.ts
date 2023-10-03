@@ -66,12 +66,25 @@ export default class InsightFacade implements IInsightFacade {
 	public async listDatasets(): Promise<InsightDataset[]> {
 		let ids = this.database.getAllIds();
 		let id = ids[0];
+		let insightDatasetList = [];
 
 		if (fs.existsSync("./data/" + id)) {
 			let file = fs.readFileSync("./data/" + id).toString();
 			let dataset = new Dataset(id, file, InsightDatasetKind.Sections);
+
+			let numRows = await dataset.getNumRows();
+
+			console.log(numRows);
+
+			let obj: InsightDataset = {
+				id: id,
+				kind: dataset.kind,
+				numRows: numRows,
+			};
+
+			insightDatasetList.push(obj);
 		}
 
-		return Promise.reject("Not implemented.");
+		return Promise.resolve(insightDatasetList);
 	}
 }
