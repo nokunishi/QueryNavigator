@@ -40,23 +40,31 @@ export class Dataset {
 	}
 
 	// set the total number of rows in the dataset
-	public async countNumRows(): Promise<number> {
-		try {
-			let courseNames = await this.getAllCourseNames();
-			let sum = 0;
+	public countNumRows(): Promise<number> {
+		let sum = 0;
+		let promises: Array<Promise<any>> = [];
+		let courseNames: string[] = [];
 
-			for await (const course of courseNames) {
-				let sections = await this.getSectionsJSON(course);
+		let namesPromise = this.getAllCourseNames()
+			.then((courses) => {
+				courses.forEach((course) => courseNames.push(course));
+			})
+			.then(() => {
+				courseNames.forEach((course) => {
+					this.getSectionsJSON(course);
+				});
+			});
 
-				sum += sections.length;
-			}
-
-			this.numRows = sum;
-
-			return Promise.resolve(this.numRows);
-		} catch (err) {
-			return Promise.reject(new InsightError());
-		}
+		return Promise.all(promises)
+			.then((arr) => {
+				arr.forEach((sectionsJson) => {
+					sum += sectionsJson.length;
+				});
+				return sum;
+			})
+			.then(() => {
+				return sum;
+			});
 	}
 
 	// returns JSON object of a course ("result"), all sections
