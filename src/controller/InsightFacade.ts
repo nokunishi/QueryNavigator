@@ -74,6 +74,10 @@ export default class InsightFacade implements IInsightFacade {
 
 			let courseNames = await dataset.getAllCourseNames();
 
+			if (courseNames.length > 0) {
+				let sections = await dataset.getSectionsJSON(courseNames[0]);
+			}
+
 			// console.log(numRows);
 			/*
 			let obj: InsightDataset = {
