@@ -24,27 +24,33 @@ export default class InsightFacade implements IInsightFacade {
 		console.log("InsightFacadeImpl::init()");
 	}
 
-	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
-		try {
-			if (this.database.invalidId(id)) {
-				return Promise.reject(new InsightError());
-			}
-
-			if (kind === InsightDatasetKind.Rooms) {
-				return Promise.reject(new InsightError());
-			}
-
-			let dataset = new Dataset(id, content, kind);
-			let isValid = await dataset.isValidDataSet();
-
-			if (isValid) {
-				return await this.database.addValidDataset(dataset);
-			} else {
-				return Promise.reject(new InsightError());
-			}
-		} catch (err) {
+	// not sure if we're allowed to convert it into async?
+	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
+		if (this.database.invalidId(id)) {
 			return Promise.reject(new InsightError());
 		}
+
+		if (kind === InsightDatasetKind.Rooms) {
+			return Promise.reject(new InsightError());
+		}
+
+		let dataset = new Dataset(id, content, kind);
+
+		return dataset
+			.isValidDataSet()
+			.then((isValid) => {
+				if (isValid) {
+					return this.database.addValidDataset(dataset);
+				} else {
+					return Promise.reject(new InsightError());
+				}
+			})
+			.then((ids) => {
+				return ids;
+			})
+			.catch((err) => {
+				return Promise.reject(new InsightError());
+			});
 	}
 
 	public removeDataset(id: string): Promise<string> {
@@ -68,7 +74,7 @@ export default class InsightFacade implements IInsightFacade {
 
 		for await (const id of ids) {
 			let dataset = this.database.readDataset(id);
-			let numRows = await dataset.getNumRows();
+			let numRows = await dataset.countNumRows();
 
 			let obj: InsightDataset = {
 				id: id,

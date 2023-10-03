@@ -40,7 +40,7 @@ export class Dataset {
 	}
 
 	// set the total number of rows in the dataset
-	public async getNumRows(): Promise<number> {
+	public async countNumRows(): Promise<number> {
 		try {
 			let courseNames = await this.getAllCourseNames();
 			let sum = 0;
