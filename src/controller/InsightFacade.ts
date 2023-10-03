@@ -68,16 +68,17 @@ export default class InsightFacade implements IInsightFacade {
 		let id = ids[0];
 		let insightDatasetList = [];
 
-		let sum = 0;
-
 		if (fs.existsSync("./data/" + id)) {
+			let sum = 0;
+
 			let file = fs.readFileSync("./data/" + id).toString();
 			let dataset = new Dataset(id, file, InsightDatasetKind.Sections);
 
 			let courseNames = await dataset.getAllCourseNames();
 
-			if (courseNames.length > 0) {
-				let sections = await dataset.getSectionsJSON(courseNames[0]);
+			for await (const course of courseNames) {
+				let sections = await dataset.getSectionsJSON(course);
+
 				sum += sections.length;
 			}
 
