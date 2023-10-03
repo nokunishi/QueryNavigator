@@ -15,9 +15,13 @@ export class Database {
 
 	// read file and convert sinto a Dataset obj
 	public readDataset(id: string): Dataset {
-		let file = fs.readFileSync("./data/" + id).toString();
+		if (fs.existsSync("./data/" + id)) {
+			let file = fs.readFileSync("./data/" + id).toString();
 
-		return new Dataset(id, file, InsightDatasetKind.Sections);
+			return new Dataset(id, file, InsightDatasetKind.Sections);
+		} else {
+			throw new InsightError();
+		}
 	}
 
 	public getAllIds(): string[] {
