@@ -74,17 +74,17 @@ export default class InsightFacade implements IInsightFacade {
 
 			let numRows = await dataset.getNumRows();
 
-			console.log(numRows);
-
+			// console.log(numRows);
+			/*
 			let obj: InsightDataset = {
 				id: id,
 				kind: dataset.kind,
 				numRows: numRows,
 			};
 
-			insightDatasetList.push(obj);
+			insightDatasetList.push(obj); */
 		}
 
-		return Promise.resolve(insightDatasetList);
+		return Promise.reject("Not implemented.");
 	}
 }
