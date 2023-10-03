@@ -1,7 +1,7 @@
 import * as fs from "fs-extra";
 import {Section} from "./Section";
 import * as zip from "jszip";
-import {InsightDatasetKind, InsightError} from "../controller/IInsightFacade";
+import {InsightDatasetKind, InsightError, InsightDataset} from "../controller/IInsightFacade";
 
 export class Dataset {
 	public id: string; // TODO: maybe change visibility?
@@ -16,6 +16,22 @@ export class Dataset {
 		this.id = id;
 		this.file = file;
 		this.kind = kind;
+	}
+
+	public async toInsightDataset(id: string): Promise<InsightDataset> {
+		try {
+			let numRows = await this.getNumRows();
+
+			let obj = {
+				id: id,
+				kind: this.kind,
+				numRows: numRows,
+			};
+
+			return Promise.resolve(obj);
+		} catch (err) {
+			return Promise.reject(new InsightError());
+		}
 	}
 
 	// return a list of all course names under /courses root dir
@@ -40,31 +56,24 @@ export class Dataset {
 	}
 
 	// set the total number of rows in the dataset
-	public countNumRows(): Promise<number> {
-		let sum = 0;
-		let promises: Array<Promise<any>> = [];
-		let courseNames: string[] = [];
+	// set the total number of rows in the dataset
+	public async getNumRows(): Promise<number> {
+		try {
+			let courseNames = await this.getAllCourseNames();
+			let sum = 0;
 
-		let namesPromise = this.getAllCourseNames()
-			.then((courses) => {
-				courses.forEach((course) => courseNames.push(course));
-			})
-			.then(() => {
-				courseNames.forEach((course) => {
-					this.getSectionsJSON(course);
-				});
-			});
+			for await (const course of courseNames) {
+				let sections = await this.getSectionsJSON(course);
 
-		return Promise.all(promises)
-			.then((arr) => {
-				arr.forEach((sectionsJson) => {
-					sum += sectionsJson.length;
-				});
-				return sum;
-			})
-			.then(() => {
-				return sum;
-			});
+				sum += sections.length;
+			}
+
+			this.numRows = sum;
+
+			return Promise.resolve(this.numRows);
+		} catch (err) {
+			return Promise.reject(new InsightError());
+		}
 	}
 
 	// returns JSON object of a course ("result"), all sections
