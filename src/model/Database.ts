@@ -44,6 +44,8 @@ export class Database {
 
 					let numRows = await dataset.getNumRows();
 
+					console.log(numRows);
+
 					let obj: InsightDataset = {
 						id: id,
 						kind: dataset.kind,

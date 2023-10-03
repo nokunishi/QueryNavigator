@@ -9,7 +9,6 @@ export class Dataset {
 	public kind: InsightDatasetKind;
 	public numRows?: number;
 
-	// TODO: should we have this?
 	// file: zip file in base64
 	// id: new id of the dataset
 	constructor(id: string, file: string, kind: InsightDatasetKind) {
