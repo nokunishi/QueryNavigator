@@ -38,16 +38,22 @@ export class Database {
 			let insightDatasetList = [];
 
 			for await (const id of ids) {
-				let dataset = this.readDataset(id);
-				let numRows = await dataset.getNumRows();
+				if (fs.existsSync("./data/" + id)) {
+					let file = fs.readFileSync("./data/" + id).toString();
+					let dataset = new Dataset(id, file, InsightDatasetKind.Sections);
 
-				let obj: InsightDataset = {
-					id: id,
-					kind: dataset.kind,
-					numRows: numRows,
-				};
+					let numRows = await dataset.getNumRows();
 
-				insightDatasetList.push(obj);
+					let obj: InsightDataset = {
+						id: id,
+						kind: dataset.kind,
+						numRows: numRows,
+					};
+
+					insightDatasetList.push(obj);
+				} else {
+					return Promise.reject(new InsightError());
+				}
 			}
 
 			return Promise.resolve(insightDatasetList);
@@ -58,6 +64,7 @@ export class Database {
 
 	// add the base64 content of zip file to ./data dir
 	// file name = id of dataset
+	// TODO: refactor to not-async fn
 	public async addValidDataset(dataset: Dataset): Promise<string[]> {
 		try {
 			if (!fs.pathExistsSync("./data/" + dataset.id)) {
