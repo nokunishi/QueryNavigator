@@ -62,23 +62,9 @@ export default class InsightFacade implements IInsightFacade {
 		return Promise.reject("Not implemented.");
 	}
 
+	// not sure if we're allowed to have this async either
 	public async listDatasets(): Promise<InsightDataset[]> {
-		let ids = this.database.getAllIds();
-		let insightDatasetList = [];
-
-		for await (const id of ids) {
-			let dataset = this.database.readDataset(id);
-			let numRows = await dataset.getNumRows();
-
-			let obj: InsightDataset = {
-				id: id,
-				kind: dataset.kind,
-				numRows: numRows,
-			};
-
-			insightDatasetList.push(obj);
-		}
-
-		return Promise.resolve(insightDatasetList);
+		// return Promise.resolve(this.database.toInsightDataset());
+		return Promise.reject("Not implemented.");
 	}
 }

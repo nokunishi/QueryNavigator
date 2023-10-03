@@ -35,7 +35,8 @@ describe("InsightFacade", function () {
 
 	before(function () {
 		// This block runs once and loads the datasets.
-		sections = getContentFromArchives("pair.zip");
+		// sections = getContentFromArchives("pair.zip");
+		sections = getContentFromArchives("courses100.zip");
 		cpsc110 = getContentFromArchives("cpsc110.zip");
 		maths = getContentFromArchives("maths.zip");
 		cs110And302 = getContentFromArchives("cpsc110_302.zip");
@@ -451,23 +452,17 @@ describe("InsightFacade", function () {
 	/* describe("PerformQuery", () => {
 		before(function () {
 			console.info(`Before: ${this.test?.parent?.title}`);
-
 			facade = new InsightFacade();
-
 			// Load the datasets specified in datasetsToQuery and add them to InsightFacade.
 			// Will *fail* if there is a problem reading ANY dataset.
 			const loadDatasetPromises = [facade.addDataset("sections", sections, InsightDatasetKind.Sections)];
-
 			return Promise.all(loadDatasetPromises);
 		});
-
 		after(function () {
 			console.info(`After: ${this.test?.parent?.title}`);
 			clearDisk();
 		});
-
 		type PQErrorKind = "ResultTooLargeError" | "InsightError";
-
 		folderTest<unknown, Promise<InsightResult[]>, PQErrorKind>(
 			"Dynamic InsightFacade PerformQuery tests",
 			(input) => facade.performQuery(input),
