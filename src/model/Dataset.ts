@@ -6,26 +6,21 @@ import {assert} from "console";
 
 export class Dataset {
 	public id: string; // TODO: maybe change visibility?
-	public file: string;
-	public kind: InsightDatasetKind;
-	public numRows?: number;
 
 	// file: zip file in base64
 	// id: new id of the dataset
-	constructor(id: string, file: string, kind: InsightDatasetKind) {
+	constructor(id: string) {
 		this.id = id;
-		this.file = file;
-		this.kind = kind;
 	}
 
 	// return a list of all courses in one list
-	public async getAllCourses(): Promise<string[]> {
+	public async getAllCourses(file: string): Promise<string[]> {
 		try {
 			let promises: Array<Promise<string> | undefined> = [];
 			let courseNames: string[] = [];
 			let sections: string[] = [];
 
-			await zip.loadAsync(this.file, {base64: true}).then((unzip) => {
+			await zip.loadAsync(file, {base64: true}).then((unzip) => {
 				unzip.folder("courses")?.forEach((course) => {
 					if (course !== ".DS_Store") {
 						promises.push(unzip.folder("courses")?.file(course)?.async("string"));

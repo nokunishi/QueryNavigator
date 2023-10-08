@@ -12,7 +12,7 @@ export class Database {
 	}
 
 	public getAllIds(): string[] {
-		return fs.readdirSync("./data/");
+		return fs.readdirSync("./data");
 	}
 
 	public invalidId(id: string): boolean {
@@ -22,9 +22,9 @@ export class Database {
 	// add a valid dataset
 	// file name = id of dataset
 	// TODO: refactor to not-async fn
-	public async addValidDataset(dataset: Dataset): Promise<string[]> {
+	public async addValidDataset(dataset: Dataset, file: string): Promise<string[]> {
 		try {
-			let courses = await dataset.getAllCourses();
+			let courses = await dataset.getAllCourses(file);
 			let valid = false;
 
 			for (const course of courses) {
