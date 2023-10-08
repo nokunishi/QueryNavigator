@@ -33,12 +33,14 @@ export default class InsightFacade implements IInsightFacade {
 			if (kind === InsightDatasetKind.Rooms) {
 				return Promise.reject(new InsightError());
 			}
-
 			let dataset = new Dataset(id, content, kind);
-			let isValid = await dataset.isValidDataSet();
 
-			if (isValid) {
-				return await this.database.addValidDataset(dataset);
+			let valid = await dataset.isValidDataSet();
+
+			console.log(valid);
+
+			if (valid) {
+				return this.database.addValidDataset(dataset);
 			} else {
 				return Promise.reject(new InsightError());
 			}
