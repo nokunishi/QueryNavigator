@@ -41,16 +41,4 @@ export class Dataset {
 			return Promise.reject(new InsightError());
 		}
 	}
-
-	// getSectionsJson must be called first
-	// set the total number of rows in the dataset
-	public getNumRows(courses: any): number {
-		let sum = 0;
-
-		courses.forEach((course: string) => {
-			sum += course.length;
-		});
-
-		return sum;
-	}
 }
