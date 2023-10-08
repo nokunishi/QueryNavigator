@@ -58,26 +58,4 @@ export class Dataset {
 
 		return sum;
 	}
-
-	public async isValidDataSet(): Promise<boolean> {
-		try {
-			let courses = await this.getAllCourses();
-			let valid = false;
-
-			for (const course of courses) {
-				for (const section of course) {
-					console.log(section);
-					let sectionObj = new Section(section);
-
-					if (sectionObj.isValid()) {
-						valid = true;
-					}
-				}
-			}
-
-			return Promise.resolve(valid);
-		} catch (err) {
-			return Promise.reject(new InsightError());
-		}
-	}
 }
