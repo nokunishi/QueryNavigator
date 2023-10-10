@@ -54,15 +54,15 @@ export default class InsightFacade implements IInsightFacade {
 
 	public performQuery(query: unknown): Promise<InsightResult[]> {
 		try {
-			if (query === null) {
+			if (query === undefined || query === null) {
 				return Promise.reject(new InsightError("Query is null"));
 			}
 
-			if (typeof query !== "string") {
+			/* if (typeof query !== "string") {
 				return Promise.reject(new InsightError("Query is not a string"));
-			}
+			} */
 
-			const queryObject: Query = JSON.parse(query);
+			const queryObject: Query = JSON.parse(JSON.stringify(query));
 			// Get name of the dataset
 			let datasetId = queryObject.OPTIONS.COLUMNS[0].split("_")[0];
 			let result = parseWhere(queryObject.WHERE, this.database.readDataset(datasetId));

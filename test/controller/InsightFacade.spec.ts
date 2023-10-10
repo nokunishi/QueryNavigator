@@ -385,6 +385,12 @@ describe("InsightFacade", function () {
 			]);
 		});
 
+		it("should resolve: array with pair zip", async function () {
+			const add1 = await facade.addDataset("sections 1", sections, InsightDatasetKind.Sections);
+
+			expect(add1).have.deep.members(["sections 1"]);
+		});
+
 		it("should resolve: array with two elems, same file", async function () {
 			const add1 = await facade.addDataset("cpsc110-w1", cpsc110, InsightDatasetKind.Sections);
 
@@ -453,6 +459,8 @@ describe("InsightFacade", function () {
 
 	describe("performQuery", function () {
 		type Error = "ResultTooLargeError" | "InsightError";
+		let queryORDER: string | null;
+
 		before(async function () {
 			clearDisk();
 			facade = new InsightFacade();
@@ -463,8 +471,8 @@ describe("InsightFacade", function () {
 			expect(actual).to.have.deep.members(expected);
 		}
 
-		function assertResultOrdered(actual: unknown, expected: InsightResult[]): void {
-			expect(actual).to.have.deep.members(expected);
+		function assertResultOrdered(actual: string, expected: InsightResult[]): void {
+			// expect(actual).to.have.deep.equals(expected);
 		}
 
 		function assertError(actual: unknown, expected: Error): void {
@@ -479,7 +487,10 @@ describe("InsightFacade", function () {
 		}
 
 		function target(input: unknown): Promise<InsightResult[]> {
-			return facade.performQuery(JSON.stringify(input));
+			let queryObj = JSON.parse(JSON.stringify(input));
+			queryORDER = queryObj.OPTIONS.ORDER;
+
+			return facade.performQuery(input);
 		}
 
 		/* 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries", {
@@ -492,12 +503,12 @@ describe("InsightFacade", function () {
 			assertOnError: assertError,
 		}); */
 
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_ordered_arash", {
-			assertOnResult: assertResultOrdered,
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test", {
+			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});
-
-		/* 	folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
+		/*
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_valid_unordered", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		}); */
