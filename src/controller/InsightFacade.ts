@@ -58,6 +58,10 @@ export default class InsightFacade implements IInsightFacade {
 				return Promise.reject(new InsightError("Query is null"));
 			}
 
+			if (typeof query === "object") {
+				query = JSON.stringify(query);
+			}
+
 			if (typeof query !== "string") {
 				return Promise.reject(new InsightError("Query is not a string"));
 			}
