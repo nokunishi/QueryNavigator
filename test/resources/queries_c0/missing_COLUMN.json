@@ -1,0 +1,15 @@
+{
+	"title": "missing_column",
+	"input": {
+		"WHERE": {
+			"NOT": {
+				"GT": {
+					"sections_id": "90"
+				}
+			}
+		},
+		"OPTIONS": {}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

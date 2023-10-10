@@ -1,0 +1,15 @@
+{
+  "title": "invalid_key_no_id",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "avg": 90
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": ["sections_avg"]
+    }
+  },
+  "errorExpected": true,
+  "expected": "InsightError"
+}

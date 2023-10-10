@@ -1,0 +1,25 @@
+{
+	"title": "invalid_two_keys_AND",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"GT": {
+						"sections_fail": 60
+					},
+					"EQ": {
+						"sections_fail": 60
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_id"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

@@ -1,0 +1,17 @@
+{
+	"title": "invalid_idstring_underscore",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"sec_j_dept": "cpsc"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_avg"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

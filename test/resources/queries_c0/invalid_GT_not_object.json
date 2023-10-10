@@ -1,0 +1,15 @@
+{
+	"title": "invalid_GT_not_object",
+	"input": {
+		"WHERE": {
+			"GT": []
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_avg"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

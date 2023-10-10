@@ -1,0 +1,1139 @@
+{
+	"title": "valid_AND_IS",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"IS": {
+						"sections_dept": "anth"
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_id"
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_dept": "anth",
+			"sections_id": "210"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "210"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "213"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "213"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "213"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "213"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "213"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "213"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "213"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "213"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "215"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "215"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "215"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "215"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "215"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "215"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "215"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "215"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "215"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "215"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "217"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "220"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "227"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "241"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "301"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "301"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "301"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "301"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "301"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "301"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "301"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "301"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "302"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "302"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "302"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "302"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "302"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "302"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "312"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "312"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "312"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "312"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "312"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "312"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "312"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "312"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "312"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "312"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "312"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "312"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "315"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "315"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "315"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "315"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "315"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "315"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "315"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "315"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "315"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "315"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "315"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "315"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "332"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "378"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "378"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "378"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "378"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "378"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "378"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "378"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "378"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "378"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "378"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "378"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "378"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "378"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "407"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "414"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "414"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "418"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "428"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "451"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "451"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "451"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "451"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "451"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "451"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "472"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "472"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "500"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "512"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "512"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "516"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "517"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "517"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "517"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "517"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "517"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "517"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "517"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "517"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "517"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "517"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "519"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "519"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "519"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "519"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "519"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "519"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "519"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "519"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "528"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "528"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "528"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "528"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "528"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "528"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "541"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "541"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "541"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "541"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "541"
+		},
+		{
+			"sections_dept": "anth",
+			"sections_id": "541"
+		}
+	]
+}

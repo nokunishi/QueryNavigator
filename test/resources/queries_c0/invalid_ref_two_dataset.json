@@ -1,0 +1,15 @@
+{
+  "title": "invalid_ref_two_dataset",
+  "input": {
+    "WHERE": {
+      "IS": {
+        "sections_dept": "math"
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": ["ubc_avg"]
+    }
+  },
+  "errorExpected": true,
+  "expected": "InsightError"
+}

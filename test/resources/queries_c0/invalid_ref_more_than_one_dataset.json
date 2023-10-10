@@ -1,0 +1,18 @@
+{
+	"title": "invalid_ref_more_than_one_dataset",
+	"input": {
+		"WHERE": {
+			"EQ": {
+				"sections_year": 3000
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"ubc_dept"
+			],
+			"ORDER": "ubc_dept"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

@@ -1,0 +1,19 @@
+{
+	"title": "invalid_LT_in_IS",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"LT": {
+					"sections_year": 2000
+				}
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

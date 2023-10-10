@@ -1,0 +1,15 @@
+{
+	"title": "missing_OPTIONS2",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"sections_dept": "c*"
+			}
+		},
+		"COLUMNS": [
+			"sections_dept"
+		]
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

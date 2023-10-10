@@ -1,0 +1,17 @@
+{
+	"title": "invalid_key",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sectionsave": 90
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_avg"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

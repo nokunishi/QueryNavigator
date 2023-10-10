@@ -1,0 +1,16 @@
+{
+	"title": "invalid_syntax",
+	"input": {
+		"WHERE": {
+			"NOT": [
+				{
+					"GT": {
+						"avg": 90
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

@@ -1,0 +1,21 @@
+{
+	"title": "invalid_IS_in_EQ",
+	"input": {
+		"WHERE": {
+			"EQ": {
+				"IS": [
+					{
+						"sections_dept": "math"
+					}
+				]
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

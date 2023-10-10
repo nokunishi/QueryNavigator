@@ -1,0 +1,16 @@
+{
+	"title": "invalid_excess_keys",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"sections_dept": "cpsc"
+			}
+		},
+		"OPTIONS": [
+			"sections_dept"
+		],
+		"COLUMNS": "sections_avg"
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

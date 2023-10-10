@@ -477,8 +477,13 @@ describe("InsightFacade", function () {
 		function target(input: unknown): Promise<InsightResult[]> {
 			return facade.performQuery(JSON.stringify(input));
 		}
-
+		/*
 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries", {
+			assertOnResult: assertResult,
+			assertOnError: assertError,
+		}); */
+
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});

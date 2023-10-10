@@ -1,0 +1,18 @@
+{
+	"title": "invalid_ORDER_type",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections year": 2000
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			],
+			"ORDER": 1000
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

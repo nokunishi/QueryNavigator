@@ -1,0 +1,30 @@
+{
+	"title": "invalid_syntax_complex",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{
+					"AND": [
+						{
+							"NOT": {
+								"IS": {
+									"sections_dept": "*a*"
+								}
+							}
+						}
+					],
+					"GT": {
+						"sections_year": 2016
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

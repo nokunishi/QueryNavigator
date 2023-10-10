@@ -1,0 +1,17 @@
+{
+	"title": "invalid_COLUMN_key_type2",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections_year": 2000
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				100
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

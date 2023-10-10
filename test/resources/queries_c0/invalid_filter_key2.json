@@ -1,0 +1,19 @@
+{
+	"title": "invalid_filter_key2",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"sections_year": 1900
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

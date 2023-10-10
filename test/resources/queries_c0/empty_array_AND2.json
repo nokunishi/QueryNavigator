@@ -1,0 +1,15 @@
+{
+	"title": "invalid_syntax_AND",
+	"input": {
+		"WHERE": {
+			"AND": {}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

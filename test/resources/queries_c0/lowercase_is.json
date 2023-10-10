@@ -1,0 +1,17 @@
+{
+	"title": "columns_is",
+	"input": {
+		"WHERE": {
+			"is": {
+				"sections_dept": "math"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

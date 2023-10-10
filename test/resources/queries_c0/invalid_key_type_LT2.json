@@ -1,0 +1,18 @@
+{
+	"title": "invalid_key_type_LT2",
+	"input": {
+		"WHERE": {
+			"LT": {
+				"sections_uuid": "87"
+			}
+		},
+		"OPTIONS": {
+			"ORDER": "sections_dept",
+			"COLUMNS": [
+				"sections_dept"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

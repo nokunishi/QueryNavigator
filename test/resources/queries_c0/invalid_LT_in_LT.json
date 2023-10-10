@@ -1,0 +1,21 @@
+{
+	"title": "invalid_LT_in_LT",
+	"input": {
+		"WHERE": {
+			"LT": {
+				"LT": [
+					{
+						"sections_audit": 30
+					}
+				]
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

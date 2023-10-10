@@ -1,0 +1,13 @@
+{
+	"title": "invalid_OPTION_not_object",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"sections_dept": "germ"
+			}
+		},
+		"OPTIONS": []
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

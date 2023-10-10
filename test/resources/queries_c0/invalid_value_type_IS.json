@@ -1,0 +1,18 @@
+{
+	"title": "invalid_value_type_IS",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"sections_dept": 90
+			}
+		},
+		"OPTIONS": {
+			"ORDER": "sections_dept",
+			"COLUMNS": [
+				"sections_dept"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

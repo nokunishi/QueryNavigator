@@ -1,0 +1,21 @@
+{
+	"title": "invalid_IS_in_LT",
+	"input": {
+		"WHERE": {
+			"LT": {
+				"IS": [
+					{
+						"sections_dept": "cpsc"
+					}
+				]
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

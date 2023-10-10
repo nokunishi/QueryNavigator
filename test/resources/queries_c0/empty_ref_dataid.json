@@ -1,0 +1,17 @@
+{
+  "title": "empty_ref_dataid",
+  "input": {
+    "WHERE": {
+      "NOT": {
+        "GT": {
+          " course": 90
+        }
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [" avg"]
+    }
+  },
+  "errorExpected": true,
+  "expected": "InsightError"
+}

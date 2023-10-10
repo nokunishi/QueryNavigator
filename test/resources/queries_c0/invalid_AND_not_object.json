@@ -1,0 +1,17 @@
+{
+	"title": "invalid_AND_not_object",
+	"input": {
+		"WHERE": {
+			"AND": [
+				"section_dept"
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_avg"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

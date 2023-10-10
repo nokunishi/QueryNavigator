@@ -1,0 +1,17 @@
+{
+	"title": "invalid_idstring_emptystr",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"_dept": "cpsc"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"_avg"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

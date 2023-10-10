@@ -1,0 +1,18 @@
+{
+	"title": "invalid_AND_zero_keys2",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{},
+				{}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_avg"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

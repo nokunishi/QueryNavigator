@@ -1,0 +1,21 @@
+{
+	"title": "invalid_AND_in_GT",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"AND": [
+					{
+						"sections_dept": "math"
+					}
+				]
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

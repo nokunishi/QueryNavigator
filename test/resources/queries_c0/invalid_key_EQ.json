@@ -1,0 +1,17 @@
+{
+	"title": "invalid_key_EQ",
+	"input": {
+		"WHERE": {
+			"EQ": {
+				" ": "germ"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}
