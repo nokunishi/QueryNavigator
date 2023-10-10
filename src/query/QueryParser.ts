@@ -65,34 +65,23 @@ export async function parseWhere(whereCondition: Where, data: Promise<any[]>): P
 	return d;
 }
 
-// eslint-disable-next-line max-lines-per-function
 function parseWhereComparators(item: any, whereCondition: Where, comparator: WhereComparators): boolean {
 	let result = false;
 	switch (comparator.toString()) {
 		case "LT":
 			Object.keys(whereCondition["LT"]).forEach((key) => {
-				let o: any = whereCondition["LT"];
-				result = item[parseWhereField(key) || ""] < o[key];
+				result = item[parseWhereField(key) || ""] < (whereCondition["LT"] as any)[key];
 			});
 			break;
 		case "GT":
 			Object.keys(whereCondition["GT"]).forEach((key) => {
-				let o: any = whereCondition["GT"];
-				result = item[parseWhereField(key) || ""] > o[key];
+				result = item[parseWhereField(key) || ""] > (whereCondition["GT"] as any)[key];
 			});
-			if (item.id === recordId && enableLogging) {
-				console.log("condition", whereCondition["GT"], result);
-			}
 			break;
 		case "EQ":
 			Object.keys(whereCondition["EQ"]).forEach((key) => {
-				let o: any = whereCondition["EQ"];
-				// eslint-disable-next-line eqeqeq
-				result = item[parseWhereField(key) || ""] == o[key];
+				result = item[parseWhereField(key) || ""].toString() === (whereCondition["EQ"] as any)[key].toString();
 			});
-			if (item.id === recordId && enableLogging) {
-				console.log("condition", whereCondition["EQ"], result);
-			}
 			break;
 		case "IS":
 			Object.keys(whereCondition["IS"]).forEach((key) => {
@@ -106,37 +95,20 @@ function parseWhereComparators(item: any, whereCondition: Where, comparator: Whe
 				} else if (o[key].includes("*")) {
 					throw new InsightError("Invalid comparator");
 				} else {
-					// eslint-disable-next-line eqeqeq
-					result = item[parseWhereField(key) || ""] == o[key];
+					result = item[parseWhereField(key) || ""].toString() === o[key].toString();
 				}
 			});
-			if (item.id === recordId && enableLogging) {
-				console.log("condition", whereCondition["IS"], result);
-			}
 			break;
 		case "NOT":
 			Object.keys(whereCondition["EQ"]).forEach((key) => {
-				let o: any = whereCondition["EQ"];
-				result = item[parseWhereField(key) || ""] !== o[key];
+				result = item[parseWhereField(key) || ""].toString() !== (whereCondition["EQ"] as any)[key].toString();
 			});
 			break;
 		case "AND":
-			if (item.id === recordId && enableLogging) {
-				console.log("AND condition", JSON.stringify(whereCondition["AND"]));
-			}
 			result = processAndOR("and", whereCondition["AND"] as [], true, item);
-			if (item.id === recordId && enableLogging) {
-				console.log("ffffffffff condition", result);
-			}
 			break;
 		case "OR":
-			if (item.id === recordId && enableLogging) {
-				console.log("OR condition", JSON.stringify(whereCondition["OR"]));
-			}
 			result = processAndOR("or", whereCondition["OR"] as [], result, item);
-			if (item.id === recordId && enableLogging) {
-				console.log("ffffffffff condition", result);
-			}
 			break;
 		default:
 			throw new InsightError("Invalid comparator");
