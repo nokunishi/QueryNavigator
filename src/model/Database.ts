@@ -31,8 +31,12 @@ export class Database {
 			let valid = false;
 
 			for (const course of courses) {
-				for (const section of course) {
+				let section: any;
+				for (section of course) {
 					let sectionObj = new Section(section);
+					if (section["Section"] === "overall") {
+						section["Year"] = 1900;
+					}
 
 					if (sectionObj.isValid()) {
 						valid = true;
