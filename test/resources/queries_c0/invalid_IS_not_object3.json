@@ -1,0 +1,15 @@
+{
+	"title": "invalid_IS_not_object3",
+	"input": {
+		"WHERE": {
+			"IS": 1000
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

@@ -1,0 +1,21 @@
+{
+	"title": "invalid_GT_in_GT",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"GT": [
+					{
+						"sections_year": 2000
+					}
+				]
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

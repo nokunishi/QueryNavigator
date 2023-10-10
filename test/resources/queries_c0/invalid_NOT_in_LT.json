@@ -1,0 +1,19 @@
+{
+	"title": "invalid_NOT_in_LT",
+	"input": {
+		"WHERE": {
+			"LT": {
+				"NOT": {
+					"sections_year": 2000
+				}
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

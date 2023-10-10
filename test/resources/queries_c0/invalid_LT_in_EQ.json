@@ -1,0 +1,21 @@
+{
+	"title": "invalid_LT_in_EQ",
+	"input": {
+		"WHERE": {
+			"EQ": {
+				"LT": [
+					{
+						"sections_audit": 30
+					}
+				]
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

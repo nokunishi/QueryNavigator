@@ -1,0 +1,18 @@
+{
+	"title": "invalid_filter_key3",
+	"input": {
+		"WHERE": {
+			"sections_dept": {
+				"IS": "germ"
+			}
+		},
+		"OPTIONS": {
+			"ORDER": "sections_dept",
+			"COLUMNS": [
+				"sections_dept"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

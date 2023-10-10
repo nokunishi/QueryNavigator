@@ -1,0 +1,21 @@
+{
+	"title": "invalid_OR_in_IS",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"OR": [
+					{
+						"sections_dept": "cpsc"
+					}
+				]
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

@@ -1,0 +1,17 @@
+{
+	"title": "invalid_id_whitespace_only",
+	"input": {
+		"WHERE": {
+			"IS": {
+				" _dept": "cpsc"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				" _dept"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

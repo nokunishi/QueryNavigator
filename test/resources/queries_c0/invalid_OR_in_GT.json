@@ -1,0 +1,21 @@
+{
+	"title": "invalid_OR_in_GT",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"OR": [
+					{
+						"sections_year": 2000
+					}
+				]
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

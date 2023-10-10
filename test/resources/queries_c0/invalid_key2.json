@@ -1,0 +1,17 @@
+{
+	"title": "invalid_key2",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections year": 2000
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

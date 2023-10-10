@@ -1,0 +1,17 @@
+{
+	"title": "empty_ref_data_COLUMNS",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"sections_dept": "germ"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				""
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

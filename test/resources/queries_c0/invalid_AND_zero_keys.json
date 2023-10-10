@@ -1,0 +1,17 @@
+{
+	"title": "invalid_AND_zero_keys",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

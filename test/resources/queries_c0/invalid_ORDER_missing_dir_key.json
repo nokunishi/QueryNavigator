@@ -1,0 +1,18 @@
+{
+	"title": "invalid_ORDER_missing_dir_key",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections year": 2000
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			],
+			"ORDER": {}
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

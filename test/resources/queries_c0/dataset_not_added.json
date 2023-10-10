@@ -1,0 +1,24 @@
+{
+  "title": "dataset_unadded",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "ubc _avg": 90
+          }
+        },
+        {
+          "GT": {
+            "ubc _year": 1960
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": ["ubc _avg", "ubc _year"]
+    }
+  },
+  "errorExpected": true,
+  "expected": "InsightError"
+}

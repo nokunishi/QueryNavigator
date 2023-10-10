@@ -1,0 +1,18 @@
+{
+	"title": "invalid_syntax_NOT2",
+	"input": {
+		"WHERE": {
+			"NOT": {
+				"sections_dept": "math"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_avg"
+			],
+			"OPTIONS": "sections_year"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

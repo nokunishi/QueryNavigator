@@ -1,0 +1,21 @@
+{
+	"title": "invalid_EQ_in_EQ",
+	"input": {
+		"WHERE": {
+			"EQ": {
+				"EQ": [
+					{
+						"sections_dept": "cpsc"
+					}
+				]
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

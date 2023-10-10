@@ -1,0 +1,21 @@
+{
+	"title": "invalid_LT_in_GT",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"LT": [
+					{
+						"sections_audit": 30
+					}
+				]
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

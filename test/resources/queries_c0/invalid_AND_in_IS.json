@@ -1,0 +1,21 @@
+{
+	"title": "invalid_AND_in_IS",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"AND": [
+					{
+						"sections_year": 2000
+					}
+				]
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

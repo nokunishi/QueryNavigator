@@ -1,0 +1,17 @@
+{
+	"title": "invalid_or_zero_keys",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

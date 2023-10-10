@@ -1,0 +1,6 @@
+{
+	"title": "invalid_query_not_object",
+	"input": [],
+	"errorExpected": true,
+	"expected": "InsightError"
+}

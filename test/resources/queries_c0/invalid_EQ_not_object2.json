@@ -1,0 +1,15 @@
+{
+	"title": "invalid_EQ_not_object2",
+	"input": {
+		"WHERE": {
+			"EQ": 1000
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

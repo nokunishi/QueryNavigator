@@ -1,0 +1,17 @@
+{
+	"title": "invalid_order_flipped_GT",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"cpsc": "sections_avg"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_avg"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

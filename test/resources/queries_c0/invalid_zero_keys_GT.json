@@ -1,0 +1,15 @@
+{
+	"title": "invalid_zero_keys_GT",
+	"input": {
+		"WHERE": {
+			"GT": {}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_avg"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

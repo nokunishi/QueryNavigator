@@ -1,0 +1,15 @@
+{
+	"title": "invalid_zero_keys_EQ",
+	"input": {
+		"WHERE": {
+			"EQ": {}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_avg"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

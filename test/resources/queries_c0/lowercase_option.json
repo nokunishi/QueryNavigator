@@ -1,0 +1,17 @@
+{
+	"title": "options_lowercase",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"sections_dept": "math"
+			}
+		},
+		"options": {
+			"COLUMNS": [
+				"sections_dept"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

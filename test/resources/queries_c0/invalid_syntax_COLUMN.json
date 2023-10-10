@@ -1,0 +1,15 @@
+{
+	"title": "invalid_syntax_COLUMN",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"sections_dept": "germ"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": {}
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

@@ -1,0 +1,18 @@
+{
+	"title": "invalid_key_type_EQ",
+	"input": {
+		"WHERE": {
+			"EQ": {
+				"sections_id": 90
+			}
+		},
+		"OPTIONS": {
+			"ORDER": "sections_dept",
+			"COLUMNS": [
+				"sections_dept"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

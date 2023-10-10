@@ -1,0 +1,21 @@
+{
+	"title": "invalid_OR_in_LT",
+	"input": {
+		"WHERE": {
+			"LT": {
+				"OR": [
+					{
+						"sections_dept": "math"
+					}
+				]
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

@@ -1,0 +1,17 @@
+{
+	"title": "lowercase_lt",
+	"input": {
+		"WHERE": {
+			"lt": {
+				"sections_year": 3000
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}
