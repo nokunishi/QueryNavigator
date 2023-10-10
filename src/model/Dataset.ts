@@ -1,44 +1,22 @@
-import * as fs from "fs-extra";
-import {Section} from "./Section";
-import * as zip from "jszip";
-import {InsightDatasetKind, InsightError, InsightDataset} from "../controller/IInsightFacade";
-import {assert} from "console";
-
+/**
+ * Dataset class
+ * @param {string} id id of the dataset
+ * @param {Array<{[key: string]: any}>} data data in JSON
+ */
 export class Dataset {
-	public id: string; // TODO: maybe change visibility?
+	public id: string;
+	public data: Array<{[key: string]: any}>;
 
-	// file: zip file in base64
-	// id: new id of the dataset
-	constructor(id: string) {
+	constructor(id: string, data: Array<{[key: string]: any}>) {
 		this.id = id;
+		this.data = data;
 	}
 
-	// return a list of all courses in one list
-	public async getAllCourses(file: string): Promise<string[]> {
-		try {
-			let promises: Array<Promise<string> | undefined> = [];
-			let courseNames: string[] = [];
-			let sections: string[] = [];
+	public getID(): string {
+		return this.id;
+	}
 
-			await zip.loadAsync(file, {base64: true}).then((unzip) => {
-				unzip.folder("courses")?.forEach((course) => {
-					if (course !== ".DS_Store") {
-						promises.push(unzip.folder("courses")?.file(course)?.async("string"));
-					}
-				});
-			});
-
-			return Promise.all(promises).then((arrCourses) => {
-				arrCourses.forEach((course) => {
-					if (course != null && course !== undefined) {
-						let courseResult = JSON.parse(course).result;
-						sections.push(courseResult);
-					}
-				});
-				return sections;
-			});
-		} catch (err) {
-			return Promise.reject(new InsightError());
-		}
+	public getData(): Array<{[key: string]: any}> {
+		return this.data;
 	}
 }

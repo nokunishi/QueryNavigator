@@ -1,0 +1,63 @@
+{
+	"title": "complex query 14",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{
+					"AND": [
+						{
+							"GT": {
+								"sections_avg": 80
+							}
+						},
+						{
+							"EQ": {
+								"sections_year": 2012
+							}
+						},
+						{
+							"GT": {
+								"sections_pass": 100
+							}
+						},
+						{
+							"GT": {
+								"sections_fail": 20
+							}
+						}
+					]
+				},
+				{
+					"AND": [
+						{
+							"GT": {
+								"sections_avg": 70
+							}
+						},
+						{
+							"EQ": {
+								"sections_year": 2011
+							}
+						},
+						{
+							"GT": {
+								"sections_pass": 100
+							}
+						},
+						{
+							"GT": {
+								"sections_fail": 20
+							}
+						}
+					]
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [],
+			"ORDER": "sections_avg"
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

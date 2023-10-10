@@ -1,0 +1,160 @@
+{
+	"title": "complex query 13",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{
+					"AND": [
+						{
+							"GT": {
+								"sections_avg": 80
+							}
+						},
+						{
+							"EQ": {
+								"sections_year": 2012
+							}
+						},
+						{
+							"GT": {
+								"sections_pass": 100
+							}
+						},
+						{
+							"GT": {
+								"sections_fail": 20
+							}
+						}
+					]
+				},
+				{
+					"AND": [
+						{
+							"GT": {
+								"sections_avg": 70
+							}
+						},
+						{
+							"EQ": {
+								"sections_year": 2011
+							}
+						},
+						{
+							"GT": {
+								"sections_pass": 100
+							}
+						},
+						{
+							"GT": {
+								"sections_fail": 20
+							}
+						}
+					]
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": ["sections_id", "sections_title", "sections_avg", "sections_year"],
+			"ORDER": "sections_avg"
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_id": "112",
+			"sections_title": "unicellular life",
+			"sections_avg": 70.4,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "121",
+			"sections_title": "structural chem",
+			"sections_avg": 70.48,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "364",
+			"sections_title": "animal physiol",
+			"sections_avg": 70.49,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "160",
+			"sections_title": "comp eng design",
+			"sections_avg": 70.56,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "121",
+			"sections_title": "structural chem",
+			"sections_avg": 70.63,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "211",
+			"sections_title": "analytical chem",
+			"sections_avg": 71.01,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "102",
+			"sections_title": "elec light & rad",
+			"sections_avg": 71.66,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "310",
+			"sections_title": "earth&solar sys",
+			"sections_avg": 71.96,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "160",
+			"sections_title": "comp eng design",
+			"sections_avg": 72.58,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "170",
+			"sections_title": "mechanics i",
+			"sections_avg": 72.91,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "170",
+			"sections_title": "mechanics i",
+			"sections_avg": 73.21,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "160",
+			"sections_title": "comp eng design",
+			"sections_avg": 73.59,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "101",
+			"sections_title": "energy & waves",
+			"sections_avg": 74.22,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "100",
+			"sections_title": "intro physics",
+			"sections_avg": 75.06,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "170",
+			"sections_title": "mechanics i",
+			"sections_avg": 75.93,
+			"sections_year": 2011
+		},
+		{
+			"sections_id": "160",
+			"sections_title": "comp eng design",
+			"sections_avg": 76.25,
+			"sections_year": 2011
+		}
+	]
+}
