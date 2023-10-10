@@ -463,6 +463,10 @@ describe("InsightFacade", function () {
 			expect(actual).to.have.deep.members(expected);
 		}
 
+		function assertResultOrdered(actual: unknown, expected: InsightResult[]): void {
+			expect(actual).to.have.deep.members(expected);
+		}
+
 		function assertError(actual: unknown, expected: Error): void {
 			if (expected === "ResultTooLargeError") {
 				expect(actual).to.be.an.instanceOf(ResultTooLargeError);
@@ -477,15 +481,25 @@ describe("InsightFacade", function () {
 		function target(input: unknown): Promise<InsightResult[]> {
 			return facade.performQuery(JSON.stringify(input));
 		}
-		/*
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries", {
-			assertOnResult: assertResult,
-			assertOnError: assertError,
-		}); */
 
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
+		/* 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});
+ */
+		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_ordered", {
+			assertOnResult: assertResultOrdered,
+			assertOnError: assertError,
+		}); */
+
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_ordered_arash", {
+			assertOnResult: assertResultOrdered,
+			assertOnError: assertError,
+		});
+
+		/* 	folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
+			assertOnResult: assertResult,
+			assertOnError: assertError,
+		}); */
 	});
 });
