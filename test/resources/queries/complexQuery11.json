@@ -1,0 +1,286 @@
+{
+	"title": "complex query 11",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{
+					"AND": [
+						{
+							"IS": {
+								"sections_dept": "me*"
+							}
+						},
+						{
+							"GT": {
+								"sections_avg": 95
+							}
+						}
+					]
+				},
+				{
+					"IS": {
+						"sections_instructor": "mic*"
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_id",
+				"sections_title",
+				"sections_avg",
+				"sections_dept",
+				"sections_instructor"
+			],
+			"ORDER": "sections_avg"
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_id": "352",
+			"sections_title": "physics lab tech",
+			"sections_avg": 66.5,
+			"sections_dept": "enph",
+			"sections_instructor": "michal, carl"
+		},
+		{
+			"sections_id": "220",
+			"sections_title": "hist music iii",
+			"sections_avg": 68.63,
+			"sections_dept": "musc",
+			"sections_instructor": "micznik, vera georgia"
+		},
+		{
+			"sections_id": "220",
+			"sections_title": "hist music iii",
+			"sections_avg": 69.48,
+			"sections_dept": "musc",
+			"sections_instructor": "micznik, vera georgia"
+		},
+		{
+			"sections_id": "220",
+			"sections_title": "hist music iii",
+			"sections_avg": 69.81,
+			"sections_dept": "musc",
+			"sections_instructor": "micznik, vera georgia"
+		},
+		{
+			"sections_id": "220",
+			"sections_title": "hist music iii",
+			"sections_avg": 70.37,
+			"sections_dept": "musc",
+			"sections_instructor": "micznik, vera georgia"
+		},
+		{
+			"sections_id": "220",
+			"sections_title": "hist music iii",
+			"sections_avg": 71.67,
+			"sections_dept": "musc",
+			"sections_instructor": "micznik, vera georgia"
+		},
+		{
+			"sections_id": "220",
+			"sections_title": "hist music iii",
+			"sections_avg": 71.88,
+			"sections_dept": "musc",
+			"sections_instructor": "micznik, vera georgia"
+		},
+		{
+			"sections_id": "352",
+			"sections_title": "physics lab tech",
+			"sections_avg": 73.43,
+			"sections_dept": "enph",
+			"sections_instructor": "michal, carl;pennec, yan herve loic"
+		},
+		{
+			"sections_id": "352",
+			"sections_title": "physics lab tech",
+			"sections_avg": 74.67,
+			"sections_dept": "enph",
+			"sections_instructor": "michal, carl"
+		},
+		{
+			"sections_id": "411",
+			"sections_title": "antenn & propgtn",
+			"sections_avg": 75,
+			"sections_dept": "elec",
+			"sections_instructor": "michelson, david"
+		},
+		{
+			"sections_id": "319",
+			"sections_title": "electrical lab",
+			"sections_avg": 75.48,
+			"sections_dept": "phys",
+			"sections_instructor": "michal, carl"
+		},
+		{
+			"sections_id": "319",
+			"sections_title": "electrical lab",
+			"sections_avg": 76.78,
+			"sections_dept": "phys",
+			"sections_instructor": "michal, carl"
+		},
+		{
+			"sections_id": "319",
+			"sections_title": "electrical lab",
+			"sections_avg": 77.79,
+			"sections_dept": "phys",
+			"sections_instructor": "michal, carl"
+		},
+		{
+			"sections_id": "319",
+			"sections_title": "electrical lab",
+			"sections_avg": 77.85,
+			"sections_dept": "phys",
+			"sections_instructor": "michal, carl"
+		},
+		{
+			"sections_id": "352",
+			"sections_title": "physics lab tech",
+			"sections_avg": 78.6,
+			"sections_dept": "enph",
+			"sections_instructor": "michal, carl"
+		},
+		{
+			"sections_id": "545",
+			"sections_title": "advancd arc docs",
+			"sections_avg": 79,
+			"sections_dept": "arst",
+			"sections_instructor": "michetti, giovanni"
+		},
+		{
+			"sections_id": "352",
+			"sections_title": "physics lab tech",
+			"sections_avg": 79.21,
+			"sections_dept": "enph",
+			"sections_instructor": "michal, carl;pennec, yan herve loic"
+		},
+		{
+			"sections_id": "219",
+			"sections_title": "intmd exp phys 1",
+			"sections_avg": 82.76,
+			"sections_dept": "phys",
+			"sections_instructor": "michal, carl"
+		},
+		{
+			"sections_id": "515",
+			"sections_title": "arr/desc arch",
+			"sections_avg": 83.17,
+			"sections_dept": "arst",
+			"sections_instructor": "michetti, giovanni"
+		},
+		{
+			"sections_id": "501",
+			"sections_title": "bus strategy",
+			"sections_avg": 83.38,
+			"sections_dept": "basm",
+			"sections_instructor": "michelson, helen"
+		},
+		{
+			"sections_id": "502",
+			"sections_title": "corporate strtgy",
+			"sections_avg": 83.38,
+			"sections_dept": "basm",
+			"sections_instructor": "michelson, helen"
+		},
+		{
+			"sections_id": "501",
+			"sections_title": "bus strategy",
+			"sections_avg": 83.42,
+			"sections_dept": "basm",
+			"sections_instructor": "michelson, helen"
+		},
+		{
+			"sections_id": "502",
+			"sections_title": "corporate strtgy",
+			"sections_avg": 83.42,
+			"sections_dept": "basm",
+			"sections_instructor": "michelson, helen"
+		},
+		{
+			"sections_id": "501",
+			"sections_title": "bus strategy",
+			"sections_avg": 83.43,
+			"sections_dept": "basm",
+			"sections_instructor": "michelson, helen"
+		},
+		{
+			"sections_id": "502",
+			"sections_title": "corporate strtgy",
+			"sections_avg": 83.43,
+			"sections_dept": "basm",
+			"sections_instructor": "michelson, helen"
+		},
+		{
+			"sections_id": "501",
+			"sections_title": "bus strategy",
+			"sections_avg": 83.45,
+			"sections_dept": "basm",
+			"sections_instructor": "michelson, helen"
+		},
+		{
+			"sections_id": "502",
+			"sections_title": "corporate strtgy",
+			"sections_avg": 83.45,
+			"sections_dept": "basm",
+			"sections_instructor": "michelson, helen"
+		},
+		{
+			"sections_id": "501",
+			"sections_title": "bus strategy",
+			"sections_avg": 83.61,
+			"sections_dept": "basm",
+			"sections_instructor": "michelson, helen"
+		},
+		{
+			"sections_id": "502",
+			"sections_title": "corporate strtgy",
+			"sections_avg": 83.61,
+			"sections_dept": "basm",
+			"sections_instructor": "michelson, helen"
+		},
+		{
+			"sections_id": "545",
+			"sections_title": "advancd arc docs",
+			"sections_avg": 83.94,
+			"sections_dept": "arst",
+			"sections_instructor": "michetti, giovanni"
+		},
+		{
+			"sections_id": "501",
+			"sections_title": "bus strategy",
+			"sections_avg": 84.14,
+			"sections_dept": "basm",
+			"sections_instructor": "michelson, helen"
+		},
+		{
+			"sections_id": "502",
+			"sections_title": "corporate strtgy",
+			"sections_avg": 84.14,
+			"sections_dept": "basm",
+			"sections_instructor": "michelson, helen"
+		},
+		{
+			"sections_id": "545",
+			"sections_title": "advancd arc docs",
+			"sections_avg": 84.8,
+			"sections_dept": "arst",
+			"sections_instructor": "michetti, giovanni"
+		},
+		{
+			"sections_id": "515",
+			"sections_title": "arr/desc arch",
+			"sections_avg": 85.82,
+			"sections_dept": "arst",
+			"sections_instructor": "michetti, giovanni"
+		},
+		{
+			"sections_id": "515",
+			"sections_title": "arr/desc arch",
+			"sections_avg": 85.91,
+			"sections_dept": "arst",
+			"sections_instructor": "michetti, giovanni"
+		}
+	]
+}

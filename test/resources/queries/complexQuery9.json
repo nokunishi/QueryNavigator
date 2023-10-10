@@ -1,0 +1,13 @@
+{
+	"title": "complex query 9",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections_avg": 80
+			}
+		},
+		"OPTIONS": "invalid_option"
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

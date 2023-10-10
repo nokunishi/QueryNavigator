@@ -19,6 +19,7 @@ describe("InsightFacade", function () {
 	let facade: IInsightFacade;
 
 	// Declare datasets used in tests. You should add more datasets like this!
+	let pair: string;
 	let sections: string;
 	let cpsc110: string;
 	let maths: string;
@@ -35,7 +36,7 @@ describe("InsightFacade", function () {
 
 	before(function () {
 		// This block runs once and loads the datasets.
-		// sections = getContentFromArchives("pair.zip");
+		pair = getContentFromArchives("pair.zip");
 		sections = getContentFromArchives("courses100.zip");
 		cpsc110 = getContentFromArchives("cpsc110.zip");
 		maths = getContentFromArchives("maths.zip");
@@ -449,34 +450,37 @@ describe("InsightFacade", function () {
 	 * You should not need to modify it; instead, add additional files to the queries directory.
 	 * You can still make tests the normal way, this is just a convenient tool for a majority of queries.
 	 */
-	/* describe("PerformQuery", () => {
-		before(function () {
-			console.info(`Before: ${this.test?.parent?.title}`);
-			facade = new InsightFacade();
-			// Load the datasets specified in datasetsToQuery and add them to InsightFacade.
-			// Will *fail* if there is a problem reading ANY dataset.
-			const loadDatasetPromises = [facade.addDataset("sections", sections, InsightDatasetKind.Sections)];
-			return Promise.all(loadDatasetPromises);
-		});
-		after(function () {
-			console.info(`After: ${this.test?.parent?.title}`);
+
+	describe("performQuery", function () {
+		type Error = "ResultTooLargeError" | "InsightError";
+		before(async function () {
 			clearDisk();
+			facade = new InsightFacade();
+			await facade.addDataset("sections", pair, InsightDatasetKind.Sections);
 		});
-		type PQErrorKind = "ResultTooLargeError" | "InsightError";
-		folderTest<unknown, Promise<InsightResult[]>, PQErrorKind>(
-			"Dynamic InsightFacade PerformQuery tests",
-			(input) => facade.performQuery(input),
-			"./test/resources/queries",
-			{
-				assertOnResult: (actual, expected) => {
-					// TODO add an assertion!
-				},
-				errorValidator: (error): error is PQErrorKind =>
-					error === "ResultTooLargeError" || error === "InsightError",
-				assertOnError: (actual, expected) => {
-					// TODO add an assertion!
-				},
+
+		function assertResult(actual: unknown, expected: InsightResult[]): void {
+			expect(actual).to.have.deep.members(expected);
+		}
+
+		function assertError(actual: unknown, expected: Error): void {
+			if (expected === "ResultTooLargeError") {
+				expect(actual).to.be.an.instanceOf(ResultTooLargeError);
+			} else if (expected === "InsightError") {
+				expect(actual).to.be.an.instanceOf(InsightError);
+			} else {
+				// this should be unreachable
+				expect.fail("UNEXPECTED ERROR");
 			}
-		);
-	}); */
+		}
+
+		function target(input: unknown): Promise<InsightResult[]> {
+			return facade.performQuery(JSON.stringify(input));
+		}
+
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries", {
+			assertOnResult: assertResult,
+			assertOnError: assertError,
+		});
+	});
 });

@@ -1,0 +1,30 @@
+{
+	"title": "multiple datasets 1",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{
+					"GT": {
+						"sections_avg": 80
+					}
+				},
+				{
+					"LT": {
+						"rooms_pass": 100
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_id",
+				"sections_title",
+				"sections_avg",
+				"rooms_id",
+				"rooms_pass"
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

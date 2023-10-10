@@ -8,8 +8,9 @@ import {
 } from "./IInsightFacade";
 
 import {Database} from "../model/Database";
-import {Dataset} from "../model/Dataset";
 import * as fs from "fs-extra";
+import {Query, parseOptions, parseWhere} from "../query/QueryParser";
+// import {Query, parseOptions, parseWhere} from "../query/QueryParser";
 
 /**
  * This is the main programmatic entry point for the project.
@@ -33,9 +34,8 @@ export default class InsightFacade implements IInsightFacade {
 			if (kind === InsightDatasetKind.Rooms) {
 				return Promise.reject(new InsightError());
 			}
-			let dataset = new Dataset(id);
 
-			return this.database.addValidDataset(dataset, content);
+			return this.database.addValidDataset(id, content);
 		} catch (err) {
 			return Promise.reject(new InsightError());
 		}
@@ -53,7 +53,23 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public performQuery(query: unknown): Promise<InsightResult[]> {
-		return Promise.reject("Not implemented.");
+		try {
+			if (query === null) {
+				return Promise.reject(new InsightError("Query is null"));
+			}
+
+			if (typeof query !== "string") {
+				return Promise.reject(new InsightError("Query is not a string"));
+			}
+
+			const queryObject: Query = JSON.parse(query);
+			// Get name of the dataset
+			let datasetId = queryObject.OPTIONS.COLUMNS[0].split("_")[0];
+			let result = parseWhere(queryObject.WHERE, this.database.readDataset(datasetId));
+			return Promise.resolve(parseOptions(queryObject.OPTIONS, result));
+		} catch (error) {
+			return Promise.reject(new InsightError());
+		}
 	}
 
 	// not sure if we're allowed to have this async either

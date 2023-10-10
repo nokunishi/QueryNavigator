@@ -1,0 +1,15 @@
+{
+    "title": "incorrectly formatted query",
+    "input": {
+        "WHERE": {
+            "INVALID_OPERATOR": {
+                "INVALID_FIELD": 97
+            }
+        },
+        "OPTIONS": {
+            "COLUMNS": ["sections_dept", "sections_avg"]
+        }
+    },
+    "errorExpected": true,
+    "expected": "InsightError"
+}
