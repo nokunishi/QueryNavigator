@@ -479,7 +479,7 @@ describe("InsightFacade", function () {
 		}
 
 		function target(input: unknown): Promise<InsightResult[]> {
-			return facade.performQuery(JSON.stringify(input));
+			return facade.performQuery(input);
 		}
 
 		/* 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries", {
@@ -492,7 +492,7 @@ describe("InsightFacade", function () {
 			assertOnError: assertError,
 		}); */
 
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_not_ordered", {
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_ordered_arash", {
 			assertOnResult: assertResultOrdered,
 			assertOnError: assertError,
 		});

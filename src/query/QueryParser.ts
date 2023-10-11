@@ -84,24 +84,15 @@ function parseWhereComparators(item: any, whereCondition: Where, comparator: Whe
 			});
 			break;
 		case "IS":
-			Object.keys(whereCondition["IS"]).forEach((key) => {
-				let o: any = whereCondition["IS"];
-				if (o[key][0] === "*" && o[key][o[key].length - 1] === "*") {
-					result = item[parseWhereField(key) || ""].includes(o[key].replaceAll("*", ""));
-				} else if (o[key][0] === "*") {
-					result = item[parseWhereField(key) || ""].endsWith(o[key].substring(1));
-				} else if (o[key][o[key].length - 1] === "*") {
-					result = item[parseWhereField(key) || ""].startsWith(o[key].substring(0, o[key].length - 1));
-				} else if (o[key].includes("*")) {
-					throw new InsightError("Invalid comparator");
-				} else {
-					result = item[parseWhereField(key) || ""].toString() === o[key].toString();
-				}
-			});
+			result = processWildcard(whereCondition, item);
 			break;
 		case "NOT":
-			Object.keys(whereCondition["EQ"]).forEach((key) => {
-				result = item[parseWhereField(key) || ""].toString() !== (whereCondition["EQ"] as any)[key].toString();
+			Object.keys(whereCondition["NOT"]).forEach((key) => {
+				result = !parseWhereComparators(
+					item,
+					whereCondition["NOT"] as any,
+					Object.keys(whereCondition["NOT"])[0] as WhereComparators
+				);
 			});
 			break;
 		case "AND":
@@ -114,6 +105,27 @@ function parseWhereComparators(item: any, whereCondition: Where, comparator: Whe
 			throw new InsightError("Invalid comparator");
 	}
 	return result;
+}
+
+function processWildcard(whereCondition: Where, item: any) {
+	let result: boolean = false;
+	Object.keys(whereCondition["IS"]).forEach((key) => {
+		let o: any = whereCondition["IS"];
+		let tempResult: boolean = false;
+		if (o[key][0] === "*" && o[key][o[key].length - 1] === "*") {
+			tempResult = item[parseWhereField(key) || ""].includes(o[key].replaceAll("*", ""));
+		} else if (o[key][0] === "*") {
+			tempResult = item[parseWhereField(key) || ""].endsWith(o[key].substring(1));
+		} else if (o[key][o[key].length - 1] === "*") {
+			tempResult = item[parseWhereField(key) || ""].startsWith(o[key].substring(0, o[key].length - 1));
+		} else if (o[key].includes("*")) {
+			throw new InsightError("Invalid comparator");
+		} else {
+			tempResult = item[parseWhereField(key) || ""].toString() === o[key].toString();
+		}
+		result = result || tempResult;
+	});
+	return result === undefined ? false : result;
 }
 
 function processAndOR(comparator: "and" | "or", condition: any[], result: boolean, item: any) {
