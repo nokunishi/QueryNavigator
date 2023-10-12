@@ -54,7 +54,7 @@ export default class InsightFacade implements IInsightFacade {
 
 	public performQuery(query: unknown): Promise<InsightResult[]> {
 		try {
-			if (query === undefined || query === null) {
+			if (query === null) {
 				return Promise.reject(new InsightError("Query is null"));
 			}
 
@@ -62,11 +62,11 @@ export default class InsightFacade implements IInsightFacade {
 				query = JSON.stringify(query);
 			}
 
-			/* if (typeof query !== "string") {
+			if (typeof query !== "string") {
 				return Promise.reject(new InsightError("Query is not a string"));
-			} */
+			}
 
-			const queryObject: Query = JSON.parse(JSON.stringify(query));
+			const queryObject: Query = JSON.parse(query);
 			// Get name of the dataset
 			let datasetId = queryObject.OPTIONS.COLUMNS[0].split("_")[0];
 			let result = parseWhere(queryObject.WHERE, this.database.readDataset(datasetId));

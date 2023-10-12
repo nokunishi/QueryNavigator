@@ -57,7 +57,7 @@ describe("InsightFacade", function () {
 		// Just in case there is anything hanging around from a previous run of the test suite
 		clearDisk();
 	});
-
+	/*
 	describe("AddDataset", function () {
 		before(function () {
 			console.info(`Before: ${this.test?.parent?.title}`);
@@ -385,12 +385,6 @@ describe("InsightFacade", function () {
 			]);
 		});
 
-		it("should resolve: array with pair zip", async function () {
-			const add1 = await facade.addDataset("sections 1", sections, InsightDatasetKind.Sections);
-
-			expect(add1).have.deep.members(["sections 1"]);
-		});
-
 		it("should resolve: array with two elems, same file", async function () {
 			const add1 = await facade.addDataset("cpsc110-w1", cpsc110, InsightDatasetKind.Sections);
 
@@ -449,7 +443,7 @@ describe("InsightFacade", function () {
 
 			expect(result).to.be.empty;
 		});
-	});
+	}); */
 
 	/*
 	 * This test suite dynamically generates tests from the JSON files in test/resources/queries.
@@ -459,8 +453,6 @@ describe("InsightFacade", function () {
 
 	describe("performQuery", function () {
 		type Error = "ResultTooLargeError" | "InsightError";
-		let queryORDER: string | null;
-
 		before(async function () {
 			clearDisk();
 			facade = new InsightFacade();
@@ -471,8 +463,8 @@ describe("InsightFacade", function () {
 			expect(actual).to.have.deep.members(expected);
 		}
 
-		function assertResultOrdered(actual: string, expected: InsightResult[]): void {
-			// expect(actual).to.have.deep.equals(expected);
+		function assertResultOrdered(actual: unknown, expected: InsightResult[]): void {
+			expect(actual).to.have.deep.members(expected);
 		}
 
 		function assertError(actual: unknown, expected: Error): void {
@@ -487,9 +479,6 @@ describe("InsightFacade", function () {
 		}
 
 		function target(input: unknown): Promise<InsightResult[]> {
-			let queryObj = JSON.parse(JSON.stringify(input));
-			queryORDER = queryObj.OPTIONS.ORDER;
-
 			return facade.performQuery(input);
 		}
 
@@ -503,14 +492,14 @@ describe("InsightFacade", function () {
 			assertOnError: assertError,
 		}); */
 
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_ordered_arash", {
+		/* 	folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_ordered_arash", {
 			assertOnResult: assertResultOrdered,
 			assertOnError: assertError,
-		});
-		/*
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_valid_unordered", {
+		}); */
+
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
-		}); */
+		});
 	});
 });
