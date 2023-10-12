@@ -497,7 +497,7 @@ describe("InsightFacade", function () {
 			assertOnError: assertError,
 		}); */
 
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_valid_unordered", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});
