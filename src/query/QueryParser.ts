@@ -100,6 +100,10 @@ function parseWhereComparators(item: any, whereCondition: Where, comparator: Whe
 			break;
 		case "IS":
 			result = processWildcard(whereCondition, item);
+
+			break;
+		case "IS":
+			result = processWildcard(whereCondition, item);
 			break;
 		case "NOT":
 			result = processNOT(whereCondition, item);

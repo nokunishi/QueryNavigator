@@ -493,6 +493,7 @@ describe("InsightFacade", function () {
 		}); */
 
 		/* 	folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_ordered_arash", {
+
 			assertOnResult: assertResultOrdered,
 			assertOnError: assertError,
 		}); */
