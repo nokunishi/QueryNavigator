@@ -69,6 +69,9 @@ export default class InsightFacade implements IInsightFacade {
 			const queryObject: Query = JSON.parse(query);
 			// Get name of the dataset
 			let datasetId = queryObject.OPTIONS.COLUMNS[0].split("_")[0];
+			if (!queryObject.WHERE) {
+				return Promise.reject(new InsightError("Missing WHERE clause"));
+			}
 			let result = parseWhere(queryObject.WHERE, this.database.readDataset(datasetId));
 			return Promise.resolve(parseOptions(queryObject.OPTIONS, result));
 		} catch (error) {
