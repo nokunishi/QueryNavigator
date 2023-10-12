@@ -57,7 +57,6 @@ describe("InsightFacade", function () {
 		// Just in case there is anything hanging around from a previous run of the test suite
 		clearDisk();
 	});
-	/*
 	describe("AddDataset", function () {
 		before(function () {
 			console.info(`Before: ${this.test?.parent?.title}`);
@@ -443,7 +442,7 @@ describe("InsightFacade", function () {
 
 			expect(result).to.be.empty;
 		});
-	}); */
+	});
 
 	/*
 	 * This test suite dynamically generates tests from the JSON files in test/resources/queries.
@@ -498,7 +497,7 @@ describe("InsightFacade", function () {
 			assertOnError: assertError,
 		}); */
 
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_valid_unordered", {
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});
