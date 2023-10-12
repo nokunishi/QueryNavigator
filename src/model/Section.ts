@@ -9,11 +9,13 @@ export class Section {
 	private readonly title: MField;
 	private readonly instructor: MField;
 	private readonly dept: MField;
-	private readonly year: SField;
+	public year: SField;
 	private readonly avg: SField;
 	private readonly pass: SField;
 	private readonly fail: SField;
 	private readonly audit: SField;
+
+	public readonly section: MField; // not really, but it's string | null
 
 	constructor(section: any) {
 		this.id = section["id"];
@@ -26,8 +28,11 @@ export class Section {
 		this.pass = section["Pass"];
 		this.fail = section["Fail"];
 		this.audit = section["Audit"];
+
+		this.section = section["Section"];
 	}
 
+	// check if it's valid, also set year = 1900 if Sections == overall
 	public isValid(): boolean {
 		return (
 			this.id !== undefined &&

@@ -32,6 +32,7 @@ export class Database {
 
 			for (const course of courses) {
 				let section: any;
+
 				for (section of course) {
 					let sectionObj = new Section(section);
 					if (section["Section"] === "overall") {
@@ -43,6 +44,8 @@ export class Database {
 					}
 				}
 			}
+
+			// console.log(courses);
 
 			// if no valid section, return InsightError
 			if (!valid) {
