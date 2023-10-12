@@ -71,43 +71,37 @@ function parseWhereComparators(item: any, whereCondition: Where, comparator: Whe
 	let result = false;
 	switch (comparator.toString()) {
 		case "LT":
+			checkWrongWhereCondition(whereCondition, "LT");
 			Object.keys(whereCondition["LT"]).forEach((key) => {
-				if (typeof (whereCondition["LT"] as any)[key] === "number" && mfield.includes(key.split("_")[1])) {
-					result = item[parseWhereField(key) || ""] < (whereCondition["LT"] as any)[key];
-				} else {
-					throw new InsightError("LT: invalid value type or query field");
-				}
+				result = item[parseWhereField(key) || ""] < (whereCondition["LT"] as any)[key];
 			});
 			break;
 		case "GT":
+			checkWrongWhereCondition(whereCondition, "GT");
 			Object.keys(whereCondition["GT"]).forEach((key) => {
-				if (typeof (whereCondition["GT"] as any)[key] === "number" && mfield.includes(key.split("_")[1])) {
-					result = item[parseWhereField(key) || ""] > (whereCondition["GT"] as any)[key];
-				} else {
-					throw new InsightError("GT: invalid value type or query field");
-				}
+				result = item[parseWhereField(key) || ""] > (whereCondition["GT"] as any)[key];
 			});
 			break;
 		case "EQ":
+			checkWrongWhereCondition(whereCondition, "EQ");
 			Object.keys(whereCondition["EQ"]).forEach((key) => {
-				if (typeof (whereCondition["EQ"] as any)[key] === "number" && mfield.includes(key.split("_")[1])) {
-					result =
-						item[parseWhereField(key) || ""].toString() === (whereCondition["EQ"] as any)[key].toString();
-				} else {
-					throw new InsightError("EQ: invalid value type or query field");
-				}
+				result = item[parseWhereField(key) || ""].toString() === (whereCondition["EQ"] as any)[key].toString();
 			});
 			break;
 		case "IS":
+			checkWrongWhereCondition(whereCondition, "IS");
 			result = processWildcard(whereCondition, item);
 			break;
 		case "NOT":
+			checkWrongWhereCondition(whereCondition, "NOT");
 			result = processNOT(whereCondition, item);
 			break;
 		case "AND":
+			checkWrongWhereCondition(whereCondition, "AND");
 			result = processAndOR("and", whereCondition["AND"] as [], true, item);
 			break;
 		case "OR":
+			checkWrongWhereCondition(whereCondition, "OR");
 			result = processAndOR("or", whereCondition["OR"] as [], result, item);
 			break;
 		default:
@@ -185,11 +179,17 @@ export async function parseOptions(options: Options, data: Promise<any[]>): Prom
 	if (options === null || options.COLUMNS === null) {
 		throw new InsightError("Empty options or columns");
 	}
-
+	// need to check if options only contains COLUMNS and ORDER
+	if (Object.keys(options).some((key) => key !== "COLUMNS" && key !== "ORDER")) {
+		throw new InsightError("Invalid keys in OPTIONS");
+	}
 	let res = await data.then((d) => {
 		// Parsing columns
 		let columns = options.COLUMNS;
 		let order = options.ORDER;
+		if (!columns) {
+			throw new InsightError("missing COLUMNS");
+		}
 		let result: Array<{[key: string]: string | number}> = [];
 		for (const row of d) {
 			let rowResult: {[key: string]: string | number} = {};
@@ -209,7 +209,11 @@ export async function parseOptions(options: Options, data: Promise<any[]>): Prom
 		if (!order) {
 			return result;
 		}
-		return result.sort((a, b) => (a[order || ""] > b[order || ""] ? 1 : -1));
+		if (!columns.includes(order)) {
+			throw new InsightError("ORDER key must be in COLUMNS");
+		} else {
+			return result.sort((a, b) => (a[order || ""] > b[order || ""] ? 1 : -1));
+		}
 	});
 	return res;
 }
@@ -248,4 +252,23 @@ function parseWhereField(key: string) {
 	if (key === "fail") {
 		return "Fail";
 	}
+}
+
+function checkWrongWhereCondition(whereCondition: Where, comp: string) {
+	if (typeof (whereCondition[comp] as any)[Object.keys(whereCondition[comp])[0]] === "string" && comp !== "IS") {
+		throw new InsightError(`Invalid value for ${comp}`);
+	}
+	if (Object.keys(whereCondition[comp]).length === 0) {
+		throw new InsightError(`Empty ${comp} in where condition`);
+	}
+	if (comp !== "AND" && comp !== "OR") {
+		if (Object.keys(whereCondition[comp]).length > 1) {
+			throw new InsightError(`Invalid ${comp} in where condition`);
+		}
+	}
+	// if (comp === "AND" || comp === "OR") {
+	// 	if (Object.keys(whereCondition[comp])[0].length === 0) {
+	// 		throw new InsightError(`Invalid ${comp} in where condition`);
+	// 	}
+	// }
 }
