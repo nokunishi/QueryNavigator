@@ -10,6 +10,7 @@ import {
 import {Database} from "../model/Database";
 import * as fs from "fs-extra";
 import {Query, parseOptions, parseWhere} from "../query/QueryParser";
+import {parseTransformation} from "../query/QueryAggregate";
 // import {Query, parseOptions, parseWhere} from "../query/QueryParser";
 
 /**
@@ -52,7 +53,8 @@ export default class InsightFacade implements IInsightFacade {
 		}
 	}
 
-	public performQuery(query: unknown): Promise<InsightResult[]> {
+	// todo: change to non-async
+	public async performQuery(query: unknown): Promise<InsightResult[]> {
 		try {
 			if (query === null) {
 				return Promise.reject(new InsightError("Query is null"));
@@ -73,8 +75,21 @@ export default class InsightFacade implements IInsightFacade {
 				return Promise.reject(new InsightError("Missing WHERE clause"));
 			}
 			let result = parseWhere(queryObject.WHERE, this.database.readDataset(datasetId));
-			return Promise.resolve(parseOptions(queryObject.OPTIONS, result));
+
+			// aggregate on 'result'
+			if (queryObject.TRANSFORMATIONS) {
+				let resultAggregate = parseTransformation(
+					queryObject.TRANSFORMATIONS.GROUP,
+					queryObject.TRANSFORMATIONS.APPLY,
+					result
+				);
+
+				return Promise.resolve(parseOptions(queryObject.OPTIONS, resultAggregate));
+			} else {
+				return Promise.resolve(parseOptions(queryObject.OPTIONS, result));
+			}
 		} catch (error) {
+			console.log(error);
 			return Promise.reject(new InsightError());
 		}
 	}

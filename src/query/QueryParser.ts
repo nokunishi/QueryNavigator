@@ -4,11 +4,17 @@ import {Section} from "../model/Section";
 export interface Query {
 	WHERE: Where;
 	OPTIONS: Options;
+	TRANSFORMATIONS: any;
 }
 
 type WhereComparators = "LT" | "GT" | "EQ" | "AND" | "OR" | "IS" | "NOT";
+type Dir = "UP" | "DOWN";
+
 const mfield = ["avg", "pass", "fail", "audit", "year"];
 const sfield = ["dept", "id", "instructor", "title", "uuid"];
+
+const mfieldRoom = ["lat", "lon", "seats"];
+const sfieldRoom = ["fullname", "shortname", "number", "name", "address", "type", "furniture", "href"];
 
 interface Where {
 	[key: string]: {[key: string]: Where} | Array<{[key: string]: Where}>;
@@ -63,7 +69,6 @@ export async function parseWhere(whereCondition: Where, data: Promise<any[]>): P
 	if (d.length > 5000) {
 		throw new ResultTooLargeError("Result too large(>5000)");
 	}
-
 	return d;
 }
 
@@ -179,7 +184,6 @@ export async function parseOptions(options: Options, data: Promise<any[]>): Prom
 	if (options === null || options.COLUMNS === null) {
 		throw new InsightError("Empty options or columns");
 	}
-	// need to check if options only contains COLUMNS and ORDER
 	if (Object.keys(options).some((key) => key !== "COLUMNS" && key !== "ORDER")) {
 		throw new InsightError("Invalid keys in OPTIONS");
 	}
@@ -252,6 +256,11 @@ function parseWhereField(key: string) {
 	if (key === "fail") {
 		return "Fail";
 	}
+	if (mfieldRoom.includes(key) || sfieldRoom.includes(key)) {
+		return key;
+	} else {
+		throw new InsightError("invalid query field");
+	}
 }
 
 function checkWrongWhereCondition(whereCondition: Where, comp: string) {
@@ -271,4 +280,12 @@ function checkWrongWhereCondition(whereCondition: Where, comp: string) {
 	// 		throw new InsightError(`Invalid ${comp} in where condition`);
 	// 	}
 	// }
+}
+
+export function valid_mfield(): string[] {
+	return mfield.concat(mfieldRoom);
+}
+
+export function valid_sfield(): string[] {
+	return sfield.concat(sfieldRoom);
 }

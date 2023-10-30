@@ -47,4 +47,29 @@ export class Section {
 			this.audit !== undefined
 		);
 	}
+
+	public getValue(field: string): string | number | undefined {
+		switch (field) {
+			case "id":
+				return this.id;
+			case "uuid":
+				return this.uuid;
+			case "title":
+				return this.title;
+			case "instructor":
+				return this.instructor;
+			case "dept":
+				return this.dept;
+			case "year":
+				return this.year;
+			case "avg":
+				return this.avg;
+			case "pass":
+				return this.pass;
+			case "fail":
+				return this.fail;
+			case "audit":
+				return this.audit;
+		}
+	}
 }

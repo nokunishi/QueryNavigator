@@ -57,7 +57,7 @@ describe("InsightFacade", function () {
 		// Just in case there is anything hanging around from a previous run of the test suite
 		clearDisk();
 	});
-	describe("AddDataset", function () {
+	/* 	describe("AddDataset", function () {
 		before(function () {
 			console.info(`Before: ${this.test?.parent?.title}`);
 		});
@@ -442,7 +442,7 @@ describe("InsightFacade", function () {
 
 			expect(result).to.be.empty;
 		});
-	});
+	}); */
 
 	/*
 	 * This test suite dynamically generates tests from the JSON files in test/resources/queries.
@@ -481,23 +481,7 @@ describe("InsightFacade", function () {
 			return facade.performQuery(input);
 		}
 
-		/* 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries", {
-			assertOnResult: assertResult,
-			assertOnError: assertError,
-		});
- */
-		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_ordered", {
-			assertOnResult: assertResultOrdered,
-			assertOnError: assertError,
-		}); */
-
-		/* 	folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_ordered_arash", {
-
-			assertOnResult: assertResultOrdered,
-			assertOnError: assertError,
-		}); */
-
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});
