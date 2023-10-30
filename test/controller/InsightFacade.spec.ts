@@ -213,10 +213,9 @@ describe("InsightFacade", function () {
 			return expect(result).to.eventually.deep.members(["valid-field"]);
 		});
 */
-		it("testing rooms", function () {
-			const result = facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
-
-			return expect(result).to.eventually.deep.members(["valid-field"]);
+		it("testing rooms", async function () {
+			const result = await facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
+			return expect(result).to.have.lengthOf(364);
 		});
 	});
 
