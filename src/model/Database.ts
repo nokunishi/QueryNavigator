@@ -3,6 +3,7 @@ import {Dataset} from "./Dataset";
 import {Section} from "./Section";
 import {InsightDatasetKind, InsightError, InsightDataset, InsightResult} from "../controller/IInsightFacade";
 import * as zip from "jszip";
+import {readRoomsZipFile} from "./Rooms";
 
 // list of valid datasets
 export class Database {
@@ -25,35 +26,45 @@ export class Database {
 	// add a valid dataset
 	// file name = id of dataset
 	// TODO: refactor to not-async fn
-	public async addValidDataset(id: string, file: string): Promise<string[]> {
+	public async addValidDataset(id: string, file: string, kind: InsightDatasetKind): Promise<string[]> {
 		try {
-			let courses = await this.getAllCoursesInZip(file);
-			let valid = false;
+			let courses: any[] = [];
+			let rooms: any[] = [];
+			if (kind === InsightDatasetKind.Sections) {
+				courses = await this.getAllCoursesInZip(file);
+				let valid = false;
 
-			for (const course of courses) {
-				let section: any;
+				for (const course of courses) {
+					let section: any;
 
-				for (section of course) {
-					let sectionObj = new Section(section);
-					if (section["Section"] === "overall") {
-						section["Year"] = 1900;
-					}
+					for (section of course) {
+						let sectionObj = new Section(section);
+						if (section["Section"] === "overall") {
+							section["Year"] = 1900;
+						}
 
-					if (sectionObj.isValid()) {
-						valid = true;
+						if (sectionObj.isValid()) {
+							valid = true;
+						}
 					}
 				}
-			}
-
-			// console.log(courses);
-
-			// if no valid section, return InsightError
-			if (!valid) {
-				throw new InsightError();
+				if (!valid) {
+					throw new InsightError();
+				}
+			} else if (kind === InsightDatasetKind.Rooms) {
+				rooms = await readRoomsZipFile(file);
+			} else {
+				throw new InsightError("Invalid kind of dataset");
 			}
 
 			if (!fs.pathExistsSync("./data/" + id)) {
-				fs.writeFileSync("./data/" + id, JSON.stringify(courses));
+				if (kind === InsightDatasetKind.Sections) {
+					fs.writeFileSync("./data/" + id, JSON.stringify(courses));
+				} else if (kind === InsightDatasetKind.Rooms) {
+					fs.writeFileSync("./data/" + id, JSON.stringify(rooms));
+				} else {
+					throw new InsightError("Invalid kind of dataset");
+				}
 			} else {
 				return Promise.reject(new InsightError());
 			}
@@ -98,6 +109,7 @@ export class Database {
 	}
 
 	// Read
+	// THIS FOR GETTING ALL SECTIONS DATASETS NOT ROOMS
 	public getAllDatasets(): Dataset[] {
 		let datasetIds = this.getAllIds();
 		let datasets: Dataset[] = [];
@@ -117,6 +129,19 @@ export class Database {
 			let dataset = JSON.parse(datasetString) as any[];
 			// Flatten data from all courses to a single array
 			return Promise.resolve(dataset.flat());
+		} catch (err) {
+			return Promise.reject(new InsightError());
+		}
+	}
+
+	// Get room dataset
+	public async readRoomsDataset(id: string): Promise<any[]> {
+		try {
+			let datasetString = fs.readFileSync("./data/" + id).toString();
+			console.log(datasetString);
+			let dataset = JSON.parse(datasetString) as any[];
+			console.log(dataset);
+			return Promise.resolve(dataset);
 		} catch (err) {
 			return Promise.reject(new InsightError());
 		}

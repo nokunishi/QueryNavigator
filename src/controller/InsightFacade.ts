@@ -31,11 +31,8 @@ export default class InsightFacade implements IInsightFacade {
 			if (this.database.invalidId(id)) {
 				return Promise.reject(new InsightError());
 			}
-
-			if (kind === InsightDatasetKind.Rooms) {
-				return readRoomsZipFile(content);
-			} else if (kind === InsightDatasetKind.Sections) {
-				return this.database.addValidDataset(id, content);
+			if (kind) {
+				return this.database.addValidDataset(id, content, kind);
 			} else {
 				return Promise.reject(new InsightError());
 			}
@@ -99,7 +96,8 @@ export default class InsightFacade implements IInsightFacade {
 
 			let insightDataset: InsightDataset = {
 				id: datasetId,
-				kind: InsightDatasetKind.Sections,
+				// TODO: change this to sections or rooms
+				kind: InsightDatasetKind.Rooms,
 				numRows: sum,
 			};
 

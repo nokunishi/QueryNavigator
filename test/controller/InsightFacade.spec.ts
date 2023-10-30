@@ -215,7 +215,7 @@ describe("InsightFacade", function () {
 */
 		it("testing rooms", async function () {
 			const result = await facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
-			return expect(result).to.have.lengthOf(364);
+			return expect(result).have.deep.members(["rooms"]);
 		});
 	});
 
