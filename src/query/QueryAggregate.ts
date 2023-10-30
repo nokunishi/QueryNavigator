@@ -1,3 +1,4 @@
+import {type} from "os";
 import {InsightError, ResultTooLargeError} from "../controller/IInsightFacade";
 import {Section} from "../model/Section";
 import {valid_mfield, valid_sfield} from "./QueryParser";
@@ -28,48 +29,53 @@ export async function parseTransformation(
 		return item;
 	});
 
-	let groups = await data.then((sections) => {
-		return groupSections(sections, keys);
+	let sections = await data.then((s) => {
+		return s.map((section) => {
+			return new Section(section);
+		});
 	});
 
-	// console.log(groups.size);
+	let group: any = null;
+
+	while (keys.length > 0) {
+		if (group !== null) {
+			for (const k of Object.keys(group)) {
+				let g = groupSections((group as any)[k], keys[keys.length - 1]);
+				(group as any)[k] = [];
+				(group as any)[k].push(g);
+			}
+		} else {
+			group = groupSections(sections, keys[keys.length - 1]);
+		}
+		keys.pop();
+	}
+	console.log(group["garcia, ronald"]);
 
 	if (apply.length === 0) {
-		return Promise.resolve(processApply(apply, groups));
+		// console.log(groups);
 	}
 	return Promise.resolve(["hello"]);
 }
 
-function groupSections(sections: Section[], keys: string[]): Map<any[], Section[]> {
-	let groups: Map<any[], Section[]> = new Map();
+function groupSections(sections: any[], key: string): object {
+	return sections.reduce(function (acc, item) {
+		let value = item.getValue(key);
 
-	for (const section of sections) {
-		let s = new Section(section);
-		let values: any[] = [];
-
-		keys.forEach((key) => {
-			let value = s.getValue(key);
-			values.push(value);
-		});
-
-		let contains = true;
-		for (const key of groups.keys()) {
-			for (let i = 0; i++; i < key.length) {
-				if (key[i] !== values[i]) {
-					contains = false;
-					break;
-				}
-			}
-
-			if (contains) {
-				console.log("hello");
-			} else {
-				groups.set(values, [section]);
-			}
+		if (typeof value === "number") {
+			value.toString();
 		}
-	}
 
-	return groups;
+		if (!value || typeof value !== "string") {
+			return acc;
+		}
+
+		if (!(acc as any)[value]) {
+			(acc as any)[value] = [];
+		}
+
+		(acc as any)[value].push(item);
+		return acc;
+	}, {});
 }
 
 function processApply(apply: string[], groups: Map<any[], Section[]>): Section[] {
