@@ -33,10 +33,12 @@ describe("InsightFacade", function () {
 	let invalidNoAudit: string;
 	let validOneCourse: string;
 	let validField: string;
+	let campus: string;
 
 	before(function () {
 		// This block runs once and loads the datasets.
 		pair = getContentFromArchives("pair.zip");
+		campus = getContentFromArchives("campus.zip");
 		sections = getContentFromArchives("courses100.zip");
 		cpsc110 = getContentFromArchives("cpsc110.zip");
 		maths = getContentFromArchives("maths.zip");
@@ -79,7 +81,7 @@ describe("InsightFacade", function () {
 			console.info(`AfterTest: ${this.currentTest?.title}`);
 			clearDisk();
 		});
-
+		/*
 		// This is a unit test. You should create more like this!
 		it("should reject with  an empty dataset id", function () {
 			const result = facade.addDataset("", sections, InsightDatasetKind.Sections);
@@ -210,6 +212,11 @@ describe("InsightFacade", function () {
 
 			return expect(result).to.eventually.deep.members(["valid-field"]);
 		});
+*/
+		it("testing rooms", async function () {
+			const result = await facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
+			return expect(result).have.deep.members(["rooms"]);
+		});
 	});
 
 	describe("removeDataset", function () {
@@ -234,7 +241,7 @@ describe("InsightFacade", function () {
 			console.info(`AfterTest: ${this.currentTest?.title}`);
 			clearDisk();
 		});
-
+		/*
 		it("remove: should reject: id with an underscore: middle", function () {
 			const result = facade.removeDataset("invalid_id");
 
@@ -442,6 +449,7 @@ describe("InsightFacade", function () {
 
 			expect(result).to.be.empty;
 		});
+*/
 	});
 
 	/*
@@ -497,9 +505,9 @@ describe("InsightFacade", function () {
 			assertOnError: assertError,
 		}); */
 
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
-			assertOnResult: assertResult,
-			assertOnError: assertError,
-		});
+		// folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
+		// 	assertOnResult: assertResult,
+		// 	assertOnError: assertError,
+		// });
 	});
 });

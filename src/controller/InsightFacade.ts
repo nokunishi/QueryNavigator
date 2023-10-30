@@ -10,6 +10,7 @@ import {
 import {Database} from "../model/Database";
 import * as fs from "fs-extra";
 import {Query, parseOptions, parseWhere} from "../query/QueryParser";
+import {readRoomsZipFile} from "../model/Rooms";
 // import {Query, parseOptions, parseWhere} from "../query/QueryParser";
 
 /**
@@ -30,12 +31,11 @@ export default class InsightFacade implements IInsightFacade {
 			if (this.database.invalidId(id)) {
 				return Promise.reject(new InsightError());
 			}
-
-			if (kind === InsightDatasetKind.Rooms) {
+			if (kind) {
+				return this.database.addValidDataset(id, content, kind);
+			} else {
 				return Promise.reject(new InsightError());
 			}
-
-			return this.database.addValidDataset(id, content);
 		} catch (err) {
 			return Promise.reject(new InsightError());
 		}
@@ -96,7 +96,8 @@ export default class InsightFacade implements IInsightFacade {
 
 			let insightDataset: InsightDataset = {
 				id: datasetId,
-				kind: InsightDatasetKind.Sections,
+				// TODO: change this to sections or rooms
+				kind: InsightDatasetKind.Rooms,
 				numRows: sum,
 			};
 
