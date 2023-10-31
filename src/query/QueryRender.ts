@@ -10,13 +10,13 @@ export async function parseOptions(options: Options, data: Promise<any[]>, apply
 	if (Object.keys(options).some((key) => key !== "COLUMNS" && key !== "ORDER")) {
 		throw new InsightError("Invalid keys in OPTIONS");
 	}
-	let res = await data.then((d) => {
+	let res = data.then((d) => {
 		// Parsing columns
 		let columns = options.COLUMNS;
 		let order = options.ORDER;
 		let result: any[] = [];
 
-		if (!apply || apply.length === 0) {
+		if (!apply || (apply && apply.length === 0)) {
 			result = renderColumns(d, columns);
 		} else {
 			result = renderApply(d, columns);
@@ -28,7 +28,7 @@ export async function parseOptions(options: Options, data: Promise<any[]>, apply
 			return processOrder(result, order, columns);
 		}
 	});
-	return res;
+	return Promise.resolve(res);
 }
 
 function processOrder(result: any[], order: string, columns: string[]): any[] {
@@ -39,11 +39,17 @@ function processOrder(result: any[], order: string, columns: string[]): any[] {
 	} else if ((order as any)["dir"] && !(order as any)["keys"]) {
 		throw new InsightError("ORDER missing KEYS (when DIR present)");
 	} else if ((order as any)["keys"]) {
+		let i = 0;
 		(order as any)["keys"].forEach((k: any) => {
+			i++;
 			if (!columns.includes(k)) {
 				throw new InsightError("invalid keys in ORDER KEYS");
 			}
 		});
+		// can't call ["keys"].length
+		if (i === 0) {
+			throw new InsightError("invalid keys in ORDER KEYS");
+		}
 	}
 	if ((order as any)["dir"] === "DOWN") {
 		return result.sort((a, b) => tieBreaker(b, a, (order as any)["keys"]));
@@ -64,7 +70,7 @@ function tieBreaker(a: any, b: any, order: string[]): number {
 		}
 	}
 
-	return 1;
+	return 0;
 }
 
 function renderColumns(d: any[], columns: string[]): Array<{[key: string]: string | number}> {

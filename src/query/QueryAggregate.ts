@@ -1,4 +1,3 @@
-import {group} from "console";
 import {InsightError, ResultTooLargeError} from "../controller/IInsightFacade";
 import {Section} from "../model/Section";
 import {valid_mfield, valid_sfield, Options} from "./QueryParser";
@@ -46,17 +45,20 @@ export async function parseTransformation(
 		if (!mfield.includes(item) && !sfield.includes(item)) {
 			throw new InsightError("invalid query field");
 		}
-
 		return item;
 	});
-
-	let sections = await data.then((s) => {
-		return s.map((section) => {
-			return new Section(section);
+	let result = await data
+		.then((s) => {
+			return s.map((section) => {
+				return new Section(section);
+			});
+		})
+		.then((sections) => {
+			return groupSections(sections, keys);
+		})
+		.then((g) => {
+			return processApply(apply, g);
 		});
-	});
-	let g = groupSections(sections, keys);
-	let result = processApply(apply, g);
 	return Promise.resolve(result);
 }
 

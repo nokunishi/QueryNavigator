@@ -394,5 +394,14 @@ describe("InsightFacade", function () {
 			assertOnResult: assertResultOrdered,
 			assertOnError: assertError,
 		}); */
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
+			assertOnResult: assertResultOrdered,
+			assertOnError: assertError,
+		});
+
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test", {
+			assertOnResult: assertResultOrdered,
+			assertOnError: assertError,
+		});
 	});
 });
