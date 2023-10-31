@@ -31,9 +31,15 @@ export async function parseOptions(options: Options, data: Promise<any[]>, apply
 		if (!order) {
 			return result;
 		}
-		if (!columns.includes(order)) {
+		if (!(order as any)["dir"] && !columns.includes(order)) {
 			throw new InsightError("ORDER key must be in COLUMNS");
 		} else {
+			if ((order as any)["dir"] && (order as any)["dir"] === "DOWN") {
+				return result.sort((a, b) => (a[order || ""] < b[order || ""] ? 1 : -1));
+			} else if ((order as any)["dir"] && (order as any)["dir"] !== "UP" && (order as any)["dir"] !== "DOWN") {
+				throw new InsightError("invalid dir");
+			}
+
 			return result.sort((a, b) => (a[order || ""] > b[order || ""] ? 1 : -1));
 		}
 	});

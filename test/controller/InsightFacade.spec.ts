@@ -463,7 +463,7 @@ describe("InsightFacade", function () {
 		}
 
 		function assertResultOrdered(actual: unknown, expected: InsightResult[]): void {
-			expect(actual).to.have.deep.members(expected);
+			expect(actual).to.have.deep.equals(expected);
 		}
 
 		function assertError(actual: unknown, expected: Error): void {
@@ -483,6 +483,11 @@ describe("InsightFacade", function () {
 
 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test", {
 			assertOnResult: assertResult,
+			assertOnError: assertError,
+		});
+
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
+			assertOnResult: assertResultOrdered,
 			assertOnError: assertError,
 		});
 	});

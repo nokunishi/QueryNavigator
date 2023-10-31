@@ -79,6 +79,9 @@ function processApply(apply: string[], groups: object): any {
 		let newCols: string[] = [];
 		for (const col of apply) {
 			Object.keys(col).forEach((newCol) => {
+				if (!newCol || newCol.includes("_")) {
+					throw new InsightError("invalid apply key");
+				}
 				let [applyRule] = Object.entries((col as any)[newCol]);
 				processApplyToken(`${applyRule}`, newCol, groups);
 			});
