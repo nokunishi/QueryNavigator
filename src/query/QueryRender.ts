@@ -7,9 +7,6 @@ import {Options, valid_mfield, valid_sfield} from "./QueryParser";
  * @returns
  */
 export async function parseOptions(options: Options, data: Promise<any[]>, apply?: string[]): Promise<any[]> {
-	if (options === null || options.COLUMNS === null) {
-		throw new InsightError("Empty options or columns");
-	}
 	if (Object.keys(options).some((key) => key !== "COLUMNS" && key !== "ORDER")) {
 		throw new InsightError("Invalid keys in OPTIONS");
 	}

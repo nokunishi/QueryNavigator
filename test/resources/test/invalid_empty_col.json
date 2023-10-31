@@ -1,0 +1,11 @@
+{
+	"title": "invalid_empty_col",
+	"input": {
+		"WHERE": {},
+		"OPTIONS": {
+			"COLUMNS": []
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

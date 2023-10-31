@@ -70,6 +70,12 @@ export default class InsightFacade implements IInsightFacade {
 			}
 
 			const queryObject: Query = JSON.parse(query);
+
+			if (!queryObject.OPTIONS || !queryObject.OPTIONS.COLUMNS) {
+				return Promise.reject(new InsightError("missing OPTIONS/COLUMNS"));
+			} else if (queryObject.OPTIONS.COLUMNS.length === 0) {
+				return Promise.reject(new InsightError("empty COLUMNS"));
+			}
 			// Get name of the dataset
 			let datasetId = queryObject.OPTIONS.COLUMNS[0].split("_")[0];
 			if (!queryObject.WHERE) {
@@ -79,6 +85,9 @@ export default class InsightFacade implements IInsightFacade {
 
 			// aggregate on 'result'
 			if (queryObject.TRANSFORMATIONS) {
+				if (!queryObject.TRANSFORMATIONS.GROUP || !queryObject.TRANSFORMATIONS.APPLY) {
+					return Promise.reject(new InsightError("Missing GROUP or APPLY clause"));
+				}
 				let resultAggregate = parseTransformation(
 					queryObject.OPTIONS,
 					queryObject.TRANSFORMATIONS.GROUP,

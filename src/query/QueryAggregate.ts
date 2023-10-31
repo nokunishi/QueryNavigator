@@ -19,6 +19,9 @@ export async function parseTransformation(
 	data: Promise<Section[]>
 ): Promise<any> {
 	options.COLUMNS.forEach((col) => {
+		if (groupKeys.length === 0) {
+			throw new InsightError("GROUP is an empty array");
+		}
 		if (!groupKeys.includes(col)) {
 			let inApply = false;
 
@@ -37,9 +40,6 @@ export async function parseTransformation(
 			}
 		}
 	});
-	if (groupKeys.length === 0) {
-		throw new InsightError("GROUP is an empty array");
-	}
 
 	let keys = groupKeys.map((item) => {
 		item = item.split("_")[1];
