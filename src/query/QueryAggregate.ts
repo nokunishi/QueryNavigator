@@ -1,4 +1,3 @@
-import {group} from "console";
 import {InsightError, ResultTooLargeError} from "../controller/IInsightFacade";
 import {Section} from "../model/Section";
 import {valid_mfield, valid_sfield, Options} from "./QueryParser";
