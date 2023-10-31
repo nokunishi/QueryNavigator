@@ -32,11 +32,12 @@ export default class InsightFacade implements IInsightFacade {
 			if (this.database.invalidId(id)) {
 				return Promise.reject(new InsightError());
 			}
-			if (kind) {
-				return this.database.addValidDataset(id, content, kind);
-			} else {
+
+			if (kind === InsightDatasetKind.Rooms) {
 				return Promise.reject(new InsightError());
 			}
+
+			return this.database.addValidDataset(id, content, kind);
 		} catch (err) {
 			return Promise.reject(new InsightError());
 		}
