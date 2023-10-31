@@ -10,7 +10,7 @@ export async function parseOptions(options: Options, data: Promise<any[]>, apply
 	if (Object.keys(options).some((key) => key !== "COLUMNS" && key !== "ORDER")) {
 		throw new InsightError("Invalid keys in OPTIONS");
 	}
-	let res = await data.then((d) => {
+	let res = data.then((d) => {
 		// Parsing columns
 		let columns = options.COLUMNS;
 		let order = options.ORDER;
@@ -70,7 +70,7 @@ function tieBreaker(a: any, b: any, order: string[]): number {
 		}
 	}
 
-	return 1;
+	return 0;
 }
 
 function renderColumns(d: any[], columns: string[]): Array<{[key: string]: string | number}> {

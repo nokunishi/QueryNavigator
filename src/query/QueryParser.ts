@@ -68,7 +68,7 @@ export async function parseWhere(whereCondition: Where, data: Promise<any[]>): P
 	if (d.length > 5000) {
 		throw new ResultTooLargeError("Result too large(>5000)");
 	}
-	return d;
+	return Promise.resolve(d);
 }
 
 function parseWhereComparators(item: any, whereCondition: Where, comparator: WhereComparators): boolean {
