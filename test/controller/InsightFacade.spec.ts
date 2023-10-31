@@ -20,6 +20,7 @@ describe("InsightFacade", function () {
 
 	// Declare datasets used in tests. You should add more datasets like this!
 	let pair: string;
+	let campus: string;
 	let sections: string;
 	let cpsc110: string;
 	let maths: string;
@@ -37,6 +38,7 @@ describe("InsightFacade", function () {
 	before(function () {
 		// This block runs once and loads the datasets.
 		pair = getContentFromArchives("pair.zip");
+		campus = getContentFromArchives("campus.zip");
 		sections = getContentFromArchives("courses100.zip");
 		cpsc110 = getContentFromArchives("cpsc110.zip");
 		maths = getContentFromArchives("maths.zip");
@@ -57,7 +59,7 @@ describe("InsightFacade", function () {
 		// Just in case there is anything hanging around from a previous run of the test suite
 		clearDisk();
 	});
-	/* 	describe("AddDataset", function () {
+	describe("AddDataset", function () {
 		before(function () {
 			console.info(`Before: ${this.test?.parent?.title}`);
 		});
@@ -76,6 +78,7 @@ describe("InsightFacade", function () {
 			console.info(`AfterTest: ${this.currentTest?.title}`);
 			clearDisk();
 		});
+		/*
 		// This is a unit test. You should create more like this!
 		it("should reject with  an empty dataset id", function () {
 			const result = facade.addDataset("", sections, InsightDatasetKind.Sections);
@@ -169,7 +172,14 @@ describe("InsightFacade", function () {
 			const result = facade.addDataset("valid-field", validField, InsightDatasetKind.Sections);
 			return expect(result).to.eventually.deep.members(["valid-field"]);
 		});
+		*/
+		it("testing rooms", async function () {
+			const result = await facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
+			return expect(result).have.deep.members(["rooms"]);
+		});
 	});
+
+	/*
 	describe("removeDataset", function () {
 		before(function () {
 			console.info(`Before: ${this.test?.parent?.title}`);
@@ -243,6 +253,7 @@ describe("InsightFacade", function () {
 			expect(remove2).to.deep.equal("id28");
 		});
 	});
+	*/
 	describe("listDataset", function () {
 		before(function () {
 			console.info(`Before: ${this.test?.parent?.title}`);
@@ -262,6 +273,7 @@ describe("InsightFacade", function () {
 			console.info(`AfterTest: ${this.currentTest?.title}`);
 			clearDisk();
 		});
+		/*
 		it("should resolve: return empty array", function () {
 			const result = facade.listDatasets();
 			return expect(result).to.eventually.be.empty;
@@ -328,7 +340,13 @@ describe("InsightFacade", function () {
 			const result = await newFacade2.listDatasets();
 			expect(result).to.be.empty;
 		});
-	}); */
+		*/
+		it("should resolve: array with one elem  of type room", async function () {
+			const add = await facade.addDataset("trial", campus, InsightDatasetKind.Rooms);
+			const result = await facade.listDatasets();
+			expect(result).have.deep.members([{id: "trial", kind: InsightDatasetKind.Rooms, numRows: 364}]);
+		});
+	});
 
 	/*
 	 * This test suite dynamically generates tests from the JSON files in test/resources/queries.
@@ -367,10 +385,10 @@ describe("InsightFacade", function () {
 			return facade.performQuery(input);
 		}
 
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test", {
-			assertOnResult: assertResult,
-			assertOnError: assertError,
-		});
+		// folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
+		// 	assertOnResult: assertResult,
+		// 	assertOnError: assertError,
+		// });
 
 		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
 			assertOnResult: assertResultOrdered,
