@@ -9,8 +9,9 @@ import {
 
 import {Database} from "../model/Database";
 import * as fs from "fs-extra";
-import {Query, parseOptions, parseWhere} from "../query/QueryParser";
+import {Query, parseWhere} from "../query/QueryParser";
 import {parseTransformation} from "../query/QueryAggregate";
+import {parseOptions} from "../query/QueryRender";
 // import {Query, parseOptions, parseWhere} from "../query/QueryParser";
 
 /**
@@ -84,7 +85,9 @@ export default class InsightFacade implements IInsightFacade {
 					result
 				);
 
-				return Promise.resolve(parseOptions(queryObject.OPTIONS, resultAggregate));
+				return Promise.resolve(
+					parseOptions(queryObject.OPTIONS, resultAggregate, queryObject.TRANSFORMATIONS.APPLY)
+				);
 			} else {
 				return Promise.resolve(parseOptions(queryObject.OPTIONS, result));
 			}

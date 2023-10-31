@@ -12,7 +12,6 @@ type Dir = "UP" | "DOWN";
 
 const mfield = ["avg", "pass", "fail", "audit", "year"];
 const sfield = ["dept", "id", "instructor", "title", "uuid"];
-
 const mfieldRoom = ["lat", "lon", "seats"];
 const sfieldRoom = ["fullname", "shortname", "number", "name", "address", "type", "furniture", "href"];
 
@@ -20,7 +19,7 @@ interface Where {
 	[key: string]: {[key: string]: Where} | Array<{[key: string]: Where}>;
 }
 
-interface Options {
+export interface Options {
 	COLUMNS: string[];
 	ORDER?: string;
 }
@@ -173,56 +172,6 @@ function processAndOR(comparator: "and" | "or", condition: any[], result: boolea
 		console.log("result of processAndOR", r);
 	}
 	return r;
-}
-
-/**
- * This parses the entire 'OPTIONS' clause of query
- * @param obj
- * @returns
- */
-export async function parseOptions(options: Options, data: Promise<any[]>): Promise<any[]> {
-	if (options === null || options.COLUMNS === null) {
-		throw new InsightError("Empty options or columns");
-	}
-	if (Object.keys(options).some((key) => key !== "COLUMNS" && key !== "ORDER")) {
-		throw new InsightError("Invalid keys in OPTIONS");
-	}
-	let res = await data.then((d) => {
-		// Parsing columns
-		let columns = options.COLUMNS;
-		let order = options.ORDER;
-		if (!columns) {
-			throw new InsightError("missing COLUMNS");
-		}
-		let result: Array<{[key: string]: string | number}> = [];
-		Object.keys(d).forEach((section) => {
-			let row = (d as any)[section];
-			let rowResult: {[key: string]: string | number} = {};
-			for (const col of columns) {
-				let parsedWhere = col.split("_")[1];
-
-				if (col.includes("uuid")) {
-					rowResult[col] = row.getValue(parsedWhere || "").toString();
-				} else if (col.toLowerCase().includes("year")) {
-					rowResult[col] = Number.parseInt(row.getValue(parsedWhere || "0"), 10);
-				} else {
-					rowResult[col] = row.getValue(parsedWhere || "");
-				}
-			}
-			result.push(rowResult);
-		});
-
-		// parsing order
-		if (!order) {
-			return result;
-		}
-		if (!columns.includes(order)) {
-			throw new InsightError("ORDER key must be in COLUMNS");
-		} else {
-			return result.sort((a, b) => (a[order || ""] > b[order || ""] ? 1 : -1));
-		}
-	});
-	return res;
 }
 
 function parseWhereField(key: string) {

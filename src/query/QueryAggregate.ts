@@ -1,9 +1,9 @@
-import {type} from "os";
 import {InsightError, ResultTooLargeError} from "../controller/IInsightFacade";
 import {Section} from "../model/Section";
 import {valid_mfield, valid_sfield} from "./QueryParser";
+import Decimal from "decimal.js";
 
-type ApplyToken = "MAX" | "MIN" | "AVG" | "COUNT" | "SUM";
+const ApplyToken = ["MAX", "MIN", "AVG", "COUNT", "SUM"];
 
 interface ApplyRule {
 	[key: string]: {[key: string]: string};
@@ -75,7 +75,44 @@ function processApply(apply: string[], groups: object): any {
 		Object.keys(groups).forEach((g) => {
 			(groups as any)[g] = (groups as any)[g][0];
 		});
+	} else {
+		let newCols: string[] = [];
+		for (const col of apply) {
+			Object.keys(col).forEach((newCol) => {
+				let [applyRule] = Object.entries((col as any)[newCol]);
+				processApplyToken(`${applyRule}`, newCol, groups);
+			});
+		}
 	}
 
 	return groups;
+}
+
+function processApplyToken(applyRule: string, colName: string, groups: object) {
+	let applyToken = applyRule.split(",")[0];
+	let col = applyRule.split(",")[1].split("_")[1];
+
+	switch (applyToken) {
+		case "MAX":
+			// Object.keys(groups).forEach((grp) => {});
+			break;
+		case "MIN":
+			break;
+		case "AVG":
+			Object.keys(groups).forEach((grp) => {
+				let sections = (groups as any)[grp];
+				let avg =
+					sections.reduce(function (acc: Decimal, s: any) {
+						let n = new Decimal(s.getValue(col));
+						return Decimal.add(acc, n);
+					}, 0) / sections.length;
+
+				sections[colName] = avg.toFixed(2);
+			});
+			break;
+		case "COUNT":
+			break;
+		case "SUM":
+			break;
+	}
 }

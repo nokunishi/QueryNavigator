@@ -1,0 +1,2208 @@
+{
+	"title": "tr_valid_apply2",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{
+					"IS": {
+						"sections_dept": "cpsc"
+					}
+				},
+				{
+					"IS": {
+						"sections_dept": "germ"
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_title",
+				"sections_instructor",
+				"overallAvg"
+			]
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_dept",
+				"sections_title",
+				"sections_instructor"
+			],
+			"APPLY": [
+				{
+					"overallAvg": {
+						"AVG": "sections_avg"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "kiczales, gregor",
+			"overallAvg": 75.12
+		},
+		{
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "allen, meghan",
+			"overallAvg": 72.47
+		},
+		{
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "garcia, ronald",
+			"overallAvg": 74.33
+		},
+		{
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "aiello, william",
+			"overallAvg": 71.02
+		},
+		{
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "carter, paul martin",
+			"overallAvg": 75.4
+		},
+		{
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "",
+			"overallAvg": 74.06
+		},
+		{
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "little, james joseph",
+			"overallAvg": 69.98
+		},
+		{
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "mcgrenere, joanna",
+			"overallAvg": 76.81
+		},
+		{
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "greif, chen",
+			"overallAvg": 80.2
+		},
+		{
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "wolfman, steven",
+			"overallAvg": 74.79
+		},
+		{
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "berg, celina",
+			"overallAvg": 72.72
+		},
+		{
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "eiselt, kurt",
+			"overallAvg": 76.87
+		},
+		{
+			"sections_title": "model comptn",
+			"sections_instructor": "tsiknis, georgios",
+			"overallAvg": 79.15
+		},
+		{
+			"sections_title": "model comptn",
+			"sections_instructor": "cooper, kendra",
+			"overallAvg": 74.15
+		},
+		{
+			"sections_title": "model comptn",
+			"sections_instructor": "belleville, patrice",
+			"overallAvg": 75.35
+		},
+		{
+			"sections_title": "model comptn",
+			"sections_instructor": "",
+			"overallAvg": 74.71
+		},
+		{
+			"sections_title": "model comptn",
+			"sections_instructor": "allen, meghan",
+			"overallAvg": 73.06
+		},
+		{
+			"sections_title": "model comptn",
+			"sections_instructor": "wolfman, steven",
+			"overallAvg": 73.93
+		},
+		{
+			"sections_title": "model comptn",
+			"sections_instructor": "voll, kimberly",
+			"overallAvg": 76.18
+		},
+		{
+			"sections_title": "model comptn",
+			"sections_instructor": "woodham, robert",
+			"overallAvg": 75.5
+		},
+		{
+			"sections_title": "model comptn",
+			"sections_instructor": "dulat, margaret",
+			"overallAvg": 78.45
+		},
+		{
+			"sections_title": "model comptn",
+			"sections_instructor": "gao, xi",
+			"overallAvg": 72.03
+		},
+		{
+			"sections_title": "model comptn",
+			"sections_instructor": "tompkins, david a d",
+			"overallAvg": 76.46
+		},
+		{
+			"sections_title": "model comptn",
+			"sections_instructor": "eiselt, kurt",
+			"overallAvg": 84.56
+		},
+		{
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "baniassad, elisa",
+			"overallAvg": 77.48
+		},
+		{
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "carter, paul martin",
+			"overallAvg": 73.95
+		},
+		{
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "murphy, gail",
+			"overallAvg": 72.88
+		},
+		{
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "",
+			"overallAvg": 73.86
+		},
+		{
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "allen, meghan",
+			"overallAvg": 74.16
+		},
+		{
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "beschastnikh, ivan",
+			"overallAvg": 72.16
+		},
+		{
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "eiselt, kurt",
+			"overallAvg": 75.81
+		},
+		{
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "hutchinson, norman",
+			"overallAvg": 71.02
+		},
+		{
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "feeley, michael",
+			"overallAvg": 74.45
+		},
+		{
+			"sections_title": "intro comp sys",
+			"sections_instructor": "feeley, michael",
+			"overallAvg": 74.49
+		},
+		{
+			"sections_title": "intro comp sys",
+			"sections_instructor": "",
+			"overallAvg": 74.51
+		},
+		{
+			"sections_title": "intro comp sys",
+			"sections_instructor": "warfield, andrew",
+			"overallAvg": 71.99
+		},
+		{
+			"sections_title": "intro comp sys",
+			"sections_instructor": "goldberg, murray",
+			"overallAvg": 69.25
+		},
+		{
+			"sections_title": "intro comp sys",
+			"sections_instructor": "tsiknis, georgios",
+			"overallAvg": 77.17
+		},
+		{
+			"sections_title": "intro comp sys",
+			"sections_instructor": "munzner, tamara",
+			"overallAvg": 67.81
+		},
+		{
+			"sections_title": "intro comp sys",
+			"sections_instructor": "darwish, mohammad mostafa",
+			"overallAvg": 68.77
+		},
+		{
+			"sections_title": "intro comp sys",
+			"sections_instructor": "acton, donald",
+			"overallAvg": 69.53
+		},
+		{
+			"sections_title": "basic alg&data",
+			"sections_instructor": "wolfman, steven",
+			"overallAvg": 72.8
+		},
+		{
+			"sections_title": "basic alg&data",
+			"sections_instructor": "cooper, kendra",
+			"overallAvg": 76.6
+		},
+		{
+			"sections_title": "basic alg&data",
+			"sections_instructor": "hu, alan",
+			"overallAvg": 70.91
+		},
+		{
+			"sections_title": "basic alg&data",
+			"sections_instructor": "khosravi, hassan",
+			"overallAvg": 73.5
+		},
+		{
+			"sections_title": "basic alg&data",
+			"sections_instructor": "",
+			"overallAvg": 75.08
+		},
+		{
+			"sections_title": "basic alg&data",
+			"sections_instructor": "voll, kimberly",
+			"overallAvg": 75.67
+		},
+		{
+			"sections_title": "basic alg&data",
+			"sections_instructor": "knorr, edwin max",
+			"overallAvg": 73.23
+		},
+		{
+			"sections_title": "basic alg&data",
+			"sections_instructor": "evans, william",
+			"overallAvg": 75.47
+		},
+		{
+			"sections_title": "basic alg&data",
+			"sections_instructor": "eiselt, kurt",
+			"overallAvg": 86.47
+		},
+		{
+			"sections_title": "basic alg&data",
+			"sections_instructor": "kotthoff, lars",
+			"overallAvg": 72.53
+		},
+		{
+			"sections_title": "basic alg&data",
+			"sections_instructor": "harvey, nicholas",
+			"overallAvg": 85.87
+		},
+		{
+			"sections_title": "basic alg&data",
+			"sections_instructor": "sheffer, alla",
+			"overallAvg": 67.62
+		},
+		{
+			"sections_title": "dta&alg elec eng",
+			"sections_instructor": "khosravi, hassan",
+			"overallAvg": 74.11
+		},
+		{
+			"sections_title": "dta&alg elec eng",
+			"sections_instructor": "",
+			"overallAvg": 74.46
+		},
+		{
+			"sections_title": "dta&alg elec eng",
+			"sections_instructor": "knorr, edwin max",
+			"overallAvg": 74.7
+		},
+		{
+			"sections_title": "basics comp syst",
+			"sections_instructor": "belleville, patrice",
+			"overallAvg": 69.83
+		},
+		{
+			"sections_title": "basics comp syst",
+			"sections_instructor": "",
+			"overallAvg": 69.17
+		},
+		{
+			"sections_title": "basics comp syst",
+			"sections_instructor": "hutchinson, norman",
+			"overallAvg": 68.5
+		},
+		{
+			"sections_title": "comptng life sci",
+			"sections_instructor": "mitchell, ian",
+			"overallAvg": 77.83
+		},
+		{
+			"sections_title": "comptng life sci",
+			"sections_instructor": "",
+			"overallAvg": 81.84
+		},
+		{
+			"sections_title": "comptng life sci",
+			"sections_instructor": "tsiknis, georgios",
+			"overallAvg": 84.84
+		},
+		{
+			"sections_title": "num comp alg prb",
+			"sections_instructor": "ascher, uri michael",
+			"overallAvg": 76.8
+		},
+		{
+			"sections_title": "num comp alg prb",
+			"sections_instructor": "",
+			"overallAvg": 74.82
+		},
+		{
+			"sections_title": "num comp alg prb",
+			"sections_instructor": "ascher, uri michael;greif, chen",
+			"overallAvg": 76.32
+		},
+		{
+			"sections_title": "num comp alg prb",
+			"sections_instructor": "rees, tyrone",
+			"overallAvg": 73.18
+		},
+		{
+			"sections_title": "num comp alg prb",
+			"sections_instructor": "greif, chen",
+			"overallAvg": 77.95
+		},
+		{
+			"sections_title": "num approx/discr",
+			"sections_instructor": "greif, chen",
+			"overallAvg": 75.05
+		},
+		{
+			"sections_title": "num approx/discr",
+			"sections_instructor": "",
+			"overallAvg": 72.58
+		},
+		{
+			"sections_title": "num approx/discr",
+			"sections_instructor": "ascher, uri michael",
+			"overallAvg": 74.27
+		},
+		{
+			"sections_title": "num approx/discr",
+			"sections_instructor": "mitchell, ian",
+			"overallAvg": 70.34
+		},
+		{
+			"sections_title": "num approx/discr",
+			"sections_instructor": "gelbart, michael",
+			"overallAvg": 74.23
+		},
+		{
+			"sections_title": "intr rel databse",
+			"sections_instructor": "tsiknis, georgios",
+			"overallAvg": 77.87
+		},
+		{
+			"sections_title": "intr rel databse",
+			"sections_instructor": "lakshmanan, laks",
+			"overallAvg": 78.07
+		},
+		{
+			"sections_title": "intr rel databse",
+			"sections_instructor": "",
+			"overallAvg": 76.19
+		},
+		{
+			"sections_title": "intr rel databse",
+			"sections_instructor": "ng, raymond tak-yan",
+			"overallAvg": 72.93
+		},
+		{
+			"sections_title": "intr rel databse",
+			"sections_instructor": "knorr, edwin max",
+			"overallAvg": 76.91
+		},
+		{
+			"sections_title": "intr rel databse",
+			"sections_instructor": "pottinger, rachel",
+			"overallAvg": 73.83
+		},
+		{
+			"sections_title": "intr rel databse",
+			"sections_instructor": "khosravi, hassan",
+			"overallAvg": 76.43
+		},
+		{
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "palyart-lamarche, marc",
+			"overallAvg": 78.69
+		},
+		{
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "baniassad, elisa",
+			"overallAvg": 79.44
+		},
+		{
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "",
+			"overallAvg": 78.7
+		},
+		{
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "holmes, reid",
+			"overallAvg": 81.17
+		},
+		{
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "allen, meghan",
+			"overallAvg": 77.5
+		},
+		{
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "wohlstadter, eric",
+			"overallAvg": 80.24
+		},
+		{
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "ernst, neil",
+			"overallAvg": 77.05
+		},
+		{
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "fritz, thomas",
+			"overallAvg": 75.57
+		},
+		{
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "shepherd, david",
+			"overallAvg": 75.08
+		},
+		{
+			"sections_title": "programmng langs",
+			"sections_instructor": "wolfman, steven",
+			"overallAvg": 77.67
+		},
+		{
+			"sections_title": "programmng langs",
+			"sections_instructor": "",
+			"overallAvg": 76.8
+		},
+		{
+			"sections_title": "programmng langs",
+			"sections_instructor": "de volder, kris",
+			"overallAvg": 74.06
+		},
+		{
+			"sections_title": "programmng langs",
+			"sections_instructor": "dunfield, joshua",
+			"overallAvg": 84.39
+		},
+		{
+			"sections_title": "programmng langs",
+			"sections_instructor": "eiselt, kurt",
+			"overallAvg": 78.24
+		},
+		{
+			"sections_title": "programmng langs",
+			"sections_instructor": "hutchinson, norman",
+			"overallAvg": 75
+		},
+		{
+			"sections_title": "func & logic prg",
+			"sections_instructor": "eiselt, kurt",
+			"overallAvg": 82.13
+		},
+		{
+			"sections_title": "func & logic prg",
+			"sections_instructor": "",
+			"overallAvg": 81.01
+		},
+		{
+			"sections_title": "func & logic prg",
+			"sections_instructor": "poole, david",
+			"overallAvg": 76.52
+		},
+		{
+			"sections_title": "func & logic prg",
+			"sections_instructor": "voll, kimberly",
+			"overallAvg": 76.84
+		},
+		{
+			"sections_title": "func & logic prg",
+			"sections_instructor": "sagaii, sara mahboubeh",
+			"overallAvg": 76.93
+		},
+		{
+			"sections_title": "comp hard&os",
+			"sections_instructor": "belleville, patrice",
+			"overallAvg": 72.5
+		},
+		{
+			"sections_title": "comp hard&os",
+			"sections_instructor": "acton, donald",
+			"overallAvg": 71.34
+		},
+		{
+			"sections_title": "comp hard&os",
+			"sections_instructor": "",
+			"overallAvg": 74.61
+		},
+		{
+			"sections_title": "comp hard&os",
+			"sections_instructor": "feeley, michael",
+			"overallAvg": 76.86
+		},
+		{
+			"sections_title": "comp hard&os",
+			"sections_instructor": "tsiknis, georgios",
+			"overallAvg": 76.17
+		},
+		{
+			"sections_title": "comp hard&os",
+			"sections_instructor": "warfield, andrew",
+			"overallAvg": 70.46
+		},
+		{
+			"sections_title": "comp hard&os",
+			"sections_instructor": "wolfman, steven",
+			"overallAvg": 71.44
+		},
+		{
+			"sections_title": "comp graphics",
+			"sections_instructor": "van de panne, michiel",
+			"overallAvg": 70.94
+		},
+		{
+			"sections_title": "comp graphics",
+			"sections_instructor": "pai, dinesh",
+			"overallAvg": 76.72
+		},
+		{
+			"sections_title": "comp graphics",
+			"sections_instructor": "",
+			"overallAvg": 77.17
+		},
+		{
+			"sections_title": "comp graphics",
+			"sections_instructor": "bridson, robert",
+			"overallAvg": 80.81
+		},
+		{
+			"sections_title": "comp graphics",
+			"sections_instructor": "munzner, tamara",
+			"overallAvg": 74.64
+		},
+		{
+			"sections_title": "comp graphics",
+			"sections_instructor": "sheffer, alla",
+			"overallAvg": 79.8
+		},
+		{
+			"sections_title": "comp graphics",
+			"sections_instructor": "bessmeltsev, mikhail",
+			"overallAvg": 78.7
+		},
+		{
+			"sections_title": "comp graphics",
+			"sections_instructor": "heidrich, wolfgang",
+			"overallAvg": 75.27
+		},
+		{
+			"sections_title": "internet comp",
+			"sections_instructor": "acton, donald",
+			"overallAvg": 70.65
+		},
+		{
+			"sections_title": "internet comp",
+			"sections_instructor": "hutchinson, norman",
+			"overallAvg": 73.55
+		},
+		{
+			"sections_title": "internet comp",
+			"sections_instructor": "",
+			"overallAvg": 73.01
+		},
+		{
+			"sections_title": "internet comp",
+			"sections_instructor": "krasic, charles",
+			"overallAvg": 74.58
+		},
+		{
+			"sections_title": "internet comp",
+			"sections_instructor": "vuong, son",
+			"overallAvg": 70.29
+		},
+		{
+			"sections_title": "internet comp",
+			"sections_instructor": "aiello, william",
+			"overallAvg": 74.81
+		},
+		{
+			"sections_title": "softwr eng proj",
+			"sections_instructor": "eiselt, kurt",
+			"overallAvg": 83.9
+		},
+		{
+			"sections_title": "softwr eng proj",
+			"sections_instructor": "",
+			"overallAvg": 84.23
+		},
+		{
+			"sections_title": "softwr eng proj",
+			"sections_instructor": "voll, kimberly",
+			"overallAvg": 85.76
+		},
+		{
+			"sections_title": "softwr eng proj",
+			"sections_instructor": "awad, ahmed",
+			"overallAvg": 87.93
+		},
+		{
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "belleville, patrice",
+			"overallAvg": 69.89
+		},
+		{
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "wolfman, steven",
+			"overallAvg": 69.49
+		},
+		{
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "",
+			"overallAvg": 69.96
+		},
+		{
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "evans, william",
+			"overallAvg": 69.59
+		},
+		{
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "meyer, irmtraud margret",
+			"overallAvg": 70.27
+		},
+		{
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "manuch, jan",
+			"overallAvg": 70.73
+		},
+		{
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "schroeder, jonatan",
+			"overallAvg": 72.78
+		},
+		{
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "malka, lior",
+			"overallAvg": 71.02
+		},
+		{
+			"sections_title": "artificial intel",
+			"sections_instructor": "little, james joseph",
+			"overallAvg": 74.88
+		},
+		{
+			"sections_title": "artificial intel",
+			"sections_instructor": "conati, cristina",
+			"overallAvg": 71.66
+		},
+		{
+			"sections_title": "artificial intel",
+			"sections_instructor": "",
+			"overallAvg": 72.58
+		},
+		{
+			"sections_title": "artificial intel",
+			"sections_instructor": "carenini, giuseppe",
+			"overallAvg": 73.17
+		},
+		{
+			"sections_title": "artificial intel",
+			"sections_instructor": "leyton-brown, kevin",
+			"overallAvg": 76.6
+		},
+		{
+			"sections_title": "artificial intel",
+			"sections_instructor": "mackworth, alan",
+			"overallAvg": 75.03
+		},
+		{
+			"sections_title": "artificial intel",
+			"sections_instructor": "poole, david",
+			"overallAvg": 75.23
+		},
+		{
+			"sections_title": "artificial intel",
+			"sections_instructor": "hutter, frank",
+			"overallAvg": 73.79
+		},
+		{
+			"sections_title": "machine lrn mine",
+			"sections_instructor": "ng, raymond tak-yan",
+			"overallAvg": 75.44
+		},
+		{
+			"sections_title": "machine lrn mine",
+			"sections_instructor": "",
+			"overallAvg": 75.71
+		},
+		{
+			"sections_title": "machine lrn mine",
+			"sections_instructor": "schmidt, mark",
+			"overallAvg": 81.47
+		},
+		{
+			"sections_title": "machine lrn mine",
+			"sections_instructor": "de freitas, joao",
+			"overallAvg": 74.01
+		},
+		{
+			"sections_title": "machine lrn mine",
+			"sections_instructor": "doucet, arnaud",
+			"overallAvg": 68.4
+		},
+		{
+			"sections_title": "machine lrn mine",
+			"sections_instructor": "murphy, kevin",
+			"overallAvg": 76.75
+		},
+		{
+			"sections_title": "hum-com interact",
+			"sections_instructor": "dawson, jessica",
+			"overallAvg": 81.18
+		},
+		{
+			"sections_title": "hum-com interact",
+			"sections_instructor": "",
+			"overallAvg": 77.86
+		},
+		{
+			"sections_title": "hum-com interact",
+			"sections_instructor": "maclean, karon",
+			"overallAvg": 78.48
+		},
+		{
+			"sections_title": "hum-com interact",
+			"sections_instructor": "dawson, jessica;maclean, karon",
+			"overallAvg": 80.24
+		},
+		{
+			"sections_title": "hum-com interact",
+			"sections_instructor": "wolfman, steven",
+			"overallAvg": 80.11
+		},
+		{
+			"sections_title": "adv rel databse",
+			"sections_instructor": "knorr, edwin max",
+			"overallAvg": 72.48
+		},
+		{
+			"sections_title": "adv rel databse",
+			"sections_instructor": "",
+			"overallAvg": 74.81
+		},
+		{
+			"sections_title": "adv rel databse",
+			"sections_instructor": "tsiknis, georgios",
+			"overallAvg": 80.18
+		},
+		{
+			"sections_title": "adv rel databse",
+			"sections_instructor": "lakshmanan, laks",
+			"overallAvg": 72.84
+		},
+		{
+			"sections_title": "adv software eng",
+			"sections_instructor": "baniassad, elisa",
+			"overallAvg": 79.5
+		},
+		{
+			"sections_title": "adv software eng",
+			"sections_instructor": "",
+			"overallAvg": 76.8
+		},
+		{
+			"sections_title": "adv software eng",
+			"sections_instructor": "murphy-hill, emerson",
+			"overallAvg": 80.18
+		},
+		{
+			"sections_title": "adv software eng",
+			"sections_instructor": "wohlstadter, eric",
+			"overallAvg": 75.5
+		},
+		{
+			"sections_title": "adv software eng",
+			"sections_instructor": "holmes, reid",
+			"overallAvg": 79
+		},
+		{
+			"sections_title": "adv software eng",
+			"sections_instructor": "ernst, neil",
+			"overallAvg": 75.28
+		},
+		{
+			"sections_title": "compiler constrc",
+			"sections_instructor": "hutchinson, norman",
+			"overallAvg": 79.54
+		},
+		{
+			"sections_title": "compiler constrc",
+			"sections_instructor": "",
+			"overallAvg": 80.65
+		},
+		{
+			"sections_title": "compiler constrc",
+			"sections_instructor": "de volder, kris",
+			"overallAvg": 76.53
+		},
+		{
+			"sections_title": "compiler constrc",
+			"sections_instructor": "garcia, ronald",
+			"overallAvg": 86
+		},
+		{
+			"sections_title": "adv opertng sysm",
+			"sections_instructor": "acton, donald",
+			"overallAvg": 71.16
+		},
+		{
+			"sections_title": "adv opertng sysm",
+			"sections_instructor": "",
+			"overallAvg": 70.74
+		},
+		{
+			"sections_title": "distrbt'd systms",
+			"sections_instructor": "acton, donald",
+			"overallAvg": 73.35
+		},
+		{
+			"sections_title": "distrbt'd systms",
+			"sections_instructor": "",
+			"overallAvg": 74.65
+		},
+		{
+			"sections_title": "distrbt'd systms",
+			"sections_instructor": "wagner, alan",
+			"overallAvg": 75.12
+		},
+		{
+			"sections_title": "distrbt'd systms",
+			"sections_instructor": "beschastnikh, ivan",
+			"overallAvg": 81.18
+		},
+		{
+			"sections_title": "parallel comput",
+			"sections_instructor": "greenstreet, mark",
+			"overallAvg": 80.51
+		},
+		{
+			"sections_title": "parallel comput",
+			"sections_instructor": "",
+			"overallAvg": 80.51
+		},
+		{
+			"sections_title": "adv alg dsgn&anl",
+			"sections_instructor": "kirkpatrick, david",
+			"overallAvg": 71.57
+		},
+		{
+			"sections_title": "adv alg dsgn&anl",
+			"sections_instructor": "",
+			"overallAvg": 72.32
+		},
+		{
+			"sections_title": "adv alg dsgn&anl",
+			"sections_instructor": "evans, william",
+			"overallAvg": 73.64
+		},
+		{
+			"sections_title": "adv alg dsgn&anl",
+			"sections_instructor": "belleville, patrice",
+			"overallAvg": 74.06
+		},
+		{
+			"sections_title": "theory comptg",
+			"sections_instructor": "friedman, joel",
+			"overallAvg": 75.17
+		},
+		{
+			"sections_title": "theory comptg",
+			"sections_instructor": "",
+			"overallAvg": 74.36
+		},
+		{
+			"sections_title": "theory comptg",
+			"sections_instructor": "harvey, nicholas",
+			"overallAvg": 76.86
+		},
+		{
+			"sections_title": "intel systems",
+			"sections_instructor": "carenini, giuseppe",
+			"overallAvg": 73.59
+		},
+		{
+			"sections_title": "intel systems",
+			"sections_instructor": "",
+			"overallAvg": 72.32
+		},
+		{
+			"sections_title": "intel systems",
+			"sections_instructor": "conati, cristina",
+			"overallAvg": 70.18
+		},
+		{
+			"sections_title": "intel systems",
+			"sections_instructor": "poole, david",
+			"overallAvg": 76.61
+		},
+		{
+			"sections_title": "computer vision",
+			"sections_instructor": "woodham, robert",
+			"overallAvg": 74.4
+		},
+		{
+			"sections_title": "computer vision",
+			"sections_instructor": "",
+			"overallAvg": 73.72
+		},
+		{
+			"sections_title": "computer vision",
+			"sections_instructor": "little, james joseph",
+			"overallAvg": 73.8
+		},
+		{
+			"sections_title": "computer vision",
+			"sections_instructor": "tung, frederick",
+			"overallAvg": 73.95
+		},
+		{
+			"sections_title": "comptr & society",
+			"sections_instructor": "leyton-brown, kevin",
+			"overallAvg": 77.1
+		},
+		{
+			"sections_title": "comptr & society",
+			"sections_instructor": "",
+			"overallAvg": 77.38
+		},
+		{
+			"sections_title": "comptr & society",
+			"sections_instructor": "luk, joseph",
+			"overallAvg": 79.14
+		},
+		{
+			"sections_title": "comptr & society",
+			"sections_instructor": "voll, kimberly",
+			"overallAvg": 76.34
+		},
+		{
+			"sections_title": "comptr & society",
+			"sections_instructor": "dawson, jessica",
+			"overallAvg": 79.13
+		},
+		{
+			"sections_title": "comptr & society",
+			"sections_instructor": "eiselt, kurt",
+			"overallAvg": 72.75
+		},
+		{
+			"sections_title": "hmn-cp interactn",
+			"sections_instructor": "mcgrenere, joanna",
+			"overallAvg": 79.19
+		},
+		{
+			"sections_title": "hmn-cp interactn",
+			"sections_instructor": "",
+			"overallAvg": 78.84
+		},
+		{
+			"sections_title": "hmn-cp interactn",
+			"sections_instructor": "dawson, jessica",
+			"overallAvg": 77.43
+		},
+		{
+			"sections_title": "alg in bioin",
+			"sections_instructor": "manuch, jan",
+			"overallAvg": 82.91
+		},
+		{
+			"sections_title": "alg in bioin",
+			"sections_instructor": "",
+			"overallAvg": 80.09
+		},
+		{
+			"sections_title": "alg in bioin",
+			"sections_instructor": "meyer, irmtraud margret",
+			"overallAvg": 79.36
+		},
+		{
+			"sections_title": "alg in bioin",
+			"sections_instructor": "hoos, holger",
+			"overallAvg": 85.37
+		},
+		{
+			"sections_title": "alg in bioin",
+			"sections_instructor": "kirkpatrick, bonnie;manuch, jan",
+			"overallAvg": 73.88
+		},
+		{
+			"sections_title": "honours thesis",
+			"sections_instructor": "knorr, edwin max",
+			"overallAvg": 91.54
+		},
+		{
+			"sections_title": "honours thesis",
+			"sections_instructor": "",
+			"overallAvg": 89.53
+		},
+		{
+			"sections_title": "honours thesis",
+			"sections_instructor": "tsiknis, georgios",
+			"overallAvg": 92.04
+		},
+		{
+			"sections_title": "student seminar",
+			"sections_instructor": "",
+			"overallAvg": 89.66
+		},
+		{
+			"sections_title": "student seminar",
+			"sections_instructor": "allen, meghan",
+			"overallAvg": 89
+		},
+		{
+			"sections_title": "student seminar",
+			"sections_instructor": "wolfman, steven",
+			"overallAvg": 92
+		},
+		{
+			"sections_title": "fund alg dsgn&an",
+			"sections_instructor": "kirkpatrick, david",
+			"overallAvg": 80.06
+		},
+		{
+			"sections_title": "fund alg dsgn&an",
+			"sections_instructor": "",
+			"overallAvg": 84.14
+		},
+		{
+			"sections_title": "fund alg dsgn&an",
+			"sections_instructor": "evans, william",
+			"overallAvg": 84.67
+		},
+		{
+			"sections_title": "fund alg dsgn&an",
+			"sections_instructor": "friedman, joel",
+			"overallAvg": 86.33
+		},
+		{
+			"sections_title": "thry of automata",
+			"sections_instructor": "friedman, joel",
+			"overallAvg": 89.18
+		},
+		{
+			"sections_title": "thry of automata",
+			"sections_instructor": "",
+			"overallAvg": 89.77
+		},
+		{
+			"sections_title": "thry of automata",
+			"sections_instructor": "harvey, nicholas",
+			"overallAvg": 92.75
+		},
+		{
+			"sections_title": "artif intell 1",
+			"sections_instructor": "mackworth, alan",
+			"overallAvg": 81.94
+		},
+		{
+			"sections_title": "artif intell 1",
+			"sections_instructor": "",
+			"overallAvg": 82.95
+		},
+		{
+			"sections_title": "artif intell 1",
+			"sections_instructor": "poole, david",
+			"overallAvg": 83.32
+		},
+		{
+			"sections_title": "artif intell 1",
+			"sections_instructor": "carenini, giuseppe",
+			"overallAvg": 86.2
+		},
+		{
+			"sections_title": "artif intell 1",
+			"sections_instructor": "conati, cristina",
+			"overallAvg": 82.25
+		},
+		{
+			"sections_title": "computl ling 1",
+			"sections_instructor": "carenini, giuseppe",
+			"overallAvg": 89.85
+		},
+		{
+			"sections_title": "computl ling 1",
+			"sections_instructor": "",
+			"overallAvg": 86.82
+		},
+		{
+			"sections_title": "software eng",
+			"sections_instructor": "wohlstadter, eric",
+			"overallAvg": 88.57
+		},
+		{
+			"sections_title": "software eng",
+			"sections_instructor": "",
+			"overallAvg": 86.62
+		},
+		{
+			"sections_title": "software eng",
+			"sections_instructor": "holmes, reid",
+			"overallAvg": 89
+		},
+		{
+			"sections_title": "prog lang princ",
+			"sections_instructor": "garcia, ronald",
+			"overallAvg": 86.02
+		},
+		{
+			"sections_title": "prog lang princ",
+			"sections_instructor": "",
+			"overallAvg": 86.02
+		},
+		{
+			"sections_title": "intgrt sys desgn",
+			"sections_instructor": "hu, alan",
+			"overallAvg": 85.13
+		},
+		{
+			"sections_title": "intgrt sys desgn",
+			"sections_instructor": "",
+			"overallAvg": 82.88
+		},
+		{
+			"sections_title": "intgrt sys desgn",
+			"sections_instructor": "mitchell, ian",
+			"overallAvg": 64
+		},
+		{
+			"sections_title": "intgrt sys desgn",
+			"sections_instructor": "greenstreet, mark",
+			"overallAvg": 87.58
+		},
+		{
+			"sections_title": "comput robotics",
+			"sections_instructor": "mitchell, ian",
+			"overallAvg": 81.8
+		},
+		{
+			"sections_title": "comput robotics",
+			"sections_instructor": "",
+			"overallAvg": 81.8
+		},
+		{
+			"sections_title": "para algs & arch",
+			"sections_instructor": "wagner, alan",
+			"overallAvg": 84.13
+		},
+		{
+			"sections_title": "para algs & arch",
+			"sections_instructor": "",
+			"overallAvg": 85.3
+		},
+		{
+			"sections_title": "para algs & arch",
+			"sections_instructor": "greenstreet, mark",
+			"overallAvg": 85.95
+		},
+		{
+			"sections_title": "artif intell 2",
+			"sections_instructor": "poole, david",
+			"overallAvg": 85.16
+		},
+		{
+			"sections_title": "artif intell 2",
+			"sections_instructor": "",
+			"overallAvg": 85.16
+		},
+		{
+			"sections_title": "comp comm protcl",
+			"sections_instructor": "vuong, son",
+			"overallAvg": 83.78
+		},
+		{
+			"sections_title": "comp comm protcl",
+			"sections_instructor": "",
+			"overallAvg": 86.95
+		},
+		{
+			"sections_title": "comp comm protcl",
+			"sections_instructor": "beschastnikh, ivan",
+			"overallAvg": 91.22
+		},
+		{
+			"sections_title": "comp comm protcl",
+			"sections_instructor": "krasic, charles",
+			"overallAvg": 90.11
+		},
+		{
+			"sections_title": "machine learn i",
+			"sections_instructor": "schmidt, mark",
+			"overallAvg": 90.88
+		},
+		{
+			"sections_title": "machine learn i",
+			"sections_instructor": "",
+			"overallAvg": 85.34
+		},
+		{
+			"sections_title": "machine learn i",
+			"sections_instructor": "murphy, kevin",
+			"overallAvg": 82.82
+		},
+		{
+			"sections_title": "machine learn i",
+			"sections_instructor": "de freitas, joao",
+			"overallAvg": 86.09
+		},
+		{
+			"sections_title": "machine learn i",
+			"sections_instructor": "doucet, arnaud",
+			"overallAvg": 83
+		},
+		{
+			"sections_title": "phy user intfc",
+			"sections_instructor": "maclean, karon",
+			"overallAvg": 86.27
+		},
+		{
+			"sections_title": "phy user intfc",
+			"sections_instructor": "",
+			"overallAvg": 85.44
+		},
+		{
+			"sections_title": "hmn-cmpt intract",
+			"sections_instructor": "dawson, jessica",
+			"overallAvg": 85.27
+		},
+		{
+			"sections_title": "hmn-cmpt intract",
+			"sections_instructor": "",
+			"overallAvg": 84.68
+		},
+		{
+			"sections_title": "hmn-cmpt intract",
+			"sections_instructor": "mcgrenere, joanna",
+			"overallAvg": 83.41
+		},
+		{
+			"sections_title": "hmn-cmpt intract",
+			"sections_instructor": "maclean, karon",
+			"overallAvg": 83.69
+		},
+		{
+			"sections_title": "hmn-cmpt intract",
+			"sections_instructor": "booth, kellogg",
+			"overallAvg": 83.67
+		},
+		{
+			"sections_title": "info visualizatn",
+			"sections_instructor": "munzner, tamara",
+			"overallAvg": 88.58
+		},
+		{
+			"sections_title": "info visualizatn",
+			"sections_instructor": "",
+			"overallAvg": 88.58
+		},
+		{
+			"sections_title": "m.sc major essay",
+			"sections_instructor": "",
+			"overallAvg": 85.75
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "",
+			"overallAvg": 80.7
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "spreter von kreudenstein, chri",
+			"overallAvg": 76.74
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "pashan, sara",
+			"overallAvg": 82.65
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "faller, florian",
+			"overallAvg": 81.5
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "laszlo, eszter",
+			"overallAvg": 83.9
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "o'brien, adelheid",
+			"overallAvg": 79.6
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "kumar, uma",
+			"overallAvg": 81.01
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "hempen, daniela",
+			"overallAvg": 77.91
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "maslenikau, ihar",
+			"overallAvg": 80.94
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "ganzenmueller, petra",
+			"overallAvg": 85.3
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "lieblang, jason",
+			"overallAvg": 85.07
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "struch, gela",
+			"overallAvg": 80.82
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "gassner, florian",
+			"overallAvg": 81.06
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "toor, gorsharn",
+			"overallAvg": 78.91
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "struch, gela;tba",
+			"overallAvg": 80.03
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "roy, catherine",
+			"overallAvg": 78.39
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "klibadze, dali;struch, gela",
+			"overallAvg": 79.48
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "schulz, susanne",
+			"overallAvg": 76.8
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "sanders, travis;struch, gela",
+			"overallAvg": 79.67
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "redlich, jeremy;struch, gela",
+			"overallAvg": 82.75
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "jones, lydia;struch, gela",
+			"overallAvg": 81.27
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "baer, ursula;struch, gela",
+			"overallAvg": 73.78
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "lamberti, stefanie",
+			"overallAvg": 77.17
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "oh, ja-hae",
+			"overallAvg": 76.1
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "schenkel, guido",
+			"overallAvg": 73.79
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "petro, ingrid",
+			"overallAvg": 73.54
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "schallie, charlotte",
+			"overallAvg": 78.5
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "deppermann, birgit",
+			"overallAvg": 77.95
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "iurascu, ilinca",
+			"overallAvg": 84.57
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "baer, ursula",
+			"overallAvg": 85.12
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "coordinator;jones, lydia;struch, gela",
+			"overallAvg": 81.37
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "coordinator;klibadze, dali;struch, gela",
+			"overallAvg": 81.92
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "coordinator;struch, gela;svanidze, tamara",
+			"overallAvg": 81.33
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "coordinator;grunburg, michael ;struch, gela",
+			"overallAvg": 74.74
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "coordinator;sanders, travis;struch, gela",
+			"overallAvg": 79.82
+		},
+		{
+			"sections_title": "begin germ i",
+			"sections_instructor": "coordinator;revell, stephanie;struch, gela",
+			"overallAvg": 76.11
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "",
+			"overallAvg": 76.54
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "kumar, uma",
+			"overallAvg": 79.94
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "faller, florian",
+			"overallAvg": 77.73
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "o'brien, adelheid",
+			"overallAvg": 78.37
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "lieblang, jason",
+			"overallAvg": 81.18
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "laszlo, eszter",
+			"overallAvg": 81.12
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "maslenikau, ihar",
+			"overallAvg": 78.8
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "hempen, daniela",
+			"overallAvg": 76.15
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "struch, gela",
+			"overallAvg": 76.54
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "toor, gorsharn",
+			"overallAvg": 76.66
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "roy, catherine",
+			"overallAvg": 77.02
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "spreter von kreudenstein, chri",
+			"overallAvg": 77.98
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "klibadze, dali;struch, gela",
+			"overallAvg": 80.52
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "sanders, travis;struch, gela",
+			"overallAvg": 76.67
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "struch, gela;svanidze, tamara",
+			"overallAvg": 83.19
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "zaenker, karl a",
+			"overallAvg": 78.95
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "gassner, florian",
+			"overallAvg": 78.26
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "struch, gela;tba",
+			"overallAvg": 77.26
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "petro, ingrid;struch, gela",
+			"overallAvg": 78.22
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "schenkel, guido;struch, gela",
+			"overallAvg": 70.33
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "schade, silke",
+			"overallAvg": 73.31
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "schallie, charlotte",
+			"overallAvg": 74.95
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "hey, isolde",
+			"overallAvg": 71.33
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "coordinator;redlich, jeremy;struch, gela",
+			"overallAvg": 83.67
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "coordinator;jones, lydia;struch, gela",
+			"overallAvg": 78.37
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "coordinator;struch, gela;svanidze, tamara",
+			"overallAvg": 82.52
+		},
+		{
+			"sections_title": "begin germ 2",
+			"sections_instructor": "oh, ja-hae",
+			"overallAvg": 72.93
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "struch, gela",
+			"overallAvg": 78.96
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "ganzenmueller, petra",
+			"overallAvg": 80.06
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "",
+			"overallAvg": 78.9
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "taubeneck, steven",
+			"overallAvg": 76.5
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "lieblang, jason",
+			"overallAvg": 78.49
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "kumar, uma",
+			"overallAvg": 79.74
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "baer, ursula;struch, gela",
+			"overallAvg": 74.33
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "roy, catherine;struch, gela",
+			"overallAvg": 79.41
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "oh, ja-hae",
+			"overallAvg": 75.45
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "faller, florian",
+			"overallAvg": 74.39
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "schade, silke",
+			"overallAvg": 86.69
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "maslenikau, ihar",
+			"overallAvg": 82.14
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "schallie, charlotte",
+			"overallAvg": 78.48
+		},
+		{
+			"sections_title": "inter germ i",
+			"sections_instructor": "baer, ursula",
+			"overallAvg": 79.67
+		},
+		{
+			"sections_title": "inter germ ii",
+			"sections_instructor": "struch, gela",
+			"overallAvg": 78.11
+		},
+		{
+			"sections_title": "inter germ ii",
+			"sections_instructor": "ganzenmueller, petra",
+			"overallAvg": 80.26
+		},
+		{
+			"sections_title": "inter germ ii",
+			"sections_instructor": "",
+			"overallAvg": 78.83
+		},
+		{
+			"sections_title": "inter germ ii",
+			"sections_instructor": "lieblang, jason",
+			"overallAvg": 76.16
+		},
+		{
+			"sections_title": "inter germ ii",
+			"sections_instructor": "kumar, uma",
+			"overallAvg": 78.9
+		},
+		{
+			"sections_title": "inter germ ii",
+			"sections_instructor": "oh, ja-hae",
+			"overallAvg": 79.5
+		},
+		{
+			"sections_title": "inter germ ii",
+			"sections_instructor": "schade, silke",
+			"overallAvg": 84.26
+		},
+		{
+			"sections_title": "inter germ ii",
+			"sections_instructor": "maslenikau, ihar",
+			"overallAvg": 81.47
+		},
+		{
+			"sections_title": "inter germ ii",
+			"sections_instructor": "schallie, charlotte",
+			"overallAvg": 78.06
+		},
+		{
+			"sections_title": "inter germ iii",
+			"sections_instructor": "kumar, uma",
+			"overallAvg": 78.61
+		},
+		{
+			"sections_title": "inter germ iii",
+			"sections_instructor": "faller, florian",
+			"overallAvg": 80.09
+		},
+		{
+			"sections_title": "inter germ iii",
+			"sections_instructor": "",
+			"overallAvg": 79.79
+		},
+		{
+			"sections_title": "inter germ iii",
+			"sections_instructor": "spreter von kreudenstein, chri",
+			"overallAvg": 79.39
+		},
+		{
+			"sections_title": "inter germ iii",
+			"sections_instructor": "hempen, daniela",
+			"overallAvg": 78.34
+		},
+		{
+			"sections_title": "inter germ iii",
+			"sections_instructor": "rieger, caroline",
+			"overallAvg": 79.05
+		},
+		{
+			"sections_title": "inter germ iii",
+			"sections_instructor": "schallie, charlotte",
+			"overallAvg": 80.11
+		},
+		{
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "salumets, thomas",
+			"overallAvg": 80.05
+		},
+		{
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "hempen, daniela",
+			"overallAvg": 81.58
+		},
+		{
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "",
+			"overallAvg": 79.45
+		},
+		{
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "hallensleben, markus",
+			"overallAvg": 79.1
+		},
+		{
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "winthrop-young, geoffrey",
+			"overallAvg": 75.89
+		},
+		{
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "pailer, gaby",
+			"overallAvg": 78.5
+		},
+		{
+			"sections_title": "20th germ lit tr",
+			"sections_instructor": "hempen, daniela",
+			"overallAvg": 74.17
+		},
+		{
+			"sections_title": "20th germ lit tr",
+			"sections_instructor": "winthrop-young, geoffrey",
+			"overallAvg": 75.49
+		},
+		{
+			"sections_title": "20th germ lit tr",
+			"sections_instructor": "redlich, jeremy;schade, silke",
+			"overallAvg": 82.49
+		},
+		{
+			"sections_title": "20th germ lit tr",
+			"sections_instructor": "",
+			"overallAvg": 76.67
+		},
+		{
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "gassner, florian",
+			"overallAvg": 79.44
+		},
+		{
+			"sections_title": "20th germ lit tr",
+			"sections_instructor": "hallensleben, markus",
+			"overallAvg": 77.42
+		},
+		{
+			"sections_title": "grm lit pst 1945",
+			"sections_instructor": "salumets, thomas",
+			"overallAvg": 77.56
+		},
+		{
+			"sections_title": "grm lit pst 1945",
+			"sections_instructor": "",
+			"overallAvg": 79.55
+		},
+		{
+			"sections_title": "grm lit pst 1945",
+			"sections_instructor": "kumar, uma",
+			"overallAvg": 78.97
+		},
+		{
+			"sections_title": "grm lit pst 1945",
+			"sections_instructor": "hempen, daniela",
+			"overallAvg": 80.21
+		},
+		{
+			"sections_title": "grm lit pst 1945",
+			"sections_instructor": "lieblang, jason",
+			"overallAvg": 75.33
+		},
+		{
+			"sections_title": "grm lit pst 1945",
+			"sections_instructor": "deschamps, bernard",
+			"overallAvg": 79.44
+		},
+		{
+			"sections_title": "cont germ lit tr",
+			"sections_instructor": "hempen, daniela",
+			"overallAvg": 77.01
+		},
+		{
+			"sections_title": "cont germ lit tr",
+			"sections_instructor": "beringer, alison",
+			"overallAvg": 82.46
+		},
+		{
+			"sections_title": "cont germ lit tr",
+			"sections_instructor": "",
+			"overallAvg": 80.92
+		},
+		{
+			"sections_title": "cont germ lit tr",
+			"sections_instructor": "schade, silke",
+			"overallAvg": 86.42
+		},
+		{
+			"sections_title": "cont germ lit tr",
+			"sections_instructor": "stenberg, peter a",
+			"overallAvg": 82.72
+		},
+		{
+			"sections_title": "germ lit <1900",
+			"sections_instructor": "hempen, daniela",
+			"overallAvg": 80.25
+		},
+		{
+			"sections_title": "germ lit <1900",
+			"sections_instructor": "",
+			"overallAvg": 79.6
+		},
+		{
+			"sections_title": "germ lit <1900",
+			"sections_instructor": "winthrop-young, geoffrey",
+			"overallAvg": 77.04
+		},
+		{
+			"sections_title": "germ cinema engl",
+			"sections_instructor": "gassner, florian",
+			"overallAvg": 78.88
+		},
+		{
+			"sections_title": "germ cinema engl",
+			"sections_instructor": "taubeneck, steven",
+			"overallAvg": 78.48
+		},
+		{
+			"sections_title": "germ cinema engl",
+			"sections_instructor": "",
+			"overallAvg": 78.8
+		},
+		{
+			"sections_title": "inter germ iv",
+			"sections_instructor": "kumar, uma",
+			"overallAvg": 79.82
+		},
+		{
+			"sections_title": "inter germ iv",
+			"sections_instructor": "faller, florian",
+			"overallAvg": 80.39
+		},
+		{
+			"sections_title": "inter germ iv",
+			"sections_instructor": "",
+			"overallAvg": 80.33
+		},
+		{
+			"sections_title": "inter germ iv",
+			"sections_instructor": "hempen, daniela",
+			"overallAvg": 77.01
+		},
+		{
+			"sections_title": "inter germ iv",
+			"sections_instructor": "spreter von kreudenstein, chri",
+			"overallAvg": 81.96
+		},
+		{
+			"sections_title": "inter germ iv",
+			"sections_instructor": "ganzenmueller, petra",
+			"overallAvg": 79.15
+		},
+		{
+			"sections_title": "conv german ii",
+			"sections_instructor": "gassner, florian",
+			"overallAvg": 80.31
+		},
+		{
+			"sections_title": "conv german ii",
+			"sections_instructor": "",
+			"overallAvg": 84.29
+		},
+		{
+			"sections_title": "conv german ii",
+			"sections_instructor": "lieblang, jason",
+			"overallAvg": 86.67
+		},
+		{
+			"sections_title": "conv german ii",
+			"sections_instructor": "pailer, gaby",
+			"overallAvg": 84.63
+		},
+		{
+			"sections_title": "conv german ii",
+			"sections_instructor": "rieger, caroline",
+			"overallAvg": 83.69
+		},
+		{
+			"sections_title": "busi germ",
+			"sections_instructor": "ganzenmueller, petra",
+			"overallAvg": 82.95
+		},
+		{
+			"sections_title": "busi germ",
+			"sections_instructor": "",
+			"overallAvg": 82.18
+		},
+		{
+			"sections_title": "busi germ",
+			"sections_instructor": "kumar, uma",
+			"overallAvg": 81.61
+		},
+		{
+			"sections_title": "germ translation",
+			"sections_instructor": "rieger, caroline",
+			"overallAvg": 83.72
+		},
+		{
+			"sections_title": "germ translation",
+			"sections_instructor": "",
+			"overallAvg": 83.72
+		},
+		{
+			"sections_title": "heaven & earth",
+			"sections_instructor": "gassner, florian",
+			"overallAvg": 76.5
+		},
+		{
+			"sections_title": "heaven & earth",
+			"sections_instructor": "",
+			"overallAvg": 78.24
+		},
+		{
+			"sections_title": "heaven & earth",
+			"sections_instructor": "zaenker, karl a",
+			"overallAvg": 77.79
+		},
+		{
+			"sections_title": "heaven & earth",
+			"sections_instructor": "eming, jutta",
+			"overallAvg": 77.43
+		},
+		{
+			"sections_title": "heaven & earth",
+			"sections_instructor": "pailer, gaby",
+			"overallAvg": 82.06
+		},
+		{
+			"sections_title": "trad & change",
+			"sections_instructor": "iurascu, ilinca",
+			"overallAvg": 84.18
+		},
+		{
+			"sections_title": "trad & change",
+			"sections_instructor": "",
+			"overallAvg": 82.28
+		},
+		{
+			"sections_title": "trad & change",
+			"sections_instructor": "deschamps, bernard",
+			"overallAvg": 81.86
+		},
+		{
+			"sections_title": "trad & change",
+			"sections_instructor": "pailer, gaby;svanidze, tamara",
+			"overallAvg": 78.09
+		},
+		{
+			"sections_title": "trad & change",
+			"sections_instructor": "gassner, florian",
+			"overallAvg": 83.36
+		},
+		{
+			"sections_title": "trad & change",
+			"sections_instructor": "pailer, gaby",
+			"overallAvg": 82.39
+		},
+		{
+			"sections_title": "adv germ",
+			"sections_instructor": "rieger, caroline",
+			"overallAvg": 82.29
+		},
+		{
+			"sections_title": "adv germ",
+			"sections_instructor": "",
+			"overallAvg": 81.25
+		},
+		{
+			"sections_title": "adv germ",
+			"sections_instructor": "hempen, daniela",
+			"overallAvg": 80.44
+		},
+		{
+			"sections_title": "adv germ",
+			"sections_instructor": "faller, florian",
+			"overallAvg": 79.5
+		},
+		{
+			"sections_title": "wrd&mus germ lit",
+			"sections_instructor": "gassner, florian",
+			"overallAvg": 76.86
+		},
+		{
+			"sections_title": "wrd&mus germ lit",
+			"sections_instructor": "",
+			"overallAvg": 76.24
+		},
+		{
+			"sections_title": "wrd&mus germ lit",
+			"sections_instructor": "zaenker, karl a",
+			"overallAvg": 76.49
+		},
+		{
+			"sections_title": "adv german ii",
+			"sections_instructor": "rieger, caroline",
+			"overallAvg": 81.13
+		},
+		{
+			"sections_title": "adv german ii",
+			"sections_instructor": "",
+			"overallAvg": 79.28
+		},
+		{
+			"sections_title": "adv german ii",
+			"sections_instructor": "spreter von kreudenstein, chri",
+			"overallAvg": 76.56
+		},
+		{
+			"sections_title": "adv german ii",
+			"sections_instructor": "hempen, daniela",
+			"overallAvg": 79.14
+		},
+		{
+			"sections_title": "adv german ii",
+			"sections_instructor": "eming, jutta",
+			"overallAvg": 79.61
+		},
+		{
+			"sections_title": "cntrvrs germ cul",
+			"sections_instructor": "hempen, daniela",
+			"overallAvg": 87.27
+		},
+		{
+			"sections_title": "cntrvrs germ cul",
+			"sections_instructor": "",
+			"overallAvg": 84.86
+		},
+		{
+			"sections_title": "cntrvrs germ cul",
+			"sections_instructor": "winthrop-young, geoffrey",
+			"overallAvg": 82.44
+		},
+		{
+			"sections_title": "germ read know 1",
+			"sections_instructor": "o'brien, adelheid",
+			"overallAvg": 78.34
+		},
+		{
+			"sections_title": "germ read know 1",
+			"sections_instructor": "maslenikau, ihar",
+			"overallAvg": 81.25
+		},
+		{
+			"sections_title": "germ read know 1",
+			"sections_instructor": "",
+			"overallAvg": 78.93
+		},
+		{
+			"sections_title": "germ read know 1",
+			"sections_instructor": "faller, florian",
+			"overallAvg": 76.5
+		},
+		{
+			"sections_title": "germ read know 1",
+			"sections_instructor": "kumar, uma",
+			"overallAvg": 74.34
+		},
+		{
+			"sections_title": "germ read know 2",
+			"sections_instructor": "o'brien, adelheid",
+			"overallAvg": 82.07
+		},
+		{
+			"sections_title": "germ read know 2",
+			"sections_instructor": "",
+			"overallAvg": 81.92
+		},
+		{
+			"sections_title": "germ read know 2",
+			"sections_instructor": "maslenikau, ihar",
+			"overallAvg": 86.81
+		},
+		{
+			"sections_title": "cultural studies",
+			"sections_instructor": "frackman, kyle",
+			"overallAvg": 89.63
+		},
+		{
+			"sections_title": "cultural studies",
+			"sections_instructor": "",
+			"overallAvg": 88.31
+		},
+		{
+			"sections_title": "cultural studies",
+			"sections_instructor": "winthrop-young, geoffrey",
+			"overallAvg": 85.67
+		},
+		{
+			"sections_title": "major essay",
+			"sections_instructor": "",
+			"overallAvg": 88
+		}
+	]
+}
