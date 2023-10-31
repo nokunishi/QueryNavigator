@@ -76,6 +76,7 @@ export default class InsightFacade implements IInsightFacade {
 			} else if (queryObject.OPTIONS.COLUMNS.length === 0) {
 				return Promise.reject(new InsightError("empty COLUMNS"));
 			}
+
 			// Get name of the dataset
 			let datasetId = queryObject.OPTIONS.COLUMNS[0].split("_")[0];
 			if (!queryObject.WHERE) {
@@ -95,11 +96,9 @@ export default class InsightFacade implements IInsightFacade {
 					result
 				);
 
-				return Promise.resolve(
-					parseOptions(queryObject.OPTIONS, resultAggregate, queryObject.TRANSFORMATIONS.APPLY)
-				);
+				return parseOptions(queryObject.OPTIONS, resultAggregate, queryObject.TRANSFORMATIONS.APPLY);
 			} else {
-				return Promise.resolve(parseOptions(queryObject.OPTIONS, result));
+				return parseOptions(queryObject.OPTIONS, result);
 			}
 		} catch (error) {
 			console.log(error);
