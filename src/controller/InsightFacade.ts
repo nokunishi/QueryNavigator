@@ -9,8 +9,9 @@ import {
 
 import {Database} from "../model/Database";
 import * as fs from "fs-extra";
-import {Query, parseOptions, parseWhere} from "../query/QueryParser";
-import {readRoomsZipFile} from "../model/Rooms";
+import {Query, parseWhere} from "../query/QueryParser";
+import {parseTransformation} from "../query/QueryAggregate";
+import {parseOptions} from "../query/QueryRender";
 // import {Query, parseOptions, parseWhere} from "../query/QueryParser";
 
 /**
@@ -31,11 +32,12 @@ export default class InsightFacade implements IInsightFacade {
 			if (this.database.invalidId(id)) {
 				return Promise.reject(new InsightError());
 			}
-			if (kind) {
-				return this.database.addValidDataset(id, content, kind);
-			} else {
+
+			if (kind === InsightDatasetKind.Rooms) {
 				return Promise.reject(new InsightError());
 			}
+
+			return this.database.addValidDataset(id, content, kind);
 		} catch (err) {
 			return Promise.reject(new InsightError());
 		}
@@ -52,6 +54,7 @@ export default class InsightFacade implements IInsightFacade {
 		}
 	}
 
+	// todo: change to non-async
 	public performQuery(query: unknown): Promise<InsightResult[]> {
 		try {
 			if (query === null) {
@@ -67,14 +70,39 @@ export default class InsightFacade implements IInsightFacade {
 			}
 
 			const queryObject: Query = JSON.parse(query);
+
+			if (!queryObject.OPTIONS || !queryObject.OPTIONS.COLUMNS) {
+				return Promise.reject(new InsightError("missing OPTIONS/COLUMNS"));
+			} else if (queryObject.OPTIONS.COLUMNS.length === 0) {
+				return Promise.reject(new InsightError("empty COLUMNS"));
+			}
 			// Get name of the dataset
 			let datasetId = queryObject.OPTIONS.COLUMNS[0].split("_")[0];
 			if (!queryObject.WHERE) {
 				return Promise.reject(new InsightError("Missing WHERE clause"));
 			}
 			let result = parseWhere(queryObject.WHERE, this.database.readDataset(datasetId));
-			return Promise.resolve(parseOptions(queryObject.OPTIONS, result));
+
+			// aggregate on 'result'
+			if (queryObject.TRANSFORMATIONS) {
+				if (!queryObject.TRANSFORMATIONS.GROUP || !queryObject.TRANSFORMATIONS.APPLY) {
+					return Promise.reject(new InsightError("Missing GROUP or APPLY clause"));
+				}
+				let resultAggregate = parseTransformation(
+					queryObject.OPTIONS,
+					queryObject.TRANSFORMATIONS.GROUP,
+					queryObject.TRANSFORMATIONS.APPLY,
+					result
+				);
+
+				return Promise.resolve(
+					parseOptions(queryObject.OPTIONS, resultAggregate, queryObject.TRANSFORMATIONS.APPLY)
+				);
+			} else {
+				return Promise.resolve(parseOptions(queryObject.OPTIONS, result));
+			}
 		} catch (error) {
+			console.log(error);
 			return Promise.reject(new InsightError());
 		}
 	}
@@ -96,8 +124,7 @@ export default class InsightFacade implements IInsightFacade {
 
 			let insightDataset: InsightDataset = {
 				id: datasetId,
-				// TODO: change this to sections or rooms
-				kind: InsightDatasetKind.Rooms,
+				kind: InsightDatasetKind.Sections,
 				numRows: sum,
 			};
 

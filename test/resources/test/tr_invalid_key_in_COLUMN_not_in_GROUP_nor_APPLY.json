@@ -1,0 +1,52 @@
+{
+	"title": "tr_invalid_key_in_COLUMN_not_in_GROUP_nor_APPLY",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{
+					"IS": {
+						"sections_dept": "cpsc"
+					}
+				},
+				{
+					"IS": {
+						"sections_dept": "germ"
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_title",
+				"sections_pass",
+				"sections_avg",
+				"auditSUM"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"sections_avg",
+					"sections_pass"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_dept",
+				"sections_title",
+				"sections_instructor",
+				"sections_pass"
+			],
+			"APPLY": [
+				{
+					"auditSUM": {
+						"SUM": "sections_audit"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

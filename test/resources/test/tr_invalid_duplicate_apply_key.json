@@ -1,0 +1,48 @@
+{
+	"title": "tr_invalid_duplicate_apply_key",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{
+					"IS": {
+						"sections_dept": "cpsc"
+					}
+				},
+				{
+					"IS": {
+						"sections_dept": "germ"
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_title",
+				"sections_instructor",
+				"maxPass"
+			]
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_dept",
+				"sections_title",
+				"sections_instructor"
+			],
+			"APPLY": [
+				{
+					"maxPass": {
+						"MAX": "sections_pass"
+					}
+				},
+				{
+					"maxPass": {
+						"MAX": "sections_fail"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

@@ -4,17 +4,22 @@ import {Section} from "../model/Section";
 export interface Query {
 	WHERE: Where;
 	OPTIONS: Options;
+	TRANSFORMATIONS: any;
 }
 
 type WhereComparators = "LT" | "GT" | "EQ" | "AND" | "OR" | "IS" | "NOT";
+type Dir = "UP" | "DOWN";
+
 const mfield = ["avg", "pass", "fail", "audit", "year"];
 const sfield = ["dept", "id", "instructor", "title", "uuid"];
+const mfieldRoom = ["lat", "lon", "seats"];
+const sfieldRoom = ["fullname", "shortname", "number", "name", "address", "type", "furniture", "href"];
 
 interface Where {
 	[key: string]: {[key: string]: Where} | Array<{[key: string]: Where}>;
 }
 
-interface Options {
+export interface Options {
 	COLUMNS: string[];
 	ORDER?: string;
 }
@@ -63,7 +68,6 @@ export async function parseWhere(whereCondition: Where, data: Promise<any[]>): P
 	if (d.length > 5000) {
 		throw new ResultTooLargeError("Result too large(>5000)");
 	}
-
 	return d;
 }
 
@@ -170,54 +174,6 @@ function processAndOR(comparator: "and" | "or", condition: any[], result: boolea
 	return r;
 }
 
-/**
- * This parses the entire 'OPTIONS' clause of query
- * @param obj
- * @returns
- */
-export async function parseOptions(options: Options, data: Promise<any[]>): Promise<any[]> {
-	if (options === null || options.COLUMNS === null) {
-		throw new InsightError("Empty options or columns");
-	}
-	// need to check if options only contains COLUMNS and ORDER
-	if (Object.keys(options).some((key) => key !== "COLUMNS" && key !== "ORDER")) {
-		throw new InsightError("Invalid keys in OPTIONS");
-	}
-	let res = await data.then((d) => {
-		// Parsing columns
-		let columns = options.COLUMNS;
-		let order = options.ORDER;
-		if (!columns) {
-			throw new InsightError("missing COLUMNS");
-		}
-		let result: Array<{[key: string]: string | number}> = [];
-		for (const row of d) {
-			let rowResult: {[key: string]: string | number} = {};
-			for (const col of columns) {
-				if (col.includes("uuid")) {
-					rowResult[col] = row[parseWhereField(col) || ""].toString();
-				} else if (col.toLowerCase().includes("year")) {
-					rowResult[col] = Number.parseInt(row[parseWhereField(col) || "0"], 10);
-				} else {
-					rowResult[col] = row[parseWhereField(col) || ""];
-				}
-			}
-			result.push(rowResult);
-		}
-
-		// parsing order
-		if (!order) {
-			return result;
-		}
-		if (!columns.includes(order)) {
-			throw new InsightError("ORDER key must be in COLUMNS");
-		} else {
-			return result.sort((a, b) => (a[order || ""] > b[order || ""] ? 1 : -1));
-		}
-	});
-	return res;
-}
-
 function parseWhereField(key: string) {
 	if (key.includes("_")) {
 		key = key.split("_")[1];
@@ -252,6 +208,11 @@ function parseWhereField(key: string) {
 	if (key === "fail") {
 		return "Fail";
 	}
+	if (mfieldRoom.includes(key) || sfieldRoom.includes(key)) {
+		return key;
+	} else {
+		throw new InsightError("invalid query field");
+	}
 }
 
 function checkWrongWhereCondition(whereCondition: Where, comp: string) {
@@ -271,4 +232,13 @@ function checkWrongWhereCondition(whereCondition: Where, comp: string) {
 	// 		throw new InsightError(`Invalid ${comp} in where condition`);
 	// 	}
 	// }
+}
+
+export function valid_mfield(): string[] {
+	mfield.push("section");
+	return mfield.concat(mfieldRoom);
+}
+
+export function valid_sfield(): string[] {
+	return sfield.concat(sfieldRoom);
 }
