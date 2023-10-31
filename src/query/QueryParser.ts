@@ -195,19 +195,22 @@ export async function parseOptions(options: Options, data: Promise<any[]>): Prom
 			throw new InsightError("missing COLUMNS");
 		}
 		let result: Array<{[key: string]: string | number}> = [];
-		for (const row of d) {
+		Object.keys(d).forEach((section) => {
+			let row = (d as any)[section];
 			let rowResult: {[key: string]: string | number} = {};
 			for (const col of columns) {
+				let parsedWhere = col.split("_")[1];
+
 				if (col.includes("uuid")) {
-					rowResult[col] = row[parseWhereField(col) || ""].toString();
+					rowResult[col] = row.getValue(parsedWhere || "").toString();
 				} else if (col.toLowerCase().includes("year")) {
-					rowResult[col] = Number.parseInt(row[parseWhereField(col) || "0"], 10);
+					rowResult[col] = Number.parseInt(row.getValue(parsedWhere || "0"), 10);
 				} else {
-					rowResult[col] = row[parseWhereField(col) || ""];
+					rowResult[col] = row.getValue(parsedWhere || "");
 				}
 			}
 			result.push(rowResult);
-		}
+		});
 
 		// parsing order
 		if (!order) {
@@ -283,6 +286,7 @@ function checkWrongWhereCondition(whereCondition: Where, comp: string) {
 }
 
 export function valid_mfield(): string[] {
+	mfield.push("section");
 	return mfield.concat(mfieldRoom);
 }
 

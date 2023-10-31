@@ -15,7 +15,7 @@ export async function parseTransformation(
 	groupKeys: string[],
 	apply: string[],
 	data: Promise<Section[]>
-): Promise<any[]> {
+): Promise<any> {
 	if (groupKeys.length === 0) {
 		throw new InsightError("GROUP is an empty array");
 	}
@@ -34,59 +34,48 @@ export async function parseTransformation(
 			return new Section(section);
 		});
 	});
-
-	let group: any = null;
-
-	while (keys.length > 0) {
-		if (group !== null) {
-			for (const k of Object.keys(group)) {
-				let g = groupSections((group as any)[k], keys[keys.length - 1]);
-				(group as any)[k] = [];
-				(group as any)[k].push(g);
-			}
-		} else {
-			group = groupSections(sections, keys[keys.length - 1]);
-		}
-		keys.pop();
-	}
-	console.log(group["garcia, ronald"]);
-
-	if (apply.length === 0) {
-		// console.log(groups);
-	}
-	return Promise.resolve(["hello"]);
+	let g = groupSections(sections, keys);
+	let result = processApply(apply, g);
+	return Promise.resolve(result);
 }
 
-function groupSections(sections: any[], key: string): object {
+function groupSections(sections: any[], keys: string[]): object {
 	return sections.reduce(function (acc, item) {
-		let value = item.getValue(key);
+		let values: string[] = [];
 
-		if (typeof value === "number") {
-			value.toString();
+		for (const key of keys) {
+			let value = item.getValue(key);
+
+			if (typeof value === "number") {
+				value.toString();
+			}
+
+			values.push(value);
 		}
 
-		if (!value || typeof value !== "string") {
-			return acc;
+		let v: string = values.reduce(function (value_acc, value) {
+			return value_acc + "/" + value;
+		});
+
+		if (acc === undefined) {
+			acc = new Object();
 		}
 
-		if (!(acc as any)[value]) {
-			(acc as any)[value] = [];
+		if (v && acc[v] === undefined) {
+			(acc as any)[v] = [];
 		}
+		(acc as any)[v].push(item);
 
-		(acc as any)[value].push(item);
 		return acc;
 	}, {});
 }
 
-function processApply(apply: string[], groups: Map<any[], Section[]>): Section[] {
-	let sections: Section[] = [];
-
+function processApply(apply: string[], groups: object): any {
 	if (apply.length === 0) {
-		groups.forEach((group) => {
-			sections.push(group[0]);
+		Object.keys(groups).forEach((g) => {
+			(groups as any)[g] = (groups as any)[g][0];
 		});
 	}
 
-	// console.log(sections);
-	return sections;
+	return groups;
 }
