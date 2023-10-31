@@ -94,9 +94,16 @@ function processApplyToken(applyRule: string, colName: string, groups: object) {
 
 	switch (applyToken) {
 		case "MAX":
-			// Object.keys(groups).forEach((grp) => {});
+			Object.keys(groups).forEach((grp) => {
+				let sections = (groups as any)[grp];
+				sections[colName] = processOp(sections, col, "MAX");
+			});
 			break;
 		case "MIN":
+			Object.keys(groups).forEach((grp) => {
+				let sections = (groups as any)[grp];
+				sections[colName] = processOp(sections, col, "MIN");
+			});
 			break;
 		case "AVG":
 			Object.keys(groups).forEach((grp) => {
@@ -111,8 +118,49 @@ function processApplyToken(applyRule: string, colName: string, groups: object) {
 			});
 			break;
 		case "COUNT":
+			for (const key of Object.keys(groups)) {
+				let sections = (groups as any)[key];
+				let duplicates = Object.keys(groups).filter((k: any) => key === k);
+				sections[colName] = duplicates.length;
+			}
 			break;
 		case "SUM":
+			Object.keys(groups).forEach((grp) => {
+				let sections = (groups as any)[grp];
+				let sum = sections.reduce(function (acc: Decimal, s: any) {
+					let n = new Decimal(s.getValue(col));
+					return Decimal.add(acc, n);
+				}, 0);
+
+				sections[colName] = sum.toFixed(2);
+			});
+			break;
+	}
+}
+
+function processOp(sections: any[], col: string, op: string): string | undefined {
+	switch (op) {
+		case "MIN":
+			{
+				let min = Number.MAX_VALUE;
+				sections.forEach((s: any) => {
+					if (min > Number(s.getValue(col))) {
+						min = Number(s.getValue(col));
+					}
+				});
+				return min.toFixed(2);
+			}
+			break;
+		case "MAX":
+			{
+				let max = 0;
+				sections.forEach((s: any) => {
+					if (max < Number(s.getValue(col))) {
+						max = Number(s.getValue(col));
+					}
+				});
+				return max.toFixed(2);
+			}
 			break;
 	}
 }

@@ -1,0 +1,2642 @@
+{
+	"title": "tr_valid_apply_max",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{
+					"IS": {
+						"sections_dept": "cpsc"
+					}
+				},
+				{
+					"IS": {
+						"sections_dept": "germ"
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_title",
+				"sections_instructor",
+				"maxPass"
+			]
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_dept",
+				"sections_title",
+				"sections_instructor"
+			],
+			"APPLY": [
+				{
+					"maxPass": {
+						"MAX": "sections_pass"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "kiczales, gregor",
+			"maxPass": 308
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "allen, meghan",
+			"maxPass": 156
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "garcia, ronald",
+			"maxPass": 125
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "aiello, william",
+			"maxPass": 109
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "carter, paul martin",
+			"maxPass": 150
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "",
+			"maxPass": 966
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "little, james joseph",
+			"maxPass": 154
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "mcgrenere, joanna",
+			"maxPass": 118
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "greif, chen",
+			"maxPass": 91
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "wolfman, steven",
+			"maxPass": 256
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "berg, celina",
+			"maxPass": 154
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_instructor": "eiselt, kurt",
+			"maxPass": 103
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_instructor": "tsiknis, georgios",
+			"maxPass": 162
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_instructor": "cooper, kendra",
+			"maxPass": 137
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_instructor": "belleville, patrice",
+			"maxPass": 209
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_instructor": "",
+			"maxPass": 701
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_instructor": "allen, meghan",
+			"maxPass": 78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_instructor": "wolfman, steven",
+			"maxPass": 132
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_instructor": "voll, kimberly",
+			"maxPass": 111
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_instructor": "woodham, robert",
+			"maxPass": 91
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_instructor": "dulat, margaret",
+			"maxPass": 82
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_instructor": "gao, xi",
+			"maxPass": 145
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_instructor": "tompkins, david a d",
+			"maxPass": 58
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_instructor": "eiselt, kurt",
+			"maxPass": 106
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "baniassad, elisa",
+			"maxPass": 141
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "carter, paul martin",
+			"maxPass": 161
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "murphy, gail",
+			"maxPass": 151
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "",
+			"maxPass": 696
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "allen, meghan",
+			"maxPass": 85
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "beschastnikh, ivan",
+			"maxPass": 112
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "eiselt, kurt",
+			"maxPass": 78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "hutchinson, norman",
+			"maxPass": 156
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_instructor": "feeley, michael",
+			"maxPass": 88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_instructor": "feeley, michael",
+			"maxPass": 155
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_instructor": "",
+			"maxPass": 411
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_instructor": "warfield, andrew",
+			"maxPass": 67
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_instructor": "goldberg, murray",
+			"maxPass": 62
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_instructor": "tsiknis, georgios",
+			"maxPass": 138
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_instructor": "munzner, tamara",
+			"maxPass": 101
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_instructor": "darwish, mohammad mostafa",
+			"maxPass": 88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_instructor": "acton, donald",
+			"maxPass": 81
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_instructor": "wolfman, steven",
+			"maxPass": 110
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_instructor": "cooper, kendra",
+			"maxPass": 98
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_instructor": "hu, alan",
+			"maxPass": 136
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_instructor": "khosravi, hassan",
+			"maxPass": 107
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_instructor": "",
+			"maxPass": 497
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_instructor": "voll, kimberly",
+			"maxPass": 82
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_instructor": "knorr, edwin max",
+			"maxPass": 66
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_instructor": "evans, william",
+			"maxPass": 128
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_instructor": "eiselt, kurt",
+			"maxPass": 98
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_instructor": "kotthoff, lars",
+			"maxPass": 97
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_instructor": "harvey, nicholas",
+			"maxPass": 119
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_instructor": "sheffer, alla",
+			"maxPass": 25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "dta&alg elec eng",
+			"sections_instructor": "khosravi, hassan",
+			"maxPass": 206
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "dta&alg elec eng",
+			"sections_instructor": "",
+			"maxPass": 206
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "dta&alg elec eng",
+			"sections_instructor": "knorr, edwin max",
+			"maxPass": 179
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basics comp syst",
+			"sections_instructor": "belleville, patrice",
+			"maxPass": 118
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basics comp syst",
+			"sections_instructor": "",
+			"maxPass": 118
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basics comp syst",
+			"sections_instructor": "hutchinson, norman",
+			"maxPass": 105
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptng life sci",
+			"sections_instructor": "mitchell, ian",
+			"maxPass": 147
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptng life sci",
+			"sections_instructor": "",
+			"maxPass": 151
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptng life sci",
+			"sections_instructor": "tsiknis, georgios",
+			"maxPass": 151
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_instructor": "ascher, uri michael",
+			"maxPass": 64
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_instructor": "",
+			"maxPass": 64
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_instructor": "ascher, uri michael;greif, chen",
+			"maxPass": 54
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_instructor": "rees, tyrone",
+			"maxPass": 27
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_instructor": "greif, chen",
+			"maxPass": 55
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_instructor": "greif, chen",
+			"maxPass": 63
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_instructor": "",
+			"maxPass": 64
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_instructor": "ascher, uri michael",
+			"maxPass": 44
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_instructor": "mitchell, ian",
+			"maxPass": 39
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_instructor": "gelbart, michael",
+			"maxPass": 64
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_instructor": "tsiknis, georgios",
+			"maxPass": 114
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_instructor": "lakshmanan, laks",
+			"maxPass": 156
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_instructor": "",
+			"maxPass": 310
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_instructor": "ng, raymond tak-yan",
+			"maxPass": 155
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_instructor": "knorr, edwin max",
+			"maxPass": 90
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_instructor": "pottinger, rachel",
+			"maxPass": 114
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_instructor": "khosravi, hassan",
+			"maxPass": 104
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "palyart-lamarche, marc",
+			"maxPass": 156
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "baniassad, elisa",
+			"maxPass": 185
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "",
+			"maxPass": 347
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "holmes, reid",
+			"maxPass": 139
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "allen, meghan",
+			"maxPass": 154
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "wohlstadter, eric",
+			"maxPass": 156
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "ernst, neil",
+			"maxPass": 101
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "fritz, thomas",
+			"maxPass": 62
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_instructor": "shepherd, david",
+			"maxPass": 90
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_instructor": "wolfman, steven",
+			"maxPass": 75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_instructor": "",
+			"maxPass": 105
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_instructor": "de volder, kris",
+			"maxPass": 32
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_instructor": "dunfield, joshua",
+			"maxPass": 105
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_instructor": "eiselt, kurt",
+			"maxPass": 73
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_instructor": "hutchinson, norman",
+			"maxPass": 32
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_instructor": "eiselt, kurt",
+			"maxPass": 158
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_instructor": "",
+			"maxPass": 158
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_instructor": "poole, david",
+			"maxPass": 115
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_instructor": "voll, kimberly",
+			"maxPass": 86
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_instructor": "sagaii, sara mahboubeh",
+			"maxPass": 138
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_instructor": "belleville, patrice",
+			"maxPass": 176
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_instructor": "acton, donald",
+			"maxPass": 150
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_instructor": "",
+			"maxPass": 326
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_instructor": "feeley, michael",
+			"maxPass": 88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_instructor": "tsiknis, georgios",
+			"maxPass": 160
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_instructor": "warfield, andrew",
+			"maxPass": 70
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_instructor": "wolfman, steven",
+			"maxPass": 68
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_instructor": "van de panne, michiel",
+			"maxPass": 55
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_instructor": "pai, dinesh",
+			"maxPass": 59
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_instructor": "",
+			"maxPass": 139
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_instructor": "bridson, robert",
+			"maxPass": 59
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_instructor": "munzner, tamara",
+			"maxPass": 74
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_instructor": "sheffer, alla",
+			"maxPass": 52
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_instructor": "bessmeltsev, mikhail",
+			"maxPass": 65
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_instructor": "heidrich, wolfgang",
+			"maxPass": 50
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_instructor": "acton, donald",
+			"maxPass": 124
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_instructor": "hutchinson, norman",
+			"maxPass": 91
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_instructor": "",
+			"maxPass": 236
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_instructor": "krasic, charles",
+			"maxPass": 54
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_instructor": "vuong, son",
+			"maxPass": 46
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_instructor": "aiello, william",
+			"maxPass": 73
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "softwr eng proj",
+			"sections_instructor": "eiselt, kurt",
+			"maxPass": 75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "softwr eng proj",
+			"sections_instructor": "",
+			"maxPass": 75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "softwr eng proj",
+			"sections_instructor": "voll, kimberly",
+			"maxPass": 57
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "softwr eng proj",
+			"sections_instructor": "awad, ahmed",
+			"maxPass": 74
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "belleville, patrice",
+			"maxPass": 184
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "wolfman, steven",
+			"maxPass": 129
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "",
+			"maxPass": 351
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "evans, william",
+			"maxPass": 89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "meyer, irmtraud margret",
+			"maxPass": 101
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "manuch, jan",
+			"maxPass": 146
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "schroeder, jonatan",
+			"maxPass": 78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_instructor": "malka, lior",
+			"maxPass": 52
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_instructor": "little, james joseph",
+			"maxPass": 95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_instructor": "conati, cristina",
+			"maxPass": 108
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_instructor": "",
+			"maxPass": 247
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_instructor": "carenini, giuseppe",
+			"maxPass": 107
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_instructor": "leyton-brown, kevin",
+			"maxPass": 58
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_instructor": "mackworth, alan",
+			"maxPass": 93
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_instructor": "poole, david",
+			"maxPass": 139
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_instructor": "hutter, frank",
+			"maxPass": 74
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_instructor": "ng, raymond tak-yan",
+			"maxPass": 101
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_instructor": "",
+			"maxPass": 171
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_instructor": "schmidt, mark",
+			"maxPass": 171
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_instructor": "de freitas, joao",
+			"maxPass": 82
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_instructor": "doucet, arnaud",
+			"maxPass": 44
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_instructor": "murphy, kevin",
+			"maxPass": 36
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_instructor": "dawson, jessica",
+			"maxPass": 74
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_instructor": "",
+			"maxPass": 93
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_instructor": "maclean, karon",
+			"maxPass": 93
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_instructor": "dawson, jessica;maclean, karon",
+			"maxPass": 24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_instructor": "wolfman, steven",
+			"maxPass": 45
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_instructor": "knorr, edwin max",
+			"maxPass": 110
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_instructor": "",
+			"maxPass": 186
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_instructor": "tsiknis, georgios",
+			"maxPass": 116
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_instructor": "lakshmanan, laks",
+			"maxPass": 50
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_instructor": "baniassad, elisa",
+			"maxPass": 135
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_instructor": "",
+			"maxPass": 135
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_instructor": "murphy-hill, emerson",
+			"maxPass": 74
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_instructor": "wohlstadter, eric",
+			"maxPass": 78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_instructor": "holmes, reid",
+			"maxPass": 118
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_instructor": "ernst, neil",
+			"maxPass": 96
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "compiler constrc",
+			"sections_instructor": "hutchinson, norman",
+			"maxPass": 31
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "compiler constrc",
+			"sections_instructor": "",
+			"maxPass": 44
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "compiler constrc",
+			"sections_instructor": "de volder, kris",
+			"maxPass": 22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "compiler constrc",
+			"sections_instructor": "garcia, ronald",
+			"maxPass": 44
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv opertng sysm",
+			"sections_instructor": "acton, donald",
+			"maxPass": 95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv opertng sysm",
+			"sections_instructor": "",
+			"maxPass": 95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "distrbt'd systms",
+			"sections_instructor": "acton, donald",
+			"maxPass": 64
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "distrbt'd systms",
+			"sections_instructor": "",
+			"maxPass": 77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "distrbt'd systms",
+			"sections_instructor": "wagner, alan",
+			"maxPass": 55
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "distrbt'd systms",
+			"sections_instructor": "beschastnikh, ivan",
+			"maxPass": 77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "parallel comput",
+			"sections_instructor": "greenstreet, mark",
+			"maxPass": 52
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "parallel comput",
+			"sections_instructor": "",
+			"maxPass": 52
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv alg dsgn&anl",
+			"sections_instructor": "kirkpatrick, david",
+			"maxPass": 56
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv alg dsgn&anl",
+			"sections_instructor": "",
+			"maxPass": 56
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv alg dsgn&anl",
+			"sections_instructor": "evans, william",
+			"maxPass": 55
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv alg dsgn&anl",
+			"sections_instructor": "belleville, patrice",
+			"maxPass": 33
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "theory comptg",
+			"sections_instructor": "friedman, joel",
+			"maxPass": 50
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "theory comptg",
+			"sections_instructor": "",
+			"maxPass": 50
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "theory comptg",
+			"sections_instructor": "harvey, nicholas",
+			"maxPass": 41
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intel systems",
+			"sections_instructor": "carenini, giuseppe",
+			"maxPass": 44
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intel systems",
+			"sections_instructor": "",
+			"maxPass": 44
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intel systems",
+			"sections_instructor": "conati, cristina",
+			"maxPass": 23
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intel systems",
+			"sections_instructor": "poole, david",
+			"maxPass": 28
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computer vision",
+			"sections_instructor": "woodham, robert",
+			"maxPass": 107
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computer vision",
+			"sections_instructor": "",
+			"maxPass": 112
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computer vision",
+			"sections_instructor": "little, james joseph",
+			"maxPass": 59
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computer vision",
+			"sections_instructor": "tung, frederick",
+			"maxPass": 112
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_instructor": "leyton-brown, kevin",
+			"maxPass": 87
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_instructor": "",
+			"maxPass": 104
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_instructor": "luk, joseph",
+			"maxPass": 79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_instructor": "voll, kimberly",
+			"maxPass": 77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_instructor": "dawson, jessica",
+			"maxPass": 104
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_instructor": "eiselt, kurt",
+			"maxPass": 76
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cp interactn",
+			"sections_instructor": "mcgrenere, joanna",
+			"maxPass": 33
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cp interactn",
+			"sections_instructor": "",
+			"maxPass": 51
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cp interactn",
+			"sections_instructor": "dawson, jessica",
+			"maxPass": 51
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_instructor": "manuch, jan",
+			"maxPass": 20
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_instructor": "",
+			"maxPass": 32
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_instructor": "meyer, irmtraud margret",
+			"maxPass": 26
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_instructor": "hoos, holger",
+			"maxPass": 32
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_instructor": "kirkpatrick, bonnie;manuch, jan",
+			"maxPass": 16
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "honours thesis",
+			"sections_instructor": "knorr, edwin max",
+			"maxPass": 8
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "honours thesis",
+			"sections_instructor": "",
+			"maxPass": 11
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "honours thesis",
+			"sections_instructor": "tsiknis, georgios",
+			"maxPass": 8
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "student seminar",
+			"sections_instructor": "",
+			"maxPass": 22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "student seminar",
+			"sections_instructor": "allen, meghan",
+			"maxPass": 15
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "student seminar",
+			"sections_instructor": "wolfman, steven",
+			"maxPass": 6
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "fund alg dsgn&an",
+			"sections_instructor": "kirkpatrick, david",
+			"maxPass": 20
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "fund alg dsgn&an",
+			"sections_instructor": "",
+			"maxPass": 23
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "fund alg dsgn&an",
+			"sections_instructor": "evans, william",
+			"maxPass": 23
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "fund alg dsgn&an",
+			"sections_instructor": "friedman, joel",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "thry of automata",
+			"sections_instructor": "friedman, joel",
+			"maxPass": 7
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "thry of automata",
+			"sections_instructor": "",
+			"maxPass": 8
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "thry of automata",
+			"sections_instructor": "harvey, nicholas",
+			"maxPass": 8
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 1",
+			"sections_instructor": "mackworth, alan",
+			"maxPass": 16
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 1",
+			"sections_instructor": "",
+			"maxPass": 22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 1",
+			"sections_instructor": "poole, david",
+			"maxPass": 22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 1",
+			"sections_instructor": "carenini, giuseppe",
+			"maxPass": 15
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 1",
+			"sections_instructor": "conati, cristina",
+			"maxPass": 17
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computl ling 1",
+			"sections_instructor": "carenini, giuseppe",
+			"maxPass": 19
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computl ling 1",
+			"sections_instructor": "",
+			"maxPass": 19
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "software eng",
+			"sections_instructor": "wohlstadter, eric",
+			"maxPass": 19
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "software eng",
+			"sections_instructor": "",
+			"maxPass": 19
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "software eng",
+			"sections_instructor": "holmes, reid",
+			"maxPass": 7
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "prog lang princ",
+			"sections_instructor": "garcia, ronald",
+			"maxPass": 20
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "prog lang princ",
+			"sections_instructor": "",
+			"maxPass": 20
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intgrt sys desgn",
+			"sections_instructor": "hu, alan",
+			"maxPass": 14
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intgrt sys desgn",
+			"sections_instructor": "",
+			"maxPass": 14
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intgrt sys desgn",
+			"sections_instructor": "mitchell, ian",
+			"maxPass": 3
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intgrt sys desgn",
+			"sections_instructor": "greenstreet, mark",
+			"maxPass": 12
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comput robotics",
+			"sections_instructor": "mitchell, ian",
+			"maxPass": 14
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comput robotics",
+			"sections_instructor": "",
+			"maxPass": 14
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "para algs & arch",
+			"sections_instructor": "wagner, alan",
+			"maxPass": 25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "para algs & arch",
+			"sections_instructor": "",
+			"maxPass": 25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "para algs & arch",
+			"sections_instructor": "greenstreet, mark",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 2",
+			"sections_instructor": "poole, david",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 2",
+			"sections_instructor": "",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp comm protcl",
+			"sections_instructor": "vuong, son",
+			"maxPass": 23
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp comm protcl",
+			"sections_instructor": "",
+			"maxPass": 23
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp comm protcl",
+			"sections_instructor": "beschastnikh, ivan",
+			"maxPass": 9
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp comm protcl",
+			"sections_instructor": "krasic, charles",
+			"maxPass": 9
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine learn i",
+			"sections_instructor": "schmidt, mark",
+			"maxPass": 59
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine learn i",
+			"sections_instructor": "",
+			"maxPass": 79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine learn i",
+			"sections_instructor": "murphy, kevin",
+			"maxPass": 22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine learn i",
+			"sections_instructor": "de freitas, joao",
+			"maxPass": 79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine learn i",
+			"sections_instructor": "doucet, arnaud",
+			"maxPass": 14
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "phy user intfc",
+			"sections_instructor": "maclean, karon",
+			"maxPass": 20
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "phy user intfc",
+			"sections_instructor": "",
+			"maxPass": 20
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_instructor": "dawson, jessica",
+			"maxPass": 11
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_instructor": "",
+			"maxPass": 22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_instructor": "mcgrenere, joanna",
+			"maxPass": 17
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_instructor": "maclean, karon",
+			"maxPass": 22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_instructor": "booth, kellogg",
+			"maxPass": 15
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "info visualizatn",
+			"sections_instructor": "munzner, tamara",
+			"maxPass": 25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "info visualizatn",
+			"sections_instructor": "",
+			"maxPass": 25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_instructor": "",
+			"maxPass": 5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "",
+			"maxPass": 597
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "spreter von kreudenstein, chri",
+			"maxPass": 29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "pashan, sara",
+			"maxPass": 29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "faller, florian",
+			"maxPass": 29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "laszlo, eszter",
+			"maxPass": 28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "o'brien, adelheid",
+			"maxPass": 29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "kumar, uma",
+			"maxPass": 30
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "hempen, daniela",
+			"maxPass": 31
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "maslenikau, ihar",
+			"maxPass": 28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "ganzenmueller, petra",
+			"maxPass": 27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "lieblang, jason",
+			"maxPass": 29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "struch, gela",
+			"maxPass": 30
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "gassner, florian",
+			"maxPass": 29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "toor, gorsharn",
+			"maxPass": 28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "struch, gela;tba",
+			"maxPass": 30
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "roy, catherine",
+			"maxPass": 21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "klibadze, dali;struch, gela",
+			"maxPass": 26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "schulz, susanne",
+			"maxPass": 25
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "sanders, travis;struch, gela",
+			"maxPass": 26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "redlich, jeremy;struch, gela",
+			"maxPass": 30
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "jones, lydia;struch, gela",
+			"maxPass": 30
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "baer, ursula;struch, gela",
+			"maxPass": 17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "lamberti, stefanie",
+			"maxPass": 21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "oh, ja-hae",
+			"maxPass": 20
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "schenkel, guido",
+			"maxPass": 28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "petro, ingrid",
+			"maxPass": 23
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "schallie, charlotte",
+			"maxPass": 27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "deppermann, birgit",
+			"maxPass": 15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "iurascu, ilinca",
+			"maxPass": 26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "baer, ursula",
+			"maxPass": 26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "coordinator;jones, lydia;struch, gela",
+			"maxPass": 30
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "coordinator;klibadze, dali;struch, gela",
+			"maxPass": 29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "coordinator;struch, gela;svanidze, tamara",
+			"maxPass": 26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "coordinator;grunburg, michael ;struch, gela",
+			"maxPass": 19
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "coordinator;sanders, travis;struch, gela",
+			"maxPass": 21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_instructor": "coordinator;revell, stephanie;struch, gela",
+			"maxPass": 27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "",
+			"maxPass": 214
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "kumar, uma",
+			"maxPass": 27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "faller, florian",
+			"maxPass": 30
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "o'brien, adelheid",
+			"maxPass": 29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "lieblang, jason",
+			"maxPass": 27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "laszlo, eszter",
+			"maxPass": 32
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "maslenikau, ihar",
+			"maxPass": 27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "hempen, daniela",
+			"maxPass": 28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "struch, gela",
+			"maxPass": 31
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "toor, gorsharn",
+			"maxPass": 26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "roy, catherine",
+			"maxPass": 20
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "spreter von kreudenstein, chri",
+			"maxPass": 28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "klibadze, dali;struch, gela",
+			"maxPass": 19
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "sanders, travis;struch, gela",
+			"maxPass": 17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "struch, gela;svanidze, tamara",
+			"maxPass": 21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "zaenker, karl a",
+			"maxPass": 21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "gassner, florian",
+			"maxPass": 22
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "struch, gela;tba",
+			"maxPass": 22
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "petro, ingrid;struch, gela",
+			"maxPass": 9
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "schenkel, guido;struch, gela",
+			"maxPass": 21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "schade, silke",
+			"maxPass": 26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "schallie, charlotte",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "hey, isolde",
+			"maxPass": 15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "coordinator;redlich, jeremy;struch, gela",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "coordinator;jones, lydia;struch, gela",
+			"maxPass": 27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "coordinator;struch, gela;svanidze, tamara",
+			"maxPass": 21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_instructor": "oh, ja-hae",
+			"maxPass": 14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "struch, gela",
+			"maxPass": 31
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "ganzenmueller, petra",
+			"maxPass": 28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "",
+			"maxPass": 109
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "taubeneck, steven",
+			"maxPass": 28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "lieblang, jason",
+			"maxPass": 25
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "kumar, uma",
+			"maxPass": 26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "baer, ursula;struch, gela",
+			"maxPass": 17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "roy, catherine;struch, gela",
+			"maxPass": 29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "oh, ja-hae",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "faller, florian",
+			"maxPass": 22
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "schade, silke",
+			"maxPass": 16
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "maslenikau, ihar",
+			"maxPass": 14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "schallie, charlotte",
+			"maxPass": 21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_instructor": "baer, ursula",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_instructor": "struch, gela",
+			"maxPass": 29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_instructor": "ganzenmueller, petra",
+			"maxPass": 30
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_instructor": "",
+			"maxPass": 100
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_instructor": "lieblang, jason",
+			"maxPass": 26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_instructor": "kumar, uma",
+			"maxPass": 25
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_instructor": "oh, ja-hae",
+			"maxPass": 22
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_instructor": "schade, silke",
+			"maxPass": 19
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_instructor": "maslenikau, ihar",
+			"maxPass": 15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_instructor": "schallie, charlotte",
+			"maxPass": 16
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_instructor": "kumar, uma",
+			"maxPass": 28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_instructor": "faller, florian",
+			"maxPass": 30
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_instructor": "",
+			"maxPass": 54
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_instructor": "spreter von kreudenstein, chri",
+			"maxPass": 23
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_instructor": "hempen, daniela",
+			"maxPass": 25
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_instructor": "rieger, caroline",
+			"maxPass": 21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_instructor": "schallie, charlotte",
+			"maxPass": 19
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "salumets, thomas",
+			"maxPass": 45
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "hempen, daniela",
+			"maxPass": 51
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "",
+			"maxPass": 129
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "hallensleben, markus",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "winthrop-young, geoffrey",
+			"maxPass": 57
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "pailer, gaby",
+			"maxPass": 9
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_instructor": "hempen, daniela",
+			"maxPass": 44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_instructor": "winthrop-young, geoffrey",
+			"maxPass": 62
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_instructor": "redlich, jeremy;schade, silke",
+			"maxPass": 48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_instructor": "",
+			"maxPass": 151
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_instructor": "gassner, florian",
+			"maxPass": 39
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_instructor": "hallensleben, markus",
+			"maxPass": 45
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_instructor": "salumets, thomas",
+			"maxPass": 32
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_instructor": "",
+			"maxPass": 83
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_instructor": "kumar, uma",
+			"maxPass": 36
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_instructor": "hempen, daniela",
+			"maxPass": 44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_instructor": "lieblang, jason",
+			"maxPass": 36
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_instructor": "deschamps, bernard",
+			"maxPass": 39
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_instructor": "hempen, daniela",
+			"maxPass": 50
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_instructor": "beringer, alison",
+			"maxPass": 51
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_instructor": "",
+			"maxPass": 121
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_instructor": "schade, silke",
+			"maxPass": 31
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_instructor": "stenberg, peter a",
+			"maxPass": 47
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ lit <1900",
+			"sections_instructor": "hempen, daniela",
+			"maxPass": 41
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ lit <1900",
+			"sections_instructor": "",
+			"maxPass": 80
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ lit <1900",
+			"sections_instructor": "winthrop-young, geoffrey",
+			"maxPass": 48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ cinema engl",
+			"sections_instructor": "gassner, florian",
+			"maxPass": 49
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ cinema engl",
+			"sections_instructor": "taubeneck, steven",
+			"maxPass": 78
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ cinema engl",
+			"sections_instructor": "",
+			"maxPass": 126
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_instructor": "kumar, uma",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_instructor": "faller, florian",
+			"maxPass": 23
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_instructor": "",
+			"maxPass": 46
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_instructor": "hempen, daniela",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_instructor": "spreter von kreudenstein, chri",
+			"maxPass": 27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_instructor": "ganzenmueller, petra",
+			"maxPass": 20
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "conv german ii",
+			"sections_instructor": "gassner, florian",
+			"maxPass": 17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "conv german ii",
+			"sections_instructor": "",
+			"maxPass": 25
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "conv german ii",
+			"sections_instructor": "lieblang, jason",
+			"maxPass": 17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "conv german ii",
+			"sections_instructor": "pailer, gaby",
+			"maxPass": 8
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "conv german ii",
+			"sections_instructor": "rieger, caroline",
+			"maxPass": 24
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "busi germ",
+			"sections_instructor": "ganzenmueller, petra",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "busi germ",
+			"sections_instructor": "",
+			"maxPass": 19
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "busi germ",
+			"sections_instructor": "kumar, uma",
+			"maxPass": 19
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ translation",
+			"sections_instructor": "rieger, caroline",
+			"maxPass": 14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ translation",
+			"sections_instructor": "",
+			"maxPass": 14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "heaven & earth",
+			"sections_instructor": "gassner, florian",
+			"maxPass": 13
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "heaven & earth",
+			"sections_instructor": "",
+			"maxPass": 19
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "heaven & earth",
+			"sections_instructor": "zaenker, karl a",
+			"maxPass": 19
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "heaven & earth",
+			"sections_instructor": "eming, jutta",
+			"maxPass": 15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "heaven & earth",
+			"sections_instructor": "pailer, gaby",
+			"maxPass": 17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "trad & change",
+			"sections_instructor": "iurascu, ilinca",
+			"maxPass": 11
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "trad & change",
+			"sections_instructor": "",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "trad & change",
+			"sections_instructor": "deschamps, bernard",
+			"maxPass": 14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "trad & change",
+			"sections_instructor": "pailer, gaby;svanidze, tamara",
+			"maxPass": 11
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "trad & change",
+			"sections_instructor": "gassner, florian",
+			"maxPass": 14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "trad & change",
+			"sections_instructor": "pailer, gaby",
+			"maxPass": 18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_instructor": "rieger, caroline",
+			"maxPass": 21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_instructor": "",
+			"maxPass": 25
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_instructor": "hempen, daniela",
+			"maxPass": 24
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_instructor": "faller, florian",
+			"maxPass": 22
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "wrd&mus germ lit",
+			"sections_instructor": "gassner, florian",
+			"maxPass": 36
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "wrd&mus germ lit",
+			"sections_instructor": "",
+			"maxPass": 38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "wrd&mus germ lit",
+			"sections_instructor": "zaenker, karl a",
+			"maxPass": 38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_instructor": "rieger, caroline",
+			"maxPass": 19
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_instructor": "",
+			"maxPass": 20
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_instructor": "spreter von kreudenstein, chri",
+			"maxPass": 16
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_instructor": "hempen, daniela",
+			"maxPass": 20
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_instructor": "eming, jutta",
+			"maxPass": 17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cntrvrs germ cul",
+			"sections_instructor": "hempen, daniela",
+			"maxPass": 11
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cntrvrs germ cul",
+			"sections_instructor": "",
+			"maxPass": 16
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cntrvrs germ cul",
+			"sections_instructor": "winthrop-young, geoffrey",
+			"maxPass": 16
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_instructor": "o'brien, adelheid",
+			"maxPass": 52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_instructor": "maslenikau, ihar",
+			"maxPass": 52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_instructor": "",
+			"maxPass": 252
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_instructor": "faller, florian",
+			"maxPass": 47
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_instructor": "kumar, uma",
+			"maxPass": 32
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_instructor": "o'brien, adelheid",
+			"maxPass": 50
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_instructor": "",
+			"maxPass": 82
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_instructor": "maslenikau, ihar",
+			"maxPass": 26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cultural studies",
+			"sections_instructor": "frackman, kyle",
+			"maxPass": 8
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cultural studies",
+			"sections_instructor": "",
+			"maxPass": 8
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cultural studies",
+			"sections_instructor": "winthrop-young, geoffrey",
+			"maxPass": 6
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "major essay",
+			"sections_instructor": "",
+			"maxPass": 2
+		}
+	]
+}
