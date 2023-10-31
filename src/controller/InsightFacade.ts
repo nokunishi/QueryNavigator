@@ -80,6 +80,7 @@ export default class InsightFacade implements IInsightFacade {
 			// aggregate on 'result'
 			if (queryObject.TRANSFORMATIONS) {
 				let resultAggregate = parseTransformation(
+					queryObject.OPTIONS,
 					queryObject.TRANSFORMATIONS.GROUP,
 					queryObject.TRANSFORMATIONS.APPLY,
 					result

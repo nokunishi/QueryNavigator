@@ -1,6 +1,6 @@
 import {InsightError, ResultTooLargeError} from "../controller/IInsightFacade";
 import {Section} from "../model/Section";
-import {valid_mfield, valid_sfield} from "./QueryParser";
+import {valid_mfield, valid_sfield, Options} from "./QueryParser";
 import Decimal from "decimal.js";
 
 const ApplyToken = ["MAX", "MIN", "AVG", "COUNT", "SUM"];
@@ -12,10 +12,30 @@ const mfield = valid_mfield();
 const sfield = valid_sfield();
 
 export async function parseTransformation(
+	options: Options,
 	groupKeys: string[],
 	apply: string[],
 	data: Promise<Section[]>
 ): Promise<any> {
+	options.COLUMNS.forEach((col) => {
+		if (!groupKeys.includes(col)) {
+			let inApply = false;
+
+			for (const k of apply) {
+				let [key] = Object.entries(k);
+				if (key[0].includes("_")) {
+					throw new InsightError("ApplyKey cannot contain underscore");
+				}
+				if (key[0] === col) {
+					inApply = true;
+				}
+			}
+
+			if (!inApply) {
+				throw new InsightError("COLUMN key not in GROUP/ARRAY");
+			}
+		}
+	});
 	if (groupKeys.length === 0) {
 		throw new InsightError("GROUP is an empty array");
 	}

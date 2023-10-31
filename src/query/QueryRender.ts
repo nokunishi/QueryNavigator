@@ -17,9 +17,6 @@ export async function parseOptions(options: Options, data: Promise<any[]>, apply
 		// Parsing columns
 		let columns = options.COLUMNS;
 		let order = options.ORDER;
-		if (!columns) {
-			throw new InsightError("missing COLUMNS");
-		}
 		let result: any[] = [];
 
 		if (!apply || apply.length === 0) {
@@ -27,23 +24,56 @@ export async function parseOptions(options: Options, data: Promise<any[]>, apply
 		} else {
 			result = renderApply(d, columns);
 		}
-		// parsing order
+
 		if (!order) {
 			return result;
-		}
-		if (!(order as any)["dir"] && !columns.includes(order)) {
-			throw new InsightError("ORDER key must be in COLUMNS");
 		} else {
-			if ((order as any)["dir"] && (order as any)["dir"] === "DOWN") {
-				return result.sort((a, b) => (a[order || ""] < b[order || ""] ? 1 : -1));
-			} else if ((order as any)["dir"] && (order as any)["dir"] !== "UP" && (order as any)["dir"] !== "DOWN") {
-				throw new InsightError("invalid dir");
-			}
-
-			return result.sort((a, b) => (a[order || ""] > b[order || ""] ? 1 : -1));
+			return processOrder(result, order, columns);
 		}
 	});
 	return res;
+}
+
+function processOrder(result: any[], order: string, columns: string[]): any[] {
+	if (!(order as any)["dir"] && !columns.includes(order)) {
+		throw new InsightError("ORDER key must be in COLUMNS");
+	} else if ((order as any)["dir"] && (order as any)["dir"] !== "UP" && (order as any)["dir"] !== "DOWN") {
+		throw new InsightError("invalid dir");
+	} else if ((order as any)["dir"] && !(order as any)["keys"]) {
+		throw new InsightError("ORDER missing KEYS (when DIR present)");
+	} else if ((order as any)["keys"]) {
+		(order as any)["keys"].forEach((k: any) => {
+			if (!columns.includes(k)) {
+				throw new InsightError("invalid keys in ORDER KEYS");
+			}
+		});
+	}
+	if ((order as any)["dir"] && (order as any)["key"]) {
+		if ((order as any)["dir"] === "DOWN") {
+			return result.sort((a, b) => tieBreaker(a, b, (order as any)["keys"]));
+		}
+		return result.sort((a, b) => tieBreaker(b, a, (order as any)["keys"]));
+	}
+
+	if ((order as any)["dir"] === "DOWN") {
+		return result.sort((a, b) => (a[order || ""] < b[order || ""] ? 1 : -1));
+	}
+
+	// default
+	return result.sort((a, b) => (a[order || ""] > b[order || ""] ? 1 : -1));
+}
+
+// return 1 if a > b
+function tieBreaker(a: any, b: any, order: string[]): number {
+	for (const o of order) {
+		if (a[o || ""] > b[o || ""]) {
+			return 1;
+		} else if (a[o || ""] < b[o || ""]) {
+			return -1;
+		}
+	}
+
+	return 1;
 }
 
 function renderColumns(d: any[], columns: string[]): Array<{[key: string]: string | number}> {

@@ -1,0 +1,9130 @@
+{
+	"title": "tr_valid_tie_breaker1",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{
+					"IS": {
+						"sections_dept": "cpsc"
+					}
+				},
+				{
+					"IS": {
+						"sections_dept": "germ"
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"sections_title",
+				"sections_pass",
+				"sections_avg"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"sections_avg",
+					"sections_pass"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_dept",
+				"sections_title",
+				"sections_avg",
+				"sections_pass"
+			],
+			"APPLY": [
+				{
+					"auditSUM": {
+						"SUM": "sections_audit"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 1,
+			"sections_avg": 95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computl ling 1",
+			"sections_pass": 6,
+			"sections_avg": 94.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "thry of automata",
+			"sections_pass": 5,
+			"sections_avg": 94
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "honours thesis",
+			"sections_pass": 6,
+			"sections_avg": 93.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "honours thesis",
+			"sections_pass": 8,
+			"sections_avg": 93.38
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "thry of automata",
+			"sections_pass": 8,
+			"sections_avg": 92.75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "honours thesis",
+			"sections_pass": 8,
+			"sections_avg": 92.63
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "honours thesis",
+			"sections_pass": 6,
+			"sections_avg": 92.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "thry of automata",
+			"sections_pass": 7,
+			"sections_avg": 92.43
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "student seminar",
+			"sections_pass": 15,
+			"sections_avg": 92.4
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cultural studies",
+			"sections_pass": 8,
+			"sections_avg": 92.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "student seminar",
+			"sections_pass": 6,
+			"sections_avg": 92
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "software eng",
+			"sections_pass": 19,
+			"sections_avg": 91.79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_pass": 16,
+			"sections_avg": 91.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine learn i",
+			"sections_pass": 54,
+			"sections_avg": 91.22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp comm protcl",
+			"sections_pass": 9,
+			"sections_avg": 91.22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "thry of automata",
+			"sections_pass": 4,
+			"sections_avg": 91
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 2",
+			"sections_pass": 7,
+			"sections_avg": 90.71
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "student seminar",
+			"sections_pass": 10,
+			"sections_avg": 90.6
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine learn i",
+			"sections_pass": 59,
+			"sections_avg": 90.53
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "student seminar",
+			"sections_pass": 15,
+			"sections_avg": 90.27
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "honours thesis",
+			"sections_pass": 4,
+			"sections_avg": 90.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "student seminar",
+			"sections_pass": 22,
+			"sections_avg": 90.14
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp comm protcl",
+			"sections_pass": 9,
+			"sections_avg": 90.11
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "conv german ii",
+			"sections_pass": 7,
+			"sections_avg": 90
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "student seminar",
+			"sections_pass": 7,
+			"sections_avg": 89.86
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "phy user intfc",
+			"sections_pass": 4,
+			"sections_avg": 89.75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "student seminar",
+			"sections_pass": 14,
+			"sections_avg": 89.64
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computl ling 1",
+			"sections_pass": 19,
+			"sections_avg": 89.47
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "software eng",
+			"sections_pass": 12,
+			"sections_avg": 89.17
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computl ling 1",
+			"sections_pass": 10,
+			"sections_avg": 89.1
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intgrt sys desgn",
+			"sections_pass": 11,
+			"sections_avg": 89.09
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "student seminar",
+			"sections_pass": 15,
+			"sections_avg": 89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "software eng",
+			"sections_pass": 7,
+			"sections_avg": 89
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 6,
+			"sections_avg": 89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 3,
+			"sections_avg": 89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computl ling 1",
+			"sections_pass": 17,
+			"sections_avg": 88.82
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "info visualizatn",
+			"sections_pass": 25,
+			"sections_avg": 88.68
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "honours thesis",
+			"sections_pass": 4,
+			"sections_avg": 88.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "info visualizatn",
+			"sections_pass": 17,
+			"sections_avg": 88.47
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "softwr eng proj",
+			"sections_pass": 57,
+			"sections_avg": 88.39
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 25,
+			"sections_avg": 88.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intgrt sys desgn",
+			"sections_pass": 9,
+			"sections_avg": 88.22
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 88.21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 28,
+			"sections_avg": 88.04
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptng life sci",
+			"sections_pass": 32,
+			"sections_avg": 88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "prog lang princ",
+			"sections_pass": 7,
+			"sections_avg": 88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_pass": 6,
+			"sections_avg": 88
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "major essay",
+			"sections_pass": 2,
+			"sections_avg": 88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "softwr eng proj",
+			"sections_pass": 74,
+			"sections_avg": 87.93
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "honours thesis",
+			"sections_pass": 6,
+			"sections_avg": 87.83
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 87.79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "para algs & arch",
+			"sections_pass": 18,
+			"sections_avg": 87.78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "phy user intfc",
+			"sections_pass": 15,
+			"sections_avg": 87.67
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intgrt sys desgn",
+			"sections_pass": 11,
+			"sections_avg": 87.64
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine learn i",
+			"sections_pass": 31,
+			"sections_avg": 87.61
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intgrt sys desgn",
+			"sections_pass": 12,
+			"sections_avg": 87.58
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ translation",
+			"sections_pass": 14,
+			"sections_avg": 87.43
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computl ling 1",
+			"sections_pass": 11,
+			"sections_avg": 87.36
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cntrvrs germ cul",
+			"sections_pass": 11,
+			"sections_avg": 87.27
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "prog lang princ",
+			"sections_pass": 5,
+			"sections_avg": 87.2
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "para algs & arch",
+			"sections_pass": 13,
+			"sections_avg": 87
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cultural studies",
+			"sections_pass": 5,
+			"sections_avg": 87
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 1,
+			"sections_avg": 87
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 26,
+			"sections_avg": 86.81
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 86.8
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intgrt sys desgn",
+			"sections_pass": 14,
+			"sections_avg": 86.71
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_pass": 14,
+			"sections_avg": 86.71
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 16,
+			"sections_avg": 86.69
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_pass": 13,
+			"sections_avg": 86.69
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 86.52
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "phy user intfc",
+			"sections_pass": 4,
+			"sections_avg": 86.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 2,
+			"sections_avg": 86.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 98,
+			"sections_avg": 86.47
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 31,
+			"sections_avg": 86.42
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptng life sci",
+			"sections_pass": 93,
+			"sections_avg": 86.34
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "fund alg dsgn&an",
+			"sections_pass": 18,
+			"sections_avg": 86.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "conv german ii",
+			"sections_pass": 25,
+			"sections_avg": 86.32
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_pass": 12,
+			"sections_avg": 86.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "fund alg dsgn&an",
+			"sections_pass": 23,
+			"sections_avg": 86.22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 1",
+			"sections_pass": 15,
+			"sections_avg": 86.2
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 86.17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "busi germ",
+			"sections_pass": 18,
+			"sections_avg": 86.17
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 40,
+			"sections_avg": 86.15
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "fund alg dsgn&an",
+			"sections_pass": 23,
+			"sections_avg": 86.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "softwr eng proj",
+			"sections_pass": 34,
+			"sections_avg": 86.12
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine learn i",
+			"sections_pass": 79,
+			"sections_avg": 86.06
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "parallel comput",
+			"sections_pass": 51,
+			"sections_avg": 86.04
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 86.04
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "compiler constrc",
+			"sections_pass": 44,
+			"sections_avg": 86
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 4,
+			"sections_avg": 86
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 3,
+			"sections_avg": 86
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 85.97
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 85.93
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "prog lang princ",
+			"sections_pass": 10,
+			"sections_avg": 85.9
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 119,
+			"sections_avg": 85.87
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 50,
+			"sections_avg": 85.8
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "honours thesis",
+			"sections_pass": 9,
+			"sections_avg": 85.8
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 85.78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "fund alg dsgn&an",
+			"sections_pass": 23,
+			"sections_avg": 85.78
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 85.76
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 4,
+			"sections_avg": 85.75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "softwr eng proj",
+			"sections_pass": 68,
+			"sections_avg": 85.72
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cultural studies",
+			"sections_pass": 6,
+			"sections_avg": 85.67
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 85.66
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 85.65
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "para algs & arch",
+			"sections_pass": 20,
+			"sections_avg": 85.65
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 42,
+			"sections_avg": 85.6
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 5,
+			"sections_avg": 85.6
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "softwr eng proj",
+			"sections_pass": 75,
+			"sections_avg": 85.59
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 21,
+			"sections_avg": 85.52
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 107,
+			"sections_avg": 85.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 25,
+			"sections_avg": 85.48
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 27,
+			"sections_avg": 85.46
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 85.41
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "phy user intfc",
+			"sections_pass": 20,
+			"sections_avg": 85.35
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_pass": 11,
+			"sections_avg": 85.27
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 4,
+			"sections_avg": 85.25
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 309,
+			"sections_avg": 85.21
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_pass": 18,
+			"sections_avg": 85.17
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_pass": 76,
+			"sections_avg": 85.13
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 41,
+			"sections_avg": 85.12
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 85.12
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 60,
+			"sections_avg": 85.11
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 85.07
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 31,
+			"sections_avg": 85.06
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 85.04
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 51,
+			"sections_avg": 85.02
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "compiler constrc",
+			"sections_pass": 17,
+			"sections_avg": 85
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "para algs & arch",
+			"sections_pass": 7,
+			"sections_avg": 85
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 7,
+			"sections_avg": 85
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 3,
+			"sections_avg": 85
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 1,
+			"sections_avg": 85
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 84.96
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 32,
+			"sections_avg": 84.94
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 69,
+			"sections_avg": 84.91
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 30,
+			"sections_avg": 84.9
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "compiler constrc",
+			"sections_pass": 14,
+			"sections_avg": 84.86
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "fund alg dsgn&an",
+			"sections_pass": 13,
+			"sections_avg": 84.85
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp comm protcl",
+			"sections_pass": 18,
+			"sections_avg": 84.83
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 82,
+			"sections_avg": 84.76
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "software eng",
+			"sections_pass": 16,
+			"sections_avg": 84.75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "prog lang princ",
+			"sections_pass": 8,
+			"sections_avg": 84.75
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ lit <1900",
+			"sections_pass": 41,
+			"sections_avg": 84.68
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "thry of automata",
+			"sections_pass": 6,
+			"sections_avg": 84.67
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 3,
+			"sections_avg": 84.67
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_pass": 116,
+			"sections_avg": 84.66
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 44,
+			"sections_avg": 84.66
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 50,
+			"sections_avg": 84.64
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "conv german ii",
+			"sections_pass": 8,
+			"sections_avg": 84.63
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 84.62
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 47,
+			"sections_avg": 84.6
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine learn i",
+			"sections_pass": 43,
+			"sections_avg": 84.6
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 84.57
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 84.57
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 106,
+			"sections_avg": 84.56
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 84.53
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 84.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "student seminar",
+			"sections_pass": 14,
+			"sections_avg": 84.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 43,
+			"sections_avg": 84.49
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 84.48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 84.41
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "conv german ii",
+			"sections_pass": 22,
+			"sections_avg": 84.41
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_pass": 105,
+			"sections_avg": 84.39
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 84.37
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 84.33
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intgrt sys desgn",
+			"sections_pass": 6,
+			"sections_avg": 84.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 84.29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 84.26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 19,
+			"sections_avg": 84.26
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "prog lang princ",
+			"sections_pass": 20,
+			"sections_avg": 84.25
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 4,
+			"sections_avg": 84.25
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 42,
+			"sections_avg": 84.21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "trad & change",
+			"sections_pass": 11,
+			"sections_avg": 84.18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 84.17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 38,
+			"sections_avg": 84.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "para algs & arch",
+			"sections_pass": 15,
+			"sections_avg": 84.13
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 47,
+			"sections_avg": 84.11
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 39,
+			"sections_avg": 84.08
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 24,
+			"sections_avg": 84.08
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_pass": 63,
+			"sections_avg": 84.02
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 94,
+			"sections_avg": 84
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 2",
+			"sections_pass": 15,
+			"sections_avg": 84
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "compiler constrc",
+			"sections_pass": 16,
+			"sections_avg": 83.94
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 15,
+			"sections_avg": 83.93
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 15,
+			"sections_avg": 83.93
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 59,
+			"sections_avg": 83.92
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 24,
+			"sections_avg": 83.88
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ translation",
+			"sections_pass": 14,
+			"sections_avg": 83.86
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 83.85
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 83.81
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "thry of automata",
+			"sections_pass": 5,
+			"sections_avg": 83.8
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp comm protcl",
+			"sections_pass": 23,
+			"sections_avg": 83.78
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 83.76
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 25,
+			"sections_avg": 83.72
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 24,
+			"sections_avg": 83.71
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 7,
+			"sections_avg": 83.71
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 18,
+			"sections_avg": 83.67
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_pass": 15,
+			"sections_avg": 83.67
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 25,
+			"sections_avg": 83.64
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "busi germ",
+			"sections_pass": 11,
+			"sections_avg": 83.64
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 83.63
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 18,
+			"sections_avg": 83.61
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 15,
+			"sections_avg": 83.6
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_pass": 32,
+			"sections_avg": 83.59
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 83.59
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 22,
+			"sections_avg": 83.59
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 30,
+			"sections_avg": 83.57
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 22,
+			"sections_avg": 83.55
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 11,
+			"sections_avg": 83.55
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 83.52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 42,
+			"sections_avg": 83.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 83.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 21,
+			"sections_avg": 83.48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 83.47
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 77,
+			"sections_avg": 83.45
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 83.44
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 1",
+			"sections_pass": 14,
+			"sections_avg": 83.43
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 6,
+			"sections_avg": 83.43
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 17,
+			"sections_avg": 83.41
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_pass": 17,
+			"sections_avg": 83.41
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 2",
+			"sections_pass": 18,
+			"sections_avg": 83.39
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 21,
+			"sections_avg": 83.38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_pass": 16,
+			"sections_avg": 83.38
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comput robotics",
+			"sections_pass": 14,
+			"sections_avg": 83.36
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "trad & change",
+			"sections_pass": 14,
+			"sections_avg": 83.36
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "phy user intfc",
+			"sections_pass": 11,
+			"sections_avg": 83.36
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 83.35
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "conv german ii",
+			"sections_pass": 17,
+			"sections_avg": 83.35
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 24,
+			"sections_avg": 83.33
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 1",
+			"sections_pass": 22,
+			"sections_avg": 83.32
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_pass": 19,
+			"sections_avg": 83.32
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 83.3
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 24,
+			"sections_avg": 83.29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 41,
+			"sections_avg": 83.24
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 30,
+			"sections_avg": 83.23
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 18,
+			"sections_avg": 83.22
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 19,
+			"sections_avg": 83.21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "busi germ",
+			"sections_pass": 19,
+			"sections_avg": 83.21
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "para algs & arch",
+			"sections_pass": 25,
+			"sections_avg": 83.2
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 21,
+			"sections_avg": 83.19
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "fund alg dsgn&an",
+			"sections_pass": 22,
+			"sections_avg": 83.17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 89,
+			"sections_avg": 83.15
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "softwr eng proj",
+			"sections_pass": 72,
+			"sections_avg": 83.15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 34,
+			"sections_avg": 83.15
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "softwr eng proj",
+			"sections_pass": 47,
+			"sections_avg": 83.13
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 26,
+			"sections_avg": 83.12
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 83.1
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "honours thesis",
+			"sections_pass": 11,
+			"sections_avg": 83.08
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 28,
+			"sections_avg": 83.03
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "fund alg dsgn&an",
+			"sections_pass": 22,
+			"sections_avg": 83
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine learn i",
+			"sections_pass": 14,
+			"sections_avg": 83
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptng life sci",
+			"sections_pass": 151,
+			"sections_avg": 82.99
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 82.96
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "conv german ii",
+			"sections_pass": 24,
+			"sections_avg": 82.96
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 20,
+			"sections_avg": 82.95
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 49,
+			"sections_avg": 82.92
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 21,
+			"sections_avg": 82.9
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 27,
+			"sections_avg": 82.89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 1",
+			"sections_pass": 20,
+			"sections_avg": 82.85
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 51,
+			"sections_avg": 82.83
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 82.83
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine learn i",
+			"sections_pass": 22,
+			"sections_avg": 82.82
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 82.81
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 99,
+			"sections_avg": 82.76
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 51,
+			"sections_avg": 82.76
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_pass": 21,
+			"sections_avg": 82.76
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 12,
+			"sections_avg": 82.75
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 46,
+			"sections_avg": 82.74
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 30,
+			"sections_avg": 82.73
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 22,
+			"sections_avg": 82.73
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 15,
+			"sections_avg": 82.73
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 47,
+			"sections_avg": 82.72
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 82.71
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_pass": 171,
+			"sections_avg": 82.66
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "para algs & arch",
+			"sections_pass": 23,
+			"sections_avg": 82.65
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_pass": 17,
+			"sections_avg": 82.65
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 147,
+			"sections_avg": 82.63
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 39,
+			"sections_avg": 82.62
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 82.59
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 21,
+			"sections_avg": 82.59
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 26,
+			"sections_avg": 82.58
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 18,
+			"sections_avg": 82.56
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 82.55
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 2",
+			"sections_pass": 11,
+			"sections_avg": 82.55
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 82.54
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 82.52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 21,
+			"sections_avg": 82.52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 252,
+			"sections_avg": 82.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_pass": 20,
+			"sections_avg": 82.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 16,
+			"sections_avg": 82.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "software eng",
+			"sections_pass": 6,
+			"sections_avg": 82.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 48,
+			"sections_avg": 82.49
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 82.48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 82.48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 82.46
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 110,
+			"sections_avg": 82.45
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 43,
+			"sections_avg": 82.44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 16,
+			"sections_avg": 82.44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "busi germ",
+			"sections_pass": 16,
+			"sections_avg": 82.44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cntrvrs germ cul",
+			"sections_pass": 16,
+			"sections_avg": 82.44
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 156,
+			"sections_avg": 82.43
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 44,
+			"sections_avg": 82.43
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 35,
+			"sections_avg": 82.43
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 82.42
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 51,
+			"sections_avg": 82.41
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptng life sci",
+			"sections_pass": 147,
+			"sections_avg": 82.39
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "trad & change",
+			"sections_pass": 18,
+			"sections_avg": 82.39
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 34,
+			"sections_avg": 82.38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 34,
+			"sections_avg": 82.38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 26,
+			"sections_avg": 82.35
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 42,
+			"sections_avg": 82.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 15,
+			"sections_avg": 82.33
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 30,
+			"sections_avg": 82.32
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 1",
+			"sections_pass": 16,
+			"sections_avg": 82.31
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 43,
+			"sections_avg": 82.3
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 82.29
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_pass": 18,
+			"sections_avg": 82.28
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 62,
+			"sections_avg": 82.27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 82.27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 23,
+			"sections_avg": 82.26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 48,
+			"sections_avg": 82.25
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 17,
+			"sections_avg": 82.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 30,
+			"sections_avg": 82.2
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "conv german ii",
+			"sections_pass": 15,
+			"sections_avg": 82.2
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 51,
+			"sections_avg": 82.18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 32,
+			"sections_avg": 82.18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comput robotics",
+			"sections_pass": 13,
+			"sections_avg": 82.15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 28,
+			"sections_avg": 82.14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 14,
+			"sections_avg": 82.14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 48,
+			"sections_avg": 82.13
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 49,
+			"sections_avg": 82.12
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 82.1
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 45,
+			"sections_avg": 82.09
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 22,
+			"sections_avg": 82.09
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "phy user intfc",
+			"sections_pass": 14,
+			"sections_avg": 82.07
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "heaven & earth",
+			"sections_pass": 17,
+			"sections_avg": 82.06
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptng life sci",
+			"sections_pass": 130,
+			"sections_avg": 82.05
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 49,
+			"sections_avg": 82.04
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 82.04
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 82.04
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 11,
+			"sections_avg": 82
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 79,
+			"sections_avg": 81.97
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 27,
+			"sections_avg": 81.96
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 25,
+			"sections_avg": 81.96
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_pass": 93,
+			"sections_avg": 81.9
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 245,
+			"sections_avg": 81.89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 31,
+			"sections_avg": 81.88
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 81.86
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 81.86
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 81.86
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 20,
+			"sections_avg": 81.86
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "trad & change",
+			"sections_pass": 14,
+			"sections_avg": 81.86
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_pass": 77,
+			"sections_avg": 81.84
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_pass": 24,
+			"sections_avg": 81.83
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 68,
+			"sections_avg": 81.82
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 74,
+			"sections_avg": 81.8
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 45,
+			"sections_avg": 81.8
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 552,
+			"sections_avg": 81.79
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 81.78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 128,
+			"sections_avg": 81.76
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 45,
+			"sections_avg": 81.76
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 597,
+			"sections_avg": 81.74
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 81.74
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 44,
+			"sections_avg": 81.73
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 15,
+			"sections_avg": 81.73
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 49,
+			"sections_avg": 81.71
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_pass": 7,
+			"sections_avg": 81.71
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 30,
+			"sections_avg": 81.7
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 19,
+			"sections_avg": 81.7
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 81.69
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "softwr eng proj",
+			"sections_pass": 40,
+			"sections_avg": 81.68
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 31,
+			"sections_avg": 81.68
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 48,
+			"sections_avg": 81.67
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 81.67
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cmpt intract",
+			"sections_pass": 22,
+			"sections_avg": 81.64
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 49,
+			"sections_avg": 81.63
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 81.62
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 18,
+			"sections_avg": 81.61
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 81.58
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 1",
+			"sections_pass": 14,
+			"sections_avg": 81.57
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 31,
+			"sections_avg": 81.56
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 15,
+			"sections_avg": 81.53
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 81.52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 26,
+			"sections_avg": 81.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 21,
+			"sections_avg": 81.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_pass": 25,
+			"sections_avg": 81.48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 15,
+			"sections_avg": 81.47
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 58,
+			"sections_avg": 81.45
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 36,
+			"sections_avg": 81.44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 18,
+			"sections_avg": 81.44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 18,
+			"sections_avg": 81.44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ lit <1900",
+			"sections_pass": 32,
+			"sections_avg": 81.42
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 116,
+			"sections_avg": 81.41
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 43,
+			"sections_avg": 81.4
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 15,
+			"sections_avg": 81.4
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 52,
+			"sections_avg": 81.38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "busi germ",
+			"sections_pass": 16,
+			"sections_avg": 81.38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 30,
+			"sections_avg": 81.37
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 81.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_pass": 9,
+			"sections_avg": 81.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 81.31
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 16,
+			"sections_avg": 81.31
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_pass": 17,
+			"sections_avg": 81.29
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_pass": 29,
+			"sections_avg": 81.28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 81.28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 30,
+			"sections_avg": 81.27
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "fund alg dsgn&an",
+			"sections_pass": 20,
+			"sections_avg": 81.25
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 5,
+			"sections_avg": 81.2
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 54,
+			"sections_avg": 81.19
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 162,
+			"sections_avg": 81.18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "distrbt'd systms",
+			"sections_pass": 77,
+			"sections_avg": 81.18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_pass": 74,
+			"sections_avg": 81.18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 28,
+			"sections_avg": 81.18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 139,
+			"sections_avg": 81.17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 46,
+			"sections_avg": 81.17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 30,
+			"sections_avg": 81.17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 18,
+			"sections_avg": 81.17
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 184,
+			"sections_avg": 81.16
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 38,
+			"sections_avg": 81.16
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 25,
+			"sections_avg": 81.16
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 81.15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 81.14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 22,
+			"sections_avg": 81.14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 62,
+			"sections_avg": 81.13
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 38,
+			"sections_avg": 81.13
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "busi germ",
+			"sections_pass": 15,
+			"sections_avg": 81.13
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 32,
+			"sections_avg": 81.12
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine learn i",
+			"sections_pass": 26,
+			"sections_avg": 81.12
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 25,
+			"sections_avg": 81.12
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 49,
+			"sections_avg": 81.1
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 81.08
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 52,
+			"sections_avg": 81.06
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artif intell 1",
+			"sections_pass": 17,
+			"sections_avg": 81.06
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 16,
+			"sections_avg": 81.06
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 121,
+			"sections_avg": 81.02
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 32,
+			"sections_avg": 81
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 81
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 21,
+			"sections_avg": 81
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 16,
+			"sections_avg": 81
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 79,
+			"sections_avg": 80.96
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 26,
+			"sections_avg": 80.96
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 25,
+			"sections_avg": 80.96
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 21,
+			"sections_avg": 80.96
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 44,
+			"sections_avg": 80.95
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 22,
+			"sections_avg": 80.95
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_pass": 19,
+			"sections_avg": 80.95
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 15,
+			"sections_avg": 80.93
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 80.92
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 91,
+			"sections_avg": 80.9
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 20,
+			"sections_avg": 80.9
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 35,
+			"sections_avg": 80.89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 270,
+			"sections_avg": 80.85
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_pass": 68,
+			"sections_avg": 80.85
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 80.85
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 25,
+			"sections_avg": 80.84
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 80.83
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 80.82
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "busi germ",
+			"sections_pass": 17,
+			"sections_avg": 80.82
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 50,
+			"sections_avg": 80.8
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 14,
+			"sections_avg": 80.8
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 24,
+			"sections_avg": 80.79
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 80.79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 116,
+			"sections_avg": 80.77
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 25,
+			"sections_avg": 80.76
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 26,
+			"sections_avg": 80.73
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 11,
+			"sections_avg": 80.73
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_pass": 92,
+			"sections_avg": 80.69
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 13,
+			"sections_avg": 80.69
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 24,
+			"sections_avg": 80.68
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 22,
+			"sections_avg": 80.68
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 129,
+			"sections_avg": 80.67
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 144,
+			"sections_avg": 80.64
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 22,
+			"sections_avg": 80.64
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 85,
+			"sections_avg": 80.63
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 45,
+			"sections_avg": 80.62
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 21,
+			"sections_avg": 80.62
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cp interactn",
+			"sections_pass": 13,
+			"sections_avg": 80.62
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 45,
+			"sections_avg": 80.6
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 25,
+			"sections_avg": 80.6
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 18,
+			"sections_avg": 80.56
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_pass": 42,
+			"sections_avg": 80.55
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 80.55
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 21,
+			"sections_avg": 80.55
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 80.54
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_pass": 158,
+			"sections_avg": 80.52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 21,
+			"sections_avg": 80.52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 26,
+			"sections_avg": 80.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 21,
+			"sections_avg": 80.48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 30,
+			"sections_avg": 80.47
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 80.43
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 94,
+			"sections_avg": 80.38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 21,
+			"sections_avg": 80.36
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 150,
+			"sections_avg": 80.35
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 66,
+			"sections_avg": 80.34
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 92,
+			"sections_avg": 80.32
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 38,
+			"sections_avg": 80.32
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_pass": 44,
+			"sections_avg": 80.31
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_pass": 146,
+			"sections_avg": 80.29
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 85,
+			"sections_avg": 80.26
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 156,
+			"sections_avg": 80.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_pass": 24,
+			"sections_avg": 80.24
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 47,
+			"sections_avg": 80.23
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 68,
+			"sections_avg": 80.22
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 19,
+			"sections_avg": 80.21
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 79,
+			"sections_avg": 80.2
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 41,
+			"sections_avg": 80.2
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_pass": 20,
+			"sections_avg": 80.2
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 80.2
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 5,
+			"sections_avg": 80.2
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 80.19
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_pass": 74,
+			"sections_avg": 80.18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_pass": 75,
+			"sections_avg": 80.15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 27,
+			"sections_avg": 80.15
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_pass": 45,
+			"sections_avg": 80.11
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 37,
+			"sections_avg": 80.11
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 19,
+			"sections_avg": 80.11
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptng life sci",
+			"sections_pass": 144,
+			"sections_avg": 80.09
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 49,
+			"sections_avg": 80.08
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 232,
+			"sections_avg": 80.07
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 95,
+			"sections_avg": 80.07
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 54,
+			"sections_avg": 80.07
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 449,
+			"sections_avg": 80.04
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 28,
+			"sections_avg": 80.04
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 46,
+			"sections_avg": 80
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 80
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_pass": 21,
+			"sections_avg": 80
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "busi germ",
+			"sections_pass": 19,
+			"sections_avg": 80
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 16,
+			"sections_avg": 80
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 2,
+			"sections_avg": 80
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 117,
+			"sections_avg": 79.98
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 43,
+			"sections_avg": 79.98
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 31,
+			"sections_avg": 79.97
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 22,
+			"sections_avg": 79.95
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 79.93
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 31,
+			"sections_avg": 79.9
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 552,
+			"sections_avg": 79.89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "theory comptg",
+			"sections_pass": 17,
+			"sections_avg": 79.88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comput robotics",
+			"sections_pass": 8,
+			"sections_avg": 79.88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "parallel comput",
+			"sections_pass": 52,
+			"sections_avg": 79.87
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ translation",
+			"sections_pass": 14,
+			"sections_avg": 79.87
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 212,
+			"sections_avg": 79.86
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 79.83
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 12,
+			"sections_avg": 79.83
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 21,
+			"sections_avg": 79.82
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 79.79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_pass": 26,
+			"sections_avg": 79.78
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 23,
+			"sections_avg": 79.78
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 91,
+			"sections_avg": 79.77
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 76,
+			"sections_avg": 79.76
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 41,
+			"sections_avg": 79.76
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 79.76
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 35,
+			"sections_avg": 79.74
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 44,
+			"sections_avg": 79.73
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 210,
+			"sections_avg": 79.71
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_pass": 70,
+			"sections_avg": 79.69
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ cinema engl",
+			"sections_pass": 70,
+			"sections_avg": 79.69
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 46,
+			"sections_avg": 79.67
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 79.67
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 18,
+			"sections_avg": 79.67
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 18,
+			"sections_avg": 79.67
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 41,
+			"sections_avg": 79.66
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 40,
+			"sections_avg": 79.65
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 79.65
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 19,
+			"sections_avg": 79.63
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 18,
+			"sections_avg": 79.63
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_pass": 119,
+			"sections_avg": 79.62
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 52,
+			"sections_avg": 79.62
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "trad & change",
+			"sections_pass": 13,
+			"sections_avg": 79.62
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_pass": 17,
+			"sections_avg": 79.61
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ cinema engl",
+			"sections_pass": 72,
+			"sections_avg": 79.58
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ cinema engl",
+			"sections_pass": 69,
+			"sections_avg": 79.58
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 42,
+			"sections_avg": 79.57
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 155,
+			"sections_avg": 79.56
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 113,
+			"sections_avg": 79.56
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 15,
+			"sections_avg": 79.56
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 435,
+			"sections_avg": 79.54
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "compiler constrc",
+			"sections_pass": 23,
+			"sections_avg": 79.54
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 306,
+			"sections_avg": 79.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_pass": 22,
+			"sections_avg": 79.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 91,
+			"sections_avg": 79.46
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_pass": 50,
+			"sections_avg": 79.46
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 510,
+			"sections_avg": 79.45
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 98,
+			"sections_avg": 79.44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ cinema engl",
+			"sections_pass": 72,
+			"sections_avg": 79.44
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 71,
+			"sections_avg": 79.44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 44,
+			"sections_avg": 79.44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 39,
+			"sections_avg": 79.44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 39,
+			"sections_avg": 79.44
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_pass": 79,
+			"sections_avg": 79.43
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 97,
+			"sections_avg": 79.42
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 44,
+			"sections_avg": 79.42
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 82,
+			"sections_avg": 79.41
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 29,
+			"sections_avg": 79.41
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_pass": 135,
+			"sections_avg": 79.39
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 56,
+			"sections_avg": 79.38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 29,
+			"sections_avg": 79.38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 26,
+			"sections_avg": 79.38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 30,
+			"sections_avg": 79.37
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 79.36
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 40,
+			"sections_avg": 79.35
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 19,
+			"sections_avg": 79.35
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 214,
+			"sections_avg": 79.32
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 41,
+			"sections_avg": 79.32
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 26,
+			"sections_avg": 79.32
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 42,
+			"sections_avg": 79.31
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "distrbt'd systms",
+			"sections_pass": 13,
+			"sections_avg": 79.31
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 79.3
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 22,
+			"sections_avg": 79.3
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_pass": 64,
+			"sections_avg": 79.29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 79.26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 426,
+			"sections_avg": 79.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computl ling 1",
+			"sections_pass": 7,
+			"sections_avg": 79.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 59,
+			"sections_avg": 79.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cp interactn",
+			"sections_pass": 28,
+			"sections_avg": 79.24
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 17,
+			"sections_avg": 79.24
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 79.21
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_pass": 87,
+			"sections_avg": 79.19
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 12,
+			"sections_avg": 79.17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 39,
+			"sections_avg": 79.15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 27,
+			"sections_avg": 79.15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 20,
+			"sections_avg": 79.15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 20,
+			"sections_avg": 79.15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ cinema engl",
+			"sections_pass": 49,
+			"sections_avg": 79.14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 21,
+			"sections_avg": 79.14
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_pass": 104,
+			"sections_avg": 79.13
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 16,
+			"sections_avg": 79.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 75,
+			"sections_avg": 79.12
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 74,
+			"sections_avg": 79.12
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 17,
+			"sections_avg": 79.12
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 28,
+			"sections_avg": 79.1
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 18,
+			"sections_avg": 79.1
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 79.07
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 21,
+			"sections_avg": 79.05
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 20,
+			"sections_avg": 79.05
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_pass": 20,
+			"sections_avg": 79.05
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 18,
+			"sections_avg": 79.05
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 347,
+			"sections_avg": 79.04
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 43,
+			"sections_avg": 79.02
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_pass": 118,
+			"sections_avg": 79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 32,
+			"sections_avg": 79
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 79
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 50,
+			"sections_avg": 78.98
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 36,
+			"sections_avg": 78.97
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_pass": 21,
+			"sections_avg": 78.95
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 21,
+			"sections_avg": 78.95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "softwr eng proj",
+			"sections_pass": 44,
+			"sections_avg": 78.93
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "heaven & earth",
+			"sections_pass": 15,
+			"sections_avg": 78.93
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 36,
+			"sections_avg": 78.92
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 43,
+			"sections_avg": 78.91
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 109,
+			"sections_avg": 78.88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 50,
+			"sections_avg": 78.88
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 78.88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "fund alg dsgn&an",
+			"sections_pass": 14,
+			"sections_avg": 78.87
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 116,
+			"sections_avg": 78.85
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 78.85
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ lit <1900",
+			"sections_pass": 80,
+			"sections_avg": 78.83
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 78.82
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 42,
+			"sections_avg": 78.81
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 100,
+			"sections_avg": 78.8
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 99,
+			"sections_avg": 78.79
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 29,
+			"sections_avg": 78.79
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 45,
+			"sections_avg": 78.78
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 27,
+			"sections_avg": 78.78
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 23,
+			"sections_avg": 78.78
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 44,
+			"sections_avg": 78.77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 114,
+			"sections_avg": 78.75
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 20,
+			"sections_avg": 78.75
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 30,
+			"sections_avg": 78.73
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 30,
+			"sections_avg": 78.73
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_pass": 48,
+			"sections_avg": 78.72
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 113,
+			"sections_avg": 78.7
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 65,
+			"sections_avg": 78.7
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 156,
+			"sections_avg": 78.69
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 206,
+			"sections_avg": 78.68
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 30,
+			"sections_avg": 78.68
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 78.68
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 22,
+			"sections_avg": 78.68
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 21,
+			"sections_avg": 78.67
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 32,
+			"sections_avg": 78.66
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 78.65
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 23,
+			"sections_avg": 78.65
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 20,
+			"sections_avg": 78.65
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 24,
+			"sections_avg": 78.63
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ cinema engl",
+			"sections_pass": 42,
+			"sections_avg": 78.62
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 45,
+			"sections_avg": 78.6
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 39,
+			"sections_avg": 78.59
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 29,
+			"sections_avg": 78.59
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 78.58
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_pass": 64,
+			"sections_avg": 78.56
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 22,
+			"sections_avg": 78.55
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 553,
+			"sections_avg": 78.54
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 78.54
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 24,
+			"sections_avg": 78.54
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 22,
+			"sections_avg": 78.52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 94,
+			"sections_avg": 78.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 9,
+			"sections_avg": 78.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 79,
+			"sections_avg": 78.49
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 119,
+			"sections_avg": 78.48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 48,
+			"sections_avg": 78.48
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cp interactn",
+			"sections_pass": 21,
+			"sections_avg": 78.48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 21,
+			"sections_avg": 78.48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 21,
+			"sections_avg": 78.48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 77,
+			"sections_avg": 78.47
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 14,
+			"sections_avg": 78.47
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 40,
+			"sections_avg": 78.45
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 22,
+			"sections_avg": 78.45
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 47,
+			"sections_avg": 78.43
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 14,
+			"sections_avg": 78.43
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 45,
+			"sections_avg": 78.42
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cp interactn",
+			"sections_pass": 33,
+			"sections_avg": 78.42
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "conv german ii",
+			"sections_pass": 17,
+			"sections_avg": 78.41
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 112,
+			"sections_avg": 78.4
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 40,
+			"sections_avg": 78.4
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 30,
+			"sections_avg": 78.4
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 20,
+			"sections_avg": 78.4
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 101,
+			"sections_avg": 78.38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 27,
+			"sections_avg": 78.37
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 26,
+			"sections_avg": 78.37
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 14,
+			"sections_avg": 78.36
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 58,
+			"sections_avg": 78.34
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 24,
+			"sections_avg": 78.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 24,
+			"sections_avg": 78.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv germ",
+			"sections_pass": 19,
+			"sections_avg": 78.33
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 154,
+			"sections_avg": 78.32
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv alg dsgn&anl",
+			"sections_pass": 56,
+			"sections_avg": 78.32
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 78.32
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "compiler constrc",
+			"sections_pass": 22,
+			"sections_avg": 78.32
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 26,
+			"sections_avg": 78.31
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intel systems",
+			"sections_pass": 27,
+			"sections_avg": 78.3
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 107,
+			"sections_avg": 78.29
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 64,
+			"sections_avg": 78.29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 21,
+			"sections_avg": 78.29
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_pass": 93,
+			"sections_avg": 78.28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 27,
+			"sections_avg": 78.28
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 227,
+			"sections_avg": 78.27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 196,
+			"sections_avg": 78.27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 78.27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 11,
+			"sections_avg": 78.27
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 50,
+			"sections_avg": 78.26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 22,
+			"sections_avg": 78.26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 24,
+			"sections_avg": 78.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_pass": 73,
+			"sections_avg": 78.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 46,
+			"sections_avg": 78.24
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 78.24
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 78.24
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 187,
+			"sections_avg": 78.23
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 13,
+			"sections_avg": 78.23
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 154,
+			"sections_avg": 78.22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_pass": 50,
+			"sections_avg": 78.22
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 9,
+			"sections_avg": 78.22
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 72,
+			"sections_avg": 78.21
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_pass": 54,
+			"sections_avg": 78.18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 78.17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 78.17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 196,
+			"sections_avg": 78.16
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 20,
+			"sections_avg": 78.14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "wrd&mus germ lit",
+			"sections_pass": 14,
+			"sections_avg": 78.14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 227,
+			"sections_avg": 78.13
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 78.11
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 20,
+			"sections_avg": 78.1
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "trad & change",
+			"sections_pass": 11,
+			"sections_avg": 78.09
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 24,
+			"sections_avg": 78.08
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 54,
+			"sections_avg": 78.07
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_pass": 13,
+			"sections_avg": 78.07
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 83,
+			"sections_avg": 78.06
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 16,
+			"sections_avg": 78.06
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 78.04
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 21,
+			"sections_avg": 78.04
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ lit <1900",
+			"sections_pass": 37,
+			"sections_avg": 78.03
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 18,
+			"sections_avg": 78
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 46,
+			"sections_avg": 77.98
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 28,
+			"sections_avg": 77.96
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 76,
+			"sections_avg": 77.95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_pass": 55,
+			"sections_avg": 77.95
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 22,
+			"sections_avg": 77.95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_pass": 86,
+			"sections_avg": 77.93
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 28,
+			"sections_avg": 77.93
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 196,
+			"sections_avg": 77.88
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ cinema engl",
+			"sections_pass": 126,
+			"sections_avg": 77.88
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 25,
+			"sections_avg": 77.88
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 188,
+			"sections_avg": 77.86
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 76,
+			"sections_avg": 77.84
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 11,
+			"sections_avg": 77.82
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 189,
+			"sections_avg": 77.81
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 52,
+			"sections_avg": 77.81
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 289,
+			"sections_avg": 77.8
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 15,
+			"sections_avg": 77.8
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 28,
+			"sections_avg": 77.79
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "heaven & earth",
+			"sections_pass": 19,
+			"sections_avg": 77.79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 108,
+			"sections_avg": 77.78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 101,
+			"sections_avg": 77.78
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 80,
+			"sections_avg": 77.78
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 9,
+			"sections_avg": 77.78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 106,
+			"sections_avg": 77.76
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 38,
+			"sections_avg": 77.76
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 24,
+			"sections_avg": 77.75
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 24,
+			"sections_avg": 77.71
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 30,
+			"sections_avg": 77.7
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 10,
+			"sections_avg": 77.7
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 189,
+			"sections_avg": 77.69
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 188,
+			"sections_avg": 77.69
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 77.69
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computer vision",
+			"sections_pass": 107,
+			"sections_avg": 77.68
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 28,
+			"sections_avg": 77.66
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 20,
+			"sections_avg": 77.65
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 49,
+			"sections_avg": 77.64
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 97,
+			"sections_avg": 77.63
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 23,
+			"sections_avg": 77.63
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_pass": 33,
+			"sections_avg": 77.62
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 29,
+			"sections_avg": 77.62
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 13,
+			"sections_avg": 77.62
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 44,
+			"sections_avg": 77.59
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 77.57
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 32,
+			"sections_avg": 77.56
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 16,
+			"sections_avg": 77.56
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 2",
+			"sections_pass": 9,
+			"sections_avg": 77.56
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 105,
+			"sections_avg": 77.55
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 48,
+			"sections_avg": 77.54
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 72,
+			"sections_avg": 77.52
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 101,
+			"sections_avg": 77.51
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 92,
+			"sections_avg": 77.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 10,
+			"sections_avg": 77.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 85,
+			"sections_avg": 77.49
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 43,
+			"sections_avg": 77.48
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "theory comptg",
+			"sections_pass": 41,
+			"sections_avg": 77.48
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 139,
+			"sections_avg": 77.47
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 37,
+			"sections_avg": 77.46
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 77.46
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_pass": 50,
+			"sections_avg": 77.44
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 95,
+			"sections_avg": 77.43
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hmn-cp interactn",
+			"sections_pass": 51,
+			"sections_avg": 77.43
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_pass": 36,
+			"sections_avg": 77.41
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 73,
+			"sections_avg": 77.4
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_pass": 63,
+			"sections_avg": 77.4
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ cinema engl",
+			"sections_pass": 120,
+			"sections_avg": 77.39
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 40,
+			"sections_avg": 77.39
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 53,
+			"sections_avg": 77.38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 49,
+			"sections_avg": 77.37
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 77.35
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 24,
+			"sections_avg": 77.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 17,
+			"sections_avg": 77.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 25,
+			"sections_avg": 77.31
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_pass": 45,
+			"sections_avg": 77.3
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 31,
+			"sections_avg": 77.29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 77.29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 138,
+			"sections_avg": 77.28
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 53,
+			"sections_avg": 77.28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 37,
+			"sections_avg": 77.27
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_pass": 77,
+			"sections_avg": 77.26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 38,
+			"sections_avg": 77.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 93,
+			"sections_avg": 77.22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 14,
+			"sections_avg": 77.21
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 146,
+			"sections_avg": 77.2
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 45,
+			"sections_avg": 77.19
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 39,
+			"sections_avg": 77.18
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 21,
+			"sections_avg": 77.17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "wrd&mus germ lit",
+			"sections_pass": 32,
+			"sections_avg": 77.15
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "theory comptg",
+			"sections_pass": 27,
+			"sections_avg": 77.15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 27,
+			"sections_avg": 77.14
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 185,
+			"sections_avg": 77.13
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 116,
+			"sections_avg": 77.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 184,
+			"sections_avg": 77.11
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 78,
+			"sections_avg": 77.11
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 20,
+			"sections_avg": 77.1
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 23,
+			"sections_avg": 77.09
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 23,
+			"sections_avg": 77.09
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ cinema engl",
+			"sections_pass": 77,
+			"sections_avg": 77.08
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 12,
+			"sections_avg": 77.08
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 162,
+			"sections_avg": 77.06
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 18,
+			"sections_avg": 77.06
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 18,
+			"sections_avg": 77.05
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ lit <1900",
+			"sections_pass": 48,
+			"sections_avg": 77.04
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 24,
+			"sections_avg": 77.04
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 23,
+			"sections_avg": 77.04
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 114,
+			"sections_avg": 77.01
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 91,
+			"sections_avg": 77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "compiler constrc",
+			"sections_pass": 31,
+			"sections_avg": 77
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 16,
+			"sections_avg": 77
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 15,
+			"sections_avg": 77
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 383,
+			"sections_avg": 76.99
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 63,
+			"sections_avg": 76.98
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_pass": 78,
+			"sections_avg": 76.96
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 43,
+			"sections_avg": 76.95
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 22,
+			"sections_avg": 76.95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 118,
+			"sections_avg": 76.94
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_pass": 138,
+			"sections_avg": 76.93
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 76.92
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 12,
+			"sections_avg": 76.92
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 90,
+			"sections_avg": 76.91
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_pass": 20,
+			"sections_avg": 76.9
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 10,
+			"sections_avg": 76.9
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 61,
+			"sections_avg": 76.87
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ lit <1900",
+			"sections_pass": 39,
+			"sections_avg": 76.85
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_pass": 86,
+			"sections_avg": 76.84
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 20,
+			"sections_avg": 76.81
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 20,
+			"sections_avg": 76.8
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 105,
+			"sections_avg": 76.77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 89,
+			"sections_avg": 76.77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_pass": 36,
+			"sections_avg": 76.75
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 76.75
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ cinema engl",
+			"sections_pass": 78,
+			"sections_avg": 76.74
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 45,
+			"sections_avg": 76.73
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 29,
+			"sections_avg": 76.72
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 571,
+			"sections_avg": 76.71
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 17,
+			"sections_avg": 76.67
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 421,
+			"sections_avg": 76.66
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 209,
+			"sections_avg": 76.65
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 63,
+			"sections_avg": 76.61
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 38,
+			"sections_avg": 76.61
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 98,
+			"sections_avg": 76.6
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 103,
+			"sections_avg": 76.59
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 68,
+			"sections_avg": 76.58
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_pass": 16,
+			"sections_avg": 76.56
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 38,
+			"sections_avg": 76.55
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 15,
+			"sections_avg": 76.53
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "func & logic prg",
+			"sections_pass": 115,
+			"sections_avg": 76.52
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 86,
+			"sections_avg": 76.52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "wrd&mus germ lit",
+			"sections_pass": 33,
+			"sections_avg": 76.52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 33,
+			"sections_avg": 76.52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 28,
+			"sections_avg": 76.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 24,
+			"sections_avg": 76.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "heaven & earth",
+			"sections_pass": 13,
+			"sections_avg": 76.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 74,
+			"sections_avg": 76.46
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 58,
+			"sections_avg": 76.46
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 76.46
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 44,
+			"sections_avg": 76.45
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 107,
+			"sections_avg": 76.43
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 104,
+			"sections_avg": 76.43
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 28,
+			"sections_avg": 76.43
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 76.42
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 11,
+			"sections_avg": 76.42
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 22,
+			"sections_avg": 76.41
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 21,
+			"sections_avg": 76.41
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 89,
+			"sections_avg": 76.4
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 31,
+			"sections_avg": 76.39
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 53,
+			"sections_avg": 76.38
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 306,
+			"sections_avg": 76.35
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_pass": 77,
+			"sections_avg": 76.34
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 51,
+			"sections_avg": 76.34
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 109,
+			"sections_avg": 76.32
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 28,
+			"sections_avg": 76.32
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 83,
+			"sections_avg": 76.31
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "distrbt'd systms",
+			"sections_pass": 64,
+			"sections_avg": 76.31
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 50,
+			"sections_avg": 76.31
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 76.28
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 86,
+			"sections_avg": 76.27
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 82,
+			"sections_avg": 76.26
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_pass": 68,
+			"sections_avg": 76.26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 44,
+			"sections_avg": 76.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "theory comptg",
+			"sections_pass": 33,
+			"sections_avg": 76.24
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "wrd&mus germ lit",
+			"sections_pass": 18,
+			"sections_avg": 76.22
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 13,
+			"sections_avg": 76.21
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 310,
+			"sections_avg": 76.2
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 76.2
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 84,
+			"sections_avg": 76.19
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 701,
+			"sections_avg": 76.17
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 59,
+			"sections_avg": 76.17
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 103,
+			"sections_avg": 76.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 65,
+			"sections_avg": 76.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 226,
+			"sections_avg": 76.12
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 132,
+			"sections_avg": 76.12
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 76.11
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 29,
+			"sections_avg": 76.1
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 20,
+			"sections_avg": 76.1
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 22,
+			"sections_avg": 76.09
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "wrd&mus germ lit",
+			"sections_pass": 38,
+			"sections_avg": 76.08
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 75,
+			"sections_avg": 76.06
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 120,
+			"sections_avg": 76.05
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 28,
+			"sections_avg": 76.04
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 55,
+			"sections_avg": 76
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 95,
+			"sections_avg": 75.98
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 168,
+			"sections_avg": 75.97
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 15,
+			"sections_avg": 75.93
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "heaven & earth",
+			"sections_pass": 14,
+			"sections_avg": 75.93
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 196,
+			"sections_avg": 75.91
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 122,
+			"sections_avg": 75.91
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_pass": 44,
+			"sections_avg": 75.91
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_pass": 43,
+			"sections_avg": 75.91
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 43,
+			"sections_avg": 75.91
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intel systems",
+			"sections_pass": 23,
+			"sections_avg": 75.91
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 117,
+			"sections_avg": 75.89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 114,
+			"sections_avg": 75.86
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 20,
+			"sections_avg": 75.85
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 67,
+			"sections_avg": 75.84
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "dta&alg elec eng",
+			"sections_pass": 206,
+			"sections_avg": 75.82
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 145,
+			"sections_avg": 75.81
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 78,
+			"sections_avg": 75.81
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 255,
+			"sections_avg": 75.8
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 111,
+			"sections_avg": 75.78
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 30,
+			"sections_avg": 75.77
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 13,
+			"sections_avg": 75.77
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 75.74
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 15,
+			"sections_avg": 75.73
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 90,
+			"sections_avg": 75.72
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 75.72
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 102,
+			"sections_avg": 75.71
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 151,
+			"sections_avg": 75.7
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 190,
+			"sections_avg": 75.69
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 125,
+			"sections_avg": 75.68
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 30,
+			"sections_avg": 75.68
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 179,
+			"sections_avg": 75.65
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 21,
+			"sections_avg": 75.62
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "parallel comput",
+			"sections_pass": 37,
+			"sections_avg": 75.61
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intel systems",
+			"sections_pass": 28,
+			"sections_avg": 75.61
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 77,
+			"sections_avg": 75.58
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "wrd&mus germ lit",
+			"sections_pass": 36,
+			"sections_avg": 75.58
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 160,
+			"sections_avg": 75.57
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 62,
+			"sections_avg": 75.57
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 73,
+			"sections_avg": 75.56
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 75.55
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 178,
+			"sections_avg": 75.54
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "adv german ii",
+			"sections_pass": 12,
+			"sections_avg": 75.54
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 75.52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 23,
+			"sections_avg": 75.52
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "theory comptg",
+			"sections_pass": 21,
+			"sections_avg": 75.52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 47,
+			"sections_avg": 75.51
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 91,
+			"sections_avg": 75.5
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 26,
+			"sections_avg": 75.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 90,
+			"sections_avg": 75.49
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 66,
+			"sections_avg": 75.49
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 41,
+			"sections_avg": 75.49
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 455,
+			"sections_avg": 75.48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 22,
+			"sections_avg": 75.48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 18,
+			"sections_avg": 75.45
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 79,
+			"sections_avg": 75.44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 70,
+			"sections_avg": 75.44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 98,
+			"sections_avg": 75.41
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 82,
+			"sections_avg": 75.4
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 24,
+			"sections_avg": 75.4
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 106,
+			"sections_avg": 75.39
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 432,
+			"sections_avg": 75.36
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 81,
+			"sections_avg": 75.34
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 123,
+			"sections_avg": 75.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit pst 1945",
+			"sections_pass": 36,
+			"sections_avg": 75.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 30,
+			"sections_avg": 75.3
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 601,
+			"sections_avg": 75.29
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 283,
+			"sections_avg": 75.29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 28,
+			"sections_avg": 75.29
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_pass": 96,
+			"sections_avg": 75.28
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_pass": 77,
+			"sections_avg": 75.28
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "cont germ lit tr",
+			"sections_pass": 43,
+			"sections_avg": 75.28
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 533,
+			"sections_avg": 75.26
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 148,
+			"sections_avg": 75.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 139,
+			"sections_avg": 75.23
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 80,
+			"sections_avg": 75.22
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 75.21
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "dta&alg elec eng",
+			"sections_pass": 179,
+			"sections_avg": 75.2
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 410,
+			"sections_avg": 75.19
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 196,
+			"sections_avg": 75.18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 151,
+			"sections_avg": 75.17
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 114,
+			"sections_avg": 75.16
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 44,
+			"sections_avg": 75.16
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 64,
+			"sections_avg": 75.15
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 75.15
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 166,
+			"sections_avg": 75.14
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 25,
+			"sections_avg": 75.12
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "wrd&mus germ lit",
+			"sections_pass": 35,
+			"sections_avg": 75.11
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 75.1
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 24,
+			"sections_avg": 75.07
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 154,
+			"sections_avg": 75.06
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 266,
+			"sections_avg": 75.04
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 62,
+			"sections_avg": 75.03
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 167,
+			"sections_avg": 75.02
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 119,
+			"sections_avg": 75.01
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 40,
+			"sections_avg": 75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_pass": 32,
+			"sections_avg": 75
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "m.sc major essay",
+			"sections_pass": 1,
+			"sections_avg": 75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 133,
+			"sections_avg": 74.99
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 100,
+			"sections_avg": 74.97
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 91,
+			"sections_avg": 74.95
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 18,
+			"sections_avg": 74.95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 365,
+			"sections_avg": 74.93
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_pass": 68,
+			"sections_avg": 74.93
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 28,
+			"sections_avg": 74.89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 95,
+			"sections_avg": 74.88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 85,
+			"sections_avg": 74.88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 64,
+			"sections_avg": 74.88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 44,
+			"sections_avg": 74.86
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "distrbt'd systms",
+			"sections_pass": 29,
+			"sections_avg": 74.86
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 81,
+			"sections_avg": 74.85
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 34,
+			"sections_avg": 74.84
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 120,
+			"sections_avg": 74.83
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 74.83
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 165,
+			"sections_avg": 74.82
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_pass": 26,
+			"sections_avg": 74.82
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 499,
+			"sections_avg": 74.8
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 256,
+			"sections_avg": 74.79
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 28,
+			"sections_avg": 74.79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 193,
+			"sections_avg": 74.75
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 23,
+			"sections_avg": 74.75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "compiler constrc",
+			"sections_pass": 11,
+			"sections_avg": 74.75
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 74.74
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 129,
+			"sections_avg": 74.73
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 58,
+			"sections_avg": 74.73
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 54,
+			"sections_avg": 74.73
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 186,
+			"sections_avg": 74.72
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 25,
+			"sections_avg": 74.72
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 125,
+			"sections_avg": 74.7
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "dta&alg elec eng",
+			"sections_pass": 172,
+			"sections_avg": 74.68
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "theory comptg",
+			"sections_pass": 45,
+			"sections_avg": 74.68
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 40,
+			"sections_avg": 74.68
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computer vision",
+			"sections_pass": 69,
+			"sections_avg": 74.67
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 44,
+			"sections_avg": 74.67
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 90,
+			"sections_avg": 74.65
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 16,
+			"sections_avg": 74.63
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 98,
+			"sections_avg": 74.62
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 48,
+			"sections_avg": 74.58
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_pass": 46,
+			"sections_avg": 74.58
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 7,
+			"sections_avg": 74.57
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 15,
+			"sections_avg": 74.56
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 176,
+			"sections_avg": 74.54
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intel systems",
+			"sections_pass": 44,
+			"sections_avg": 74.54
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 23,
+			"sections_avg": 74.54
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 80,
+			"sections_avg": 74.52
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 74.52
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 237,
+			"sections_avg": 74.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 247,
+			"sections_avg": 74.48
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 15,
+			"sections_avg": 74.47
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_pass": 38,
+			"sections_avg": 74.46
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_pass": 82,
+			"sections_avg": 74.45
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 76,
+			"sections_avg": 74.45
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 61,
+			"sections_avg": 74.45
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 35,
+			"sections_avg": 74.44
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computer vision",
+			"sections_pass": 44,
+			"sections_avg": 74.43
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 74,
+			"sections_avg": 74.42
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 261,
+			"sections_avg": 74.41
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 29,
+			"sections_avg": 74.41
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 20,
+			"sections_avg": 74.4
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 22,
+			"sections_avg": 74.39
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 16,
+			"sections_avg": 74.38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 13,
+			"sections_avg": 74.38
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 182,
+			"sections_avg": 74.35
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 98,
+			"sections_avg": 74.34
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intel systems",
+			"sections_pass": 35,
+			"sections_avg": 74.34
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 20,
+			"sections_avg": 74.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 17,
+			"sections_avg": 74.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 27,
+			"sections_avg": 74.31
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 19,
+			"sections_avg": 74.3
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 123,
+			"sections_avg": 74.29
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 88,
+			"sections_avg": 74.29
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iii",
+			"sections_pass": 18,
+			"sections_avg": 74.28
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 85,
+			"sections_avg": 74.26
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 52,
+			"sections_avg": 74.26
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 50,
+			"sections_avg": 74.26
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_pass": 76,
+			"sections_avg": 74.25
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 16,
+			"sections_avg": 74.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 306,
+			"sections_avg": 74.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_pass": 64,
+			"sections_avg": 74.23
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 43,
+			"sections_avg": 74.23
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 140,
+			"sections_avg": 74.22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "dta&alg elec eng",
+			"sections_pass": 119,
+			"sections_avg": 74.22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 21,
+			"sections_avg": 74.22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 75,
+			"sections_avg": 74.2
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 141,
+			"sections_avg": 74.17
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computer vision",
+			"sections_pass": 60,
+			"sections_avg": 74.17
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 137,
+			"sections_avg": 74.15
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 136,
+			"sections_avg": 74.15
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 68,
+			"sections_avg": 74.14
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 221,
+			"sections_avg": 74.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 71,
+			"sections_avg": 74.12
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 25,
+			"sections_avg": 74.12
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 60,
+			"sections_avg": 74.09
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 48,
+			"sections_avg": 74.08
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 106,
+			"sections_avg": 74.07
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv alg dsgn&anl",
+			"sections_pass": 33,
+			"sections_avg": 74.06
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_pass": 32,
+			"sections_avg": 74.06
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 128,
+			"sections_avg": 74.04
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 127,
+			"sections_avg": 74.04
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv software eng",
+			"sections_pass": 78,
+			"sections_avg": 74.04
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 55,
+			"sections_avg": 74.04
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 39,
+			"sections_avg": 74.02
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 66,
+			"sections_avg": 74
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 26,
+			"sections_avg": 74
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intgrt sys desgn",
+			"sections_pass": 5,
+			"sections_avg": 74
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 411,
+			"sections_avg": 73.98
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 101,
+			"sections_avg": 73.97
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computer vision",
+			"sections_pass": 112,
+			"sections_avg": 73.95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 67,
+			"sections_avg": 73.93
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 114,
+			"sections_avg": 73.91
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 14,
+			"sections_avg": 73.89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 173,
+			"sections_avg": 73.88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_pass": 16,
+			"sections_avg": 73.88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 100,
+			"sections_avg": 73.83
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 64,
+			"sections_avg": 73.83
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 34,
+			"sections_avg": 73.83
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 21,
+			"sections_avg": 73.82
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 74,
+			"sections_avg": 73.79
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 28,
+			"sections_avg": 73.79
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 17,
+			"sections_avg": 73.78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 47,
+			"sections_avg": 73.75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "theory comptg",
+			"sections_pass": 50,
+			"sections_avg": 73.73
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 21,
+			"sections_avg": 73.73
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 89,
+			"sections_avg": 73.72
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "grm lit 1900-45",
+			"sections_pass": 57,
+			"sections_avg": 73.72
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 10,
+			"sections_avg": 73.71
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 54,
+			"sections_avg": 73.68
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "20th germ lit tr",
+			"sections_pass": 44,
+			"sections_avg": 73.66
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv alg dsgn&anl",
+			"sections_pass": 55,
+			"sections_avg": 73.64
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 497,
+			"sections_avg": 73.63
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 176,
+			"sections_avg": 73.62
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_pass": 28,
+			"sections_avg": 73.62
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 136,
+			"sections_avg": 73.59
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 27,
+			"sections_avg": 73.59
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 86,
+			"sections_avg": 73.58
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 53,
+			"sections_avg": 73.58
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 21,
+			"sections_avg": 73.58
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 47,
+			"sections_avg": 73.57
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 19,
+			"sections_avg": 73.57
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 150,
+			"sections_avg": 73.56
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 108,
+			"sections_avg": 73.55
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 27,
+			"sections_avg": 73.54
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 73.54
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 90,
+			"sections_avg": 73.53
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 107,
+			"sections_avg": 73.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 186,
+			"sections_avg": 73.49
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 112,
+			"sections_avg": 73.45
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 40,
+			"sections_avg": 73.45
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 21,
+			"sections_avg": 73.43
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "distrbt'd systms",
+			"sections_pass": 55,
+			"sections_avg": 73.41
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 18,
+			"sections_avg": 73.39
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 157,
+			"sections_avg": 73.38
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 146,
+			"sections_avg": 73.38
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv opertng sysm",
+			"sections_pass": 26,
+			"sections_avg": 73.37
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 73,
+			"sections_avg": 73.36
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 30,
+			"sections_avg": 73.36
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 134,
+			"sections_avg": 73.34
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 59,
+			"sections_avg": 73.33
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 48,
+			"sections_avg": 73.33
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 168,
+			"sections_avg": 73.31
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 33,
+			"sections_avg": 73.31
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 26,
+			"sections_avg": 73.31
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "hum-com interact",
+			"sections_pass": 59,
+			"sections_avg": 73.3
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 123,
+			"sections_avg": 73.28
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 127,
+			"sections_avg": 73.27
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 75,
+			"sections_avg": 73.27
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 966,
+			"sections_avg": 73.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_pass": 53,
+			"sections_avg": 73.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 71,
+			"sections_avg": 73.24
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 169,
+			"sections_avg": 73.22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 165,
+			"sections_avg": 73.2
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 139,
+			"sections_avg": 73.18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_pass": 27,
+			"sections_avg": 73.18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "alg in bioin",
+			"sections_pass": 27,
+			"sections_avg": 73.18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 93,
+			"sections_avg": 73.17
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computer vision",
+			"sections_pass": 59,
+			"sections_avg": 73.17
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 81,
+			"sections_avg": 73.16
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 168,
+			"sections_avg": 73.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv opertng sysm",
+			"sections_pass": 95,
+			"sections_avg": 73.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 71,
+			"sections_avg": 73.13
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 20,
+			"sections_avg": 73.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 78,
+			"sections_avg": 73.09
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 138,
+			"sections_avg": 73.07
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 72,
+			"sections_avg": 73.07
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 136,
+			"sections_avg": 73.03
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv alg dsgn&anl",
+			"sections_pass": 30,
+			"sections_avg": 73.03
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 181,
+			"sections_avg": 73
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computer vision",
+			"sections_pass": 48,
+			"sections_avg": 73
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 91,
+			"sections_avg": 72.95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_pass": 101,
+			"sections_avg": 72.94
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 14,
+			"sections_avg": 72.93
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "distrbt'd systms",
+			"sections_pass": 51,
+			"sections_avg": 72.91
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 155,
+			"sections_avg": 72.9
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 101,
+			"sections_avg": 72.89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 88,
+			"sections_avg": 72.86
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 696,
+			"sections_avg": 72.85
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "programmng langs",
+			"sections_pass": 28,
+			"sections_avg": 72.83
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 54,
+			"sections_avg": 72.79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 236,
+			"sections_avg": 72.78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 78,
+			"sections_avg": 72.78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 75,
+			"sections_avg": 72.78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 144,
+			"sections_avg": 72.77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 78,
+			"sections_avg": 72.77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 66,
+			"sections_avg": 72.77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 326,
+			"sections_avg": 72.75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptr & society",
+			"sections_pass": 76,
+			"sections_avg": 72.75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 121,
+			"sections_avg": 72.74
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 24,
+			"sections_avg": 72.69
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_pass": 22,
+			"sections_avg": 72.69
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 59,
+			"sections_avg": 72.68
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 23,
+			"sections_avg": 72.67
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 161,
+			"sections_avg": 72.65
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_pass": 56,
+			"sections_avg": 72.65
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 736,
+			"sections_avg": 72.63
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 147,
+			"sections_avg": 72.63
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "germ read know 1",
+			"sections_pass": 32,
+			"sections_avg": 72.59
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 30,
+			"sections_avg": 72.58
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 110,
+			"sections_avg": 72.57
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 149,
+			"sections_avg": 72.53
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 118,
+			"sections_avg": 72.53
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 97,
+			"sections_avg": 72.53
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_pass": 32,
+			"sections_avg": 72.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computer vision",
+			"sections_pass": 79,
+			"sections_avg": 72.48
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 101,
+			"sections_avg": 72.46
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv alg dsgn&anl",
+			"sections_pass": 30,
+			"sections_avg": 72.46
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "dta&alg elec eng",
+			"sections_pass": 189,
+			"sections_avg": 72.4
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 144,
+			"sections_avg": 72.39
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 84,
+			"sections_avg": 72.39
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 20,
+			"sections_avg": 72.38
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 207,
+			"sections_avg": 72.36
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "distrbt'd systms",
+			"sections_pass": 11,
+			"sections_avg": 72.36
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 202,
+			"sections_avg": 72.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 22,
+			"sections_avg": 72.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 10,
+			"sections_avg": 72.3
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 886,
+			"sections_avg": 72.28
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr sftwr eng",
+			"sections_pass": 101,
+			"sections_avg": 72.27
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 108,
+			"sections_avg": 72.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "compiler constrc",
+			"sections_pass": 28,
+			"sections_avg": 72.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 138,
+			"sections_avg": 72.23
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 156,
+			"sections_avg": 72.21
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 93,
+			"sections_avg": 72.21
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 59,
+			"sections_avg": 72.21
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 92,
+			"sections_avg": 72.19
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 182,
+			"sections_avg": 72.18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 124,
+			"sections_avg": 72.18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 10,
+			"sections_avg": 72.17
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 112,
+			"sections_avg": 72.16
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 89,
+			"sections_avg": 72.15
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 46,
+			"sections_avg": 72.15
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 67,
+			"sections_avg": 72.11
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ iv",
+			"sections_pass": 12,
+			"sections_avg": 72.08
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 145,
+			"sections_avg": 72.03
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv opertng sysm",
+			"sections_pass": 67,
+			"sections_avg": 72
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "distrbt'd systms",
+			"sections_pass": 23,
+			"sections_avg": 72
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 67,
+			"sections_avg": 71.99
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 154,
+			"sections_avg": 71.97
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 90,
+			"sections_avg": 71.97
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 81,
+			"sections_avg": 71.94
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 281,
+			"sections_avg": 71.92
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 78,
+			"sections_avg": 71.92
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 66,
+			"sections_avg": 71.92
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 134,
+			"sections_avg": 71.89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr rel databse",
+			"sections_pass": 92,
+			"sections_avg": 71.89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intel systems",
+			"sections_pass": 33,
+			"sections_avg": 71.89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 101,
+			"sections_avg": 71.87
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 129,
+			"sections_avg": 71.82
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 111,
+			"sections_avg": 71.81
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "computer vision",
+			"sections_pass": 45,
+			"sections_avg": 71.8
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 76,
+			"sections_avg": 71.79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 60,
+			"sections_avg": 71.77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "distrbt'd systms",
+			"sections_pass": 50,
+			"sections_avg": 71.75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 253,
+			"sections_avg": 71.73
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 150,
+			"sections_avg": 71.72
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 39,
+			"sections_avg": 71.71
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 60,
+			"sections_avg": 71.67
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 100,
+			"sections_avg": 71.66
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 92,
+			"sections_avg": 71.66
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 87,
+			"sections_avg": 71.64
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 26,
+			"sections_avg": 71.63
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 143,
+			"sections_avg": 71.62
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 203,
+			"sections_avg": 71.61
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 60,
+			"sections_avg": 71.6
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 54,
+			"sections_avg": 71.59
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 89,
+			"sections_avg": 71.55
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 161,
+			"sections_avg": 71.52
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intel systems",
+			"sections_pass": 22,
+			"sections_avg": 71.52
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 323,
+			"sections_avg": 71.46
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basics comp syst",
+			"sections_pass": 118,
+			"sections_avg": 71.45
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 115,
+			"sections_avg": 71.44
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 68,
+			"sections_avg": 71.44
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 20,
+			"sections_avg": 71.43
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 74,
+			"sections_avg": 71.41
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 36,
+			"sections_avg": 71.4
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 53,
+			"sections_avg": 71.39
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv opertng sysm",
+			"sections_pass": 62,
+			"sections_avg": 71.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 15,
+			"sections_avg": 71.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ ii",
+			"sections_pass": 25,
+			"sections_avg": 71.32
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 93,
+			"sections_avg": 71.3
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 131,
+			"sections_avg": 71.28
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 157,
+			"sections_avg": 71.27
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 41,
+			"sections_avg": 71.27
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 184,
+			"sections_avg": 71.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 151,
+			"sections_avg": 71.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 819,
+			"sections_avg": 71.22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 126,
+			"sections_avg": 71.22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 85,
+			"sections_avg": 71.18
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 39,
+			"sections_avg": 71.16
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 104,
+			"sections_avg": 71.14
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 274,
+			"sections_avg": 71.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 351,
+			"sections_avg": 71.09
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 125,
+			"sections_avg": 71.09
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 180,
+			"sections_avg": 71.07
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 353,
+			"sections_avg": 71.05
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 71,
+			"sections_avg": 71.05
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 53,
+			"sections_avg": 71.05
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv opertng sysm",
+			"sections_pass": 24,
+			"sections_avg": 71.04
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 88,
+			"sections_avg": 71.03
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 52,
+			"sections_avg": 71.02
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptng life sci",
+			"sections_pass": 28,
+			"sections_avg": 71
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 55,
+			"sections_avg": 70.98
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_pass": 39,
+			"sections_avg": 70.98
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 70,
+			"sections_avg": 70.96
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 52,
+			"sections_avg": 70.96
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 74,
+			"sections_avg": 70.95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 59,
+			"sections_avg": 70.94
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 332,
+			"sections_avg": 70.93
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv alg dsgn&anl",
+			"sections_pass": 54,
+			"sections_avg": 70.93
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 27,
+			"sections_avg": 70.93
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 100,
+			"sections_avg": 70.92
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_pass": 44,
+			"sections_avg": 70.92
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 256,
+			"sections_avg": 70.91
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 109,
+			"sections_avg": 70.9
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 74,
+			"sections_avg": 70.88
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv opertng sysm",
+			"sections_pass": 43,
+			"sections_avg": 70.87
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "inter germ i",
+			"sections_pass": 20,
+			"sections_avg": 70.86
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 144,
+			"sections_avg": 70.83
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 74,
+			"sections_avg": 70.83
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 185,
+			"sections_avg": 70.78
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 155,
+			"sections_avg": 70.76
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 84,
+			"sections_avg": 70.75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 75,
+			"sections_avg": 70.75
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 156,
+			"sections_avg": 70.7
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv opertng sysm",
+			"sections_pass": 40,
+			"sections_avg": 70.7
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 170,
+			"sections_avg": 70.68
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 200,
+			"sections_avg": 70.66
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 61,
+			"sections_avg": 70.66
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 17,
+			"sections_avg": 70.65
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 222,
+			"sections_avg": 70.62
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 156,
+			"sections_avg": 70.59
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 48,
+			"sections_avg": 70.54
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 155,
+			"sections_avg": 70.53
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 68,
+			"sections_avg": 70.51
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 55,
+			"sections_avg": 70.5
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 120,
+			"sections_avg": 70.48
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 154,
+			"sections_avg": 70.47
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 15,
+			"sections_avg": 70.47
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 317,
+			"sections_avg": 70.46
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp hard&os",
+			"sections_pass": 70,
+			"sections_avg": 70.46
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 88,
+			"sections_avg": 70.42
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 121,
+			"sections_avg": 70.4
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 21,
+			"sections_avg": 70.38
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 21,
+			"sections_avg": 70.33
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 46,
+			"sections_avg": 70.29
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 98,
+			"sections_avg": 70.27
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 195,
+			"sections_avg": 70.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_pass": 39,
+			"sections_avg": 70.16
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 23,
+			"sections_avg": 70.13
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 16,
+			"sections_avg": 70.12
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 308,
+			"sections_avg": 70.11
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 122,
+			"sections_avg": 70.05
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "theory comptg",
+			"sections_pass": 34,
+			"sections_avg": 70.03
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 169,
+			"sections_avg": 69.99
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 155,
+			"sections_avg": 69.95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 40,
+			"sections_avg": 69.91
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 30,
+			"sections_avg": 69.73
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 10,
+			"sections_avg": 69.73
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 138,
+			"sections_avg": 69.7
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 76,
+			"sections_avg": 69.65
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 98,
+			"sections_avg": 69.63
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 90,
+			"sections_avg": 69.6
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 89,
+			"sections_avg": 69.59
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 42,
+			"sections_avg": 69.58
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv alg dsgn&anl",
+			"sections_pass": 33,
+			"sections_avg": 69.58
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 81,
+			"sections_avg": 69.53
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "theory comptg",
+			"sections_pass": 16,
+			"sections_avg": 69.47
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 89,
+			"sections_avg": 69.42
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 133,
+			"sections_avg": 69.4
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv alg dsgn&anl",
+			"sections_pass": 51,
+			"sections_avg": 69.35
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 91,
+			"sections_avg": 69.26
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 62,
+			"sections_avg": 69.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv opertng sysm",
+			"sections_pass": 48,
+			"sections_avg": 69.25
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 40,
+			"sections_avg": 69.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 23,
+			"sections_avg": 69.24
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 94,
+			"sections_avg": 69.14
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basics comp syst",
+			"sections_pass": 104,
+			"sections_avg": 69.1
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 47,
+			"sections_avg": 69
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 78,
+			"sections_avg": 68.94
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 47,
+			"sections_avg": 68.9
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 72,
+			"sections_avg": 68.89
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intel systems",
+			"sections_pass": 23,
+			"sections_avg": 68.84
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv opertng sysm",
+			"sections_pass": 27,
+			"sections_avg": 68.81
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv opertng sysm",
+			"sections_pass": 24,
+			"sections_avg": 68.79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 156,
+			"sections_avg": 68.77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 88,
+			"sections_avg": 68.77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 59,
+			"sections_avg": 68.77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv alg dsgn&anl",
+			"sections_pass": 44,
+			"sections_avg": 68.77
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "adv rel databse",
+			"sections_pass": 50,
+			"sections_avg": 68.76
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 87,
+			"sections_avg": 68.7
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 60,
+			"sections_avg": 68.68
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num comp alg prb",
+			"sections_pass": 45,
+			"sections_avg": 68.64
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 52,
+			"sections_avg": 68.57
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 104,
+			"sections_avg": 68.56
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "internet comp",
+			"sections_pass": 44,
+			"sections_avg": 68.54
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 198,
+			"sections_avg": 68.45
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "machine lrn mine",
+			"sections_pass": 44,
+			"sections_avg": 68.4
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "num approx/discr",
+			"sections_pass": 14,
+			"sections_avg": 68.35
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 85,
+			"sections_avg": 68.33
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ i",
+			"sections_pass": 29,
+			"sections_avg": 68.32
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basics comp syst",
+			"sections_pass": 112,
+			"sections_avg": 68.22
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "sftwr constructn",
+			"sections_pass": 68,
+			"sections_avg": 68.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 82,
+			"sections_avg": 68.07
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 151,
+			"sections_avg": 67.97
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basics comp syst",
+			"sections_pass": 105,
+			"sections_avg": 67.91
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 104,
+			"sections_avg": 67.86
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comp graphics",
+			"sections_pass": 17,
+			"sections_avg": 67.85
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 87,
+			"sections_avg": 67.82
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "comptn, progrmng",
+			"sections_pass": 99,
+			"sections_avg": 67.79
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 67,
+			"sections_avg": 67.76
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 25,
+			"sections_avg": 67.62
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "artificial intel",
+			"sections_pass": 60,
+			"sections_avg": 67.48
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 84,
+			"sections_avg": 67.16
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "model comptn",
+			"sections_pass": 56,
+			"sections_avg": 67.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 63,
+			"sections_avg": 66.95
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 163,
+			"sections_avg": 66.76
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intr alg dsgn&an",
+			"sections_pass": 79,
+			"sections_avg": 66.34
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intel systems",
+			"sections_pass": 26,
+			"sections_avg": 66.13
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 29,
+			"sections_avg": 65.26
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "basic alg&data",
+			"sections_pass": 62,
+			"sections_avg": 65.1
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intro comp sys",
+			"sections_pass": 57,
+			"sections_avg": 64.62
+		},
+		{
+			"sections_dept": "cpsc",
+			"sections_title": "intgrt sys desgn",
+			"sections_pass": 3,
+			"sections_avg": 64
+		},
+		{
+			"sections_dept": "germ",
+			"sections_title": "begin germ 2",
+			"sections_pass": 15,
+			"sections_avg": 59.61
+		}
+	]
+}
