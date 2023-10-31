@@ -1,3 +1,4 @@
+import {group} from "console";
 import {InsightError, ResultTooLargeError} from "../controller/IInsightFacade";
 import {Section} from "../model/Section";
 import {valid_mfield, valid_sfield, Options} from "./QueryParser";
@@ -131,37 +132,29 @@ function processApplyToken(applyRule: string, colName: string, groups: object) {
 		case "AVG":
 			Object.keys(groups).forEach((grp) => {
 				let sections = (groups as any)[grp];
-				let avg =
-					sections.reduce(function (acc: Decimal, s: any) {
-						let n = new Decimal(s.getValue(col));
-						return Decimal.add(acc, n);
-					}, 0) / sections.length;
-
-				sections[colName] = avg.toFixed(2);
+				sections[colName] = processOp(sections, col, "AVG");
 			});
 			break;
 		case "COUNT":
 			for (const key of Object.keys(groups)) {
 				let sections = (groups as any)[key];
-				let duplicates = Object.keys(groups).filter((k: any) => key === k);
-				sections[colName] = duplicates.length;
+				let count = groupSections(sections, [col]);
+				sections[colName] = Object.keys(count).length.toString();
 			}
 			break;
 		case "SUM":
 			Object.keys(groups).forEach((grp) => {
 				let sections = (groups as any)[grp];
-				let sum = sections.reduce(function (acc: Decimal, s: any) {
-					let n = new Decimal(s.getValue(col));
-					return Decimal.add(acc, n);
-				}, 0);
-
-				sections[colName] = sum.toFixed(2);
+				sections[colName] = processOp(sections, col, "SUM");
 			});
 			break;
 	}
 }
 
 function processOp(sections: any[], col: string, op: string): string | undefined {
+	if (valid_sfield().includes(col)) {
+		throw new InsightError("invalid key types");
+	}
 	switch (op) {
 		case "MIN":
 			{
@@ -183,6 +176,27 @@ function processOp(sections: any[], col: string, op: string): string | undefined
 					}
 				});
 				return max.toFixed(2);
+			}
+			break;
+		case "SUM":
+			{
+				let sum = sections.reduce(function (acc: Decimal, s: any) {
+					let n = new Decimal(s.getValue(col));
+					return Decimal.add(acc, n);
+				}, 0);
+				return sum.toFixed(2);
+			}
+			break;
+
+		case "AVG":
+			{
+				let avg =
+					sections.reduce(function (acc: Decimal, s: any) {
+						let n = new Decimal(s.getValue(col));
+						return Decimal.add(acc, n);
+					}, 0) / sections.length;
+
+				return avg.toFixed(2);
 			}
 			break;
 	}

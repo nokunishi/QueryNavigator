@@ -48,17 +48,11 @@ function processOrder(result: any[], order: string, columns: string[]): any[] {
 			}
 		});
 	}
-	if ((order as any)["dir"] && (order as any)["key"]) {
-		if ((order as any)["dir"] === "DOWN") {
-			return result.sort((a, b) => tieBreaker(a, b, (order as any)["keys"]));
-		}
-		return result.sort((a, b) => tieBreaker(b, a, (order as any)["keys"]));
-	}
-
 	if ((order as any)["dir"] === "DOWN") {
-		return result.sort((a, b) => (a[order || ""] < b[order || ""] ? 1 : -1));
+		return result.sort((a, b) => tieBreaker(b, a, (order as any)["keys"]));
+	} else if ((order as any)["dir"] === "UP") {
+		return result.sort((a, b) => tieBreaker(a, b, (order as any)["keys"]));
 	}
-
 	// default
 	return result.sort((a, b) => (a[order || ""] > b[order || ""] ? 1 : -1));
 }
@@ -66,9 +60,9 @@ function processOrder(result: any[], order: string, columns: string[]): any[] {
 // return 1 if a > b
 function tieBreaker(a: any, b: any, order: string[]): number {
 	for (const o of order) {
-		if (a[o || ""] > b[o || ""]) {
+		if (a[o] > b[o]) {
 			return 1;
-		} else if (a[o || ""] < b[o || ""]) {
+		} else if (a[o] < b[o]) {
 			return -1;
 		}
 	}
@@ -106,16 +100,14 @@ function renderApply(d: any[], columns: string[]): Array<{[key: string]: string 
 		for (const row of s) {
 			for (const col of columns) {
 				let parsedWhereField = col.split("_")[1];
-				if (col.includes("uuid")) {
+				if (parsedWhereField === "uuid") {
 					rowResult[col] = row.getValue(parsedWhereField || "").toString();
-				} else if (col.toLowerCase().includes("year")) {
+				} else if (parsedWhereField === "year") {
 					rowResult[col] = Number.parseInt(row.getValue(parsedWhereField || "0"), 10);
 				} else if (valid_mfield().includes(parsedWhereField) || valid_sfield().includes(parsedWhereField)) {
 					rowResult[col] = row.getValue(parsedWhereField);
-				} else if (s[col]) {
-					rowResult[col] = Number(s[col]);
 				} else {
-					throw new InsightError("invalid col key");
+					rowResult[col] = Number(s[col]);
 				}
 			}
 		}
