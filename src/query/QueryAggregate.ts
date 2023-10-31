@@ -97,12 +97,16 @@ function processApply(apply: string[], groups: object): any {
 			(groups as any)[g] = (groups as any)[g][0];
 		});
 	} else {
-		let newCols: string[] = [];
+		let duplicates: string[] = [];
 		for (const col of apply) {
 			Object.keys(col).forEach((newCol) => {
 				if (!newCol || newCol.includes("_")) {
 					throw new InsightError("invalid apply key");
 				}
+				if (duplicates.includes(newCol)) {
+					throw new InsightError("duplicate apply key");
+				}
+				duplicates.push(newCol);
 				let [applyRule] = Object.entries((col as any)[newCol]);
 				processApplyToken(`${applyRule}`, newCol, groups);
 			});
