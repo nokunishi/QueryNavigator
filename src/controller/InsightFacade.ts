@@ -32,12 +32,11 @@ export default class InsightFacade implements IInsightFacade {
 			if (this.database.invalidId(id)) {
 				return Promise.reject(new InsightError());
 			}
-
-			if (kind === InsightDatasetKind.Rooms) {
+			if (kind) {
+				return this.database.addValidDataset(id, content, kind);
+			} else {
 				return Promise.reject(new InsightError());
 			}
-
-			return this.database.addValidDataset(id, content, kind);
 		} catch (err) {
 			return Promise.reject(new InsightError());
 		}
@@ -116,16 +115,16 @@ export default class InsightFacade implements IInsightFacade {
 			let datasetString = fs.readFileSync("./data/" + datasetId).toString();
 			let dataset = JSON.parse(datasetString);
 			let sum = 0;
-
-			dataset.forEach((course: string) => {
-				// course.length = num of sections in each course
-				sum += course.length;
-			});
-
+			// dataset.forEach((course: string) => {
+			// 	// course.length = num of sections in each course
+			// 	sum += course.length;
+			// });
+			// boolean for checking if dataset is rooms or courses
+			const checkRoom: boolean = Object.prototype.hasOwnProperty.call(dataset[0], "Lat");
 			let insightDataset: InsightDataset = {
 				id: datasetId,
-				kind: InsightDatasetKind.Sections,
-				numRows: sum,
+				kind: checkRoom ? InsightDatasetKind.Rooms : InsightDatasetKind.Sections,
+				numRows: dataset.length,
 			};
 
 			insightDatasetLists.push(insightDataset);
