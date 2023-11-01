@@ -8,29 +8,26 @@ import {parse} from "path";
  * @param obj
  * @returns
  */
-export async function parseOptions(options: Options, data: Promise<any[]>, apply?: string[]): Promise<any[]> {
+export function parseOptions(options: Options, d: any[], apply?: string[]): any[] {
 	if (Object.keys(options).some((key) => key !== "COLUMNS" && key !== "ORDER")) {
 		throw new InsightError("Invalid keys in OPTIONS");
 	}
-	let res = data.then((d) => {
-		// Parsing columns
-		let columns = options.COLUMNS;
-		let order = options.ORDER;
-		let result: any[] = [];
+	// Parsing columns
+	let columns = options.COLUMNS;
+	let order = options.ORDER;
+	let result: any[] = [];
 
-		if (!apply || (apply && apply.length === 0)) {
-			result = renderColumns(d, columns);
-		} else {
-			result = renderApply(d, columns);
-		}
+	if (!apply || (apply && apply.length === 0)) {
+		result = renderColumns(d, columns);
+	} else {
+		result = renderApply(d, columns);
+	}
 
-		if (!order) {
-			return result;
-		} else {
-			return processOrder(result, order, columns);
-		}
-	});
-	return Promise.resolve(res);
+	if (!order) {
+		return result;
+	} else {
+		return processOrder(result, order, columns);
+	}
 }
 
 function processOrder(result: any[], order: string, columns: string[]): any[] {
@@ -77,23 +74,17 @@ function tieBreaker(a: any, b: any, order: string[]): number {
 
 function renderColumns(d: any[], columns: string[]): Array<{[key: string]: string | number}> {
 	let result: Array<{[key: string]: string | number}> = [];
-	// console.log("HALLAAA");
 	Object.keys(d).forEach((section) => {
-		let r = (d as any)[section];
-		let row = new Section(r);
+		let row = (d as any)[section];
 		let rowResult: {[key: string]: string | number} = {};
 		for (const col of columns) {
-			let parsedWhereField = col.split("_")[1];
-			if (col.includes("uuid")) {
-				rowResult[col] = row.getValue(parsedWhereField)?.toString() || "";
-			} else if (col.includes("audit") || col.includes("pass") || col.includes("fail") || col.includes("avg")) {
-				rowResult[col] = row.getValue(parsedWhereField) || 0;
-			} else if (col.toLowerCase().includes("year")) {
-				rowResult[col] = Number.parseInt(row.getValue(parsedWhereField)?.toString() || "0", 10);
-			} else if (valid_mfield().includes(parsedWhereField) || valid_sfield().includes(parsedWhereField)) {
-				rowResult[col] = row.getValue(parsedWhereField) || "";
+			let parsedWhereField = parseWhereField(col);
+			if (parsedWhereField === "id") {
+				rowResult[col] = (row as any)[parsedWhereField].toString() || "";
+			} else if (parsedWhereField === "Year") {
+				rowResult[col] = Number.parseInt((row as any)[parsedWhereField], 10) || 0;
 			} else {
-				rowResult[col] = row.getValue(parsedWhereField) || "";
+				rowResult[col] = (row as any)[parsedWhereField];
 			}
 		}
 		result.push(rowResult);
@@ -102,22 +93,23 @@ function renderColumns(d: any[], columns: string[]): Array<{[key: string]: strin
 }
 
 function renderApply(d: any[], columns: string[]): Array<{[key: string]: string | number}> {
-	// console.log("HALLAAA");
 	let result: Array<{[key: string]: string | number}> = [];
 	Object.keys(d).forEach((sections) => {
 		let s = (d as any)[sections];
 		// console.log("S", s);
+
 		let rowResult: {[key: string]: string | number} = {};
 		for (const row of s) {
 			for (const col of columns) {
-				let parsedWhereField = col.split("_")[1];
-				// console.log("COL", col);
-				if (parsedWhereField === "uuid") {
-					rowResult[col] = row.getValue(parsedWhereField || "").toString();
-				} else if (parsedWhereField === "year") {
-					rowResult[col] = Number.parseInt(row.getValue(parsedWhereField || "0"), 10);
-				} else if (valid_mfield().includes(parsedWhereField) || valid_sfield().includes(parsedWhereField)) {
-					rowResult[col] = row.getValue(parsedWhereField);
+				if (col.includes("_")) {
+					let parsedWhereField = parseWhereField(col);
+					if (parsedWhereField === "id") {
+						rowResult[col] = (row as any)[parsedWhereField].toString() || "";
+					} else if (parsedWhereField === "Year") {
+						rowResult[col] = Number.parseInt((row as any)[parsedWhereField], 10) || 0;
+					} else {
+						rowResult[col] = (row as any)[parsedWhereField];
+					}
 				} else {
 					rowResult[col] = Number(s[col]);
 				}

@@ -121,27 +121,17 @@ export class Database {
 		return datasets;
 	}
 
-	public async readDataset(id: string): Promise<any[]> {
-		try {
-			let datasetString = fs.readFileSync("./data/" + id).toString();
-			let dataset = JSON.parse(datasetString) as any[];
-			// Flatten data from all courses to a single array
-			return Promise.resolve(dataset.flat());
-		} catch (err) {
-			return Promise.reject(new InsightError());
-		}
+	public readDataset(id: string): any[] {
+		let datasetString = fs.readFileSync("./data/" + id).toString();
+		let dataset = JSON.parse(datasetString) as any[];
+		// Flatten data from all courses to a single array
+		return dataset.flat();
 	}
 
 	// Get room dataset
-	public async readRoomsDataset(id: string): Promise<any[]> {
-		try {
-			let datasetString = fs.readFileSync("./data/" + id).toString();
-			console.log(datasetString);
-			let dataset = JSON.parse(datasetString) as any[];
-			console.log(dataset);
-			return Promise.resolve(dataset);
-		} catch (err) {
-			return Promise.reject(new InsightError());
-		}
+	public readRoomsDataset(id: string): any[] {
+		let datasetString = fs.readFileSync("./data/" + id).toString();
+		console.log(datasetString);
+		return JSON.parse(datasetString) as any[];
 	}
 }

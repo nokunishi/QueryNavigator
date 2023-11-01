@@ -70,18 +70,14 @@ export default class InsightFacade implements IInsightFacade {
 
 			const queryObject: Query = JSON.parse(query);
 
-			if (!queryObject.OPTIONS || !queryObject.OPTIONS.COLUMNS) {
-				return Promise.reject(new InsightError("missing OPTIONS/COLUMNS"));
+			if (!queryObject.WHERE || !queryObject.OPTIONS || !queryObject.OPTIONS.COLUMNS) {
+				return Promise.reject(new InsightError("missing WHERE/OPTIONS/COLUMNS"));
 			} else if (queryObject.OPTIONS.COLUMNS.length === 0) {
 				return Promise.reject(new InsightError("empty COLUMNS"));
 			}
 			// Get name of the dataset
 			let datasetId = queryObject.OPTIONS.COLUMNS[0].split("_")[0];
-			if (!queryObject.WHERE) {
-				return Promise.reject(new InsightError("Missing WHERE clause"));
-			}
 			let result = parseWhere(queryObject.WHERE, this.database.readDataset(datasetId));
-
 			// aggregate on 'result'
 			if (queryObject.TRANSFORMATIONS) {
 				if (!queryObject.TRANSFORMATIONS.GROUP || !queryObject.TRANSFORMATIONS.APPLY) {
@@ -94,12 +90,14 @@ export default class InsightFacade implements IInsightFacade {
 					result
 				);
 
-				return parseOptions(queryObject.OPTIONS, resultAggregate, queryObject.TRANSFORMATIONS.APPLY);
+				return Promise.resolve(
+					parseOptions(queryObject.OPTIONS, resultAggregate, queryObject.TRANSFORMATIONS.APPLY)
+				);
 			} else {
-				return parseOptions(queryObject.OPTIONS, result);
+				return Promise.resolve(parseOptions(queryObject.OPTIONS, result));
 			}
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			return Promise.reject(new InsightError());
 		}
 	}

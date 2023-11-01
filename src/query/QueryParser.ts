@@ -33,13 +33,13 @@ const recordId = 36004;
  * @param data - Data to run where clause on
  * @returns - Returns all rows which meet the 'where' clause
  */
-export async function parseWhere(whereCondition: Where, data: Promise<any[]>): Promise<Section[]> {
+export function parseWhere(whereCondition: Where, data: any[]): any[] {
 	if (whereCondition === null) {
 		throw new InsightError("Empty filters");
 	}
 	// Filter the data as per where condition
 	let log = true;
-	let d = (await data).filter((item) => {
+	let d = data.filter((item) => {
 		if (item.id === recordId && enableLogging) {
 			console.log(item);
 			console.log("wherecondition", JSON.stringify(whereCondition));
@@ -55,7 +55,7 @@ export async function parseWhere(whereCondition: Where, data: Promise<any[]>): P
 				let parseWhereVal = parseWhereComparators(item, whereCondition, p as WhereComparators);
 				result = result && parseWhereVal;
 			} catch (err) {
-				throw new InsightError("Failed to parse WHERE clause");
+				throw new InsightError("failed to parse where");
 			}
 		}
 
@@ -68,7 +68,7 @@ export async function parseWhere(whereCondition: Where, data: Promise<any[]>): P
 	if (d.length > 5000) {
 		throw new ResultTooLargeError("Result too large(>5000)");
 	}
-	return Promise.resolve(d);
+	return d;
 }
 
 function parseWhereComparators(item: any, whereCondition: Where, comparator: WhereComparators): boolean {
@@ -129,7 +129,7 @@ function processNOT(whereCondition: Where, item: any) {
 function processWildcard(whereCondition: Where, item: any) {
 	let result: boolean = false;
 	Object.keys(whereCondition["IS"]).forEach((key) => {
-		if (typeof (whereCondition["IS"] as any)[key] === "string" && sfield.includes(key.split("_")[1])) {
+		if (typeof (whereCondition["IS"] as any)[key] === "string" && valid_sfield().includes(key.split("_")[1])) {
 			let o: any = whereCondition["IS"];
 			let tempResult: boolean = false;
 			if (o[key][0] === "*" && o[key][o[key].length - 1] === "*") {
@@ -208,8 +208,14 @@ export function parseWhereField(key: string) {
 	if (key === "fail") {
 		return "Fail";
 	}
+	if (key === "fullname") {
+		return "FullName";
+	}
+	if (key === "shortname") {
+		return "ShortName";
+	}
 	if (mfieldRoom.includes(key) || sfieldRoom.includes(key)) {
-		return key;
+		return key.charAt(0).toUpperCase() + key.slice(1);
 	} else {
 		throw new InsightError("invalid query field");
 	}
@@ -227,11 +233,6 @@ function checkWrongWhereCondition(whereCondition: Where, comp: string) {
 			throw new InsightError(`Invalid ${comp} in where condition`);
 		}
 	}
-	// if (comp === "AND" || comp === "OR") {
-	// 	if (Object.keys(whereCondition[comp])[0].length === 0) {
-	// 		throw new InsightError(`Invalid ${comp} in where condition`);
-	// 	}
-	// }
 }
 
 export function valid_mfield(): string[] {
