@@ -31,6 +31,7 @@ export async function parseOptions(options: Options, d: any[], apply?: string[])
 	if (!order) {
 		return Promise.resolve(result);
 	} else {
+		console.log(processOrder(result, order, columns));
 		return Promise.resolve(processOrder(result, order, columns));
 	}
 }
@@ -55,6 +56,7 @@ function processOrder(result: any[], order: string, columns: string[]): any[] {
 			throw new InsightError("invalid keys in ORDER KEYS");
 		}
 	}
+
 	if ((order as any)["dir"] === "DOWN") {
 		return result.sort((a, b) => tieBreaker(b, a, (order as any)["keys"]));
 	} else if ((order as any)["dir"] === "UP") {
