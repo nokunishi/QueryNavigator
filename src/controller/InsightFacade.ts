@@ -98,7 +98,6 @@ export default class InsightFacade implements IInsightFacade {
 			} else {
 				return parseOptions(queryObject.OPTIONS, result);
 			}
-			return parseOptions(queryObject.OPTIONS, result);
 		} catch (error) {
 			console.log(error);
 			return Promise.reject(new InsightError());

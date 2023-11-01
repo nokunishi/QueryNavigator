@@ -4,7 +4,7 @@ import {Section} from "../model/Section";
 export interface Query {
 	WHERE: Where;
 	OPTIONS: Options;
-	TRANSFORMATIONS: any;
+	TRANSFORMATIONS?: any;
 }
 
 type WhereComparators = "LT" | "GT" | "EQ" | "AND" | "OR" | "IS" | "NOT";
@@ -174,7 +174,7 @@ function processAndOR(comparator: "and" | "or", condition: any[], result: boolea
 	return r;
 }
 
-function parseWhereField(key: string) {
+export function parseWhereField(key: string) {
 	if (key.includes("_")) {
 		key = key.split("_")[1];
 	}
