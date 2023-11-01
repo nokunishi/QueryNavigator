@@ -55,7 +55,7 @@ export function parseWhere(whereCondition: Where, data: any[]): any[] {
 				let parseWhereVal = parseWhereComparators(item, whereCondition, p as WhereComparators);
 				result = result && parseWhereVal;
 			} catch (err) {
-				throw new InsightError("Failed to parse WHERE clause");
+				throw new InsightError("failed to parse where");
 			}
 		}
 
@@ -129,7 +129,7 @@ function processNOT(whereCondition: Where, item: any) {
 function processWildcard(whereCondition: Where, item: any) {
 	let result: boolean = false;
 	Object.keys(whereCondition["IS"]).forEach((key) => {
-		if (typeof (whereCondition["IS"] as any)[key] === "string" && sfield.includes(key.split("_")[1])) {
+		if (typeof (whereCondition["IS"] as any)[key] === "string" && valid_sfield().includes(key.split("_")[1])) {
 			let o: any = whereCondition["IS"];
 			let tempResult: boolean = false;
 			if (o[key][0] === "*" && o[key][o[key].length - 1] === "*") {
@@ -208,9 +208,13 @@ export function parseWhereField(key: string) {
 	if (key === "fail") {
 		return "Fail";
 	}
+	if (key === "fullname") {
+		return "FullName";
+	}
+	if (key === "shortname") {
+		return "ShortName";
+	}
 	if (mfieldRoom.includes(key) || sfieldRoom.includes(key)) {
-		key = key.charAt(0).toUpperCase() + key.slice(1);
-		console.log(key);
 		return key.charAt(0).toUpperCase() + key.slice(1);
 	} else {
 		throw new InsightError("invalid query field");
@@ -229,11 +233,6 @@ function checkWrongWhereCondition(whereCondition: Where, comp: string) {
 			throw new InsightError(`Invalid ${comp} in where condition`);
 		}
 	}
-	// if (comp === "AND" || comp === "OR") {
-	// 	if (Object.keys(whereCondition[comp])[0].length === 0) {
-	// 		throw new InsightError(`Invalid ${comp} in where condition`);
-	// 	}
-	// }
 }
 
 export function valid_mfield(): string[] {
