@@ -77,33 +77,41 @@ function tieBreaker(a: any, b: any, order: string[]): number {
 
 function renderColumns(d: any[], columns: string[]): Array<{[key: string]: string | number}> {
 	let result: Array<{[key: string]: string | number}> = [];
-	for (const row of d) {
+	// console.log("HALLAAA");
+	Object.keys(d).forEach((section) => {
+		let r = (d as any)[section];
+		let row = new Section(r);
 		let rowResult: {[key: string]: string | number} = {};
-		for (let col of columns) {
+		for (const col of columns) {
+			let parsedWhereField = col.split("_")[1];
 			if (col.includes("uuid")) {
-				rowResult[col] = row[parseWhereField(col) || ""].toString();
+				rowResult[col] = row.getValue(parsedWhereField)?.toString() || "";
+			} else if (col.includes("audit") || col.includes("pass") || col.includes("fail") || col.includes("avg")) {
+				rowResult[col] = row.getValue(parsedWhereField) || 0;
 			} else if (col.toLowerCase().includes("year")) {
-				rowResult[col] = Number.parseInt(row[parseWhereField(col) || "0"], 10);
-			} else if (valid_mfield().includes(parseWhereField(col)) || valid_sfield().includes(parseWhereField(col))) {
-				rowResult[col] = row[parseWhereField(col) || ""];
+				rowResult[col] = Number.parseInt(row.getValue(parsedWhereField)?.toString() || "0", 10);
+			} else if (valid_mfield().includes(parsedWhereField) || valid_sfield().includes(parsedWhereField)) {
+				rowResult[col] = row.getValue(parsedWhereField) || "";
 			} else {
-				rowResult[col] = row[parseWhereField(col) || ""];
+				rowResult[col] = row.getValue(parsedWhereField) || "";
 			}
 		}
 		result.push(rowResult);
-	}
-
+	});
 	return result;
 }
 
 function renderApply(d: any[], columns: string[]): Array<{[key: string]: string | number}> {
+	// console.log("HALLAAA");
 	let result: Array<{[key: string]: string | number}> = [];
 	Object.keys(d).forEach((sections) => {
 		let s = (d as any)[sections];
+		// console.log("S", s);
 		let rowResult: {[key: string]: string | number} = {};
 		for (const row of s) {
 			for (const col of columns) {
 				let parsedWhereField = col.split("_")[1];
+				// console.log("COL", col);
 				if (parsedWhereField === "uuid") {
 					rowResult[col] = row.getValue(parsedWhereField || "").toString();
 				} else if (parsedWhereField === "year") {
