@@ -18,8 +18,8 @@ export class Section {
 	public readonly section: MField; // not really, but it's string | null
 
 	constructor(section: any) {
-		this.id = section["id"];
-		this.uuid = section["Course"];
+		this.id = section["Course"];
+		this.uuid = section["id"];
 		this.title = section["Title"];
 		this.instructor = section["Professor"];
 		this.dept = section["Subject"];

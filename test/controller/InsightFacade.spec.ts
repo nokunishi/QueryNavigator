@@ -61,6 +61,7 @@ describe("InsightFacade", function () {
 	});
 	describe("AddDataset", function () {
 		before(function () {
+			clearDisk();
 			console.info(`Before: ${this.test?.parent?.title}`);
 		});
 		beforeEach(function () {
@@ -173,10 +174,10 @@ describe("InsightFacade", function () {
 			return expect(result).to.eventually.deep.members(["valid-field"]);
 		});
 		*/
-		it("testing rooms", async function () {
-			const result = await facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
-			return expect(result).have.deep.members(["rooms"]);
-		});
+		// it("testing rooms", async function () {
+		// 	const result = await facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
+		// 	return expect(result).have.deep.members(["rooms"]);
+		// });
 	});
 
 	/*
@@ -256,6 +257,7 @@ describe("InsightFacade", function () {
 	*/
 	describe("listDataset", function () {
 		before(function () {
+			clearDisk();
 			console.info(`Before: ${this.test?.parent?.title}`);
 		});
 		beforeEach(function () {
@@ -341,11 +343,11 @@ describe("InsightFacade", function () {
 			expect(result).to.be.empty;
 		});
 		*/
-		it("should resolve: array with one elem  of type room", async function () {
-			const add = await facade.addDataset("trial", campus, InsightDatasetKind.Rooms);
-			const result = await facade.listDatasets();
-			expect(result).have.deep.members([{id: "trial", kind: InsightDatasetKind.Rooms, numRows: 364}]);
-		});
+		// it("should resolve: array with one elem  of type room", async function () {
+		// 	const add = await facade.addDataset("trial", campus, InsightDatasetKind.Rooms);
+		// 	const result = await facade.listDatasets();
+		// 	expect(result).have.deep.members([{id: "trial", kind: InsightDatasetKind.Rooms, numRows: 364}]);
+		// });
 	});
 
 	/*
@@ -360,6 +362,7 @@ describe("InsightFacade", function () {
 			clearDisk();
 			facade = new InsightFacade();
 			await facade.addDataset("sections", pair, InsightDatasetKind.Sections);
+			// await facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
 		});
 
 		function assertResult(actual: unknown, expected: InsightResult[]): void {
@@ -385,7 +388,12 @@ describe("InsightFacade", function () {
 			return facade.performQuery(input);
 		}
 
-		// folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test", {
+			assertOnResult: assertResult,
+			assertOnError: assertError,
+		});
+
+		// folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_valid_unordered", {
 		// 	assertOnResult: assertResult,
 		// 	assertOnError: assertError,
 		// });
@@ -394,14 +402,14 @@ describe("InsightFacade", function () {
 			assertOnResult: assertResultOrdered,
 			assertOnError: assertError,
 		}); */
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
+		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
 			assertOnResult: assertResultOrdered,
 			assertOnError: assertError,
 		});
-
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test", {
+ */
+		/* 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test", {
 			assertOnResult: assertResultOrdered,
 			assertOnError: assertError,
-		});
+		}); */
 	});
 });

@@ -23,7 +23,6 @@ export async function parseTransformation(
 		}
 		if (!groupKeys.includes(col)) {
 			let inApply = false;
-
 			for (const k of apply) {
 				let [key] = Object.entries(k);
 				if (key[0].includes("_")) {
@@ -39,7 +38,6 @@ export async function parseTransformation(
 			}
 		}
 	});
-
 	let keys = groupKeys.map((item) => {
 		item = item.split("_")[1];
 		if (!mfield.includes(item) && !sfield.includes(item)) {
@@ -50,6 +48,7 @@ export async function parseTransformation(
 	let result = await data
 		.then((s) => {
 			return s.map((section) => {
+				// console.log("NEW", new Section(section));
 				return new Section(section);
 			});
 		})
@@ -88,7 +87,7 @@ function groupSections(sections: any[], keys: string[]): object {
 			(acc as any)[v] = [];
 		}
 		(acc as any)[v].push(item);
-
+		// console.log("ACC", acc);
 		return acc;
 	}, {});
 }
@@ -114,7 +113,7 @@ function processApply(apply: string[], groups: object): any {
 			});
 		}
 	}
-
+	// console.log("GROUPS", groups);
 	return groups;
 }
 
