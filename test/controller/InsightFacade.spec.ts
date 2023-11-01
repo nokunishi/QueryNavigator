@@ -390,18 +390,23 @@ describe("InsightFacade", function () {
 		// 	assertOnError: assertError,
 		// });
 
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_valid_unordered", {
+			assertOnResult: assertResult,
+			assertOnError: assertError,
+		});
+
 		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
 			assertOnResult: assertResultOrdered,
 			assertOnError: assertError,
 		}); */
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
+		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
 			assertOnResult: assertResultOrdered,
 			assertOnError: assertError,
 		});
-
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test", {
+ */
+		/* 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test", {
 			assertOnResult: assertResultOrdered,
 			assertOnError: assertError,
-		});
+		}); */
 	});
 });

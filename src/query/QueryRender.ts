@@ -1,5 +1,6 @@
 import {InsightError, ResultTooLargeError} from "../controller/IInsightFacade";
 import {Options, valid_mfield, valid_sfield} from "./QueryParser";
+import {Section} from "../model/Section";
 
 /**
  * This parses the entire 'OPTIONS' clause of query
@@ -76,17 +77,17 @@ function tieBreaker(a: any, b: any, order: string[]): number {
 function renderColumns(d: any[], columns: string[]): Array<{[key: string]: string | number}> {
 	let result: Array<{[key: string]: string | number}> = [];
 	Object.keys(d).forEach((section) => {
-		let row = (d as any)[section];
+		let r = (d as any)[section];
+		let row = new Section(r);
 		let rowResult: {[key: string]: string | number} = {};
-
 		for (const col of columns) {
 			let parsedWhereField = col.split("_")[1];
 			if (col.includes("uuid")) {
-				rowResult[col] = row.getValue(parsedWhereField || "").toString();
+				rowResult[col] = row.getValue(parsedWhereField)?.toString() || "";
 			} else if (col.toLowerCase().includes("year")) {
-				rowResult[col] = Number.parseInt(row.getValue(parsedWhereField || "0"), 10);
+				rowResult[col] = Number.parseInt(row.getValue(parsedWhereField)?.toString() || "0", 10);
 			} else if (valid_mfield().includes(parsedWhereField) || valid_sfield().includes(parsedWhereField)) {
-				rowResult[col] = row.getValue(parsedWhereField);
+				rowResult[col] = row.getValue(parsedWhereField) || "";
 			}
 		}
 		result.push(rowResult);

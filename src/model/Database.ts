@@ -65,8 +65,6 @@ export class Database {
 				} else {
 					throw new InsightError("Invalid kind of dataset");
 				}
-			} else {
-				return Promise.reject(new InsightError());
 			}
 
 			return Promise.resolve(this.getAllIds());
