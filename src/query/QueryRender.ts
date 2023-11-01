@@ -3,12 +3,13 @@ import {Options, parseWhereField, valid_mfield, valid_sfield} from "./QueryParse
 import {Section} from "../model/Section";
 import {parse} from "path";
 
+const num = ["Year", "Lon", "Lat", "Seats"];
 /**
  * This parses the entire 'OPTIONS' clause of query
  * @param obj
  * @returns
  */
-export function parseOptions(options: Options, d: any[], apply?: string[]): any[] {
+export async function parseOptions(options: Options, d: any[], apply?: string[]): Promise<any[]> {
 	if (Object.keys(options).some((key) => key !== "COLUMNS" && key !== "ORDER")) {
 		throw new InsightError("Invalid keys in OPTIONS");
 	}
@@ -23,10 +24,15 @@ export function parseOptions(options: Options, d: any[], apply?: string[]): any[
 		result = renderApply(d, columns);
 	}
 
+	if (result.length > 5000) {
+		return Promise.reject(new ResultTooLargeError());
+	}
+
 	if (!order) {
-		return result;
+		return Promise.resolve(result);
 	} else {
-		return processOrder(result, order, columns);
+		console.log(processOrder(result, order, columns));
+		return Promise.resolve(processOrder(result, order, columns));
 	}
 }
 
@@ -50,6 +56,7 @@ function processOrder(result: any[], order: string, columns: string[]): any[] {
 			throw new InsightError("invalid keys in ORDER KEYS");
 		}
 	}
+
 	if ((order as any)["dir"] === "DOWN") {
 		return result.sort((a, b) => tieBreaker(b, a, (order as any)["keys"]));
 	} else if ((order as any)["dir"] === "UP") {
@@ -83,6 +90,8 @@ function renderColumns(d: any[], columns: string[]): Array<{[key: string]: strin
 				rowResult[col] = (row as any)[parsedWhereField].toString() || "";
 			} else if (parsedWhereField === "Year") {
 				rowResult[col] = Number.parseInt((row as any)[parsedWhereField], 10) || 0;
+			} else if (parsedWhereField === "Seats") {
+				rowResult[col] = Number((row as any)[parsedWhereField]) || 0;
 			} else {
 				rowResult[col] = (row as any)[parsedWhereField];
 			}
@@ -96,8 +105,6 @@ function renderApply(d: any[], columns: string[]): Array<{[key: string]: string 
 	let result: Array<{[key: string]: string | number}> = [];
 	Object.keys(d).forEach((sections) => {
 		let s = (d as any)[sections];
-		// console.log("S", s);
-
 		let rowResult: {[key: string]: string | number} = {};
 		for (const row of s) {
 			for (const col of columns) {
@@ -107,6 +114,8 @@ function renderApply(d: any[], columns: string[]): Array<{[key: string]: string 
 						rowResult[col] = (row as any)[parsedWhereField].toString() || "";
 					} else if (parsedWhereField === "Year") {
 						rowResult[col] = Number.parseInt((row as any)[parsedWhereField], 10) || 0;
+					} else if (parsedWhereField === "Seats") {
+						rowResult[col] = Number((row as any)[parsedWhereField]) || 0;
 					} else {
 						rowResult[col] = (row as any)[parsedWhereField];
 					}

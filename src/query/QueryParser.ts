@@ -65,9 +65,6 @@ export function parseWhere(whereCondition: Where, data: any[]): any[] {
 		}
 		return result;
 	});
-	if (d.length > 5000) {
-		throw new ResultTooLargeError("Result too large(>5000)");
-	}
 	return d;
 }
 
@@ -128,6 +125,7 @@ function processNOT(whereCondition: Where, item: any) {
 
 function processWildcard(whereCondition: Where, item: any) {
 	let result: boolean = false;
+
 	Object.keys(whereCondition["IS"]).forEach((key) => {
 		if (typeof (whereCondition["IS"] as any)[key] === "string" && valid_sfield().includes(key.split("_")[1])) {
 			let o: any = whereCondition["IS"];
@@ -214,7 +212,11 @@ export function parseWhereField(key: string) {
 	if (key === "shortname") {
 		return "ShortName";
 	}
+	if (key === "href") {
+		return "Link";
+	}
 	if (mfieldRoom.includes(key) || sfieldRoom.includes(key)) {
+		// console.log(key.charAt(0).toUpperCase() + key.slice(1));
 		return key.charAt(0).toUpperCase() + key.slice(1);
 	} else {
 		throw new InsightError("invalid query field");

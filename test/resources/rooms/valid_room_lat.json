@@ -1,0 +1,259 @@
+{
+	"title": "valid_room_lat",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"rooms_lat": 10
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"rooms_shortname",
+				"rooms_lat",
+				"seats"
+			],
+			"ORDER": {
+				"dir": "UP",
+				"keys": [
+					"seats"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_shortname",
+				"rooms_lat"
+			],
+			"APPLY": [
+				{
+					"seats": {
+						"AVG": "rooms_seats"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"rooms_shortname": "AUDX",
+			"rooms_lat": 49.2666,
+			"seats": 20.5
+		},
+		{
+			"rooms_shortname": "SPPH",
+			"rooms_lat": 49.2642,
+			"seats": 27.67
+		},
+		{
+			"rooms_shortname": "SOWK",
+			"rooms_lat": 49.2643,
+			"seats": 28.71
+		},
+		{
+			"rooms_shortname": "PCOH",
+			"rooms_lat": 49.264,
+			"seats": 30
+		},
+		{
+			"rooms_shortname": "MCML",
+			"rooms_lat": 49.26114,
+			"seats": 30.16
+		},
+		{
+			"rooms_shortname": "ORCH",
+			"rooms_lat": 49.26048,
+			"seats": 31.52
+		},
+		{
+			"rooms_shortname": "IBLC",
+			"rooms_lat": 49.26766,
+			"seats": 31.56
+		},
+		{
+			"rooms_shortname": "MGYM",
+			"rooms_lat": 49.2663,
+			"seats": 32.5
+		},
+		{
+			"rooms_shortname": "UCLL",
+			"rooms_lat": 49.26867,
+			"seats": 40.75
+		},
+		{
+			"rooms_shortname": "FNH",
+			"rooms_lat": 49.26414,
+			"seats": 43.83
+		},
+		{
+			"rooms_shortname": "ALRD",
+			"rooms_lat": 49.2699,
+			"seats": 45.6
+		},
+		{
+			"rooms_shortname": "SCRF",
+			"rooms_lat": 49.26398,
+			"seats": 45.64
+		},
+		{
+			"rooms_shortname": "ANSO",
+			"rooms_lat": 49.26958,
+			"seats": 46.5
+		},
+		{
+			"rooms_shortname": "BRKX",
+			"rooms_lat": 49.26862,
+			"seats": 47
+		},
+		{
+			"rooms_shortname": "FORW",
+			"rooms_lat": 49.26176,
+			"seats": 47.33
+		},
+		{
+			"rooms_shortname": "CEME",
+			"rooms_lat": 49.26273,
+			"seats": 48.17
+		},
+		{
+			"rooms_shortname": "PHRM",
+			"rooms_lat": 49.26229,
+			"seats": 48.91
+		},
+		{
+			"rooms_shortname": "EOSM",
+			"rooms_lat": 49.26228,
+			"seats": 50
+		},
+		{
+			"rooms_shortname": "BUCH",
+			"rooms_lat": 49.26826,
+			"seats": 52.3
+		},
+		{
+			"rooms_shortname": "LASR",
+			"rooms_lat": 49.26767,
+			"seats": 54.17
+		},
+		{
+			"rooms_shortname": "ANGU",
+			"rooms_lat": 49.26486,
+			"seats": 55.21
+		},
+		{
+			"rooms_shortname": "MATH",
+			"rooms_lat": 49.266463,
+			"seats": 61.88
+		},
+		{
+			"rooms_shortname": "FSC",
+			"rooms_lat": 49.26044,
+			"seats": 62.1
+		},
+		{
+			"rooms_shortname": "SWNG",
+			"rooms_lat": 49.26293,
+			"seats": 64.59
+		},
+		{
+			"rooms_shortname": "IONA",
+			"rooms_lat": 49.27106,
+			"seats": 75
+		},
+		{
+			"rooms_shortname": "GEOG",
+			"rooms_lat": 49.26605,
+			"seats": 77.38
+		},
+		{
+			"rooms_shortname": "WOOD",
+			"rooms_lat": 49.26478,
+			"seats": 81.06
+		},
+		{
+			"rooms_shortname": "MCLD",
+			"rooms_lat": 49.26176,
+			"seats": 83.83
+		},
+		{
+			"rooms_shortname": "BIOL",
+			"rooms_lat": 49.26479,
+			"seats": 84
+		},
+		{
+			"rooms_shortname": "DMP",
+			"rooms_lat": 49.26125,
+			"seats": 88
+		},
+		{
+			"rooms_shortname": "MATX",
+			"rooms_lat": 49.266089,
+			"seats": 106
+		},
+		{
+			"rooms_shortname": "HENN",
+			"rooms_lat": 49.26627,
+			"seats": 109.67
+		},
+		{
+			"rooms_shortname": "CHBE",
+			"rooms_lat": 49.26228,
+			"seats": 118
+		},
+		{
+			"rooms_shortname": "LSK",
+			"rooms_lat": 49.26545,
+			"seats": 126.25
+		},
+		{
+			"rooms_shortname": "HEBB",
+			"rooms_lat": 49.2661,
+			"seats": 134.25
+		},
+		{
+			"rooms_shortname": "AERL",
+			"rooms_lat": 49.26372,
+			"seats": 144
+		},
+		{
+			"rooms_shortname": "CHEM",
+			"rooms_lat": 49.2659,
+			"seats": 152.17
+		},
+		{
+			"rooms_shortname": "FRDM",
+			"rooms_lat": 49.26541,
+			"seats": 160
+		},
+		{
+			"rooms_shortname": "OSBO",
+			"rooms_lat": 49.26047,
+			"seats": 173.67
+		},
+		{
+			"rooms_shortname": "ESB",
+			"rooms_lat": 49.26274,
+			"seats": 193.33
+		},
+		{
+			"rooms_shortname": "WESB",
+			"rooms_lat": 49.26517,
+			"seats": 213.5
+		},
+		{
+			"rooms_shortname": "LSC",
+			"rooms_lat": 49.26236,
+			"seats": 275
+		},
+		{
+			"rooms_shortname": "SRC",
+			"rooms_lat": 49.2683,
+			"seats": 299
+		},
+		{
+			"rooms_shortname": "CIRS",
+			"rooms_lat": 49.26207,
+			"seats": 426
+		}
+	]
+}
