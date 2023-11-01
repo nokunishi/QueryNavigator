@@ -1,0 +1,179 @@
+{
+	"title": "valid_room_seats",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"rooms_seats": 100
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"rooms_shortname",
+				"rooms_lat",
+				"seats"
+			],
+			"ORDER": {
+				"dir": "UP",
+				"keys": [
+					"seats"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_shortname",
+				"rooms_lat"
+			],
+			"APPLY": [
+				{
+					"seats": {
+						"AVG": "rooms_seats"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"rooms_shortname": "MATX",
+			"rooms_lat": 49.266089,
+			"seats": 106
+		},
+		{
+			"rooms_shortname": "MCLD",
+			"rooms_lat": 49.26176,
+			"seats": 129.5
+		},
+		{
+			"rooms_shortname": "IBLC",
+			"rooms_lat": 49.26766,
+			"seats": 133
+		},
+		{
+			"rooms_shortname": "DMP",
+			"rooms_lat": 49.26125,
+			"seats": 140
+		},
+		{
+			"rooms_shortname": "AERL",
+			"rooms_lat": 49.26372,
+			"seats": 144
+		},
+		{
+			"rooms_shortname": "BUCH",
+			"rooms_lat": 49.26826,
+			"seats": 157.57
+		},
+		{
+			"rooms_shortname": "FRDM",
+			"rooms_lat": 49.26541,
+			"seats": 160
+		},
+		{
+			"rooms_shortname": "CHEM",
+			"rooms_lat": 49.2659,
+			"seats": 183.25
+		},
+		{
+			"rooms_shortname": "HENN",
+			"rooms_lat": 49.26627,
+			"seats": 187.33
+		},
+		{
+			"rooms_shortname": "SWNG",
+			"rooms_lat": 49.26293,
+			"seats": 188.75
+		},
+		{
+			"rooms_shortname": "LSK",
+			"rooms_lat": 49.26545,
+			"seats": 194
+		},
+		{
+			"rooms_shortname": "CHBE",
+			"rooms_lat": 49.26228,
+			"seats": 200
+		},
+		{
+			"rooms_shortname": "MCML",
+			"rooms_lat": 49.26114,
+			"seats": 200
+		},
+		{
+			"rooms_shortname": "PHRM",
+			"rooms_lat": 49.26229,
+			"seats": 201.5
+		},
+		{
+			"rooms_shortname": "WOOD",
+			"rooms_lat": 49.26478,
+			"seats": 208.8
+		},
+		{
+			"rooms_shortname": "WESB",
+			"rooms_lat": 49.26517,
+			"seats": 213.5
+		},
+		{
+			"rooms_shortname": "MATH",
+			"rooms_lat": 49.266463,
+			"seats": 224
+		},
+		{
+			"rooms_shortname": "GEOG",
+			"rooms_lat": 49.26605,
+			"seats": 225
+		},
+		{
+			"rooms_shortname": "BIOL",
+			"rooms_lat": 49.26479,
+			"seats": 228
+		},
+		{
+			"rooms_shortname": "ESB",
+			"rooms_lat": 49.26274,
+			"seats": 250
+		},
+		{
+			"rooms_shortname": "FSC",
+			"rooms_lat": 49.26044,
+			"seats": 250
+		},
+		{
+			"rooms_shortname": "ANGU",
+			"rooms_lat": 49.26486,
+			"seats": 260
+		},
+		{
+			"rooms_shortname": "LSC",
+			"rooms_lat": 49.26236,
+			"seats": 275
+		},
+		{
+			"rooms_shortname": "SCRF",
+			"rooms_lat": 49.26398,
+			"seats": 280
+		},
+		{
+			"rooms_shortname": "SRC",
+			"rooms_lat": 49.2683,
+			"seats": 299
+		},
+		{
+			"rooms_shortname": "HEBB",
+			"rooms_lat": 49.2661,
+			"seats": 375
+		},
+		{
+			"rooms_shortname": "CIRS",
+			"rooms_lat": 49.26207,
+			"seats": 426
+		},
+		{
+			"rooms_shortname": "OSBO",
+			"rooms_lat": 49.26047,
+			"seats": 442
+		}
+	]
+}

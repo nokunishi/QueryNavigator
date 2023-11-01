@@ -388,7 +388,7 @@ describe("InsightFacade", function () {
 			return facade.performQuery(input);
 		}
 
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test", {
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_not_ordered", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});

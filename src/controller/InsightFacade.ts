@@ -5,6 +5,7 @@ import {
 	InsightError,
 	InsightResult,
 	NotFoundError,
+	ResultTooLargeError,
 } from "./IInsightFacade";
 
 import {Database} from "../model/Database";
@@ -78,6 +79,11 @@ export default class InsightFacade implements IInsightFacade {
 			// Get name of the dataset
 			let datasetId = queryObject.OPTIONS.COLUMNS[0].split("_")[0];
 			let result = parseWhere(queryObject.WHERE, this.database.readDataset(datasetId));
+
+			if (result.length > 5000) {
+				return Promise.reject(new ResultTooLargeError());
+			}
+
 			// aggregate on 'result'
 			if (queryObject.TRANSFORMATIONS) {
 				if (!queryObject.TRANSFORMATIONS.GROUP || !queryObject.TRANSFORMATIONS.APPLY) {
@@ -97,7 +103,6 @@ export default class InsightFacade implements IInsightFacade {
 				return Promise.resolve(parseOptions(queryObject.OPTIONS, result));
 			}
 		} catch (error) {
-			// console.log(error);
 			return Promise.reject(new InsightError());
 		}
 	}
