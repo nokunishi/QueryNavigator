@@ -55,7 +55,6 @@ export function parseWhere(whereCondition: Where, data: any[]): any[] {
 				let parseWhereVal = parseWhereComparators(item, whereCondition, p as WhereComparators);
 				result = result && parseWhereVal;
 			} catch (err) {
-				// console.log(err);
 				throw new InsightError("failed to parse where");
 			}
 		}

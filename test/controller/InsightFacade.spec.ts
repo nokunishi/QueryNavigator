@@ -361,8 +361,8 @@ describe("InsightFacade", function () {
 		before(async function () {
 			clearDisk();
 			facade = new InsightFacade();
-			// await facade.addDataset("sections", pair, InsightDatasetKind.Sections);
-			await facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
+			await facade.addDataset("sections", pair, InsightDatasetKind.Sections);
+			// await facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
 		});
 
 		function assertResult(actual: unknown, expected: InsightResult[]): void {
@@ -387,29 +387,20 @@ describe("InsightFacade", function () {
 		function target(input: unknown): Promise<InsightResult[]> {
 			return facade.performQuery(input);
 		}
-
+		/*
 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test1", {
+			assertOnResult: assertResult,
+			assertOnError: assertError,
+		}); */
+
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_section", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});
 
-		// folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_valid_unordered", {
-		// 	assertOnResult: assertResult,
-		// 	assertOnError: assertError,
-		// });
-
-		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
-			assertOnResult: assertResultOrdered,
-			assertOnError: assertError,
-		}); */
-		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
-			assertOnResult: assertResultOrdered,
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
+			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});
- */
-		/* 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test", {
-			assertOnResult: assertResultOrdered,
-			assertOnError: assertError,
-		}); */
 	});
 });

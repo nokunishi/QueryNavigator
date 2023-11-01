@@ -9,7 +9,7 @@ const num = ["Year", "Lon", "Lat", "Seats"];
  * @param obj
  * @returns
  */
-export function parseOptions(options: Options, d: any[], apply?: string[]): any[] {
+export async function parseOptions(options: Options, d: any[], apply?: string[]): Promise<any[]> {
 	if (Object.keys(options).some((key) => key !== "COLUMNS" && key !== "ORDER")) {
 		throw new InsightError("Invalid keys in OPTIONS");
 	}
@@ -24,10 +24,14 @@ export function parseOptions(options: Options, d: any[], apply?: string[]): any[
 		result = renderApply(d, columns);
 	}
 
+	if (result.length > 5000) {
+		return Promise.reject(new ResultTooLargeError());
+	}
+
 	if (!order) {
-		return result;
+		return Promise.resolve(result);
 	} else {
-		return processOrder(result, order, columns);
+		return Promise.resolve(processOrder(result, order, columns));
 	}
 }
 

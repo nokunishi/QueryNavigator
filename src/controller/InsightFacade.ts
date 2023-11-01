@@ -80,10 +80,6 @@ export default class InsightFacade implements IInsightFacade {
 			let datasetId = queryObject.OPTIONS.COLUMNS[0].split("_")[0];
 			let result = parseWhere(queryObject.WHERE, this.database.readDataset(datasetId));
 
-			if (result.length > 5000) {
-				return Promise.reject(new ResultTooLargeError());
-			}
-
 			// aggregate on 'result'
 			if (queryObject.TRANSFORMATIONS) {
 				if (!queryObject.TRANSFORMATIONS.GROUP || !queryObject.TRANSFORMATIONS.APPLY) {
@@ -96,13 +92,12 @@ export default class InsightFacade implements IInsightFacade {
 					result
 				);
 
-				return Promise.resolve(
-					parseOptions(queryObject.OPTIONS, resultAggregate, queryObject.TRANSFORMATIONS.APPLY)
-				);
+				return parseOptions(queryObject.OPTIONS, resultAggregate, queryObject.TRANSFORMATIONS.APPLY);
 			} else {
-				return Promise.resolve(parseOptions(queryObject.OPTIONS, result));
+				return parseOptions(queryObject.OPTIONS, result);
 			}
 		} catch (error) {
+			// console.log(error);
 			return Promise.reject(new InsightError());
 		}
 	}
