@@ -11,12 +11,7 @@ interface ApplyRule {
 const mfield = valid_mfield();
 const sfield = valid_sfield();
 
-export async function parseTransformation(
-	options: Options,
-	groupKeys: string[],
-	apply: string[],
-	data: Promise<Section[]>
-): Promise<any> {
+export function parseTransformation(options: Options, groupKeys: string[], apply: string[], data: any[]): any[] {
 	options.COLUMNS.forEach((col) => {
 		if (groupKeys.length === 0) {
 			throw new InsightError("GROUP is an empty array");
@@ -45,14 +40,10 @@ export async function parseTransformation(
 		}
 		return item;
 	});
-	let result = await data
-		.then((sections) => {
-			return groupSections(sections, keys);
-		})
-		.then((g) => {
-			return processApply(apply, g);
-		});
-	return Promise.resolve(result);
+	// console.log(await data);
+	let g = groupSections(data, keys);
+	let result = processApply(apply, g);
+	return result;
 }
 
 function groupSections(sections: any[], keys: string[]): object {
@@ -86,7 +77,7 @@ function groupSections(sections: any[], keys: string[]): object {
 	}, {});
 }
 
-function processApply(apply: string[], groups: object): any {
+function processApply(apply: string[], groups: object): any[] {
 	if (apply.length === 0) {
 		Object.keys(groups).forEach((g) => {
 			(groups as any)[g] = (groups as any)[g][0];
@@ -108,7 +99,7 @@ function processApply(apply: string[], groups: object): any {
 		}
 	}
 	// console.log("GROUPS", groups);
-	return groups;
+	return groups as any[];
 }
 
 function processApplyToken(applyRule: string, colName: string, groups: object) {

@@ -94,12 +94,14 @@ export default class InsightFacade implements IInsightFacade {
 					result
 				);
 
-				return parseOptions(queryObject.OPTIONS, resultAggregate, queryObject.TRANSFORMATIONS.APPLY);
+				return Promise.resolve(
+					parseOptions(queryObject.OPTIONS, resultAggregate, queryObject.TRANSFORMATIONS.APPLY)
+				);
 			} else {
-				return parseOptions(queryObject.OPTIONS, result);
+				return Promise.resolve(parseOptions(queryObject.OPTIONS, result));
 			}
 		} catch (error) {
-			console.log(error);
+			// console.log(error);
 			return Promise.reject(new InsightError());
 		}
 	}

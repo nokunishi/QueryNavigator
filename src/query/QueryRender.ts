@@ -8,29 +8,26 @@ import {parse} from "path";
  * @param obj
  * @returns
  */
-export async function parseOptions(options: Options, data: Promise<any[]>, apply?: string[]): Promise<any[]> {
+export function parseOptions(options: Options, d: any[], apply?: string[]): any[] {
 	if (Object.keys(options).some((key) => key !== "COLUMNS" && key !== "ORDER")) {
 		throw new InsightError("Invalid keys in OPTIONS");
 	}
-	let res = data.then((d) => {
-		// Parsing columns
-		let columns = options.COLUMNS;
-		let order = options.ORDER;
-		let result: any[] = [];
+	// Parsing columns
+	let columns = options.COLUMNS;
+	let order = options.ORDER;
+	let result: any[] = [];
 
-		if (!apply || (apply && apply.length === 0)) {
-			result = renderColumns(d, columns);
-		} else {
-			result = renderApply(d, columns);
-		}
+	if (!apply || (apply && apply.length === 0)) {
+		result = renderColumns(d, columns);
+	} else {
+		result = renderApply(d, columns);
+	}
 
-		if (!order) {
-			return result;
-		} else {
-			return processOrder(result, order, columns);
-		}
-	});
-	return Promise.resolve(res);
+	if (!order) {
+		return result;
+	} else {
+		return processOrder(result, order, columns);
+	}
 }
 
 function processOrder(result: any[], order: string, columns: string[]): any[] {

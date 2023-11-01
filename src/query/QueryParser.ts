@@ -33,13 +33,13 @@ const recordId = 36004;
  * @param data - Data to run where clause on
  * @returns - Returns all rows which meet the 'where' clause
  */
-export async function parseWhere(whereCondition: Where, data: Promise<any[]>): Promise<Section[]> {
+export function parseWhere(whereCondition: Where, data: any[]): any[] {
 	if (whereCondition === null) {
 		throw new InsightError("Empty filters");
 	}
 	// Filter the data as per where condition
 	let log = true;
-	let d = (await data).filter((item) => {
+	let d = data.filter((item) => {
 		if (item.id === recordId && enableLogging) {
 			console.log(item);
 			console.log("wherecondition", JSON.stringify(whereCondition));
@@ -68,7 +68,7 @@ export async function parseWhere(whereCondition: Where, data: Promise<any[]>): P
 	if (d.length > 5000) {
 		throw new ResultTooLargeError("Result too large(>5000)");
 	}
-	return Promise.resolve(d);
+	return d;
 }
 
 function parseWhereComparators(item: any, whereCondition: Where, comparator: WhereComparators): boolean {
