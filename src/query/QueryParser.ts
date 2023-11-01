@@ -209,7 +209,9 @@ export function parseWhereField(key: string) {
 		return "Fail";
 	}
 	if (mfieldRoom.includes(key) || sfieldRoom.includes(key)) {
-		return key;
+		key = key.charAt(0).toUpperCase() + key.slice(1);
+		console.log(key);
+		return key.charAt(0).toUpperCase() + key.slice(1);
 	} else {
 		throw new InsightError("invalid query field");
 	}

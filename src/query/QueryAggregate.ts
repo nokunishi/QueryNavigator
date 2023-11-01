@@ -1,6 +1,6 @@
 import {InsightError, ResultTooLargeError} from "../controller/IInsightFacade";
 import {Section} from "../model/Section";
-import {valid_mfield, valid_sfield, Options} from "./QueryParser";
+import {valid_mfield, valid_sfield, Options, parseWhereField} from "./QueryParser";
 import Decimal from "decimal.js";
 
 const ApplyToken = ["MAX", "MIN", "AVG", "COUNT", "SUM"];
@@ -46,12 +46,6 @@ export async function parseTransformation(
 		return item;
 	});
 	let result = await data
-		.then((s) => {
-			return s.map((section) => {
-				// console.log("NEW", new Section(section));
-				return new Section(section);
-			});
-		})
 		.then((sections) => {
 			return groupSections(sections, keys);
 		})
@@ -65,9 +59,9 @@ function groupSections(sections: any[], keys: string[]): object {
 	return sections.reduce(function (acc, item) {
 		let values: string[] = [];
 
-		for (const key of keys) {
-			let value = item.getValue(key);
-
+		for (const k of keys) {
+			let key = parseWhereField(k);
+			let value = (item as any)[key];
 			if (typeof value === "number") {
 				value.toString();
 			}
@@ -156,53 +150,50 @@ function processApplyToken(applyRule: string, colName: string, groups: object) {
 	}
 }
 
-function processOp(sections: any[], col: string, op: string): string | undefined {
-	if (valid_sfield().includes(col)) {
+function processOp(sections: any[], col_: string, op: string): string | undefined {
+	if (valid_sfield().includes(col_)) {
 		throw new InsightError("invalid key types");
 	}
+	let result = 0;
+	let col = parseWhereField(col_);
 	switch (op) {
 		case "MIN":
 			{
-				let min = Number.MAX_VALUE;
+				result = Number.MAX_VALUE;
 				sections.forEach((s: any) => {
-					if (min > Number(s.getValue(col))) {
-						min = Number(s.getValue(col));
+					if (result > Number((s as any)[col])) {
+						result = Number((s as any)[col]);
 					}
 				});
-				return min.toFixed(2);
 			}
 			break;
 		case "MAX":
 			{
-				let max = 0;
 				sections.forEach((s: any) => {
-					if (max < Number(s.getValue(col))) {
-						max = Number(s.getValue(col));
+					if (result < Number((s as any)[col])) {
+						result = Number((s as any)[col]);
 					}
 				});
-				return max.toFixed(2);
 			}
 			break;
 		case "SUM":
 			{
-				let sum = sections.reduce(function (acc: Decimal, s: any) {
-					let n = new Decimal(s.getValue(col));
+				result = sections.reduce(function (acc: Decimal, s: any) {
+					let n = new Decimal((s as any)[col]);
 					return Decimal.add(acc, n);
 				}, 0);
-				return sum.toFixed(2);
 			}
 			break;
 
 		case "AVG":
 			{
-				let avg =
+				result =
 					sections.reduce(function (acc: Decimal, s: any) {
-						let n = new Decimal(s.getValue(col));
+						let n = new Decimal((s as any)[col]);
 						return Decimal.add(acc, n);
 					}, 0) / sections.length;
-
-				return avg.toFixed(2);
 			}
 			break;
 	}
+	return result.toFixed(2);
 }
