@@ -217,6 +217,7 @@ export function parseWhereField(key: string) {
 		return "Link";
 	}
 	if (mfieldRoom.includes(key) || sfieldRoom.includes(key)) {
+		// console.log(key.charAt(0).toUpperCase() + key.slice(1));
 		return key.charAt(0).toUpperCase() + key.slice(1);
 	} else {
 		throw new InsightError("invalid query field");

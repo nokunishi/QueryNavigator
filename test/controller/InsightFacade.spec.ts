@@ -361,8 +361,8 @@ describe("InsightFacade", function () {
 		before(async function () {
 			clearDisk();
 			facade = new InsightFacade();
-			await facade.addDataset("sections", pair, InsightDatasetKind.Sections);
-			// await facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
+			// await facade.addDataset("sections", pair, InsightDatasetKind.Sections);
+			await facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
 		});
 
 		function assertResult(actual: unknown, expected: InsightResult[]): void {
@@ -388,7 +388,7 @@ describe("InsightFacade", function () {
 			return facade.performQuery(input);
 		}
 
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_not_ordered", {
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test1", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});

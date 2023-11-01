@@ -122,26 +122,26 @@ function processApplyToken(applyRule: string, colName: string, groups: object) {
 		case "AVG":
 			Object.keys(groups).forEach((grp) => {
 				let sections = (groups as any)[grp];
-				sections[colName] = processOp(sections, col, "AVG");
+				sections[colName] = processOp(sections, col, "AVG").toFixed(2);
 			});
 			break;
 		case "COUNT":
 			for (const key of Object.keys(groups)) {
 				let sections = (groups as any)[key];
 				let count = groupSections(sections, [col]);
-				sections[colName] = Object.keys(count).length.toString();
+				sections[colName] = parseInt(Object.keys(count).length.toString(), 10);
 			}
 			break;
 		case "SUM":
 			Object.keys(groups).forEach((grp) => {
 				let sections = (groups as any)[grp];
-				sections[colName] = processOp(sections, col, "SUM");
+				sections[colName] = processOp(sections, col, "SUM").toFixed(2);
 			});
 			break;
 	}
 }
 
-function processOp(sections: any[], col_: string, op: string): string | undefined {
+function processOp(sections: any[], col_: string, op: string): number {
 	if (valid_sfield().includes(col_)) {
 		throw new InsightError("invalid key types");
 	}
@@ -150,7 +150,7 @@ function processOp(sections: any[], col_: string, op: string): string | undefine
 	switch (op) {
 		case "MIN":
 			{
-				result = Number.MAX_VALUE;
+				result = Number.POSITIVE_INFINITY;
 				sections.forEach((s: any) => {
 					if (result > Number((s as any)[col])) {
 						result = Number((s as any)[col]);
@@ -160,6 +160,7 @@ function processOp(sections: any[], col_: string, op: string): string | undefine
 			break;
 		case "MAX":
 			{
+				result = Number.NEGATIVE_INFINITY;
 				sections.forEach((s: any) => {
 					if (result < Number((s as any)[col])) {
 						result = Number((s as any)[col]);
@@ -186,5 +187,5 @@ function processOp(sections: any[], col_: string, op: string): string | undefine
 			}
 			break;
 	}
-	return result.toFixed(2);
+	return result;
 }

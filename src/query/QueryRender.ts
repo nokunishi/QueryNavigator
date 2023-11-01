@@ -3,6 +3,7 @@ import {Options, parseWhereField, valid_mfield, valid_sfield} from "./QueryParse
 import {Section} from "../model/Section";
 import {parse} from "path";
 
+const num = ["Year", "Lon", "Lat", "Seats"];
 /**
  * This parses the entire 'OPTIONS' clause of query
  * @param obj
@@ -83,6 +84,8 @@ function renderColumns(d: any[], columns: string[]): Array<{[key: string]: strin
 				rowResult[col] = (row as any)[parsedWhereField].toString() || "";
 			} else if (parsedWhereField === "Year") {
 				rowResult[col] = Number.parseInt((row as any)[parsedWhereField], 10) || 0;
+			} else if (parsedWhereField === "Seats") {
+				rowResult[col] = Number((row as any)[parsedWhereField]) || 0;
 			} else {
 				rowResult[col] = (row as any)[parsedWhereField];
 			}
@@ -96,8 +99,6 @@ function renderApply(d: any[], columns: string[]): Array<{[key: string]: string 
 	let result: Array<{[key: string]: string | number}> = [];
 	Object.keys(d).forEach((sections) => {
 		let s = (d as any)[sections];
-		// console.log("S", s);
-
 		let rowResult: {[key: string]: string | number} = {};
 		for (const row of s) {
 			for (const col of columns) {
@@ -107,6 +108,8 @@ function renderApply(d: any[], columns: string[]): Array<{[key: string]: string 
 						rowResult[col] = (row as any)[parsedWhereField].toString() || "";
 					} else if (parsedWhereField === "Year") {
 						rowResult[col] = Number.parseInt((row as any)[parsedWhereField], 10) || 0;
+					} else if (parsedWhereField === "Seats") {
+						rowResult[col] = Number((row as any)[parsedWhereField]) || 0;
 					} else {
 						rowResult[col] = (row as any)[parsedWhereField];
 					}
