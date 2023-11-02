@@ -23,6 +23,7 @@ export function parseTransformation(options: Options, groupKeys: string[], apply
 				if (key[0].includes("_")) {
 					throw new InsightError("ApplyKey cannot contain underscore");
 				}
+
 				if (key[0] === col) {
 					inApply = true;
 				}
@@ -56,22 +57,21 @@ function groupSections(sections: any[], keys: string[]): object {
 			if (typeof value === "number") {
 				value.toString();
 			}
-
 			values.push(value);
 		}
 
 		let v: string = values.reduce(function (value_acc, value) {
 			return value_acc + "/" + value;
 		});
-
 		if (acc === undefined) {
 			acc = new Object();
 		}
-
-		if (v && acc[v] === undefined) {
+		if ((acc as any)[v] === undefined) {
 			(acc as any)[v] = [];
 		}
-		(acc as any)[v].push(item);
+		if (v) {
+			(acc as any)[v].push(item);
+		}
 		// console.log("ACC", acc);
 		return acc;
 	}, {});

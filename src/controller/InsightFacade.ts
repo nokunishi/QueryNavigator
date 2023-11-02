@@ -5,12 +5,11 @@ import {
 	InsightError,
 	InsightResult,
 	NotFoundError,
-	ResultTooLargeError,
 } from "./IInsightFacade";
 
 import {Database} from "../model/Database";
 import * as fs from "fs-extra";
-import {Query, parseWhere} from "../query/QueryParser";
+import {parseQuery, parseWhere} from "../query/QueryParser";
 import {parseTransformation} from "../query/QueryAggregate";
 import {parseOptions} from "../query/QueryRender";
 // import {Query, parseOptions, parseWhere} from "../query/QueryParser";
@@ -57,27 +56,23 @@ export default class InsightFacade implements IInsightFacade {
 	// todo: change to non-async
 	public performQuery(query: unknown): Promise<InsightResult[]> {
 		try {
-			if (query === null) {
-				return Promise.reject(new InsightError("Query is null"));
-			}
-
-			if (typeof query === "object") {
-				query = JSON.stringify(query);
-			}
-
-			if (typeof query !== "string") {
-				return Promise.reject(new InsightError("Query is not a string"));
-			}
-
-			const queryObject: Query = JSON.parse(query);
+			let queryObject = parseQuery(query);
 
 			if (!queryObject.WHERE || !queryObject.OPTIONS || !queryObject.OPTIONS.COLUMNS) {
 				return Promise.reject(new InsightError("missing WHERE/OPTIONS/COLUMNS"));
 			} else if (queryObject.OPTIONS.COLUMNS.length === 0) {
 				return Promise.reject(new InsightError("empty COLUMNS"));
 			}
-			// Get name of the dataset
-			let datasetId = queryObject.OPTIONS.COLUMNS[0].split("_")[0];
+			let datasetId = "";
+			try {
+				if (queryObject.TRANSFORMATIONS) {
+					datasetId = queryObject.TRANSFORMATIONS.GROUP[0].split("_")[0];
+				} else {
+					datasetId = queryObject.OPTIONS.COLUMNS[0].split("_")[0];
+				}
+			} catch (err) {
+				throw new InsightError("invalid dataset id");
+			}
 			let result = parseWhere(queryObject.WHERE, this.database.readDataset(datasetId));
 
 			// aggregate on 'result'
