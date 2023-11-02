@@ -31,7 +31,7 @@ export async function parseOptions(options: Options, d: any[], apply?: string[])
 	if (!order) {
 		return Promise.resolve(result);
 	} else {
-		console.log(processOrder(result, order, columns));
+		// console.log(processOrder(result, order, columns));
 		return Promise.resolve(processOrder(result, order, columns));
 	}
 }
