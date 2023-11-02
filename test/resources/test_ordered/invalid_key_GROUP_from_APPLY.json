@@ -1,0 +1,32 @@
+{
+	"title": "invalid_key_GROUP_from_APPLY",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections_avg": 85
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year",
+				"countDept"
+			],
+			"ORDER": "countDept"
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_year",
+				"countDept"
+			],
+			"APPLY": [
+				{
+					"countDept": {
+						"COUNT": "sections_dept"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

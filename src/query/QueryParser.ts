@@ -55,6 +55,7 @@ export function parseWhere(whereCondition: Where, data: any[]): any[] {
 				let parseWhereVal = parseWhereComparators(item, whereCondition, p as WhereComparators);
 				result = result && parseWhereVal;
 			} catch (err) {
+				// console.log(err);
 				throw new InsightError("failed to parse where");
 			}
 		}
@@ -66,6 +67,22 @@ export function parseWhere(whereCondition: Where, data: any[]): any[] {
 		return result;
 	});
 	return d;
+}
+
+export function parseQuery(query: any): Query {
+	if (query === null) {
+		throw new InsightError("Query is null");
+	}
+
+	if (typeof query === "object") {
+		query = JSON.stringify(query);
+	}
+
+	if (typeof query !== "string") {
+		throw new InsightError("Query is not a string");
+	}
+
+	return JSON.parse(query) as Query;
 }
 
 function parseWhereComparators(item: any, whereCondition: Where, comparator: WhereComparators): boolean {
