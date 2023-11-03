@@ -12,6 +12,7 @@ import {folderTest} from "@ubccpsc310/folder-test";
 import {expect, use} from "chai";
 import chaiAsPromised from "chai-as-promised";
 import {clearDisk, getContentFromArchives} from "../TestUtil";
+import {getBuildingLocation} from "../../src/model/Rooms";
 
 use(chaiAsPromised);
 
@@ -178,8 +179,12 @@ describe("InsightFacade", function () {
 		// 	const result = await facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
 		// 	return expect(result).have.deep.members(["rooms"]);
 		// });
-	});
 
+		// it("testing geoloc pass", async function () {
+		// 	const result = await getBuildingLocation("6245%20Agronomy%20Road%20V6T%201Z4");
+		// 	return expect(result).to.deep.equal({lat: 49.26125, lon: -123.24807});
+		// });
+	});
 	/*
 	describe("removeDataset", function () {
 		before(function () {
@@ -255,6 +260,7 @@ describe("InsightFacade", function () {
 		});
 	});
 	*/
+
 	describe("listDataset", function () {
 		before(function () {
 			clearDisk();
@@ -387,20 +393,30 @@ describe("InsightFacade", function () {
 		function target(input: unknown): Promise<InsightResult[]> {
 			return facade.performQuery(input);
 		}
-		/*
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test1", {
+		/* 	folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered1", {
+			assertOnResult: assertResult,
+			assertOnError: assertError,
+		});
+
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
+			assertOnResult: assertResult,
+			assertOnError: assertError,
+		}); */
+		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test1", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		}); */
 
-		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_section", {
+		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/rooms", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		}); */
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered1", {
+
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});
+
 		/* 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
@@ -409,11 +425,12 @@ describe("InsightFacade", function () {
 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
-		}); */
+		});
 
-		/* 	folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
-		}); */
+		});
+		*/
 	});
 });

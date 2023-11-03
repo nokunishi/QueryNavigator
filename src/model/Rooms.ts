@@ -36,6 +36,9 @@ export async function readRoomsZipFile(file: string): Promise<any[]> {
 	let result: any[] = [];
 	try {
 		await zip.loadAsync(file, {base64: true}).then(async (unzip) => {
+			if (!unzip.file("index.htm") || !unzip.folder("rooms")) {
+				return Promise.reject(new InsightError());
+			}
 			const indexFile = unzip.file("index.htm");
 			if (indexFile) {
 				const data = await indexFile.async("string");
@@ -46,6 +49,8 @@ export async function readRoomsZipFile(file: string): Promise<any[]> {
 				);
 				if (tableData) {
 					result = await parseTable(tableData, unzip);
+				} else {
+					return Promise.reject(new InsightError("Empty table"));
 				}
 			}
 		});
@@ -77,6 +82,8 @@ async function parseTable(table: Node, unzip: JSZip): Promise<Room[]> {
 				let bodyData = await parseTableBody(tableBody, headings, unzip);
 				// console.log("RESULTS:::", bodyData);
 				return Promise.resolve(addBuildingDataToRoom(bodyData));
+			} else {
+				return Promise.reject(new InsightError("Empty table body"));
 			}
 		}
 		return Promise.reject(new InsightError());
@@ -104,44 +111,48 @@ function parseText(text: any): string {
 }
 
 async function parseTableBody(node: Node, headings: string[], unzip: JSZip): Promise<any[]> {
-	let result: any[] = [];
-	if (node.nodeName === "tbody" && node.childNodes) {
-		let columnDataPromises: Array<Promise<any>> = [];
-		let locationDataPromises: Array<Promise<any>> = [];
-		node.childNodes.forEach(async (child) => {
-			let row: Array<{[key: string]: any}> = [];
-			if (child.childNodes) {
-				for (const column of child.childNodes) {
-					if (column.nodeName === "td" && column.childNodes) {
-						let h = headings[row.length];
-						if (headings[row.length] === "Building") {
-							row.push({[h]: parseLink(column.childNodes, true)});
-							const buildingLink = parseLink(column.childNodes, false);
-							const columnDataPromise = parseBuilding(buildingLink, unzip);
-							columnDataPromises.push(columnDataPromise);
-						} else {
-							if (headings[row.length] === "Address") {
-								let locProm = getBuildingLocation(encodeURIComponent(parseText(column.childNodes)));
-								locationDataPromises.push(locProm);
+	try {
+		let result: any[] = [];
+		if (node.nodeName === "tbody" && node.childNodes) {
+			let columnDataPromises: Array<Promise<any>> = [];
+			let locationDataPromises: Array<Promise<any>> = [];
+			node.childNodes.forEach(async (child) => {
+				let row: Array<{[key: string]: any}> = [];
+				if (child.childNodes) {
+					for (const column of child.childNodes) {
+						if (column.nodeName === "td" && column.childNodes) {
+							let h = headings[row.length];
+							if (headings[row.length] === "Building") {
+								row.push({[h]: parseLink(column.childNodes, true)});
+								const buildingLink = parseLink(column.childNodes, false);
+								const columnDataPromise = parseBuilding(buildingLink, unzip);
+								columnDataPromises.push(columnDataPromise);
+							} else {
+								if (headings[row.length] === "Address") {
+									let locProm = getBuildingLocation(encodeURIComponent(parseText(column.childNodes)));
+									locationDataPromises.push(locProm);
+								}
+								row.push({[h]: parseText(column.childNodes)});
 							}
-							row.push({[h]: parseText(column.childNodes)});
 						}
 					}
+					result.push(row);
 				}
-				result.push(row);
+			});
+			const columnDataResults = await Promise.all(columnDataPromises);
+			const locationDataResults = await Promise.all(locationDataPromises);
+			for (let i = 0; i < result.length; i++) {
+				const buildingData = columnDataResults[i];
+				const locationData = locationDataResults[i];
+				result[i][4] = {Detail: buildingData};
+				result[i][5] = {lat: locationData.lat};
+				result[i][6] = {lon: locationData.lon};
 			}
-		});
-		const columnDataResults = await Promise.all(columnDataPromises);
-		const locationDataResults = await Promise.all(locationDataPromises);
-		for (let i = 0; i < result.length; i++) {
-			const buildingData = columnDataResults[i];
-			const locationData = locationDataResults[i];
-			result[i][4] = {Detail: buildingData};
-			result[i][5] = {lat: locationData.lat};
-			result[i][6] = {lon: locationData.lon};
 		}
+		return Promise.resolve(result);
+	} catch (err) {
+		return Promise.reject(new InsightError());
 	}
-	return Promise.resolve(result);
 }
 
 function addBuildingDataToRoom(buildings: any[]): Room[] {
@@ -158,20 +169,11 @@ function addBuildingDataToRoom(buildings: any[]): Room[] {
 		buildingData.push(buildingLongitude);
 		const buildingLatitude = building.find((item: {lat: number}) => item.lat)?.lat;
 		buildingData.push(buildingLatitude);
-		// console.log("CODE - ", buildingCode);
-		// console.log("NAME - ", buildingName);
-		// console.log("ADDRESS - ", buildingAddress);
-		// console.log("LONGITUDE - ", buildingLongitude);
-		// console.log("LATITUDE - ", buildingLatitude);
 		const rooms = building.find((item: {Detail: any[]}) => item.Detail)?.Detail;
-		// console.log("ROOMS - ", rooms);
-		// console.log("------------------");
 		allRooms = [...createRoomObject(buildingData, rooms), ...allRooms];
 	});
 	return allRooms;
-	// console.log("ALL ROOMS - ", allRooms);
 }
-
 function createRoomObject(buildingData: any[], rooms: any[]) {
 	let buildingRooms: Room[] = [];
 	if (rooms) {
@@ -194,8 +196,7 @@ function createRoomObject(buildingData: any[], rooms: any[]) {
 	}
 	return buildingRooms;
 }
-
-async function getBuildingLocation(buildingAddress: string): Promise<GeoResponse> {
+export async function getBuildingLocation(buildingAddress: string): Promise<GeoResponse> {
 	return new Promise((resolve, reject) => {
 		const reqURL = "http://cs310.students.cs.ubc.ca:11316/api/v1/project_team232/";
 		http.get(reqURL + buildingAddress, (res) => {
@@ -204,16 +205,17 @@ async function getBuildingLocation(buildingAddress: string): Promise<GeoResponse
 				location += chunk;
 			});
 			res.on("end", () => {
-				// console.log("location", location);
-				resolve(JSON.parse(location));
-				reject(new InsightError("Error getting location"));
+				const locationData = JSON.parse(location);
+				if (locationData.error) {
+					return reject(new InsightError(locationData.error));
+				} else {
+					return resolve(locationData);
+				}
 			});
 		});
 	});
 }
-
 async function parseBuilding(buildingLink: string, unzip: JSZip): Promise<any> {
-	// console.log(buildingLink);
 	try {
 		const roomFile = unzip.file(buildingLink.substring(2));
 		if (roomFile) {
@@ -227,58 +229,58 @@ async function parseBuilding(buildingLink: string, unzip: JSZip): Promise<any> {
 				const roomsData = parseBuildingTable(tableData);
 				return Promise.resolve(roomsData);
 			}
+		} else {
+			return Promise.reject(new InsightError("Invalid building link"));
 		}
 	} catch (err) {
 		return Promise.reject(new InsightError());
 	}
 }
-
 function parseBuildingTable(table: Node): any {
-	let headings = [];
-	let result = [];
-	if (!table.childNodes) {
-		return [];
-	}
-	for (const node of table.childNodes) {
-		if (node.nodeName === "thead") {
-			for (const child of node.childNodes?.find((node2) => node2.nodeName === "tr")?.childNodes || []) {
-				if (child.nodeName === "th") {
-					headings.push((child.childNodes?.at(0) as any).value.replace(/^\n|\n$/g, "").trim());
+	try {
+		let headings = [];
+		let result = [];
+		if (!table.childNodes) {
+			return [];
+		}
+		for (const node of table.childNodes) {
+			if (node.nodeName === "thead") {
+				for (const child of node.childNodes?.find((node2) => node2.nodeName === "tr")?.childNodes || []) {
+					if (child.nodeName === "th") {
+						headings.push((child.childNodes?.at(0) as any).value.replace(/^\n|\n$/g, "").trim());
+					}
 				}
 			}
-		}
-		if (node.nodeName === "tbody" && node.childNodes) {
-			// Get row
-			for (const child of node.childNodes) {
-				// Get column
-				let row: {[key: string]: string} = {};
-				if (child.childNodes) {
-					for (const column of child.childNodes) {
-						// Get building
-						if (column.nodeName === "td" && column.childNodes) {
-							let num = Object.keys(row).length;
-							if (headings[num] === "") {
-								row["Link"] = parseLink(column.childNodes, false);
-							} else if (headings[num] === "Room") {
-								row[headings[num]] = parseLink(column.childNodes, true);
-							} else {
-								row[headings[num]] = parseText(column.childNodes);
+			if (node.nodeName === "tbody" && node.childNodes) {
+				for (const child of node.childNodes) {
+					let row: {[key: string]: string} = {};
+					if (child.childNodes) {
+						for (const column of child.childNodes) {
+							if (column.nodeName === "td" && column.childNodes) {
+								let num = Object.keys(row).length;
+								if (headings[num] === "") {
+									row["Link"] = parseLink(column.childNodes, false);
+								} else if (headings[num] === "Room") {
+									row[headings[num]] = parseLink(column.childNodes, true);
+								} else {
+									row[headings[num]] = parseText(column.childNodes);
+								}
 							}
 						}
+						result.push(row);
 					}
-					result.push(row);
 				}
 			}
 		}
+		return result;
+	} catch (err) {
+		return new InsightError();
 	}
-	return result;
 }
-
 function findAttribute(json: Node | undefined, attribute: string): Node | null {
 	if (!json) {
 		return null;
 	}
-	// if the current node has the attribute, return it
 	if (json.childNodes && json.childNodes.find((node) => node.nodeName === attribute)) {
 		return json.childNodes.find((node) => node.nodeName === attribute) as Node;
 	} else {
@@ -293,6 +295,6 @@ function findAttribute(json: Node | undefined, attribute: string): Node | null {
 				}
 			}
 		}
-		return null;
 	}
+	return null;
 }
