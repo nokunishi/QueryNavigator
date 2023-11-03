@@ -1,0 +1,35 @@
+{
+	"title": "invalid17",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections_avg": 85
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_year"
+			],
+			"ORDER": {
+				"dir": "UP",
+				"keys": [
+					"count"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_year"
+			],
+			"APPLY": [
+				{
+					"countDept": {
+						"COUNT": "sections_title"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

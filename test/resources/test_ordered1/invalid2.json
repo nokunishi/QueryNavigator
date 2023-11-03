@@ -1,0 +1,28 @@
+{
+	"title": "invalid2",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections_avg": 85
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"countDept"
+			],
+			"ORDER": "sections_title"
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_title"
+			],
+			"APPLY": [
+				{
+					"COUNT": "sections_title"
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

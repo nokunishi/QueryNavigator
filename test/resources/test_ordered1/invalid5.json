@@ -1,0 +1,36 @@
+{
+	"title": "invalid5",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"rooms_address": "*"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"rooms_shortname",
+				"names"
+			],
+			"ORDER": {
+				"dir": "UP",
+				"keys": [
+					"names"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_shortname"
+			],
+			"APPLY": [
+				{
+					"names": {
+						"COUNT": "rooms1_lan"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

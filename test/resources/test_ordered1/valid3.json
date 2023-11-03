@@ -1,0 +1,69 @@
+{
+	"title": "valid3",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections_avg": 85
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"countDept"
+			],
+			"ORDER": "countDept"
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_year"
+			],
+			"APPLY": [
+				{
+					"countDept": {
+						"COUNT": "sections_title"
+					}
+				},
+				{
+					"countDept2": {
+						"COUNT": "sections_title"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"countDept": 158
+		},
+		{
+			"countDept": 301
+		},
+		{
+			"countDept": 385
+		},
+		{
+			"countDept": 460
+		},
+		{
+			"countDept": 562
+		},
+		{
+			"countDept": 580
+		},
+		{
+			"countDept": 643
+		},
+		{
+			"countDept": 683
+		},
+		{
+			"countDept": 735
+		},
+		{
+			"countDept": 857
+		},
+		{
+			"countDept": 1503
+		}
+	]
+}

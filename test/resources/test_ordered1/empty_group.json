@@ -1,0 +1,28 @@
+{
+	"title": "empty_group",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections_avg": 85
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"countDept"
+			],
+			"ORDER": "countDept"
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [],
+			"APPLY": [
+				{
+					"countDept": {
+						"COUNT": "sections_title"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

@@ -94,6 +94,9 @@ function processApply(apply: string[], groups: object): any[] {
 				}
 				duplicates.push(newCol);
 				let [applyRule] = Object.entries((col as any)[newCol]);
+				if (!ApplyToken.includes(applyRule[0])) {
+					throw new InsightError("invalid  apply token");
+				}
 				processApplyToken(`${applyRule}`, newCol, groups);
 			});
 		}

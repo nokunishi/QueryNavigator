@@ -1,0 +1,41 @@
+{
+	"title": "invalid8",
+	"input": {
+		"WHERE": {
+			"IS": {
+				"rooms_address": "*"
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sum1",
+				"sum2"
+			],
+			"ORDER": {
+				"dir": "UP",
+				"keys": [
+					"sum1"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_shortname"
+			],
+			"APPLY": [
+				{
+					"sum2": {
+						"SUM": "rooms_lat"
+					}
+				},
+				{
+					"sum1": {
+						"MS": "rooms_lon"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}
