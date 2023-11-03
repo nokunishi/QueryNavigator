@@ -1,0 +1,36 @@
+{
+	"title": "invalid_multiple_ref4",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"sections_avg": 85
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_dept",
+				"countYear"
+			],
+			"ORDER": {
+				"dir": "DOWN",
+				"keys": [
+					"countYear"
+				]
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"rooms_dept"
+			],
+			"APPLY": [
+				{
+					"countYear": {
+						"COUNT": "sections_dept"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

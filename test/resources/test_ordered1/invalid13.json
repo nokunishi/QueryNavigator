@@ -1,0 +1,33 @@
+{
+	"title": "invalid13",
+	"input": {
+		"WHERE": {
+			"GT": {
+				"countDept": 85
+			}
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"countDept"
+			],
+			"ORDER": {
+				"dir": "up",
+				"keys": []
+			}
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_year"
+			],
+			"APPLY": [
+				{
+					"countDept": {
+						"COUNT": "sections_title"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": true,
+	"expected": "InsightError"
+}

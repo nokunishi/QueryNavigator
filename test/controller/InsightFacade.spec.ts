@@ -393,7 +393,7 @@ describe("InsightFacade", function () {
 		function target(input: unknown): Promise<InsightResult[]> {
 			return facade.performQuery(input);
 		}
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test1", {
+		/* 	folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered1", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});
@@ -401,8 +401,23 @@ describe("InsightFacade", function () {
 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
+		}); */
+		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test1", {
+			assertOnResult: assertResult,
+			assertOnError: assertError,
+		}); */
+
+		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/rooms", {
+			assertOnResult: assertResult,
+			assertOnError: assertError,
+		}); */
+
+		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
+			assertOnResult: assertResult,
+			assertOnError: assertError,
 		});
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered1", {
+
+		/* 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});
@@ -411,7 +426,6 @@ describe("InsightFacade", function () {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
 		});
-		/*
 
 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
 			assertOnResult: assertResult,

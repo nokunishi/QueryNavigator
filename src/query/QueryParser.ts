@@ -33,7 +33,7 @@ const recordId = 36004;
  * @param data - Data to run where clause on
  * @returns - Returns all rows which meet the 'where' clause
  */
-export function parseWhere(whereCondition: Where, data: any[]): any[] {
+export function parseWhere(whereCondition: Where, data: any[], id: string): any[] {
 	if (whereCondition === null) {
 		throw new InsightError("Empty filters");
 	}
@@ -52,7 +52,7 @@ export function parseWhere(whereCondition: Where, data: any[]): any[] {
 			}
 
 			try {
-				let parseWhereVal = parseWhereComparators(item, whereCondition, p as WhereComparators);
+				let parseWhereVal = parseWhereComparators(item, whereCondition, p as WhereComparators, id);
 				result = result && parseWhereVal;
 			} catch (err) {
 				// console.log(err);
@@ -85,42 +85,42 @@ export function parseQuery(query: any): Query {
 	return JSON.parse(query) as Query;
 }
 
-function parseWhereComparators(item: any, whereCondition: Where, comparator: WhereComparators): boolean {
+function parseWhereComparators(item: any, whereCondition: Where, comparator: WhereComparators, id: string): boolean {
 	let result = false;
 	switch (comparator.toString()) {
 		case "LT":
-			checkWrongWhereCondition(whereCondition, "LT");
 			Object.keys(whereCondition["LT"]).forEach((key) => {
+				checkWrongWhereCondition(whereCondition, "LT", key.split("_")[0], id);
 				result = item[parseWhereField(key) || ""] < (whereCondition["LT"] as any)[key];
 			});
 			break;
 		case "GT":
-			checkWrongWhereCondition(whereCondition, "GT");
 			Object.keys(whereCondition["GT"]).forEach((key) => {
+				checkWrongWhereCondition(whereCondition, "GT", key.split("_")[0], id);
 				result = item[parseWhereField(key) || ""] > (whereCondition["GT"] as any)[key];
 			});
 			break;
 		case "EQ":
-			checkWrongWhereCondition(whereCondition, "EQ");
 			Object.keys(whereCondition["EQ"]).forEach((key) => {
+				checkWrongWhereCondition(whereCondition, "EQ", key.split("_")[0], id);
 				result = item[parseWhereField(key) || ""].toString() === (whereCondition["EQ"] as any)[key].toString();
 			});
 			break;
 		case "IS":
 			checkWrongWhereCondition(whereCondition, "IS");
-			result = processWildcard(whereCondition, item);
+			result = processWildcard(whereCondition, item, id);
 			break;
 		case "NOT":
 			checkWrongWhereCondition(whereCondition, "NOT");
-			result = processNOT(whereCondition, item);
+			result = processNOT(whereCondition, item, id);
 			break;
 		case "AND":
 			checkWrongWhereCondition(whereCondition, "AND");
-			result = processAndOR("and", whereCondition["AND"] as [], true, item);
+			result = processAndOR("and", whereCondition["AND"] as [], true, item, id);
 			break;
 		case "OR":
 			checkWrongWhereCondition(whereCondition, "OR");
-			result = processAndOR("or", whereCondition["OR"] as [], result, item);
+			result = processAndOR("or", whereCondition["OR"] as [], result, item, id);
 			break;
 		default:
 			throw new InsightError("Invalid comparator");
@@ -128,22 +128,26 @@ function parseWhereComparators(item: any, whereCondition: Where, comparator: Whe
 	return result;
 }
 
-function processNOT(whereCondition: Where, item: any) {
+function processNOT(whereCondition: Where, item: any, id: string) {
 	let result: boolean = false;
 	Object.keys(whereCondition["NOT"]).forEach((key) => {
 		result = !parseWhereComparators(
 			item,
 			whereCondition["NOT"] as any,
-			Object.keys(whereCondition["NOT"])[0] as WhereComparators
+			Object.keys(whereCondition["NOT"])[0] as WhereComparators,
+			id
 		);
 	});
 	return result === undefined ? false : result;
 }
 
-function processWildcard(whereCondition: Where, item: any) {
+function processWildcard(whereCondition: Where, item: any, id: string) {
 	let result: boolean = false;
 
 	Object.keys(whereCondition["IS"]).forEach((key) => {
+		if (key.split("_")[0] !== id) {
+			throw new InsightError("cannot reference more than one dataset");
+		}
 		if (typeof (whereCondition["IS"] as any)[key] === "string" && valid_sfield().includes(key.split("_")[1])) {
 			let o: any = whereCondition["IS"];
 			let tempResult: boolean = false;
@@ -166,13 +170,13 @@ function processWildcard(whereCondition: Where, item: any) {
 	return result === undefined ? false : result;
 }
 
-function processAndOR(comparator: "and" | "or", condition: any[], result: boolean, item: any) {
+function processAndOR(comparator: "and" | "or", condition: any[], result: boolean, item: any, id: string) {
 	let r: boolean = result;
 	if (condition.length === 0) {
 		throw new InsightError("AND/OR array is empty");
 	}
 	for (const obj of condition) {
-		let s = parseWhereComparators(item, obj, Object.keys(obj)[0] as WhereComparators);
+		let s = parseWhereComparators(item, obj, Object.keys(obj)[0] as WhereComparators, id);
 		if (comparator === "and") {
 			r = r && s;
 		} else {
@@ -240,7 +244,10 @@ export function parseWhereField(key: string) {
 	}
 }
 
-function checkWrongWhereCondition(whereCondition: Where, comp: string) {
+function checkWrongWhereCondition(whereCondition: Where, comp: string, key?: string, id?: string) {
+	if (key && id && key !== id) {
+		throw new InsightError("cannot reference more than one dataset");
+	}
 	if (typeof (whereCondition[comp] as any)[Object.keys(whereCondition[comp])[0]] === "string" && comp !== "IS") {
 		throw new InsightError(`Invalid value for ${comp}`);
 	}

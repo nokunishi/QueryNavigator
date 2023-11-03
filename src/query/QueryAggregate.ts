@@ -11,8 +11,17 @@ interface ApplyRule {
 const mfield = valid_mfield();
 const sfield = valid_sfield();
 
-export function parseTransformation(options: Options, groupKeys: string[], apply: string[], data: any[]): any[] {
+export function parseTransformation(
+	options: Options,
+	groupKeys: string[],
+	apply: string[],
+	data: any[],
+	id: string
+): any[] {
 	options.COLUMNS.forEach((col) => {
+		if (col.includes("_") && col.split("_")[0] !== id) {
+			throw new InsightError("cannot reference more than one dataset");
+		}
 		if (groupKeys.length === 0) {
 			throw new InsightError("GROUP is an empty array");
 		}
@@ -35,6 +44,9 @@ export function parseTransformation(options: Options, groupKeys: string[], apply
 		}
 	});
 	let keys = groupKeys.map((item) => {
+		if (!item.includes("_") || item.split("_")[0] !== id) {
+			throw new InsightError("cannot reference more than one dataset");
+		}
 		item = item.split("_")[1];
 		if (!mfield.includes(item) && !sfield.includes(item)) {
 			throw new InsightError("invalid query field");
@@ -43,7 +55,7 @@ export function parseTransformation(options: Options, groupKeys: string[], apply
 	});
 	// console.log(await data);
 	let g = groupSections(data, keys);
-	let result = processApply(apply, g);
+	let result = processApply(apply, g, id);
 	return result;
 }
 
@@ -77,7 +89,7 @@ function groupSections(sections: any[], keys: string[]): object {
 	}, {});
 }
 
-function processApply(apply: string[], groups: object): any[] {
+function processApply(apply: string[], groups: object, id: string): any[] {
 	if (apply.length === 0) {
 		Object.keys(groups).forEach((g) => {
 			(groups as any)[g] = (groups as any)[g][0];
@@ -94,6 +106,9 @@ function processApply(apply: string[], groups: object): any[] {
 				}
 				duplicates.push(newCol);
 				let [applyRule] = Object.entries((col as any)[newCol]);
+				if (!(applyRule[1] as string).includes("_") || (applyRule[1] as string).split("_")[0] !== id) {
+					throw new InsightError("dataset id with no underscore");
+				}
 				processApplyToken(`${applyRule}`, newCol, groups);
 			});
 		}

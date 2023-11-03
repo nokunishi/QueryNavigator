@@ -73,7 +73,7 @@ export default class InsightFacade implements IInsightFacade {
 			} catch (err) {
 				throw new InsightError("invalid dataset id");
 			}
-			let result = parseWhere(queryObject.WHERE, this.database.readDataset(datasetId));
+			let result = parseWhere(queryObject.WHERE, this.database.readDataset(datasetId), datasetId);
 
 			// aggregate on 'result'
 			if (queryObject.TRANSFORMATIONS) {
@@ -84,7 +84,8 @@ export default class InsightFacade implements IInsightFacade {
 					queryObject.OPTIONS,
 					queryObject.TRANSFORMATIONS.GROUP,
 					queryObject.TRANSFORMATIONS.APPLY,
-					result
+					result,
+					datasetId
 				);
 
 				return parseOptions(queryObject.OPTIONS, resultAggregate, queryObject.TRANSFORMATIONS.APPLY);
