@@ -138,6 +138,8 @@ function processApplyToken(applyRule: string, colName: string, groups: object) {
 				sections[colName] = processOp(sections, col, "SUM").toFixed(2);
 			});
 			break;
+		default:
+			throw new InsightError("Invalid calculations comparator");
 	}
 }
 
