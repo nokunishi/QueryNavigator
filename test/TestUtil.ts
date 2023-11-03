@@ -1,6 +1,6 @@
 import * as fs from "fs-extra";
 
-const persistDir = "/data";
+const persistDir = "./data";
 
 /**
  * Convert a file into a base64 string.
