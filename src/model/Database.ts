@@ -132,7 +132,6 @@ export class Database {
 	// Get room dataset
 	public readRoomsDataset(id: string): any[] {
 		let datasetString = fs.readFileSync("./data/" + id).toString();
-		console.log(datasetString);
 		return JSON.parse(datasetString) as any[];
 	}
 }
