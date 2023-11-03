@@ -65,6 +65,8 @@ export class Database {
 				} else {
 					throw new InsightError("Invalid kind of dataset");
 				}
+			} else {
+				throw new InsightError("Dataset with same name already exists");
 			}
 
 			return Promise.resolve(this.getAllIds());
@@ -81,7 +83,6 @@ export class Database {
 	public async getAllCoursesInZip(file: string): Promise<string[]> {
 		try {
 			let promises: Array<Promise<string> | undefined> = [];
-			let courseNames: string[] = [];
 			let sections: string[] = [];
 
 			await zip.loadAsync(file, {base64: true}).then((unzip) => {
