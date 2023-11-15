@@ -91,25 +91,22 @@ export default class Server {
 		// http://localhost:4321/echo/hello
 		this.express.get("/echo/:msg", Server.echo);
 
-		try {
-			this.express.put("/dataset/:id/:kind", (req, res) => {
-				this.put_dataset(req, res);
-			});
+		this.express.put("/dataset/:id/:kind", (req, res) => {
+			this.put_dataset(req, res);
+		});
 
-			this.express.delete("/dataset/:id", (req, res) => {
-				this.delete_datasets(req, res);
-			});
+		this.express.delete("/dataset/:id", (req, res) => {
+			this.delete_datasets(req, res);
+		});
 
-			this.express.post("/query", (req, res) => {
-				this.post_query(req, res);
-			});
+		this.express.post("/query", (req, res) => {
+			this.post_query(req, res);
+		});
 
-			this.express.get("/datasets", (req, res) => {
-				this.get_datasets(req, res);
-			});
-		} catch (err) {
-			console.log(err);
-		}
+		this.express.get("/datasets", (req, res) => {
+			this.get_datasets(req, res);
+		});
+
 		// TODO: your other endpoints should go here
 	}
 
