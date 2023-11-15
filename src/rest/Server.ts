@@ -113,7 +113,7 @@ export default class Server {
 		// TODO: your other endpoints should go here
 	}
 
-	private put_dataset(req: Request, res: Response) {
+	private async put_dataset(req: Request, res: Response) {
 		try {
 			let dataset = req.body.toString("base64");
 			let kind: InsightDatasetKind;
@@ -125,68 +125,42 @@ export default class Server {
 			} else {
 				throw new InsightError("invalid kind");
 			}
-
-			this.insightFacade
-				.addDataset(req.params["id"], dataset, kind)
-				.then((ids) => {
-					res.status(200).json({result: ids});
-				})
-				.catch((err) => {
-					res.status(400).json({error: err});
-				});
+			let ids = await this.insightFacade.addDataset(req.params["id"], dataset, kind);
+			res.status(200).json({result: ids});
 		} catch (err) {
 			res.status(400).json({error: err});
 		}
 	}
 
-	private delete_datasets(req: Request, res: Response) {
+	private async delete_datasets(req: Request, res: Response) {
 		try {
-			this.insightFacade
-				.removeDataset(req.params["id"])
-				.then((id) => {
-					res.status(200).json({result: id});
-				})
-				.catch((err) => {
-					if (err instanceof InsightError) {
-						res.status(400).json({error: err});
-					} else if (err instanceof NotFoundError) {
-						res.status(404).json({error: err});
-					} else {
-						res.json({error: err});
-					}
-				});
+			let id = await this.insightFacade.removeDataset(req.params["id"]);
+			res.status(200).json({result: id});
 		} catch (err) {
-			res.json({error: err});
+			if (err instanceof NotFoundError) {
+				res.status(404).json({error: err});
+			} else {
+				res.status(400).json({error: err});
+			}
 		}
 	}
 
-	private post_query(req: Request, res: Response) {
-		// this.insightFacade = new InsightFacade(); // not sure if needed?
-
+	private async post_query(req: Request, res: Response) {
 		try {
-			this.insightFacade
-				.performQuery(req.body)
-				.then((arr) => {
-					res.status(200).json({result: arr});
-				})
-				.catch((err) => {
-					res.status(400).json({error: err});
-				});
+			let arr = await this.insightFacade.performQuery(req.body);
+			res.status(200).json({result: arr});
 		} catch (err) {
 			res.status(400).json({error: err});
 		}
 	}
 
-	private get_datasets(req: Request, res: Response) {
-		this.insightFacade
-			.listDatasets()
-			.then((datasets) => {
-				return res.status(200).json({result: datasets});
-			})
-			.catch((err) => {
-				// console.log(err);
-				return res.status(400).json({error: err});
-			});
+	private async get_datasets(req: Request, res: Response) {
+		try {
+			let datasets = await this.insightFacade.listDatasets();
+			res.status(200).json({result: datasets});
+		} catch (err) {
+			console.log("should be never fail");
+		}
 	}
 
 	// The next two methods handle the echo service.
