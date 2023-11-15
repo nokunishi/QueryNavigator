@@ -36,9 +36,14 @@ describe("Facade D3", function () {
 		}
 	});
 
-	after(function () {
+	after(async function () {
 		// TODO: stop server here once!
-		server.stop();
+		try {
+			await server.stop();
+			clearDisk();
+		} catch (err) {
+			console.log("failed to stop server");
+		}
 	});
 
 	beforeEach(function () {

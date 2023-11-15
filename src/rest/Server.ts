@@ -91,87 +91,101 @@ export default class Server {
 		// http://localhost:4321/echo/hello
 		this.express.get("/echo/:msg", Server.echo);
 
-		this.express.put("/dataset/:id/:kind", (req, res) => {
-			this.put_dataset(req, res);
-		});
+		try {
+			this.express.put("/dataset/:id/:kind", (req, res) => {
+				this.put_dataset(req, res);
+			});
 
-		this.express.delete("/dataset/:id", (req, res) => {
-			this.delete_datasets(req, res);
-		});
+			this.express.delete("/dataset/:id", (req, res) => {
+				this.delete_datasets(req, res);
+			});
 
-		this.express.post("/query", (req, res) => {
-			this.post_query(req, res);
-		});
+			this.express.post("/query", (req, res) => {
+				this.post_query(req, res);
+			});
 
-		this.express.get("/datasets", (req, res) => {
-			this.get_datasets(req, res);
-		});
-
+			this.express.get("/datasets", (req, res) => {
+				this.get_datasets(req, res);
+			});
+		} catch (err) {
+			console.log(err);
+		}
 		// TODO: your other endpoints should go here
 	}
 
 	private put_dataset(req: Request, res: Response) {
-		let dataset = req.body.toString("base64");
-		let kind: InsightDatasetKind;
+		try {
+			let dataset = req.body.toString("base64");
+			let kind: InsightDatasetKind;
 
-		if (req.params["kind"] === "sections") {
-			kind = InsightDatasetKind.Sections;
-		} else if (req.params["kind"] === "rooms") {
-			kind = InsightDatasetKind.Rooms;
-		} else {
-			res.status(400);
-			return;
+			if (req.params["kind"] === "sections") {
+				kind = InsightDatasetKind.Sections;
+			} else if (req.params["kind"] === "rooms") {
+				kind = InsightDatasetKind.Rooms;
+			} else {
+				throw new InsightError("invalid kind");
+			}
+
+			this.insightFacade
+				.addDataset(req.params["id"], dataset, kind)
+				.then((ids) => {
+					res.status(200).json({result: ids});
+				})
+				.catch((err) => {
+					res.status(400).json({error: err});
+				});
+		} catch (err) {
+			res.status(400).json({error: err});
 		}
-
-		this.insightFacade
-			.addDataset(req.params["id"], dataset, kind)
-			.then((ids) => {
-				res.status(200).json({result: ids});
-			})
-			.catch((err) => {
-				res.status(400).json({error: err});
-			});
 	}
 
 	private delete_datasets(req: Request, res: Response) {
-		this.insightFacade
-			.removeDataset(req.params["id"])
-			.then((id) => {
-				res.status(200).json({result: id});
-			})
-			.catch((err) => {
-				if (err instanceof InsightError) {
-					res.status(400).json({error: err});
-				} else if (err instanceof NotFoundError) {
-					res.status(404).json({error: err});
-				} else {
-					res.json({error: err});
-				}
-			});
+		try {
+			this.insightFacade
+				.removeDataset(req.params["id"])
+				.then((id) => {
+					res.status(200).json({result: id});
+				})
+				.catch((err) => {
+					if (err instanceof InsightError) {
+						res.status(400).json({error: err});
+					} else if (err instanceof NotFoundError) {
+						res.status(404).json({error: err});
+					} else {
+						res.json({error: err});
+					}
+				});
+		} catch (err) {
+			res.json({error: err});
+		}
 	}
 
 	private post_query(req: Request, res: Response) {
-		this.insightFacade = new InsightFacade(); // not sure if needed?
+		// this.insightFacade = new InsightFacade(); // not sure if needed?
 
-		this.insightFacade
-			.performQuery(req.body)
-			.then((arr) => {
-				res.status(200).json({result: arr});
-			})
-			.catch((err) => {
-				res.status(400).json({error: err});
-			});
+		try {
+			this.insightFacade
+				.performQuery(req.body)
+				.then((arr) => {
+					res.status(200).json({result: arr});
+				})
+				.catch((err) => {
+					res.status(400).json({error: err});
+				});
+		} catch (err) {
+			res.status(400).json({error: err});
+		}
 	}
 
 	private get_datasets(req: Request, res: Response) {
 		this.insightFacade
 			.listDatasets()
 			.then((datasets) => {
-				res.status(200).json({result: datasets});
+				return res.status(200).json({result: datasets});
 			})
 			.catch((err) => {
 				// console.log(err);
-				res.status(400).json({error: err});
+				return res.status(400).json({error: err});
 			});
 	}
 
