@@ -210,6 +210,7 @@ describe("Facade D3", function () {
 				return request(SERVER_URL)
 					.delete("/dataset/pair")
 					.then(function (res: Response) {
+						// console.log(res.body);
 						expect(res.status).to.be.equal(404);
 					})
 					.catch(function (err) {
