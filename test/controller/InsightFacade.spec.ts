@@ -286,7 +286,7 @@ describe("InsightFacade", function () {
 			const result = await facade.listDatasets();
 			expect(result).have.deep.members([{id: "cs110", kind: InsightDatasetKind.Sections, numRows: 58}]);
 		});
-		/*
+
 		it("should resolve: return empty array", function () {
 			const result = facade.listDatasets();
 			return expect(result).to.eventually.be.empty;
@@ -353,7 +353,7 @@ describe("InsightFacade", function () {
 			const result = await newFacade2.listDatasets();
 			expect(result).to.be.empty;
 		});
-		*/
+
 		// it("should resolve: array with one elem  of type room", async function () {
 		// 	const add = await facade.addDataset("trial", campus, InsightDatasetKind.Rooms);
 		// 	const result = await facade.listDatasets();
