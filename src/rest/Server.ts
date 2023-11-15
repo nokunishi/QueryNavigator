@@ -1,11 +1,14 @@
 import express, {Application, Request, Response} from "express";
 import * as http from "http";
 import cors from "cors";
+import InsightFacade from "../controller/InsightFacade";
+import {InsightDatasetKind, InsightError, NotFoundError} from "../controller/IInsightFacade";
 
 export default class Server {
 	private readonly port: number;
 	private express: Application;
 	private server: http.Server | undefined;
+	private insightFacade: InsightFacade;
 
 	constructor(port: number) {
 		console.info(`Server::<init>( ${port} )`);
@@ -14,6 +17,8 @@ export default class Server {
 
 		this.registerMiddleware();
 		this.registerRoutes();
+
+		this.insightFacade = new InsightFacade();
 
 		// NOTE: you can serve static frontend files in from your express server
 		// by uncommenting the line below. This makes files in ./frontend/public
@@ -35,14 +40,16 @@ export default class Server {
 				console.error("Server::start() - server already listening");
 				reject();
 			} else {
-				this.server = this.express.listen(this.port, () => {
-					console.info(`Server::start() - server listening on port: ${this.port}`);
-					resolve();
-				}).on("error", (err: Error) => {
-					// catches errors in server start
-					console.error(`Server::start() - server ERROR: ${err.message}`);
-					reject(err);
-				});
+				this.server = this.express
+					.listen(this.port, () => {
+						console.info(`Server::start() - server listening on port: ${this.port}`);
+						resolve();
+					})
+					.on("error", (err: Error) => {
+						// catches errors in server start
+						console.error(`Server::start() - server ERROR: ${err.message}`);
+						reject(err);
+					});
 			}
 		});
 	}
@@ -84,8 +91,102 @@ export default class Server {
 		// http://localhost:4321/echo/hello
 		this.express.get("/echo/:msg", Server.echo);
 
-		// TODO: your other endpoints should go here
+		try {
+			this.express.put("/dataset/:id/:kind", (req, res) => {
+				this.put_dataset(req, res);
+			});
 
+			this.express.delete("/dataset/:id", (req, res) => {
+				this.delete_datasets(req, res);
+			});
+
+			this.express.post("/query", (req, res) => {
+				this.post_query(req, res);
+			});
+
+			this.express.get("/datasets", (req, res) => {
+				this.get_datasets(req, res);
+			});
+		} catch (err) {
+			console.log(err);
+		}
+		// TODO: your other endpoints should go here
+	}
+
+	private put_dataset(req: Request, res: Response) {
+		try {
+			let dataset = req.body.toString("base64");
+			let kind: InsightDatasetKind;
+
+			if (req.params["kind"] === "sections") {
+				kind = InsightDatasetKind.Sections;
+			} else if (req.params["kind"] === "rooms") {
+				kind = InsightDatasetKind.Rooms;
+			} else {
+				throw new InsightError("invalid kind");
+			}
+
+			this.insightFacade
+				.addDataset(req.params["id"], dataset, kind)
+				.then((ids) => {
+					res.status(200).json({result: ids});
+				})
+				.catch((err) => {
+					res.status(400).json({error: err});
+				});
+		} catch (err) {
+			res.status(400).json({error: err});
+		}
+	}
+
+	private delete_datasets(req: Request, res: Response) {
+		try {
+			this.insightFacade
+				.removeDataset(req.params["id"])
+				.then((id) => {
+					res.status(200).json({result: id});
+				})
+				.catch((err) => {
+					if (err instanceof InsightError) {
+						res.status(400).json({error: err});
+					} else if (err instanceof NotFoundError) {
+						res.status(404).json({error: err});
+					} else {
+						res.json({error: err});
+					}
+				});
+		} catch (err) {
+			res.json({error: err});
+		}
+	}
+
+	private post_query(req: Request, res: Response) {
+		// this.insightFacade = new InsightFacade(); // not sure if needed?
+
+		try {
+			this.insightFacade
+				.performQuery(req.body)
+				.then((arr) => {
+					res.status(200).json({result: arr});
+				})
+				.catch((err) => {
+					res.status(400).json({error: err});
+				});
+		} catch (err) {
+			res.status(400).json({error: err});
+		}
+	}
+
+	private get_datasets(req: Request, res: Response) {
+		this.insightFacade
+			.listDatasets()
+			.then((datasets) => {
+				return res.status(200).json({result: datasets});
+			})
+			.catch((err) => {
+				// console.log(err);
+				return res.status(400).json({error: err});
+			});
 	}
 
 	// The next two methods handle the echo service.

@@ -53,7 +53,6 @@ export default class InsightFacade implements IInsightFacade {
 		}
 	}
 
-	// todo: change to non-async
 	public performQuery(query: unknown): Promise<InsightResult[]> {
 		try {
 			let queryObject = parseQuery(query);
@@ -107,16 +106,16 @@ export default class InsightFacade implements IInsightFacade {
 			let datasetString = fs.readFileSync("./data/" + datasetId).toString();
 			let dataset = JSON.parse(datasetString);
 			let sum = 0;
-			// dataset.forEach((course: string) => {
-			// 	// course.length = num of sections in each course
-			// 	sum += course.length;
-			// });
+			dataset.forEach((course: any) => {
+				sum += course.length;
+			});
+
 			// boolean for checking if dataset is rooms or courses
 			const checkRoom: boolean = Object.prototype.hasOwnProperty.call(dataset[0], "Lat");
 			let insightDataset: InsightDataset = {
 				id: datasetId,
 				kind: checkRoom ? InsightDatasetKind.Rooms : InsightDatasetKind.Sections,
-				numRows: dataset.length,
+				numRows: sum,
 			};
 
 			insightDatasetLists.push(insightDataset);
