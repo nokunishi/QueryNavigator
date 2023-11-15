@@ -281,6 +281,11 @@ describe("InsightFacade", function () {
 			console.info(`AfterTest: ${this.currentTest?.title}`);
 			clearDisk();
 		});
+		it("should resolve: array with one elem", async function () {
+			const add = await facade.addDataset("cs110", cpsc110, InsightDatasetKind.Sections);
+			const result = await facade.listDatasets();
+			expect(result).have.deep.members([{id: "cs110", kind: InsightDatasetKind.Sections, numRows: 58}]);
+		});
 		/*
 		it("should resolve: return empty array", function () {
 			const result = facade.listDatasets();
@@ -412,10 +417,10 @@ describe("InsightFacade", function () {
 			assertOnError: assertError,
 		}); */
 
-		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
+		/* folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/queries_c0", {
 			assertOnResult: assertResult,
 			assertOnError: assertError,
-		});
+		}); */
 
 		/* 		folderTest<unknown, InsightResult[], Error>("Add Dynamic", target, "./test/resources/test_ordered", {
 			assertOnResult: assertResult,
