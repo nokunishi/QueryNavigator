@@ -3,6 +3,7 @@ import * as http from "http";
 import cors from "cors";
 import InsightFacade from "../controller/InsightFacade";
 import {InsightDatasetKind, InsightError, NotFoundError} from "../controller/IInsightFacade";
+import {error} from "console";
 
 export default class Server {
 	private readonly port: number;
@@ -91,25 +92,22 @@ export default class Server {
 		// http://localhost:4321/echo/hello
 		this.express.get("/echo/:msg", Server.echo);
 
-		try {
-			this.express.put("/dataset/:id/:kind", (req, res) => {
-				this.put_dataset(req, res);
-			});
+		this.express.put("/dataset/:id/:kind", (req, res) => {
+			this.put_dataset(req, res);
+		});
 
-			this.express.delete("/dataset/:id", (req, res) => {
-				this.delete_datasets(req, res);
-			});
+		this.express.delete("/dataset/:id", (req, res) => {
+			this.delete_datasets(req, res);
+		});
 
-			this.express.post("/query", (req, res) => {
-				this.post_query(req, res);
-			});
+		this.express.post("/query", (req, res) => {
+			this.post_query(req, res);
+		});
 
-			this.express.get("/datasets", (req, res) => {
-				this.get_datasets(req, res);
-			});
-		} catch (err) {
-			console.log(err);
-		}
+		this.express.get("/datasets", (req, res) => {
+			this.get_datasets(req, res);
+		});
+
 		// TODO: your other endpoints should go here
 	}
 
@@ -128,7 +126,9 @@ export default class Server {
 			let ids = await this.insightFacade.addDataset(req.params["id"], dataset, kind);
 			res.status(200).json({result: ids});
 		} catch (err) {
-			res.status(400).json({error: err});
+			if (err instanceof InsightError) {
+				res.status(400).json({error: err.message});
+			}
 		}
 	}
 
@@ -138,9 +138,9 @@ export default class Server {
 			res.status(200).json({result: id});
 		} catch (err) {
 			if (err instanceof NotFoundError) {
-				res.status(404).json({error: err});
-			} else {
-				res.status(400).json({error: err});
+				res.status(404).json({error: err.message});
+			} else if (err instanceof InsightError) {
+				res.status(400).json({error: err.message});
 			}
 		}
 	}
@@ -150,7 +150,9 @@ export default class Server {
 			let arr = await this.insightFacade.performQuery(req.body);
 			res.status(200).json({result: arr});
 		} catch (err) {
-			res.status(400).json({error: err});
+			if (err instanceof InsightError) {
+				res.status(400).json({error: err.message});
+			}
 		}
 	}
 

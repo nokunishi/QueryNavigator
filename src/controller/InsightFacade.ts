@@ -30,12 +30,12 @@ export default class InsightFacade implements IInsightFacade {
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		try {
 			if (this.database.invalidId(id)) {
-				return Promise.reject(new InsightError());
+				return Promise.reject(new InsightError("invalid id"));
 			}
 			if (kind) {
 				return this.database.addValidDataset(id, content, kind);
 			} else {
-				return Promise.reject(new InsightError());
+				return Promise.reject(new InsightError("kind cannot be null"));
 			}
 		} catch (err) {
 			return Promise.reject(new InsightError());
@@ -44,9 +44,9 @@ export default class InsightFacade implements IInsightFacade {
 
 	public removeDataset(id: string): Promise<string> {
 		if (this.database.invalidId(id)) {
-			return Promise.reject(new InsightError());
+			return Promise.reject(new InsightError("invalid id"));
 		} else if (!fs.existsSync("./data/" + id)) {
-			return Promise.reject(new NotFoundError());
+			return Promise.reject(new NotFoundError("dataset with given id is not found"));
 		} else {
 			fs.unlinkSync("./data/" + id);
 			return Promise.resolve(id);
