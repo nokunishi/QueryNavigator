@@ -66,7 +66,7 @@ describe("Facade D3", function () {
 					.send(pair)
 					.set("Content-Type", "application/x-zip-compressed")
 					.then(function (res: Response) {
-						// console.log(res);
+						expect((res.body["result"] as any[]).includes("pair"));
 						expect(res.status).to.be.equal(200);
 					})
 					.catch(function (err) {
@@ -82,9 +82,11 @@ describe("Facade D3", function () {
 		// Sample on how to format PUT requests
 		it("GET test for courses dataset", async function () {
 			try {
+				let lists = await facade.listDatasets();
 				return request(SERVER_URL)
 					.get("/datasets")
 					.then(function (res: Response) {
+						expect((res.body["result"] as any[]).includes(lists[0]));
 						expect(res.status).to.be.equal(200);
 					})
 					.catch(function (err) {
@@ -103,7 +105,7 @@ describe("Facade D3", function () {
 					.send(pair)
 					.set("Content-Type", "application/x-zip-compressed")
 					.then(function (res: Response) {
-						// console.log(res);
+						expect(res.body["error"]).to.be.an("string");
 						expect(res.status).to.be.equal(400);
 					})
 					.catch(function (err) {
@@ -122,6 +124,7 @@ describe("Facade D3", function () {
 					.post("/query")
 					.send(query)
 					.then(function (res: Response) {
+						expect(res.body["error"]).to.be.an("string");
 						expect(res.status).to.be.equal(400);
 					})
 					.catch(function (err) {
@@ -134,14 +137,15 @@ describe("Facade D3", function () {
 			}
 		});
 
-		it("PUT test for courses dataset", function () {
+		it("PUT test for courses dataset", async function () {
 			try {
 				return request(SERVER_URL)
 					.put("/dataset/sections/sections")
 					.send(pair)
 					.set("Content-Type", "application/x-zip-compressed")
 					.then(function (res: Response) {
-						// console.log(res);
+						expect(res.body["result"]).includes("pair");
+						expect(res.body["result"]).includes("sections");
 						expect(res.status).to.be.equal(200);
 					})
 					.catch(function (err) {
@@ -156,10 +160,15 @@ describe("Facade D3", function () {
 
 		it("POST test for courses dataset", async function () {
 			try {
+				let result = await facade.performQuery(query);
+
 				return request(SERVER_URL)
 					.post("/query")
 					.send(query)
 					.then(function (res: Response) {
+						for (const r of result) {
+							expect((res.body["result"] as any[]).includes(r));
+						}
 						expect(res.status).to.be.equal(200);
 					})
 					.catch(function (err) {
@@ -177,6 +186,7 @@ describe("Facade D3", function () {
 				return request(SERVER_URL)
 					.delete("/dataset/invalid_id")
 					.then(function (res: Response) {
+						expect(res.body["error"]).to.be.an("string");
 						expect(res.status).to.be.equal(400);
 					})
 					.catch(function (err) {
@@ -194,6 +204,7 @@ describe("Facade D3", function () {
 				return request(SERVER_URL)
 					.delete("/dataset/pair")
 					.then(function (res: Response) {
+						expect(res.body["result"]).to.be.an("string").equals("pair");
 						expect(res.status).to.be.equal(200);
 					})
 					.catch(function (err) {
@@ -210,7 +221,7 @@ describe("Facade D3", function () {
 				return request(SERVER_URL)
 					.delete("/dataset/pair")
 					.then(function (res: Response) {
-						// console.log(res.body);
+						expect(res.body["error"]).to.be.an("string");
 						expect(res.status).to.be.equal(404);
 					})
 					.catch(function (err) {
@@ -232,6 +243,8 @@ describe("Facade D3", function () {
 					.send(rooms)
 					.set("Content-Type", "application/x-zip-compressed")
 					.then(function (res: Response) {
+						expect(res.body["result"]).includes("sections");
+						expect(res.body["result"]).includes("rooms");
 						expect(res.status).to.be.equal(200);
 					})
 					.catch(function (err) {
@@ -256,10 +269,14 @@ describe("Facade D3", function () {
 				console.log("failed to restart server");
 			}
 			try {
+				let result = await facade.performQuery(queryRoom);
 				return request(SERVER_URL)
 					.post("/query")
 					.send(queryRoom)
 					.then(function (res: Response) {
+						for (const r of result) {
+							expect((res.body["result"] as any[]).includes(r));
+						}
 						expect(res.status).to.be.equal(200);
 					})
 					.catch(function (err) {
