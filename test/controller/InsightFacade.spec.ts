@@ -36,6 +36,8 @@ describe("InsightFacade", function () {
 	let validOneCourse: string;
 	let validField: string;
 
+	let room: string;
+
 	before(function () {
 		// This block runs once and loads the datasets.
 		pair = getContentFromArchives("pair.zip");
@@ -45,7 +47,7 @@ describe("InsightFacade", function () {
 		maths = getContentFromArchives("maths.zip");
 		cs110And302 = getContentFromArchives("cpsc110_302.zip");
 
-		invalidRootDir = getContentFromArchives("invalid_root.zip");
+		room = invalidRootDir = getContentFromArchives("invalid_root.zip");
 		invalidCourseNotJson = getContentFromArchives("invalid_course_not_json.zip");
 		invalidCourseFormat = getContentFromArchives("invalid_format.zip");
 
@@ -287,6 +289,18 @@ describe("InsightFacade", function () {
 			expect(result).have.deep.members([{id: "cs110", kind: InsightDatasetKind.Sections, numRows: 58}]);
 		});
 
+		it("should resolve: array with one elem", async function () {
+			const add = await facade.addDataset("section", pair, InsightDatasetKind.Sections);
+			const result = await facade.listDatasets();
+			expect(result).have.deep.members([{id: "section", kind: InsightDatasetKind.Sections, numRows: 64612}]);
+		});
+
+		it("should resolve: array with one elem", async function () {
+			const add = await facade.addDataset("rooms", campus, InsightDatasetKind.Rooms);
+			const result = await facade.listDatasets();
+			expect(result).have.deep.members([{id: "rooms", kind: InsightDatasetKind.Rooms, numRows: 64612}]);
+		});
+		/*
 		it("should resolve: return empty array", function () {
 			const result = facade.listDatasets();
 			return expect(result).to.eventually.be.empty;
@@ -353,7 +367,7 @@ describe("InsightFacade", function () {
 			const result = await newFacade2.listDatasets();
 			expect(result).to.be.empty;
 		});
-
+ */
 		// it("should resolve: array with one elem  of type room", async function () {
 		// 	const add = await facade.addDataset("trial", campus, InsightDatasetKind.Rooms);
 		// 	const result = await facade.listDatasets();

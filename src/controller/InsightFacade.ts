@@ -106,12 +106,20 @@ export default class InsightFacade implements IInsightFacade {
 			let datasetString = fs.readFileSync("./data/" + datasetId).toString();
 			let dataset = JSON.parse(datasetString);
 			let sum = 0;
-			dataset.forEach((course: any) => {
-				sum += course.length;
-			});
 
 			// boolean for checking if dataset is rooms or courses
 			const checkRoom: boolean = Object.prototype.hasOwnProperty.call(dataset[0], "Lat");
+
+			if (!checkRoom) {
+				dataset.forEach((course: any) => {
+					sum += course.length;
+				});
+			} else {
+				sum = dataset.length;
+			}
+
+			// console.log(sum);
+
 			let insightDataset: InsightDataset = {
 				id: datasetId,
 				kind: checkRoom ? InsightDatasetKind.Rooms : InsightDatasetKind.Sections,

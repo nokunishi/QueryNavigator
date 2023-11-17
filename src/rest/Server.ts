@@ -113,7 +113,9 @@ export default class Server {
 
 	private async put_dataset(req: Request, res: Response) {
 		try {
-			let dataset = Buffer.from(req.body).toString("base64");
+			let dataset = req.body.toString("base64");
+			// causes timeout
+			// let dataset = Buffer.from(req.body).toString("base64");
 			let kind: InsightDatasetKind;
 
 			if (req.params["kind"] === "sections") {
