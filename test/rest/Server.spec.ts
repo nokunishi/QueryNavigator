@@ -83,6 +83,7 @@ describe("Facade D3", function () {
 		it("GET test for courses dataset", async function () {
 			try {
 				let lists = await facade.listDatasets();
+				// console.log(lists);
 				return request(SERVER_URL)
 					.get("/datasets")
 					.then(function (res: Response) {
