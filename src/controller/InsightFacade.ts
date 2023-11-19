@@ -30,12 +30,12 @@ export default class InsightFacade implements IInsightFacade {
 	public async addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		try {
 			if (this.database.invalidId(id)) {
-				return Promise.reject(new InsightError());
+				return Promise.reject(new InsightError("invalid id"));
 			}
 			if (kind) {
 				return this.database.addValidDataset(id, content, kind);
 			} else {
-				return Promise.reject(new InsightError());
+				return Promise.reject(new InsightError("kind cannot be null"));
 			}
 		} catch (err) {
 			return Promise.reject(new InsightError());
@@ -44,16 +44,15 @@ export default class InsightFacade implements IInsightFacade {
 
 	public removeDataset(id: string): Promise<string> {
 		if (this.database.invalidId(id)) {
-			return Promise.reject(new InsightError());
+			return Promise.reject(new InsightError("invalid id"));
 		} else if (!fs.existsSync("./data/" + id)) {
-			return Promise.reject(new NotFoundError());
+			return Promise.reject(new NotFoundError("dataset with given id is not found"));
 		} else {
 			fs.unlinkSync("./data/" + id);
 			return Promise.resolve(id);
 		}
 	}
 
-	// todo: change to non-async
 	public performQuery(query: unknown): Promise<InsightResult[]> {
 		try {
 			let queryObject = parseQuery(query);
@@ -107,16 +106,24 @@ export default class InsightFacade implements IInsightFacade {
 			let datasetString = fs.readFileSync("./data/" + datasetId).toString();
 			let dataset = JSON.parse(datasetString);
 			let sum = 0;
-			// dataset.forEach((course: string) => {
-			// 	// course.length = num of sections in each course
-			// 	sum += course.length;
-			// });
+
 			// boolean for checking if dataset is rooms or courses
 			const checkRoom: boolean = Object.prototype.hasOwnProperty.call(dataset[0], "Lat");
+
+			if (!checkRoom) {
+				dataset.forEach((course: any) => {
+					sum += course.length;
+				});
+			} else {
+				sum = dataset.length;
+			}
+
+			// console.log(sum);
+
 			let insightDataset: InsightDataset = {
 				id: datasetId,
 				kind: checkRoom ? InsightDatasetKind.Rooms : InsightDatasetKind.Sections,
-				numRows: dataset.length,
+				numRows: sum,
 			};
 
 			insightDatasetLists.push(insightDataset);

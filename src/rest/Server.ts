@@ -1,11 +1,15 @@
 import express, {Application, Request, Response} from "express";
 import * as http from "http";
 import cors from "cors";
+import InsightFacade from "../controller/InsightFacade";
+import {InsightDatasetKind, InsightError, NotFoundError} from "../controller/IInsightFacade";
+import {error} from "console";
 
 export default class Server {
 	private readonly port: number;
 	private express: Application;
 	private server: http.Server | undefined;
+	private insightFacade: InsightFacade;
 
 	constructor(port: number) {
 		console.info(`Server::<init>( ${port} )`);
@@ -14,6 +18,8 @@ export default class Server {
 
 		this.registerMiddleware();
 		this.registerRoutes();
+
+		this.insightFacade = new InsightFacade();
 
 		// NOTE: you can serve static frontend files in from your express server
 		// by uncommenting the line below. This makes files in ./frontend/public
@@ -35,14 +41,16 @@ export default class Server {
 				console.error("Server::start() - server already listening");
 				reject();
 			} else {
-				this.server = this.express.listen(this.port, () => {
-					console.info(`Server::start() - server listening on port: ${this.port}`);
-					resolve();
-				}).on("error", (err: Error) => {
-					// catches errors in server start
-					console.error(`Server::start() - server ERROR: ${err.message}`);
-					reject(err);
-				});
+				this.server = this.express
+					.listen(this.port, () => {
+						console.info(`Server::start() - server listening on port: ${this.port}`);
+						resolve();
+					})
+					.on("error", (err: Error) => {
+						// catches errors in server start
+						console.error(`Server::start() - server ERROR: ${err.message}`);
+						reject(err);
+					});
 			}
 		});
 	}
@@ -84,8 +92,79 @@ export default class Server {
 		// http://localhost:4321/echo/hello
 		this.express.get("/echo/:msg", Server.echo);
 
-		// TODO: your other endpoints should go here
+		this.express.put("/dataset/:id/:kind", (req, res) => {
+			this.put_dataset(req, res);
+		});
 
+		this.express.delete("/dataset/:id", (req, res) => {
+			this.delete_datasets(req, res);
+		});
+
+		this.express.post("/query", (req, res) => {
+			this.post_query(req, res);
+		});
+
+		this.express.get("/datasets", (req, res) => {
+			this.get_datasets(req, res);
+		});
+
+		// TODO: your other endpoints should go here
+	}
+
+	private async put_dataset(req: Request, res: Response) {
+		try {
+			let dataset = req.body.toString("base64");
+			// causes timeout
+			// let dataset = Buffer.from(req.body).toString("base64");
+			let kind: InsightDatasetKind;
+
+			if (req.params["kind"] === "sections") {
+				kind = InsightDatasetKind.Sections;
+			} else if (req.params["kind"] === "rooms") {
+				kind = InsightDatasetKind.Rooms;
+			} else {
+				throw new InsightError("invalid kind");
+			}
+			let ids = await this.insightFacade.addDataset(req.params["id"], dataset, kind);
+			res.status(200).json({result: ids});
+		} catch (err) {
+			if (err instanceof InsightError) {
+				res.status(400).json({error: err.message});
+			}
+		}
+	}
+
+	private async delete_datasets(req: Request, res: Response) {
+		try {
+			let id = await this.insightFacade.removeDataset(req.params["id"]);
+			res.status(200).json({result: id});
+		} catch (err) {
+			if (err instanceof NotFoundError) {
+				res.status(404).json({error: err.message});
+			} else if (err instanceof InsightError) {
+				res.status(400).json({error: err.message});
+			}
+		}
+	}
+
+	private async post_query(req: Request, res: Response) {
+		try {
+			let arr = await this.insightFacade.performQuery(req.body);
+			res.status(200).json({result: arr});
+		} catch (err) {
+			if (err instanceof InsightError) {
+				res.status(400).json({error: err.message});
+			}
+		}
+	}
+
+	private async get_datasets(req: Request, res: Response) {
+		try {
+			let datasets = await this.insightFacade.listDatasets();
+			res.status(200).json({result: datasets});
+		} catch (err) {
+			console.log("should be never fail");
+		}
 	}
 
 	// The next two methods handle the echo service.
