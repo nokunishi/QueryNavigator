@@ -9,7 +9,6 @@ export default function Results(props: Props) {
 		return key.includes("_") ? key.split("_")[1] : key;
 	}
 
-	console.log(Object.keys(props.data[0]));
 	return (
 		<div>
 			<div>Results</div>
