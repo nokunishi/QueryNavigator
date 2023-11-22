@@ -1,0 +1,375 @@
+{
+	"title": "query_example",
+	"input": {
+		"WHERE": {
+			"AND": [
+				{
+					"IS": {
+						"sections_dept": "cpsc"
+					}
+				},
+				{
+					"EQ": {
+						"sections_year": 2012
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": [
+				"sections_id",
+				"sections_dept",
+				"sections_year",
+				"sections_title",
+				"maxFailed"
+			]
+		},
+		"TRANSFORMATIONS": {
+			"GROUP": [
+				"sections_id",
+				"sections_dept",
+				"sections_year",
+				"sections_title"
+			],
+			"APPLY": [
+				{
+					"maxFailed": {
+						"MAX": "sections_fail"
+					}
+				}
+			]
+		}
+	},
+	"errorExpected": false,
+	"expected": [
+		{
+			"sections_id": "110",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "comptn, progrmng",
+			"maxFailed": 40
+		},
+		{
+			"sections_id": "121",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "model comptn",
+			"maxFailed": 8
+		},
+		{
+			"sections_id": "210",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "sftwr constructn",
+			"maxFailed": 18
+		},
+		{
+			"sections_id": "213",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "intro comp sys",
+			"maxFailed": 14
+		},
+		{
+			"sections_id": "221",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "basic alg&data",
+			"maxFailed": 8
+		},
+		{
+			"sections_id": "259",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "dta&alg elec eng",
+			"maxFailed": 15
+		},
+		{
+			"sections_id": "261",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "basics comp syst",
+			"maxFailed": 17
+		},
+		{
+			"sections_id": "301",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "comptng life sci",
+			"maxFailed": 3
+		},
+		{
+			"sections_id": "302",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "num comp alg prb",
+			"maxFailed": 1
+		},
+		{
+			"sections_id": "303",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "num approx/discr",
+			"maxFailed": 2
+		},
+		{
+			"sections_id": "304",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "intr rel databse",
+			"maxFailed": 2
+		},
+		{
+			"sections_id": "310",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "intr sftwr eng",
+			"maxFailed": 6
+		},
+		{
+			"sections_id": "311",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "programmng langs",
+			"maxFailed": 2
+		},
+		{
+			"sections_id": "312",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "func & logic prg",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "313",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "comp hard&os",
+			"maxFailed": 9
+		},
+		{
+			"sections_id": "314",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "comp graphics",
+			"maxFailed": 5
+		},
+		{
+			"sections_id": "317",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "internet comp",
+			"maxFailed": 3
+		},
+		{
+			"sections_id": "319",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "softwr eng proj",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "320",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "intr alg dsgn&an",
+			"maxFailed": 10
+		},
+		{
+			"sections_id": "322",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "artificial intel",
+			"maxFailed": 8
+		},
+		{
+			"sections_id": "340",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "machine lrn mine",
+			"maxFailed": 4
+		},
+		{
+			"sections_id": "344",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "hum-com interact",
+			"maxFailed": 1
+		},
+		{
+			"sections_id": "404",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "adv rel databse",
+			"maxFailed": 1
+		},
+		{
+			"sections_id": "410",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "adv software eng",
+			"maxFailed": 5
+		},
+		{
+			"sections_id": "411",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "compiler constrc",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "415",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "adv opertng sysm",
+			"maxFailed": 1
+		},
+		{
+			"sections_id": "416",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "distrbt'd systms",
+			"maxFailed": 2
+		},
+		{
+			"sections_id": "418",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "parallel comput",
+			"maxFailed": 1
+		},
+		{
+			"sections_id": "420",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "adv alg dsgn&anl",
+			"maxFailed": 5
+		},
+		{
+			"sections_id": "421",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "theory comptg",
+			"maxFailed": 1
+		},
+		{
+			"sections_id": "422",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "intel systems",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "425",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "computer vision",
+			"maxFailed": 1
+		},
+		{
+			"sections_id": "430",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "comptr & society",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "445",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "alg in bioin",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "449",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "honours thesis",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "500",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "fund alg dsgn&an",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "501",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "thry of automata",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "502",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "artif intell 1",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "503",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "computl ling 1",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "509",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "prog lang princ",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "513",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "intgrt sys desgn",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "515",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "comput robotics",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "521",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "para algs & arch",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "522",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "artif intell 2",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "540",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "machine learn i",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "544",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "hmn-cmpt intract",
+			"maxFailed": 0
+		},
+		{
+			"sections_id": "589",
+			"sections_dept": "cpsc",
+			"sections_year": 2012,
+			"sections_title": "m.sc major essay",
+			"maxFailed": 0
+		}
+	]
+}
