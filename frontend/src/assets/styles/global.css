@@ -79,3 +79,13 @@
 	width: 80%;
 	max-width: 1100px;
 }
+@media (min-width: 512px) {
+	.container {
+		width: 92%;
+	}
+}
+@media (min-width: 1024px) {
+	.container {
+		width: 88%;
+	}
+}

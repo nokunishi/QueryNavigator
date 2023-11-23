@@ -11,10 +11,13 @@ export default function Results(props: Props) {
 
 	return (
 		<div>
-			<div>Results</div>
 			<div>
+				<h1 className="text-3xl py-3">Results</h1>
+			</div>
+			<div>
+				<div>✅ Success!</div>
 				<div className="py-2"></div>
-				<div className="m-2 content-center border-2 rounded-lg w-auto">
+				<div className="mb-5 content-center border-2 rounded-lg w-auto">
 					<Table>
 						<TableHeader>
 							<TableRow>

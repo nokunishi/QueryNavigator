@@ -5,13 +5,13 @@ import * as zip from "jszip";
 
 // axios function to make api calls
 // this function should take zip file html input and send it to backend
-export async function addData(id: string, type: string, dataZip: zip) {
+export async function addData(id: string, type: string, dataZip: any) {
 	return axios({
 		method: "PUT",
 		url: `${BACKEND_ENDPOINT}/dataset/${id}/${type}`,
 		data: dataZip,
 		headers: {
-			"Content-Type": "application/json",
+			"Content-Type": "application/x-zip-compressed",
 		},
 	});
 }
@@ -22,6 +22,17 @@ export async function queryResult(query: any): Promise<any> {
 		method: "POST",
 		url: `${BACKEND_ENDPOINT}/query`,
 		data: query,
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+}
+
+// function to load dataset list from backend
+export async function getDatasetList(): Promise<any> {
+	return axios({
+		method: "GET",
+		url: `${BACKEND_ENDPOINT}/datasets`,
 		headers: {
 			"Content-Type": "application/json",
 		},

@@ -17,3 +17,7 @@ h1 {
 	width: 49px;
 	height: 5px;
 }
+
+button[aria-expanded="true"] .dataset-button {
+	@apply border-zinc-600;
+}

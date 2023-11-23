@@ -1,15 +1,18 @@
-import {queryResult} from "@/services/api";
-import {useRef} from "react";
-import {useMutation} from "react-query";
+import {getDatasetList, queryResult} from "@/services/api";
+import {useRef, useState} from "react";
+import {useMutation, useQuery} from "react-query";
 import Results from "./Results";
 import "../assets/styles/app.css";
 import Header from "./Header";
 import {AxiosError} from "axios";
 import {Alert, AlertDescription, AlertTitle} from "@/components/ui/alert";
-import Stories from "./Stories";
+import Student from "./stories/Student";
+import DHead from "./stories/DHead";
 
 export default function Home() {
 	const queryBoxRef = useRef<HTMLTextAreaElement>(null);
+	const [storyError, setStoryError] = useState("");
+	const [currentDataset, setCurrentDataset] = useState("");
 	const mutation = useMutation((query: string) => {
 		if (isJSON(query)) {
 			return queryResult(query);
@@ -38,15 +41,15 @@ export default function Home() {
 	function errorAlert(alert: string) {
 		return (
 			<Alert variant="destructive">
-				<AlertTitle>Error</AlertTitle>
-				<AlertDescription>{alert}</AlertDescription>
+				<AlertTitle>❌ Error</AlertTitle>
+				<AlertDescription className="pl-5">{alert}</AlertDescription>
 			</Alert>
 		);
 	}
 
 	return (
 		<div className="container mx-auto">
-			<Header />
+			<Header setDataset={setCurrentDataset} />
 			{mutation.data ? (
 				mutation.data.data.result.length === 0 ? (
 					errorAlert("No results found")
@@ -66,11 +69,26 @@ export default function Home() {
 					) : (
 						<></>
 					)}
+					{storyError !== "" ? errorAlert(storyError) : <></>}
 					<div className="grid grid-cols-2 gap-8 my-6 min-h-[calc(100vh-150px)]">
 						<div className="flex flex-col">
 							<h1 className="text-3xl py-3">User Stories</h1>
 							<div className="bg-[#f4f4f4] rounded-lg mt-4 flex-1">
-								<Stories queryFunction={handleStudentQuerySubmit} />
+								<div className="p-6">
+									<Student
+										queryFunction={handleStudentQuerySubmit}
+										setStoryError={setStoryError}
+										dataset={currentDataset}
+									/>
+									<div className="flex justify-center my-2">
+										<div className="divider-icon"></div>
+									</div>
+									<DHead
+										queryFunction={handleStudentQuerySubmit}
+										setStoryError={setStoryError}
+										dataset={currentDataset}
+									/>
+								</div>
 							</div>
 						</div>
 						<div className="flex flex-col">
@@ -91,8 +109,9 @@ export default function Home() {
 								/>
 								<div>
 									<input
-										className="bg-zinc-900 py-2 px-6 text-white rounded-full cursor-pointer hover:bg-primary-blue transition-all duration-300"
+										className="bg-zinc-900 py-2 px-6 text-white rounded-full cursor-pointer hover:bg-primary-blue transition-all duration-300 disabled:opacity-20 disabled:pointer-events-none"
 										type="submit"
+										disabled={currentDataset.length <= 0}
 										value="Query"
 									/>
 								</div>
