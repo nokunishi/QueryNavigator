@@ -56,7 +56,6 @@ export default class InsightFacade implements IInsightFacade {
 	public performQuery(query: unknown): Promise<InsightResult[]> {
 		try {
 			let queryObject = parseQuery(query);
-
 			if (!queryObject.WHERE || !queryObject.OPTIONS || !queryObject.OPTIONS.COLUMNS) {
 				return Promise.reject(new InsightError("missing WHERE/OPTIONS/COLUMNS"));
 			} else if (queryObject.OPTIONS.COLUMNS.length === 0) {
@@ -69,6 +68,7 @@ export default class InsightFacade implements IInsightFacade {
 				} else {
 					datasetId = queryObject.OPTIONS.COLUMNS[0].split("_")[0];
 				}
+				// TODO check if datasetId is valid by checking if it exists in database
 			} catch (err) {
 				throw new InsightError("invalid dataset id");
 			}
@@ -92,8 +92,7 @@ export default class InsightFacade implements IInsightFacade {
 				return parseOptions(queryObject.OPTIONS, result);
 			}
 		} catch (error) {
-			// console.log(error);
-			return Promise.reject(new InsightError());
+			return Promise.reject(new InsightError("Something went wrong with the query. Please try again."));
 		}
 	}
 

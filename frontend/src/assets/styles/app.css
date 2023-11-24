@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@700&display=swap");
+
+body {
+	font-family: "Inter", sans-serif;
+	font-size: 16px;
+}
+
+h1 {
+	font-family: "Poppins", sans-serif;
+	font-weight: 700;
+}
+
+.divider-icon {
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDkiIGhlaWdodD0iNSIgdmlld0JveD0iMCAwIDQ5IDUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxjaXJjbGUgY3g9IjIuNSIgY3k9IjIuNSIgcj0iMi41IiBmaWxsPSIjQkRCREJEIi8+CjxjaXJjbGUgY3g9IjI0LjUiIGN5PSIyLjUiIHI9IjIuNSIgZmlsbD0iI0JEQkRCRCIvPgo8Y2lyY2xlIGN4PSI0Ni41IiBjeT0iMi41IiByPSIyLjUiIGZpbGw9IiNCREJEQkQiLz4KPC9zdmc+Cg==);
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 49px;
+	height: 5px;
+}
+
+button[aria-expanded="true"] .dataset-button {
+	@apply border-zinc-600;
+}
