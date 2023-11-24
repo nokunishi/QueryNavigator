@@ -11,7 +11,7 @@ export async function addData(id: string, type: string, dataZip: any) {
 		url: `${BACKEND_ENDPOINT}/dataset/${id}/${type}`,
 		data: dataZip,
 		headers: {
-			"Content-Type": "application/x-zip-compressed",
+			"Content-Type": dataZip.type,
 		},
 	});
 }

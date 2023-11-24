@@ -5,6 +5,7 @@ import {
 	DropdownMenuItem,
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
+	DropdownMenuShortcut,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -13,7 +14,6 @@ import {
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
-	DialogTrigger,
 	DialogFooter,
 } from "@/components/ui/dialog";
 import {Label} from "@/components/ui/label";
@@ -21,56 +21,57 @@ import {Input} from "@/components/ui/input";
 import {useToast} from "@/components/ui/use-toast";
 import {Toaster} from "@/components/ui/toaster";
 
-import {useMutation, useQuery} from "react-query";
+import {useMutation, useQuery, useQueryClient} from "react-query";
 import {addData, getDatasetList} from "@/services/api";
 import React from "react";
-import JSZip from "jszip";
-import * as fs from "fs-extra";
+import {AxiosError} from "axios";
+import {Button} from "./ui/button";
+import {ToggleGroup, ToggleGroupItem} from "@/components/ui/toggle-group";
 type Props = {
 	setDataset: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export default function Header(props: Props) {
 	const {toast} = useToast();
-	const datasets = useQuery("datasets", () => getDatasetList());
+	const datasets = useQuery(["datasets"], () => getDatasetList());
 	const [currSet, setCurrSet] = React.useState("");
+	const [currDatasetType, setCurrDatasetType] = React.useState<"sections" | "rooms">("sections");
+	const [dialogOpen, setDialogOpen] = React.useState(false);
 	const datasetNameRef = React.useRef<HTMLInputElement>(null);
-	const datasetTypeRef = React.useRef<HTMLInputElement>(null);
 	const datasetZipRef = React.useRef<HTMLInputElement>(null);
+	const queryClient = useQueryClient();
 
-	const sendDataset = useMutation("sendDataset", async () => {
-		if (checkFields()) {
-			if (
-				datasetNameRef.current?.value &&
-				datasetTypeRef.current?.value &&
-				datasetZipRef.current?.files
-			) {
-				// console.log(datasetZipRef);
-				// const zipFile = datasetZipRef.current?.files?.[0];
-				// const zip = new JSZip();
-				// const zipData = await zip.loadAsync(zipFile);
-				// const zipData: Buffer = fs.readFileSync(datasetZipRef.current?.value);
-				// return addData(datasetNameRef.current?.value, datasetTypeRef.current?.value, zipData);
-			}
-		}
+	const sendDataset = useMutation({
+		mutationFn: (payload: {name: string; type: string; zip: any}) => {
+			return addData(payload["name"], payload["type"], payload["zip"]);
+		},
+		onSuccess: (data: any) => {
+			setDialogOpen(false);
+			toast({
+				title: "Successful!",
+				description: 'Dataset "' + datasetNameRef.current?.value + '" added',
+			});
+			queryClient.invalidateQueries("datasets");
+			if (data.data.result.length === 1) props.setDataset(data.data.result[0]);
+		},
+		onError: (error: AxiosError) => {
+			// Handle error here
+			console.log(error);
+		},
 	});
 
 	async function sendDatasetToBackend() {
-		if (
-			datasetNameRef.current?.value &&
-			datasetTypeRef.current?.value &&
-			datasetZipRef.current?.files
-		) {
-			await sendDataset.mutate();
+		if (checkFields() && datasetNameRef.current?.value && datasetZipRef.current?.files) {
+			await sendDataset.mutate({
+				name: datasetNameRef.current?.value,
+				type: currDatasetType,
+				zip: datasetZipRef.current?.files[0],
+			});
 		}
 	}
 
 	function checkFields(): boolean {
-		if (
-			!datasetNameRef.current?.value ||
-			!datasetTypeRef.current?.value ||
-			!datasetZipRef.current?.files
-		) {
+		if (!datasetNameRef.current?.value || !datasetZipRef.current?.files) {
 			toast({
 				title: "Error",
 				description: "Please fill in all fields",
@@ -81,13 +82,6 @@ export default function Header(props: Props) {
 			toast({
 				title: "Error",
 				description: "Please upload a zip file",
-			});
-			return false;
-		}
-		if (datasetTypeRef.current?.value !== "sections" && datasetTypeRef.current?.value !== "rooms") {
-			toast({
-				title: "Error",
-				description: "Please enter a valid type",
 			});
 			return false;
 		}
@@ -104,103 +98,118 @@ export default function Header(props: Props) {
 					</a>
 				</div>
 				{/* Add dataset */}
-				<div className="flex items-center gap-4">
-					<Dialog>
-						<DialogTrigger asChild>
-							<button className="bg-zinc-900 py-2 px-4 text-white rounded-lg cursor-pointer hover:bg-primary-blue transition-all duration-300 disabled:opacity-20 disabled:pointer-events-none">
-								Add Dataset
-							</button>
-						</DialogTrigger>
-						<DialogContent className="sm:max-w-[425px]">
-							<DialogHeader>
-								<DialogTitle>Upload dataset</DialogTitle>
-								<DialogDescription>
-									Choose the zip file and give dataset a unique name. Click upload when you're done.
-								</DialogDescription>
-							</DialogHeader>
-							<div className="grid gap-4 py-4">
-								<div className="grid grid-cols-4 w-full items-center gap-4">
-									<Label htmlFor="filezip" className="text-right">
-										Zip file
-									</Label>
-									<Input
-										className="w-full col-span-3"
-										ref={datasetZipRef}
-										id="filezip"
-										type="file"
-									/>
-								</div>
-								<div className="grid grid-cols-4 items-center gap-4">
-									<Label htmlFor="setname" className="text-right">
-										Name
-									</Label>
-									<Input
-										id="setname"
-										ref={datasetNameRef}
-										placeholder="sections"
-										className="col-span-3"
-									/>
-								</div>
-								<div className="grid grid-cols-4 items-center gap-4">
-									<Label htmlFor="setType" className="text-right">
-										Type
-									</Label>
-									<Input
-										id="setType"
-										ref={datasetTypeRef}
-										placeholder="sections / rooms"
-										className="col-span-3"
-									/>
+				<Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+					<DialogContent className="sm:max-w-[425px]">
+						<DialogHeader>
+							<DialogTitle>Upload dataset</DialogTitle>
+							<DialogDescription>
+								Choose the zip file and give dataset a unique name. Click upload when you're done.
+							</DialogDescription>
+						</DialogHeader>
+						<div className="grid gap-4 py-4">
+							<div className="grid grid-cols-4 w-full items-center gap-4">
+								<Label htmlFor="filezip" className="text-right">
+									Zip file
+								</Label>
+								<Input className="w-full col-span-3" ref={datasetZipRef} id="filezip" type="file" />
+							</div>
+							<div className="grid grid-cols-4 items-center gap-4">
+								<Label htmlFor="setname" className="text-right">
+									Name
+								</Label>
+								<Input
+									id="setname"
+									ref={datasetNameRef}
+									placeholder="h3ll0_w0r1d"
+									className="col-span-3"
+								/>
+							</div>
+							<div className="grid grid-cols-4 items-center gap-4">
+								<Label htmlFor="setType" className="text-right">
+									Type
+								</Label>
+								<div className="col-span-3">
+									<ToggleGroup
+										type="single"
+										variant="outline"
+										defaultValue="sections"
+										className="grid grid-cols-2"
+									>
+										<ToggleGroupItem
+											value="sections"
+											aria-label="Toggle sections"
+											onClick={() => {
+												setCurrDatasetType("sections");
+											}}
+										>
+											Sections
+										</ToggleGroupItem>
+										<ToggleGroupItem
+											value="rooms"
+											aria-label="Toggle rooms"
+											onClick={() => {
+												setCurrDatasetType("rooms");
+											}}
+										>
+											Rooms
+										</ToggleGroupItem>
+									</ToggleGroup>
 								</div>
 							</div>
-							<DialogFooter>
-								<button type="submit" onClick={sendDatasetToBackend}>
-									Upload
-								</button>
-							</DialogFooter>
-						</DialogContent>
-					</Dialog>
-					{/* Select dataset */}
-					<div>
-						<DropdownMenu>
-							<DropdownMenuTrigger>
-								<button className="bg-white dataset-button py-2 px-4 border-[1px] active:border-zinc-600 text-black rounded-lg cursor-pointer hover:bg-zinc-100 transition-all duration-300 focus-visible:outline-zinc-600">
-									{currSet.length > 0 ? currSet : "Datasets"}
-								</button>
-							</DropdownMenuTrigger>
-							<DropdownMenuContent>
-								<DropdownMenuLabel>Available datasets</DropdownMenuLabel>
-								<DropdownMenuSeparator />
-								{datasets.data?.data.result.map(
-									(dataset: {id: string; kind: string; numRows: number}) => (
-										<DropdownMenuItem key={dataset.id}>
-											<button
-												onClick={() => {
-													props.setDataset(dataset.id);
-													setCurrSet(dataset.id);
-													toast({
-														title: "Successful!",
-														description: 'Current dataset changed to "' + dataset.id + '"',
-													});
-												}}
-											>
-												{dataset.id}: {dataset.kind}
-											</button>
-										</DropdownMenuItem>
-									)
-								)}
-							</DropdownMenuContent>
-						</DropdownMenu>
-					</div>
+						</div>
+						<DialogFooter>
+							<Button disabled={sendDataset.isLoading} type="submit" onClick={sendDatasetToBackend}>
+								Upload
+							</Button>
+						</DialogFooter>
+					</DialogContent>
+				</Dialog>
+				{/* Select dataset */}
+
+				<div className="flex items-center gap-4">
+					<DropdownMenu>
+						<DropdownMenuTrigger>
+							<Button>
+								{currSet.length > 0 ? currSet : "Datasets"}
+								<span className="ic-base expand-icon ml-2 ic-invert"></span>
+							</Button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent className="w-56">
+							<DropdownMenuLabel>Available datasets</DropdownMenuLabel>
+							<DropdownMenuSeparator />
+							{datasets.data?.data.result.map(
+								(dataset: {id: string; kind: string; numRows: number}) => (
+									<DropdownMenuItem
+										key={dataset.id}
+										onClick={() => {
+											props.setDataset(dataset.id);
+											setCurrSet(dataset.id);
+											toast({
+												title: "Successful!",
+												description: 'Current dataset changed to "' + dataset.id + '"',
+											});
+										}}
+									>
+										<span>{dataset.id}</span>
+										<DropdownMenuShortcut>{dataset.kind}</DropdownMenuShortcut>
+									</DropdownMenuItem>
+								)
+							)}
+							<DropdownMenuSeparator />
+							<DropdownMenuItem onClick={() => setDialogOpen(true)}>
+								<span className="ic-base add-icon mr-2"></span>
+								<span>Add Dataset</span>
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
 					{/* Github */}
-					<div className="hover:underline underline-offset-4 cursor-pointer">
-						<a
-							href="https://github.students.cs.ubc.ca/CPSC310-2023W-T1/project_team232"
-							target="_blank"
-						>
-							Github
-						</a>
-					</div>
+					<a
+						href="https://github.students.cs.ubc.ca/CPSC310-2023W-T1/project_team232"
+						target="_blank"
+						className="inline-block px-4 font-medium h-10 py-2 text-sm border rounded-md hover:bg-zinc-100 cursor-pointer"
+					>
+						Github
+					</a>
 				</div>
 			</div>
 		</div>
