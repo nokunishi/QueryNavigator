@@ -81,8 +81,12 @@ export function parseQuery(query: any): Query {
 	if (typeof query !== "string") {
 		throw new InsightError("Query is not a string");
 	}
-
-	return JSON.parse(query) as Query;
+	try {
+		return JSON.parse(query) as Query;
+	} catch (err) {
+		console.log(err);
+		throw new InsightError("Query is not a valid JSON");
+	}
 }
 
 function parseWhereComparators(item: any, whereCondition: Where, comparator: WhereComparators, id: string): boolean {

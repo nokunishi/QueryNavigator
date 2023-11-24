@@ -28,6 +28,7 @@ describe("Facade D3", function () {
 		let queryRoomFile = fs.readFileSync("test/resources/rooms/valid_room_lat.json").toString();
 		queryRoom = JSON.parse(queryRoomFile)["input"];
 
+		// console.dir(JSON.stringify(queryRoom), {depth: null});
 		facade = new InsightFacade();
 
 		server = new Server(4321);
@@ -162,7 +163,6 @@ describe("Facade D3", function () {
 		it("POST test for courses dataset", async function () {
 			try {
 				let result = await facade.performQuery(query);
-
 				return request(SERVER_URL)
 					.post("/query")
 					.send(query)

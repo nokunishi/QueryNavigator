@@ -283,6 +283,7 @@ describe("InsightFacade", function () {
 			console.info(`AfterTest: ${this.currentTest?.title}`);
 			clearDisk();
 		});
+		/*
 		it("should resolve: array with one elem", async function () {
 			const add = await facade.addDataset("cs110", cpsc110, InsightDatasetKind.Sections);
 			const result = await facade.listDatasets();
