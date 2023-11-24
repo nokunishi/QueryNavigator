@@ -45,12 +45,12 @@ export default function Header(props: Props) {
 				datasetTypeRef.current?.value &&
 				datasetZipRef.current?.files
 			) {
-				console.log(datasetZipRef);
-				const zipFile = datasetZipRef.current?.files?.[0];
-				const zip = new JSZip();
-				const zipData = await zip.loadAsync(zipFile);
+				// console.log(datasetZipRef);
+				// const zipFile = datasetZipRef.current?.files?.[0];
+				// const zip = new JSZip();
+				// const zipData = await zip.loadAsync(zipFile);
 				// const zipData: Buffer = fs.readFileSync(datasetZipRef.current?.value);
-				return addData(datasetNameRef.current?.value, datasetTypeRef.current?.value, zipData);
+				// return addData(datasetNameRef.current?.value, datasetTypeRef.current?.value, zipData);
 			}
 		}
 	});
