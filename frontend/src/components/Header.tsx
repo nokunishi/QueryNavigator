@@ -55,8 +55,12 @@ export default function Header(props: Props) {
 			if (data.data.result.length === 1) props.setDataset(data.data.result[0]);
 		},
 		onError: (error: AxiosError) => {
-			// Handle error here
-			console.log(error);
+			toast({
+				title: "Error",
+				description:
+					"Failed to add dataset, please check if file is a valid zip and id is not previously used. " +
+					(error.response?.data as any)["error"],
+			});
 		},
 	});
 
