@@ -1,7 +1,6 @@
 // here goes backend api calls
 import {BACKEND_ENDPOINT} from "@/config";
 import axios from "axios";
-import * as zip from "jszip";
 
 // axios function to make api calls
 // this function should take zip file html input and send it to backend

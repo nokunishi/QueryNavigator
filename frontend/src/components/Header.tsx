@@ -186,7 +186,7 @@ export default function Header(props: Props) {
 											setCurrSet(dataset.id);
 											toast({
 												title: "Successful!",
-												description: 'Current dataset changed to "' + dataset.id + '"',
+												description: `Current dataset changed to ${dataset.id}`,
 											});
 										}}
 									>

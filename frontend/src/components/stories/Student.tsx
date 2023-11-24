@@ -1,5 +1,6 @@
 import {useRef} from "react";
 import "../../assets/styles/app.css";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 
 type Props = {
 	queryFunction: (query: string) => void;
@@ -88,13 +89,24 @@ export default function Student(props: Props) {
 				<label htmlFor="fields" className="text-[#707070] text-sm">
 					Fields
 				</label>
-				<input
-					type="text"
-					ref={fieldsRef}
-					id="fields"
-					placeholder="e.g. avg, year, instructor"
-					className="block px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-primary-blue sm:text-sm sm:leading-6"
-				/>
+				<TooltipProvider>
+					<Tooltip>
+						<TooltipTrigger className="w-full">
+							<input
+								type="text"
+								ref={fieldsRef}
+								id="fields"
+								placeholder="e.g. avg, year, instructor"
+								className="block px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-primary-blue sm:text-sm sm:leading-6"
+							/>
+						</TooltipTrigger>
+						<TooltipContent>
+							<p className="text-[#707070] text-sm">
+								Allows: avg, pass, fail, audit, instructor, uuid, id, dept, year, title
+							</p>
+						</TooltipContent>
+					</Tooltip>
+				</TooltipProvider>
 			</div>
 			<div className="py-2">
 				<button

@@ -1,6 +1,6 @@
-import {getDatasetList, queryResult} from "@/services/api";
+import {queryResult} from "@/services/api";
 import {useRef, useState} from "react";
-import {useMutation, useQuery} from "react-query";
+import {useMutation} from "react-query";
 import Results from "./Results";
 import "../assets/styles/app.css";
 import Header from "./Header";
