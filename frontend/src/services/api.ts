@@ -1,7 +1,6 @@
 // here goes backend api calls
 import {BACKEND_ENDPOINT} from "@/config";
 import axios from "axios";
-import * as zip from "jszip";
 
 // axios function to make api calls
 // this function should take zip file html input and send it to backend
@@ -11,7 +10,7 @@ export async function addData(id: string, type: string, dataZip: any) {
 		url: `${BACKEND_ENDPOINT}/dataset/${id}/${type}`,
 		data: dataZip,
 		headers: {
-			"Content-Type": "application/x-zip-compressed",
+			"Content-Type": dataZip.type,
 		},
 	});
 }

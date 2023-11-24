@@ -58,7 +58,6 @@ export default function DHead(props: Props) {
 				AND: [
 					{IS: {[datasetRef.current?.value + "_dept"]: deptRef.current?.value}},
 					{EQ: {[datasetRef.current?.value + "_year"]: Number(yearRef.current?.value)}},
-					filterCourses() !== null && filterCourses(),
 				],
 			},
 			OPTIONS: {
@@ -86,6 +85,8 @@ export default function DHead(props: Props) {
 				],
 			},
 		};
+
+		if (filterCourses() !== null) deptQuery["WHERE"]["AND"].push(filterCourses());
 		console.log(deptQuery);
 		const deptQueryJSON = JSON.stringify(deptQuery);
 		props.queryFunction(deptQueryJSON);
@@ -95,7 +96,7 @@ export default function DHead(props: Props) {
 		<div>
 			<p className="text-lg py-2">
 				As a <b>department head</b>,<br /> I want to see sections with highest number of failures
-				from year
+				from
 			</p>
 			<div className="flex gap-6 py-2 w-full">
 				<div className="flex-1">
@@ -107,8 +108,10 @@ export default function DHead(props: Props) {
 						ref={datasetRef}
 						id="datasetId"
 						value={props.dataset}
+						readOnly={true}
+						disabled
 						placeholder="e.g. sections"
-						className="block px-2 w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-primary-blue sm:text-sm sm:leading-6"
+						className="block px-2 w-full bg-gray-100 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-primary-blue sm:text-sm sm:leading-6"
 					/>
 				</div>
 				<div className="flex-1">
