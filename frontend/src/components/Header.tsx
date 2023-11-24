@@ -82,16 +82,16 @@ export default function Header(props: Props) {
 			});
 			return false;
 		}
-		if (
-			datasetZipRef.current?.files[0].type !== "application/zip" ||
-			"application/zip-x-compressed"
-		) {
-			toast({
-				title: "Error",
-				description: "Please upload a zip file",
-			});
-			return false;
-		}
+		// if (
+		// 	datasetZipRef.current?.files[0].type !== "application/zip" ||
+		// 	"application/zip-x-compressed"
+		// ) {
+		// 	toast({
+		// 		title: "Error",
+		// 		description: "Please upload a zip file",
+		// 	});
+		// 	return false;
+		// }
 		return true;
 	}
 
